@@ -797,6 +797,7 @@ const StyledH1 = styled.h1`
   font-size: 155px;
   font-weight: 500;
   line-height: 140px;
+  word-break: keep-all;
   margin: 0px;
   transform: scaleX(1);
   transform-origin: center;
@@ -1011,6 +1012,7 @@ const StyledH2 = styled.h2`
   font-size: 30px;
   line-height: 35px;
   letter-spacing: -4px;
+  word-break: keep-all;
   color: ${(props) => props.theme.Grey};
 
   @media (max-width: 767px) {
@@ -1219,6 +1221,7 @@ const StyledH3 = styled.h3`
   font-size: 50px;
   letter-spacing: -3px;
   font-weight: 400;
+  word-break: keep-all;
   padding: 0;
   margin: 0;
   text-align: left;
@@ -1453,6 +1456,7 @@ const StyledH4 = styled.h4`
   letter-spacing: -1px;
   line-height: 55px;
   font-weight: 400;
+  word-break: keep-all;
   text-align: left;
   white-space: nowrap;
   padding: 0;
@@ -1629,6 +1633,7 @@ const StyledP = styled.p`
   color: ${(props) => props.theme.Grey};
   font-weight: 300;
   text-align: left;
+  word-break: keep-all;
   padding: 0;
 
   @media (max-width: 767px) {
@@ -3575,6 +3580,7 @@ const Portfolio = styled.div`
   }
 
   &.header-profile {
+  width: 100%;
     display: flex;
     flex-direction: column;
     justify-content: space-between;

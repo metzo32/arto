@@ -11,7 +11,7 @@ import Water from "../components/loading_water/Water";
 import StartFromTop from "../components/StartFromTop";
 import LoadCounter from "../components/loading_water/LoadCounter";
 
-const GenerateImage: React.FC = () => {
+const GenerateImage = () => {
   const [prompt, setPrompt] = useState<string>("");
   const [color, setColor] = useState<boolean>(false);
   const [imageUrl, setImageUrl] = useState<string>("");

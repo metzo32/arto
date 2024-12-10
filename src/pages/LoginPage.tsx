@@ -32,9 +32,8 @@ const LoginPage = () => {
   const handleSignIn = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-     await setPersistence(auth, browserSessionPersistence);
-
     try {
+      await setPersistence(auth, browserSessionPersistence);  //세션에 유저 정보 저장
       const userCredential = await signInWithEmailAndPassword(
         auth,
         signInEmail,
