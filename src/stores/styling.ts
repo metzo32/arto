@@ -115,6 +115,11 @@ const App = styled.div`
     position: relative;
     height: auto;
   }
+
+  &.base-screen {
+    width: 100vw;
+    height: 100vh;
+  }
 `;
 
 const Div = styled.div`
@@ -994,7 +999,7 @@ const StyledH2 = styled.h2`
     @media (min-width: 768px) {
       font-size: 3rem;
       letter-spacing: 0px;
-      margin-bottom: 8px;
+      margin-bottom: 12px;
 
       -webkit-text-stroke: 2px white;
     }
@@ -1457,19 +1462,16 @@ const StyledH4 = styled.h4`
     @media (max-width: 767px) {
       font-size: 20px;
       line-height: 20px;
-      margin-bottom: 0px;
     }
 
     @media (min-width: 768px) {
       font-size: 26px;
       line-height: 26px;
-      margin-bottom: 5px;
     }
 
     @media (min-width: 1024px) {
       font-size: 30px;
       line-height: 30px;
-      margin-bottom: 5px;
     }
   }
 
@@ -3771,7 +3773,7 @@ const GenDiv = styled.div`
   &.gen-wrapper {
     width: 100%;
     height: 2000px;
-    background-color: black;
+    // background-color: black;
     display: block;
     overflow: hidden;
 
@@ -4424,134 +4426,105 @@ const Form = styled.form`
 const ProfileDiv = styled.div`
   &.profile-wrapper {
     width: 100vw;
+    min-height: 100vh;
     height: auto;
-    display: block;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+    padding: 50px 0px;
     position: relative;
     z-index: 1;
   }
 
-  &.profile-section {
-    border-radius: 30px;
-    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.3);
-    background-color: ${(props) => props.theme.Light};
-
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-
-    width: 85%;
-    margin: 0 auto;
-    margin-top: 10%;
-    margin-bottom: 10%;
-
-    @media (max-width: 767px) {
-      width: 85%;
-    }
-
-    @media (min-width: 768px) {
-      width: 60%;
-    }
-
-    @media (min-width: 1024px) {
-      width: 60%;
-    }
-
-    @media (min-width: 1440px) {
-      width: 60%;
-      min-height: 600px;
-    }
-  }
-
-  &.profile-padding-wrapper {
-    width: 100%;
+  &.profile-container {
+    min-width: 212px;
     height: auto;
-    position: relative;
+    background-color: ${(props) => props.theme.Light};
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.3);
 
+    @media (max-width: 767px) {
+      width: 60%;
+      padding: 10px;
+    }
+
+    @media (min-width: 768px) {
+      width: 80%;
+      padding: 20px;
+    }
+
+    @media (min-width: 1024px) {
+      width: 60%;
+      padding: 30px;
+    }
+  }
+
+  &.profile-grid {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    grid-template-rows: auto;
+    grid-column-gap: 10px;
+    grid-row-gap: 10px;
+    place-items: center;
+  }
+
+  &.profile-contacts-box {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &.profile-contacts {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    @media (max-width: 767px) {
+      margin-right: 5px;
+    }
+
+    @media (min-width: 768px) {
+      margin-right: 8px;
+    }
+
+    @media (min-width: 1024px) {
+      margin-right: 10px;
+    }
+  }
+
+  &.logout-container {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  &.like-num-box {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
 
     @media (max-width: 767px) {
-      margin-top: 40px;
-      margin-bottom: 40px;
+      margin: 20px 0px;
     }
 
     @media (min-width: 768px) {
-      margin-top: 80px;
-      margin-bottom: 80px;
+      margin: 50px 0px;
     }
 
     @media (min-width: 1024px) {
-      margin-top: 80px;
-      margin-bottom: 80px;
+      margin: 50px 0px;
     }
-  }
-
-  &.profile-text-container {
-    width: 60%;
-    margin: 0 auto;
-    margin: 20px 0px;
-
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-  }
-
-  &.profile-element-box {
-    display: flex;
-    height: calc(1.5 * auto);
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-
-    @media (max-width: 767px) {
-      margin-bottom: 20px;
-    }
-
-    @media (min-width: 768px) {
-      margin-bottom: 30px;
-    }
-
-    @media (min-width: 1024px) {
-      margin-bottom: 30px;
-    }
-  }
-
-  &.profile-contact-container {
-    display: flex;
-    justify-content: space-between;
-
-    @media (max-width: 767px) {
-      width: auto;
-      flex-direction: column;
-    }
-
-    @media (min-width: 768px) {
-      width: auto;
-      flex-direction: column;
-    }
-
-    @media (min-width: 1024px) {
-      width: 280px;
-      flex-direction: row;
-    }
-  }
-
-  &.profile-contact-box {
-    display: flex;
-    height: 20px;
-    align-items: center;
-    justify-content: center;
-    margin: 0;
-    padding: 0;
   }
 
   &.profile-like-box {
-    display: flex;
     height: 24%;
+    display: flex;
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
@@ -4619,60 +4592,6 @@ const ProfileDiv = styled.div`
 
     @media (min-width: 1024px) {
       width: 13%;
-    }
-  }
-
-  &.user-image-wrapper {
-    aspect-ratio: 1 / 1; /* 가로 세로 비율 1:1 */
-    width: 100%; /* 너비를 기준으로 세로가 자동으로 설정됩니다 */
-    border-radius: 50%;
-    background-color: ${(props) => props.theme.Light};
-    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.3);
-    overflow: hidden;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    position: relative;
-    top: 0;
-    left: 0;
-    transform: translate(0%, -50%);
-    transition: transform 0.3s ease, filter 0.3s ease;
-
-    @media (max-width: 767px) {
-      width: 40%;
-      max-width: 140px;
-    }
-
-    @media (min-width: 768px) {
-      width: 30%;
-      max-width: 170px;
-    }
-
-    @media (min-width: 1024px) {
-      width: 20%;
-    }
-
-    &:hover {
-      filter: brightness(1.1);
-      transform: translate(0%, -50%) scale(1.1);
-      transform-origin: center;
-    }
-  }
-
-  &.user-image-container {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-    border-radius: 50%;
-    cursor: pointer;
-
-    &:hover * {
-      color: ${(props) => props.theme.Grey};
     }
   }
 `;
@@ -5303,7 +5222,6 @@ const Button = styled.button`
   background-color: rgba(0, 0, 0, 0);
   color: ${(props) => props.theme.LightGrey};
   border: none;
-  padding: 10px 20px;
   text-align: center;
   display: inline-block;
   cursor: pointer;
@@ -5314,6 +5232,18 @@ const Button = styled.button`
 
   &:hover {
     color: ${(props) => props.theme.HoverGrey};
+  }
+
+  @media (max-width: 767px) {
+    padding: 2px 5px;
+  }
+
+  @media (min-width: 768px) {
+    padding: 5px 10px;
+  }
+
+  @media (min-width: 1024px) {
+    padding: 10px 20px;
   }
 
   &.delete {
@@ -5356,313 +5286,341 @@ const Button = styled.button`
     }
   }
 
-  &.more {
-    color: ${(props) => props.theme.LightGrey};
-    margin-top: 10px;
-    padding: 5px;
-
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-
-    @media (max-width: 767px) {
-      font-size: 16px;
-      width: 70px;
+  &.scroll-top-btn {
+      width: 50px;
+      height: 50px;
+      color: ${lightTheme.Light};
+      background-color: ${lightTheme.Green};
+      border-radius: 50%;
+      box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.3);
+      padding: 0;
+      pointer-events: auto;
+  
+      display: flex;
+      align-items: center;
+      justify-content: center;
+  
+      position: fixed;
+      bottom: 0;
+      right: 0;
+      z-index: 9999;
+  
+      &:hover {
+        color: ${lightTheme.Light};
+        background-color: ${lightTheme.HoverGreen};
+        transition: 0.3s ease;
+      }
+  
+      @media (max-width: 767px) {
+        transform: translate(-20%, -200%);
+  
+        &:hover {
+          color: ${lightTheme.Light};
+          background-color: ${lightTheme.Green};
+          transition: none;
+        }
+      }
+  
+      @media (min-width: 768px) {
+        transform: translate(-100%, -100%);
+      }
     }
-
-    @media (min-width: 768px) {
-      font-size: 20px;
-      width: 90px;
+  
+    &.sort-btn {
+      width: 50px;
+      height: 50px;
+      color: ${lightTheme.Light};
+      background-color: ${lightTheme.Green};
+      border-radius: 50%;ß
+      box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.3);
+      padding: 0;
+      pointer-events: auto;
+  
+      display: flex;
+      align-items: center;
+      justify-content: center;
+  
+      position: fixed;
+      z-index: 9999;
+  
+      &:hover {
+        color: ${lightTheme.Light};
+        background-color: ${lightTheme.HoverGreen};
+        transition: 0.3s ease;
+      }
+  
+      @media (max-width: 767px) {
+        bottom: 0;
+        left: 25px;
+        transform: translate(-20%, -200%);
+  
+        &:hover {
+          color: ${lightTheme.Light};
+          background-color: ${lightTheme.Green};
+          transition: none;
+        }
+      }
+  
+      @media (min-width: 768px) {
+        bottom: 0;
+        left: 100px;
+        transform: translate(-100%, -100%);
+      }
     }
-
-    @media (min-width: 1024px) {
-      font-size: 20px;
-      width: 90px;
+  
+    &.sort-menu-close {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      border: 1px solid ${(props) => props.theme.Orange};
+      background-color: ${(props) => props.theme.Light};
+      padding: 0;
+      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.3);
+  
+      display: flex;
+      justify-content: center;
+      align-items: center;
+  
+      position: absolute;
+      top: -10px;
+      right: -10px;
     }
-
-    &:hover {
-      color: ${(props) => props.theme.Grey};
+  
+    &.water-btn {
+      color: ${darkTheme.Grey};
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 1;
+      visibility: hidden;
+  
+      animation: ${ButtonFadeIn} 0.3s forwards;
+  
+      &:hover {
+        color: ${lightTheme.White};
+        transition: color 0.3 ease;
+      }
+  
+      @media (max-width: 767px) {
+        font-size: 18px;
+      }
+  
+      @media (min-width: 768px) {
+        font-size: 20px;
+      }
+  
+      @media (min-width: 1024px) {
+        font-size: 24px;
+      }
     }
-
-    &:hover .none {
-      fill: ${(props) => props.theme.Grey};
-    }
-
-    &:hover .rotated {
-      fill: ${(props) => props.theme.Grey};
-    }
-  }
 
   &.outlined {
-    border: 1px solid ${(props) => props.theme.LightGrey};
-    padding: 5px 10px;
-
-    &:hover {
-      border: 1px solid ${(props) => props.theme.Grey};
-    }
-
-    @media (max-width: 767px) {
-      font-size: 10px;
-    }
-
-    @media (min-width: 768px) {
-      font-size: 12px;
-    }
-
-    @media (min-width: 1024px) {
-      font-size: 14px;
-    }
-  }
-
-  &.register-back {
-    position: absolute;
-    margin: 0;
-    padding: 10px;
-
-    @media (max-width: 767px) {
-      top: 12px;
-      left: 10px;
-    }
-
-    @media (min-width: 768px) {
-      top: 20px;
-      left: 15px;
-    }
-
-    @media (min-width: 1024px) {
-      top: 30px;
-      left: 25px;
-    }
-
-    &:hover .back-button {
-      stroke: ${(props) => lightTheme.HoverGrey};
-      fill: ${(props) => lightTheme.HoverGrey};
-      color: ${(props) => lightTheme.HoverGrey};
-    }
-  }
-
-  &.footer-btn {
-    color: ${(props) => props.theme.Grey};
-
-    @media (max-width: 767px) {
-      font-size: 12px;
-      margin: 0;
-      padding: 10px;
-    }
-
-    @media (min-width: 768px) {
-      font-size: 13px;
-      margin: 4px 2px;
-      padding: 10px 20px;
-    }
-
-    @media (min-width: 1024px) {
-    }
-
-    &:hover {
-      color: ${(props) => props.theme.HoverGrey};
-    }
-  }
-
-  &.dropdown-btn {
-    color: ${(props) => props.theme.Green};
-    font-weight: 400;
-    margin: 0;
-    padding: 0px 20px;
-
-    &:hover {
-      color: ${(props) => props.theme.HoverGreen};
-      transition: 0.3s ease;
+      border: 1px solid ${(props) => props.theme.LightGrey};
+      padding: 5px 10px;
+  
+      &:hover {
+        border: 1px solid ${(props) => props.theme.Grey};
+      }
+  
+      @media (max-width: 767px) {
+        font-size: 10px;
+           margin: 20px 0px;
+      }
+  
+      @media (min-width: 768px) {
+        font-size: 12px;
+           margin: 30px 0px;
+      }
+  
+      @media (min-width: 1024px) {
+        font-size: 14px;
+           margin: 30px 0px;
+      }
     }
       
-    @media (max-width: 767px) {
-      font-size: 14px;
-    }
-
-    @media (min-width: 768px) {
-      font-size: 16px;
-    }
-
-    @media (min-width: 1024px) {
-    }
-
-  }
-
-  &.left {
-    position: absolute;
-    left: 0;
-    top: 0;
-  }
-
-  &.header-button-item {
-    width: 55px;
-    padding: 0;
-    font-size: 12px;
-
-    &:last-child {
-      margin: 0;
-    }
-
-    @media (max-width: 767px) {
-      height: 42px;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    @media (min-width: 768px) {
-      height: 100%;
-      display: block;
-    }
-
-    @media (min-width: 1024px) {
-    }
-  }
-
-  &.carousel-btn-left {
-    position: absolute;
-    bottom: 3%;
-    left: 0;
-    z-index: 1;
-  }
-
-  &.carousel-btn-right {
-    position: absolute;
-    bottom: 3%;
-    right: 0;
-    z-index: 1;
-  }
-
-  &.scroll-top-btn {
-    width: 50px;
-    height: 50px;
-    color: ${lightTheme.Light};
-    background-color: ${lightTheme.Green};
-    border-radius: 50%;
-    box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.3);
-    padding: 0;
-    pointer-events: auto;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    position: fixed;
-    bottom: 0;
-    right: 0;
-    z-index: 9999;
-
-    &:hover {
-      color: ${lightTheme.Light};
-      background-color: ${lightTheme.HoverGreen};
-      transition: 0.3s ease;
-    }
-
-    @media (max-width: 767px) {
-      transform: translate(-20%, -200%);
-
-      &:hover {
-        color: ${lightTheme.Light};
-        background-color: ${lightTheme.Green};
-        transition: none;
-      }
-    }
-
-    @media (min-width: 768px) {
-      transform: translate(-100%, -100%);
-    }
-  }
-
-  &.sort-btn {
-    width: 50px;
-    height: 50px;
-    color: ${lightTheme.Light};
-    background-color: ${lightTheme.Green};
-    border-radius: 50%;ß
-    box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.3);
-    padding: 0;
-    pointer-events: auto;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    position: fixed;
-    z-index: 9999;
-
-    &:hover {
-      color: ${lightTheme.Light};
-      background-color: ${lightTheme.HoverGreen};
-      transition: 0.3s ease;
-    }
-
-    @media (max-width: 767px) {
-      bottom: 0;
-      left: 25px;
-      transform: translate(-20%, -200%);
-
-      &:hover {
-        color: ${lightTheme.Light};
-        background-color: ${lightTheme.Green};
-        transition: none;
-      }
-    }
-
-    @media (min-width: 768px) {
-      bottom: 0;
-      left: 100px;
-      transform: translate(-100%, -100%);
-    }
-  }
-
-  &.sort-menu-close {
-    width: 30px;
-    height: 30px;
-    border-radius: 50%;
-    border: 1px solid ${(props) => props.theme.Orange};
-    background-color: ${(props) => props.theme.Light};
-    padding: 0;
-    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.3);
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    position: absolute;
-    top: -10px;
-    right: -10px;
-  }
-
-  &.water-btn {
-    color: ${darkTheme.Grey};
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 1;
-    visibility: hidden;
-
-    animation: ${ButtonFadeIn} 0.3s forwards;
-
-    &:hover {
-      color: ${lightTheme.White};
-      transition: color 0.3 ease;
-    }
-
-    @media (max-width: 767px) {
-      font-size: 18px;
-    }
-
-    @media (min-width: 768px) {
-      font-size: 20px;
-    }
-
-    @media (min-width: 1024px) {
-      font-size: 24px;
-    }
-  }
+    
 `;
+
+//   &.more {
+//     color: ${(props) => props.theme.LightGrey};
+//     margin-top: 10px;
+//     padding: 5px;
+
+//     display: flex;
+//     justify-content: space-between;
+//     align-items: center;
+
+//     @media (max-width: 767px) {
+//       font-size: 16px;
+//       width: 70px;
+//     }
+
+//     @media (min-width: 768px) {
+//       font-size: 20px;
+//       width: 90px;
+//     }
+
+//     @media (min-width: 1024px) {
+//       font-size: 20px;
+//       width: 90px;
+//     }
+
+//     &:hover {
+//       color: ${(props) => props.theme.Grey};
+//     }
+
+//     &:hover .none {
+//       fill: ${(props) => props.theme.Grey};
+//     }
+
+//     &:hover .rotated {
+//       fill: ${(props) => props.theme.Grey};
+//     }
+//   }
+
+//   &.outlined {
+//     border: 1px solid ${(props) => props.theme.LightGrey};
+//     padding: 5px 10px;
+
+//     &:hover {
+//       border: 1px solid ${(props) => props.theme.Grey};
+//     }
+
+//     @media (max-width: 767px) {
+//       font-size: 10px;
+//     }
+
+//     @media (min-width: 768px) {
+//       font-size: 12px;
+//     }
+
+//     @media (min-width: 1024px) {
+//       font-size: 14px;
+//     }
+//   }
+
+//   &.register-back {
+//     position: absolute;
+//     margin: 0;
+//     padding: 10px;
+
+//     @media (max-width: 767px) {
+//       top: 12px;
+//       left: 10px;
+//     }
+
+//     @media (min-width: 768px) {
+//       top: 20px;
+//       left: 15px;
+//     }
+
+//     @media (min-width: 1024px) {
+//       top: 30px;
+//       left: 25px;
+//     }
+
+//     &:hover .back-button {
+//       stroke: ${(props) => lightTheme.HoverGrey};
+//       fill: ${(props) => lightTheme.HoverGrey};
+//       color: ${(props) => lightTheme.HoverGrey};
+//     }
+//   }
+
+//   &.footer-btn {
+//     color: ${(props) => props.theme.Grey};
+
+//     @media (max-width: 767px) {
+//       font-size: 12px;
+//       margin: 0;
+//       padding: 10px;
+//     }
+
+//     @media (min-width: 768px) {
+//       font-size: 13px;
+//       margin: 4px 2px;
+//       padding: 10px 20px;
+//     }
+
+//     @media (min-width: 1024px) {
+//     }
+
+//     &:hover {
+//       color: ${(props) => props.theme.HoverGrey};
+//     }
+//   }
+
+//   &.dropdown-btn {
+//     color: ${(props) => props.theme.Green};
+//     font-weight: 400;
+//     margin: 0;
+//     padding: 0px 20px;
+
+//     &:hover {
+//       color: ${(props) => props.theme.HoverGreen};
+//       transition: 0.3s ease;
+//     }
+
+//     @media (max-width: 767px) {
+//       font-size: 14px;
+//     }
+
+//     @media (min-width: 768px) {
+//       font-size: 16px;
+//     }
+
+//     @media (min-width: 1024px) {
+//     }
+
+//   }
+
+//   &.left {
+//     position: absolute;
+//     left: 0;
+//     top: 0;
+//   }
+
+//   &.header-button-item {
+//     width: 55px;
+//     padding: 0;
+//     font-size: 12px;
+
+//     &:last-child {
+//       margin: 0;
+//     }
+
+//     @media (max-width: 767px) {
+//       height: 42px;
+//       display: flex;
+//       flex-direction: column;
+//       justify-content: space-between;
+//       align-items: center;
+//     }
+
+//     @media (min-width: 768px) {
+//       height: 100%;
+//       display: block;
+//     }
+
+//     @media (min-width: 1024px) {
+//     }
+//   }
+
+//   &.carousel-btn-left {
+//     position: absolute;
+//     bottom: 3%;
+//     left: 0;
+//     z-index: 1;
+//   }
+
+//   &.carousel-btn-right {
+//     position: absolute;
+//     bottom: 3%;
+//     right: 0;
+//     z-index: 1;
+//   }
+
+// `;
 
 const GreenButton = styled.button`
   cursor: pointer;
@@ -6043,23 +6001,6 @@ const OutIcon = styled(IoExitOutline)`
   cursor: pointer;
   transition: color 0.3s ease;
   top: 0%;
-
-  position: absolute;
-
-  @media (max-width: 767px) {
-    top: -5%;
-    right: 4%;
-  }
-
-  @media (min-width: 768px) {
-    top: -13%;
-    right: 4%;
-  }
-
-  @media (min-width: 1024px) {
-    top: -9%;
-    right: 4%;
-  }
 
   &:hover {
     color: ${(props) => props.theme.HoverGreen};

@@ -23,25 +23,6 @@ const Profile: React.FC<WishProps> = ({
   const [photoURL, setPhotoURL] = useState<string | null>(null);
   const [visibleCount, setVisibleCount] = useState(5); // 처음에 5개만 보여주기
 
-  //기존 코드
-  // useEffect(() => {
-  //   const fetchUserData = async () => {
-  //     if (auth.currentUser) {
-  //       const userDocRef = doc(db, "users", auth.currentUser.uid);
-  //       const userDoc = await getDoc(userDocRef);
-  //       if (userDoc.exists()) {
-  //         const data = userDoc.data();
-  //         setUserData(data);
-  //         setPhotoURL(data.photoURL);
-
-  //       } else {
-  //         console.log("No such document!");
-  //       }
-  //     }
-  //   };
-  //   fetchUserData();
-  // }, []);
-
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
@@ -91,7 +72,7 @@ const Profile: React.FC<WishProps> = ({
 
   const removeWish = async (artistId: number) => {
     if (!auth.currentUser) {
-      console.error("로그인이 필요합니다.");
+      alert("로그인이 필요합니다.");
       return;
     }
 
@@ -121,47 +102,43 @@ const Profile: React.FC<WishProps> = ({
       <StartFromTop />
 
       <s.Image className="profile-label" src={profileBanner} alt="photo" />
+
       <s.ProfileDiv className="profile-wrapper">
-        <s.ProfileDiv className="profile-section">
-          <s.ProfileDiv className="profile-padding-wrapper">
-            <s.ProfileDiv className="profile-text-container">
-              <s.ProfileDiv className="profile-element-box">
-              <LogoutButton />
-                <s.StyledH2 className="profile-name">
-                  {userData ? userData.fullname : ""}
-                </s.StyledH2>
-                <s.StyledH3 className="profile-nickname">
-                  {userData ? userData.nickname : ""}
-                </s.StyledH3>
+        <s.ProfileDiv className="profile-container">
+          <LogoutButton />
+          <s.ProfileDiv className="profile-grid">
+            <s.StyledH2 className="profile-name">
+              {userData ? userData.fullname : ""}
+            </s.StyledH2>
+            <s.StyledH3 className="profile-nickname">
+              {userData ? userData.nickname : ""}
+            </s.StyledH3>
+
+            <s.StyledH4 className="profile-details">
+              {userData ? userData.email : ""}
+            </s.StyledH4>
+
+            <s.ProfileDiv className="profile-contacts-box">
+              <s.ProfileDiv className="profile-contacts">
+                <s.PhoneIcon />
+                <s.StyledH4 className="profile-details">
+                  +{userData ? userData.countryCode : ""}
+                  {userData ? userData.phonenumber : ""}
+                </s.StyledH4>
               </s.ProfileDiv>
 
-              <s.ProfileDiv className="profile-element-box">
-                <s.StyledH4 className="profile-details margin">
-                  {userData ? userData.email : ""}
+              <s.ProfileDiv className="profile-contacts">
+                <s.BdIcon />
+                <s.StyledH4 className="profile-details">
+                  {userData ? userData.birthYear : ""}.
+                  {userData ? userData.birthMonth : ""}.
+                  {userData ? userData.birthDay : ""}
                 </s.StyledH4>
-
-                <s.ProfileDiv className="profile-contact-container">
-                  <s.ProfileDiv className="profile-contact-box">
-                    <s.PhoneIcon />
-                    <s.StyledH4 className="profile-details">
-                      +{userData ? userData.countryCode : ""}
-                      {userData ? userData.phonenumber : ""}
-                    </s.StyledH4>
-                  </s.ProfileDiv>
-
-                  <s.ProfileDiv className="profile-contact-box">
-                    <s.BdIcon />
-                    <s.StyledH4 className="profile-details">
-                      {userData ? userData.birthYear : ""}.
-                      {userData ? userData.birthMonth : ""}.
-                      {userData ? userData.birthDay : ""}
-                    </s.StyledH4>
-                  </s.ProfileDiv>
-                </s.ProfileDiv>
               </s.ProfileDiv>
             </s.ProfileDiv>
 
-            <s.ProfileDiv className="profile-element-box">
+          </s.ProfileDiv>
+            <s.ProfileDiv className="like-num-box">
               <s.StyledH4 className="liked">
                 {userData ? userData.wishList?.length : ""}
               </s.StyledH4>
@@ -199,7 +176,6 @@ const Profile: React.FC<WishProps> = ({
                 더보기
               </s.Button>
             )}
-          </s.ProfileDiv>
         </s.ProfileDiv>
       </s.ProfileDiv>
     </>

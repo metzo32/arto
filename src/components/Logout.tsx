@@ -1,4 +1,3 @@
-import React from "react";
 import { auth } from "../firebase/firebaseConfig";
 import { useNavigate } from "react-router-dom";
 import { useContext } from "react";
@@ -7,13 +6,8 @@ import s from "../stores/styling";
 import useModal from "../hooks/ModalHook";
 import Modal from "../components/Modal";
 
-interface LogoutButtonProps {
-  className?: string;
-}
 
-const LogoutButton: React.FC<LogoutButtonProps> = ({
-  className,
-}) => {
+const LogoutButton = () => {
   const { setCurrentlyLoggedIn } = useContext(AuthContext);
   const { isModalOpen, handleOpenModal, handleCloseModal } = useModal();
   const navigate = useNavigate();
@@ -28,15 +22,6 @@ const LogoutButton: React.FC<LogoutButtonProps> = ({
       console.error("로그아웃 중 오류 발생:", error);
     }
   };
-
-  // const handleLogout = () => {
-  //   setCurrentlyLoggedIn(false); // 로그아웃 처리
-  //   handleCloseModal(); // 모달 닫기
-  //   navigate("/"); // 로그아웃 후 홈으로 이동
-  // };
-  
-  
-  
 
   return (
     <>
@@ -55,8 +40,11 @@ const LogoutButton: React.FC<LogoutButtonProps> = ({
         modalButtonOption={"로그아웃"}
         onOptionClick={handleLogout}
       />
-
-      <s.OutIcon onClick={handleOpenModal} />
+      <s.ProfileDiv className="logout-container">
+        <s.Button>
+          <s.OutIcon onClick={handleOpenModal} />
+        </s.Button>
+      </s.ProfileDiv>
     </>
   );
 };
