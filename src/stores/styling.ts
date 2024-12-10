@@ -591,9 +591,9 @@ const HeaderDiv = styled.div`
 
     @media (max-width: 767px) {
       background-color: ${(props) => props.theme.Light};
-      // width: calc(100% - 20px);
+      width: calc(100% - 20px);
       height: 70px;
-      // padding: 20px 10px 0 10px;
+      padding: 20px 10px 0 10px;
       bottom: 0;
       box-shadow: 0px -5px 5px rgba(0, 0, 0, 0.3);
       justify-content: space-between;
@@ -602,11 +602,11 @@ const HeaderDiv = styled.div`
 
     @media (min-width: 768px) {
       // background: transparent;
-      width: 100%;
+      width: calc(100% - 40px);
       height: 50px;
-      // padding: 0 20px;
+      padding: 10px 20px;
       top: 0;
-      justify-content: space-between;
+      // justify-content: center;
       align-items: center;
     }
   }
@@ -3805,9 +3805,6 @@ const GenDiv = styled.div`
   }
 
   &.gen-title-wrapper {
-    width: calc(100% - 80px);
-    padding: 0px 40px;
-
     position: absolute;
     top: 0;
     left: 0;
@@ -3818,10 +3815,14 @@ const GenDiv = styled.div`
 
     @media (max-width: 767px) {
       top: 240px;
+      width: calc(100% - 100px);
+      padding: 0px 50px;
     }
 
     @media (min-width: 768px) {
       top: 330px;
+      width: calc(100% - 320px);
+      padding: 0px 160px;
     }
 
     @media (min-width: 1024px) {
@@ -4682,7 +4683,7 @@ const LoginDiv = styled.div`
     display: flex;
 
     @media (max-width: 767px) {
-      margin: 45px 0px 350px 0px;
+      margin: 120px 0px 350px 0px;
     } 
 
     @media (min-width: 768px) {
@@ -6015,8 +6016,8 @@ const StyledHeaderIcon = css`
   }
 
   @media (min-width: 768px) {
-    width: 20px;
-    height: 20px;
+    width: 30px;
+    height: 30px;
   }
 `;
 
@@ -6066,18 +6067,6 @@ const OutIcon = styled(IoExitOutline)`
 
 const HomeIcon = styled(RiHome2Line)`
   ${StyledHeaderIcon}
-
-  @media (max-width: 767px) {
-    width: 26px;
-    height: 26px;
-    margin-top: 1px;
-  }
-
-  @media (min-width: 768px) {
-    width: 21px;
-    height: 21px;
-    margin-top: 0px;
-  }
 `;
 
 const HamburgerIcon = styled(RxHamburgerMenu)`
@@ -6090,28 +6079,10 @@ const EyeIcon = styled(IoEyeOutline)`
 
 const SearchIcon = styled(GrSearch)`
   ${StyledHeaderIcon}
-
-  @media (max-width: 767px) {
-    margin-top: 2px;
-  }
-
-  @media (min-width: 768px) {
-    margin-top: 0px;
-  }
 `;
 
 const ProfileIcon = styled(GoPerson)`
   ${StyledHeaderIcon}
-  @media (max-width: 767px) {
-    width: 28px;
-    height: 28px;
-    padding-bottom: 2px;
-  }
-
-  @media (min-width: 768px) {
-    width: 23px;
-    height: 23px;
-  }
 `;
 
 const PhoneIcon = styled(MdOutlineSmartphone)`
