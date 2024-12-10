@@ -1,4 +1,3 @@
-import React from 'react'
 import LoadArticleCards from '../components/LoadArticleCards'
 import { ScrollArticle } from '../components/FramerMotions/scrollArticle'
 

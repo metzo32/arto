@@ -2,21 +2,17 @@ import s from "../stores/styling";
 import { ArtistDataProps } from "../assets/datas/artitst_data";
 import ArtistSkillComponent from "../components/ArtistSkillComponent";
 import HoverButton from "../components/HoverButton";
-import {
-  PopUpBelow,
-  LinearDraw,
-} from "../components/FramerMotions/scrollMotions";
+import { PopUpBelow } from "../components/FramerMotions/scrollMotions";
 
 interface ArtistDetailPageProps {
   artist: ArtistDataProps;
 }
 
-const ArtistProfile: React.FC<ArtistDetailPageProps> = ({ artist }) => {
+const ArtistProfile = ({ artist }: ArtistDetailPageProps) => {
   const handleNavigation = () => {};
 
   const CopyToClipboard = (text: string) => {
     navigator.clipboard.writeText(text).then(
-      //클립보드 API를 통해 텍스트를 클립보드에 쓴다.
       () => {
         alert("복사 완료!");
       },

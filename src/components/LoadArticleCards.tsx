@@ -9,7 +9,7 @@ import ScrollToTopButton from "./ScrollToTopButton";
 import { getRandomImage } from "../assets/datas/getRandomImages";
 import StartFromTop from "../components/StartFromTop";
 
-const LoadArticleCards: React.FC = () => {
+const LoadArticleCards = () => {
   const [articles, setArticles] = useState<number[]>([0, 1, 2, 3]);
   const [sortedData, setSortedData] = useState(
     ArtistData.map((artist) => ({

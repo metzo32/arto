@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import GenerateImageApi from "../components/api/GenerateImageApi";
 import s from "../stores/styling";
-import bgImage from "../assets/images/tattoo_50.jpg";
+import bgImage from "../assets/images/tattoo_50.webp";
 import HoverButton from "../components/HoverButton";
 import {
   CircleAnimation,
@@ -91,11 +91,11 @@ const GenerateImage = () => {
       <StartFromTop />
       <s.GenDiv className="gen-wrapper">
         <s.GenDiv className="gen-bg-wrapper">
-          <s.Image className="gen-bg" src={bgImage} alt="photo" />
+          {/* <s.Image className="gen-bg" src={bgImage} alt="photo" /> */}
 
-          <s.DotMask className="base">
+          {/* <s.DotMask className="base">
             <s.DotMask className="angled" />
-          </s.DotMask>
+          </s.DotMask> */}
         </s.GenDiv>
 
         <s.GenDiv className="gen-title-wrapper">

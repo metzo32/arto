@@ -9,11 +9,7 @@ interface SideBarProps {
   showSidebar: () => void;
 }
 
-const SideBar: React.FC<SideBarProps> = ({ sidebar, showSidebar }) => {
-  const group1 = SideBarData.slice(0, 3);
-  const group2 = SideBarData.slice(3, 5);
-  const group3 = SideBarData.slice(5, 7);
-  const group4 = SideBarData.slice(7);
+const SideBar = ({ sidebar, showSidebar }: SideBarProps) => {
 
   const isMobile = useIsMobile();
 
@@ -26,37 +22,7 @@ const SideBar: React.FC<SideBarProps> = ({ sidebar, showSidebar }) => {
 
           <s.SideBar className="sidebar-box">
             <s.StyledUl className="nav-menu-items" onClick={showSidebar}>
-              {group1.map((item, index) => (
-                <s.StyledLi key={index} className={item.className}>
-                  <s.StyledLink to={item.path} className="menu-texts">
-                    <span>{item.title}</span>
-                  </s.StyledLink>
-                </s.StyledLi>
-              ))}
-            </s.StyledUl>
-
-            <s.StyledUl className="nav-menu-items" onClick={showSidebar}>
-              {group2.map((item, index) => (
-                <s.StyledLi key={index} className={item.className}>
-                  <s.StyledLink to={item.path} className="menu-texts">
-                    <span>{item.title}</span>
-                  </s.StyledLink>
-                </s.StyledLi>
-              ))}
-            </s.StyledUl>
-
-            <s.StyledUl className="nav-menu-items" onClick={showSidebar}>
-              {group3.map((item, index) => (
-                <s.StyledLi key={index} className={item.className}>
-                  <s.StyledLink to={item.path} className="menu-texts">
-                    <span>{item.title}</span>
-                  </s.StyledLink>
-                </s.StyledLi>
-              ))}
-            </s.StyledUl>
-
-            <s.StyledUl className="nav-menu-items" onClick={showSidebar}>
-              {group4.map((item, index) => (
+              {SideBarData.map((item, index) => (
                 <s.StyledLi key={index} className={item.className}>
                   <s.StyledLink to={item.path} className="menu-texts">
                     <span>{item.title}</span>

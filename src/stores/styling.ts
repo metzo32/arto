@@ -108,15 +108,17 @@ const GlobalStyle = createGlobalStyle`
   }
 `;
 
-const Div = styled.div`
-  background-color: ${(props) => props.theme.Green};
-
-  &.App {
+const App = styled.div`
+  &.wrapper {
     min-width: 320px;
     background-color: ${(props) => props.theme.Light};
     position: relative;
     height: auto;
   }
+`;
+
+const Div = styled.div`
+  background-color: ${(props) => props.theme.Green};
 
   &.profile-container {
     display: flex;
@@ -580,18 +582,18 @@ const Image = styled.img`
 const HeaderDiv = styled.div`
   &.header-wrapper {
     width: 100%;
-
     display: flex;
     flex-direction: row;
+    background-color: ${(props) => props.theme.Light};
 
     position: fixed;
     z-index: 9999;
 
     @media (max-width: 767px) {
       background-color: ${(props) => props.theme.Light};
-      width: calc(100% - 20px);
+      // width: calc(100% - 20px);
       height: 70px;
-      padding: 20px 10px 0 10px;
+      // padding: 20px 10px 0 10px;
       bottom: 0;
       box-shadow: 0px -5px 5px rgba(0, 0, 0, 0.3);
       justify-content: space-between;
@@ -599,73 +601,13 @@ const HeaderDiv = styled.div`
     }
 
     @media (min-width: 768px) {
-      background: transparent;
+      // background: transparent;
       width: 100%;
       height: 50px;
-      padding: 0 20px;
+      // padding: 0 20px;
       top: 0;
       justify-content: space-between;
       align-items: center;
-    }
-  }
-
-  &.header-overlay {
-    width: 100vw;
-    height: 5vh;
-    position: fixed;
-    top: 0;
-    pointer-events: none;
-    z-index: 9998;
-    backdrop-filter: blur(2px);
-
-    @media (max-width: 767px) {
-      display: none;
-    }
-
-    @media (min-width: 768px) {
-      display: block;
-    }
-  }
-
-  &.header-button-wrapper-left {
-    width: auto;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-
-    @media (max-width: 767px) {
-      width: 75%;
-      height: auto;
-    }
-
-    @media (min-width: 768px) {
-      width: 180px;
-      height: 100%;
-    }
-
-    @media (min-width: 1024px) {
-      width: 210px;
-    }
-  }
-
-  &.header-button-wrapper-right {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-
-    @media (max-width: 767px) {
-      width: auto;
-    }
-
-    @media (min-width: 768px) {
-      width: 150px;
-      height: 100%;
-    }
-
-    @media (min-width: 1024px) {
-      width: 150px;
     }
   }
 `;
@@ -3580,7 +3522,7 @@ const Portfolio = styled.div`
   }
 
   &.header-profile {
-  width: 100%;
+    width: 100%;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -6303,6 +6245,7 @@ const RemoveIcon = styled(GoX)`
 
 const s = {
   GlobalStyle,
+  App,
   Engraved,
   ArticleCard,
   Accordion,

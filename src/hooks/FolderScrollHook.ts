@@ -1,4 +1,3 @@
-// FolderScroll.ts
 import { useEffect } from 'react';
 
 const useFolderScroll = (wrapperRef: React.RefObject<HTMLElement>, stickyRef: React.RefObject<HTMLElement>) => {
