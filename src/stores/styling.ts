@@ -980,18 +980,17 @@ const StyledH2 = styled.h2`
     font-weight: 700;
     text-align: left;
     letter-spacing: -2px;
-    opacity: 0.8;
+    opacity: 0.5;
     color: grey;
     text-transform: uppercase;
     white-space: nowrap;
-    opacity: 0.5;
 
     -webkit-text-fill-color: transparent;
 
     @media (max-width: 767px) {
       font-size: 2rem;
       letter-spacing: -1px;
-      margin-bottom: 10px;
+      margin-bottom: 20px;
 
       -webkit-text-stroke: 1px white;
     }
@@ -999,14 +998,13 @@ const StyledH2 = styled.h2`
     @media (min-width: 768px) {
       font-size: 3rem;
       letter-spacing: 0px;
-      margin-bottom: 12px;
+      margin-bottom: 28px;
 
       -webkit-text-stroke: 2px white;
     }
 
     @media (min-width: 1024px) {
       font-size: 4rem;
-      margin-bottom: 16px;
     }
   }
 
@@ -5274,7 +5272,7 @@ const Button = styled.button`
     @media (min-width: 768px) {
       width: 24px;
       height: 24px;
-      top: -0px;
+      top: 0px;
       right: -4px;
     }
 
@@ -5438,8 +5436,32 @@ const Button = styled.button`
            margin: 30px 0px;
       }
     }
-      
-    
+  
+  &.header-button-item {
+      width: 55px;
+      padding: 0;
+      font-size: 12px;
+  
+      &:last-child {
+        margin: 0;
+      }
+  
+      @media (max-width: 767px) {
+        height: 42px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+      }
+  
+      @media (min-width: 768px) {
+        height: 100%;
+        display: block;
+      }
+  
+      @media (min-width: 1024px) {
+      }
+    }
 `;
 
 //   &.more {
