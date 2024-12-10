@@ -64,7 +64,14 @@ const App = () => {
                 <ScrollToTopButton />
                 <Routes>
                   <Route path="/" element={<GenerateImage />} />
-                  <Route path="/article" element={<Article />} />
+                  <Route
+                    path="/article"
+                    element={
+                      <ProtectedRouteHoc>
+                        <Article />
+                      </ProtectedRouteHoc>
+                    }
+                  />
                   <Route path="/login" element={<LoginPage />} />
 
                   <Route path="/loading" element={<Loading />} />

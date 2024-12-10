@@ -775,21 +775,21 @@ const StyledH1 = styled.h1`
     text-transform: uppercase;
 
     @media (max-width: 767px) {
-      font-size: 45px;
-      line-height: 55px;
+      font-size: 4.5rem;
+      line-height: 70px;
       letter-spacing: -4px;
     }
 
     @media (min-width: 768px) {
-      font-size: 100px;
-      line-height: 110px;
-      letter-spacing: -10px;
+      font-size: 7rem;
+      line-height: 100px;
+      letter-spacing: -6px;
     }
 
     @media (min-width: 1024px) {
-      font-size: 155px;
-      line-height: 175px;
-      letter-spacing: -12px;
+      font-size: 8rem;
+      line-height: 120px;
+      letter-spacing: -10px;
     }
   }
 
@@ -979,19 +979,20 @@ const StyledH2 = styled.h2`
     color: grey;
     text-transform: uppercase;
     white-space: nowrap;
+    opacity: 0.5;
 
     -webkit-text-fill-color: transparent;
 
     @media (max-width: 767px) {
-      font-size: 26px;
+      font-size: 2rem;
       letter-spacing: -1px;
-      margin-bottom: 0px;
+      margin-bottom: 10px;
 
       -webkit-text-stroke: 1px white;
     }
 
     @media (min-width: 768px) {
-      font-size: 50px;
+      font-size: 3rem;
       letter-spacing: 0px;
       margin-bottom: 8px;
 
@@ -999,10 +1000,8 @@ const StyledH2 = styled.h2`
     }
 
     @media (min-width: 1024px) {
-      font-size: 70px;
-      margin-bottom: 0px;
-
-      -webkit-text-stroke: 2px white;
+      font-size: 4rem;
+      margin-bottom: 16px;
     }
   }
 
@@ -3815,18 +3814,20 @@ const GenDiv = styled.div`
 
     @media (max-width: 767px) {
       top: 240px;
-      width: calc(100% - 100px);
-      padding: 0px 50px;
+      width: calc(100% - 60px);
+      padding: 0px 30px;
     }
 
     @media (min-width: 768px) {
       top: 330px;
-      width: calc(100% - 320px);
-      padding: 0px 160px;
+      width: calc(100% - 200px);
+      padding: 0px 100px;
     }
 
     @media (min-width: 1024px) {
       top: 500px;
+      width: calc(100% - 320px);
+      padding: 0px 160px;
     }
   }
 
