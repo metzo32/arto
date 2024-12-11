@@ -107,6 +107,26 @@ const ArtistProfile = ({ artist }: ArtistDetailPageProps) => {
           <s.StyledH3 className="profile-portfolio">PORTFOLIO</s.StyledH3>
         </s.Portfolio>
 
+          <s.Portfolio className="work-wrapper">
+            <s.Portfolio className="work-container-left">
+              <s.StyledH3 className="work-title">What I do</s.StyledH3>
+              <s.ArrowIcon />
+            </s.Portfolio>
+
+            <s.Line className="vertical dark margin-v " />
+
+            <ArtistSkillComponent hash={artist.hash || []} />
+          </s.Portfolio>
+        </s.Portfolio>
+
+        <s.Portfolio className="img-wrapper">
+          <s.Image
+            className="artist-page-portfolio"
+            src={artist.randomImage01}
+            alt="image"
+          />
+        </s.Portfolio>
+
         <s.Portfolio className="mid-wrapper">
           <s.Portfolio className="header-container">
             <s.Portfolio className="mid-box-left">
@@ -147,26 +167,6 @@ const ArtistProfile = ({ artist }: ArtistDetailPageProps) => {
               </s.Portfolio>
             </s.Portfolio>
           </s.Portfolio>
-        </s.Portfolio>
-
-          <s.Portfolio className="work-wrapper">
-            <s.Portfolio className="work-container-left">
-              <s.StyledH3 className="work-title">What I do</s.StyledH3>
-              <s.ArrowIcon />
-            </s.Portfolio>
-
-            <s.Line className="vertical dark margin-v " />
-
-            <ArtistSkillComponent hash={artist.hash || []} />
-          </s.Portfolio>
-        </s.Portfolio>
-
-        <s.Portfolio className="img-wrapper">
-          <s.Image
-            className="artist-page-portfolio"
-            src={artist.randomImage01}
-            alt="image"
-          />
         </s.Portfolio>
     </>
   );

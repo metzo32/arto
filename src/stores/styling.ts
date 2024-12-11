@@ -102,9 +102,10 @@ const GlobalStyle = createGlobalStyle`
 const App = styled.div`
   &.wrapper {
     min-width: 320px;
+    height: auto;
     background-color: ${(props) => props.theme.Light};
     position: relative;
-    height: auto;
+    overflow: hidden;
   }
 
   &.base-screen {
@@ -280,6 +281,14 @@ width: 100%;
 
   &.margin-v {
     margin: 0px 20px;
+
+    @media (max-width: 767px) {
+      display: none;
+    }
+
+    @media (min-width: 768px) {
+      display: block;
+    }
   }
 
   &.display-narrow {
@@ -771,8 +780,8 @@ const StyledH1 = styled.h1`
     text-transform: uppercase;
 
     @media (max-width: 767px) {
-      font-size: 4.5rem;
-      line-height: 70px;
+      font-size: 4rem;
+      line-height: 60px;
       letter-spacing: -4px;
     }
 
@@ -949,7 +958,6 @@ const StyledH1 = styled.h1`
 const StyledH2 = styled.h2`
   font-size: 30px;
   line-height: 35px;
-  letter-spacing: -4px;
   word-break: keep-all;
   color: ${(props) => props.theme.Grey};
 
@@ -1130,23 +1138,20 @@ const StyledH2 = styled.h2`
   &.artist-description {
     text-align: left;
     font-weight: 300;
-    letter-spacing: -2px;
 
     @media (max-width: 767px) {
-      font-size: 20px;
-      line-height: 26px;
-      etter-spacing: -1px;
+      font-size: 1.2rem;
+      line-height: 22px;
     }
 
     @media (min-width: 768px) {
-      font-size: 30px;
-      line-height: 40px;
-      letter-spacing: -2px;
+      font-size: 1.8rem;
+      line-height: 34px;
     }
 
     @media (min-width: 1024px) {
-      font-size: 34px;
-      line-height: 45px;
+      font-size: 2rem;
+      line-height: 40px;
     }
   }
 `;
@@ -1162,23 +1167,23 @@ const StyledH3 = styled.h3`
   text-align: left;
 
   @media (max-width: 767px) {
-    font-size: 30px;
+    font-size: 2rem;
     line-height: 35px;
   }
 
   @media (min-width: 768px) {
-    font-size: 50px;
+    font-size: 3rem;
     line-height: 60px;
   }
 
   @media (min-width: 1024px) {
-    font-size: 70px;
+    font-size: 4rem;
     line-height: 80px;
   }
 
   &.sidebar-logo {
     margin: 0 auto;
-    font-size: 43px;
+    font-size: 3rem;
   }
 
   &.gen-semi-title {
@@ -1421,17 +1426,17 @@ const StyledH4 = styled.h4`
     margin-bottom: 0px;
 
     @media (max-width: 767px) {
-      font-size: 12px;
+      font-size: 0.8rem;
       line-height: 12px;
     }
 
     @media (min-width: 768px) {
-      font-size: 15px;
+      font-size: 1.2rem;
       line-height: 15px;
     }
 
     @media (min-width: 1024px) {
-      font-size: 18px;
+      font-size: 1.2rem;
       line-height: 18px;
     }
 
@@ -1485,20 +1490,22 @@ const StyledH4 = styled.h4`
   }
 
   &.work {
-    font-size: 30px;
     line-height: 1;
     color: ${(props) => props.theme.Grey};
 
     @media (max-width: 767px) {
-      font-size: 20px;
+      font-size: 1.2rem;
+      margin-bottom: 4px;
     }
 
     @media (min-width: 768px) {
-      font-size: 24px;
+      font-size: 1.6rem;
+      margin-bottom: 6px;
     }
 
     @media (min-width: 1024px) {
-      font-size: 30px;
+      font-size: 2rem;
+      margin-bottom: 8px;
     }
   }
 
@@ -1569,18 +1576,32 @@ const StyledP = styled.p`
   padding: 0;
 
   @media (max-width: 767px) {
-    font-size: 16px;
+    font-size: 0.8rem;
     line-height: 20px;
   }
 
   @media (min-width: 768px) {
-    font-size: 18px;
+    font-size: 1rem;
     line-height: 24px;
   }
 
   @media (min-width: 1024px) {
-    font-size: 22px;
+    font-size: 1.8rem;
     line-height: 28px;
+  }
+
+  &.small {
+    @media (max-width: 767px) {
+      font-size: 0.8rem;
+    }
+
+    @media (min-width: 768px) {
+      font-size: 1rem;
+    }
+
+    @media (min-width: 1024px) {
+      font-size: 1.2rem;
+    }
   }
 
   &.steady-dark-p {
@@ -1652,30 +1673,6 @@ const StyledP = styled.p`
     }
   }
 
-  &.event-address {
-    @media (max-width: 767px) {
-      font-size: 12px;
-      line-height: 15px;
-    }
-
-    @media (min-width: 768px) {
-      font-size: 16px;
-      line-height: 18px;
-    }
-
-    @media (min-width: 1024px) {
-      font-size: 20px;
-      line-height: 30px;
-    }
-  }
-
-  &.career-info {
-    width: 50%;
-    position: absolute;
-    bottom: 0;
-    right: 0;
-  }
-
   &.accordion-number {
     display: inline;
     width: auto;
@@ -1690,46 +1687,41 @@ const StyledP = styled.p`
     }
   }
 
-  &.card-title {
-    color: ${lightTheme.Grey};
-    font-weight: 500;
-    font-size: 32px;
-    margin-top: 30px;
-    letter-spacing: -0.5px;
-  }
+  // &.card-title {
+  //   color: ${lightTheme.Grey};
+  //   font-weight: 500;
+  //   font-size: 32px;
+  //   margin-top: 30px;
+  //   letter-spacing: -0.5px;
+  // }
 
-  &.card-semititle {
-    color: ${lightTheme.Grey};
-    font-size: 20px;
-    line-height: 22px;
-    opacity: 0.7;
-    margin-top: 10px;
-  }
+  // &.card-semititle {
+  //   color: ${lightTheme.Grey};
+  //   font-size: 20px;
+  //   line-height: 22px;
+  //   opacity: 0.7;
+  //   margin-top: 10px;
+  // }
 
-  &.card-text {
-    color: ${lightTheme.Grey};
+  // &.card-text {
+  //   color: ${lightTheme.Grey};
 
-    @media (max-width: 767px) {
-      font-size: 16px;
-      line-height: 20px;
-    }
+  //   @media (max-width: 767px) {
+  //     font-size: 16px;
+  //     line-height: 20px;
+  //   }
 
-    @media (min-width: 768px) {
-      font-size: 20px;
-      line-height: 24px;
-    }
+  //   @media (min-width: 768px) {
+  //     font-size: 20px;
+  //     line-height: 24px;
+  //   }
 
-    @media (min-width: 1024px) {
-    }
-  }
+  //   @media (min-width: 1024px) {
+  //   }
+  // }
 
   &.hashtag {
     margin: 10px 0px 10px 0px;
-  }
-
-  &.contact-info {
-    font-size: 16px;
-    text-transform: uppercase;
   }
 
   &.footer-copyright {
@@ -1743,9 +1735,6 @@ const StyledP = styled.p`
     @media (min-width: 768px) {
       height: 30px;
     }
-
-    @media (min-width: 1024px) {
-    }
   }
 
   &.artist-contact-left {
@@ -1755,9 +1744,6 @@ const StyledP = styled.p`
     margin-top: 5px;
   }
 
-  &.artist-interview {
-  }
-
   &.number {
     font-size: 16px;
     font-weight: 500;
@@ -1765,72 +1751,40 @@ const StyledP = styled.p`
 
   &.modal-text {
     color: ${lightTheme.Grey};
-    font-size: 16px;
-    line-height: 22px;
     text-align: center;
-
-    @media (max-width: 767px) {
-      font-size: 12px;
-    }
-
-    @media (min-width: 768px) {
-      font-size: 14px;
-    }
-
-    @media (min-width: 1024px) {
-      font-size: 16px;
-    }
   }
 
-  &.small {
-    @media (max-width: 767px) {
-      font-size: 12px;
-    }
+  // &.small {
+  //   @media (max-width: 767px) {
+  //     font-size: 12px;
+  //   }
 
-    @media (min-width: 768px) {
-      font-size: 14px;
-    }
+  //   @media (min-width: 768px) {
+  //     font-size: 14px;
+  //   }
 
-    @media (min-width: 1024px) {
-      font-size: 16px;
-    }
-  }
-
-  &.infinite-text {
-    font-family: "Tourney", sans-serif;
-    font-weight: 200;
-    font-size: 60px;
-    color: ${(props) => props.theme.LightGrey};
-    white-space: nowrap;
-
-    animation: ${infiniteSlideLeft} 24000s linear infinite;
-  }
-
-  &.work-description {
-    margin-top: 10px;
-  }
+  //   @media (min-width: 1024px) {
+  //     font-size: 16px;
+  //   }
+  // }
 
   &.search-top-des-main {
     width: calc(50% - 15px);
     font-weight: 500;
 
     @media (max-width: 767px) {
-      font-size: 18px;
       line-height: 20px;
     }
 
     @media (min-width: 768px) {
-      font-size: 20px;
       line-height: 22px;
     }
 
     @media (min-width: 1024px) {
-      font-size: 22px;
       line-height: 28px;
     }
 
     @media (min-width: 1258px) {
-      font-size: 28px;
       line-height: 32px;
     }
   }
@@ -1839,17 +1793,14 @@ const StyledP = styled.p`
     width: calc(50% - 15px);
 
     @media (max-width: 767px) {
-      font-size: 12px;
       line-height: 20px;
     }
 
     @media (min-width: 768px) {
-      font-size: 12px;
       line-height: 20px;
     }
 
     @media (min-width: 1024px) {
-      font-size: 15px;
       line-height: 24px;
     }
 
@@ -3365,8 +3316,8 @@ const Portfolio = styled.div`
     margin: 0 auto;
 
     @media (max-width: 767px) {
-      width: calc(100vw - 20px);
-      margin: 120px 0px;
+      width: 100%;
+      padding-top: 50px;
     }
 
     @media (min-width: 768px) {
@@ -3381,19 +3332,30 @@ const Portfolio = styled.div`
   }
 
   &.header-wrapper {
-    width: calc(100% - 100px);
     height: auto;
-    margin-bottom: 40px;
-    padding: 0px 50px;
-
     display: flex;
     flex-direction: column;
+
+    @media (max-width: 767px) {
+      width: calc(100% - 40px);
+      padding: 0px 20px;
+    }
+
+    @media (min-width: 768px) {
+      width: calc(100% - 60px);
+      padding: 0px 30px;
+    }
+
+    @media (min-width: 1024px) {
+      width: calc(100% - 100px);
+      padding: 0px 50px;
+      margin-bottom: 40px;
+    }
   }
 
   &.header-container {
     height: auto;
-
-    margin-bottom: 20px;
+    margin-bottom: 100px;
 
     display: flex;
     flex-direction: row;
@@ -3401,6 +3363,7 @@ const Portfolio = styled.div`
 
     @media (max-width: 767px) {
       margin-top: 20px;
+
       flex-direction: column;
     }
 
@@ -3438,14 +3401,14 @@ const Portfolio = styled.div`
 
     @media (max-width: 767px) {
       width: 100%;
-      height: 140px;
-      margin-top: 30px;
+      height: 120px;
+      margin: 40px 0px;
     }
 
     @media (min-width: 768px) {
-      width: 50%;
-      height: 200px;
-      margin-top: 20px;
+      width: 100%;
+      height: 180px;
+      margin: 80px 0px;
     }
 
     @media (min-width: 1024px) {
@@ -3460,6 +3423,10 @@ const Portfolio = styled.div`
       }
 
       @media (min-width: 768px) {
+        align-items: center;
+      }
+
+      @media (min-width: 1024px) {
         align-items: flex-start;
       }
     }
@@ -3509,23 +3476,43 @@ const Portfolio = styled.div`
     padding: 0px 50px;
     display: flex;
     flex-direction: row;
-    margin: 40px 0px;
-  }
 
-  &.work-wrapper {
-    width: calc(100% - 100px);
-    height: auto;
-    padding: 0px 50px;
-    display: flex;
-    flex-direction: row;
-    border-y @media (max-width: 767px) {
-      height: auto;
+    @media (max-width: 767px) {
+      width: calc(100% - 40px);
+      padding: 0px 20px;
     }
 
     @media (min-width: 768px) {
+      width: calc(100% - 60px);
+      padding: 0px 30px;
     }
 
     @media (min-width: 1024px) {
+      width: calc(100% - 100px);
+      padding: 0px 50px;
+      margin-bottom: 40px;
+    }
+  }
+
+  &.work-wrapper {
+    height: auto;
+    display: flex;
+    flex-direction: row;
+
+    @media (max-width: 767px) {
+      width: calc(100%);
+      height: auto;
+      padding: 20px 0px;
+    }
+
+    @media (min-width: 768px) {
+      width: calc(100% - 60px);
+      padding: 30px 30px;
+    }
+
+    @media (min-width: 1024px) {
+      width: calc(100% - 100px);
+      padding: 50px 50px;
     }
   }
 
@@ -3537,6 +3524,7 @@ const Portfolio = styled.div`
     justify-content: space-between;
 
     @media (max-width: 767px) {
+      display: none;
       justify-content: flex-end;
     }
 
@@ -3549,11 +3537,19 @@ const Portfolio = styled.div`
   }
 
   &.work-container-right {
-    width: calc(70% - 21px);
     height: auto;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+
+    @media (max-width: 767px) {
+      width: calc(100% - 40px);
+      padding: 50px 20px;
+    }
+
+    @media (min-width: 768px) {
+      width: calc(70% - 21px);
+    }
   }
 
   &.work-box {
@@ -3564,15 +3560,10 @@ const Portfolio = styled.div`
 
     @media (max-width: 767px) {
       flex-direction: column;
-      margin-bottom: 20px;
     }
 
     @media (min-width: 768px) {
       flex-direction: row;
-      margin-bottom: 0px;
-    }
-
-    @media (min-width: 1024px) {
     }
   }
 
@@ -3599,7 +3590,7 @@ const Portfolio = styled.div`
   }
 
   &.img-wrapper {
-    margin-top: 40px;
+    // margin-top: 40px;
     display: flex;
     flex-direction: column;
   }
@@ -3743,7 +3734,7 @@ const GenDiv = styled.div`
     justify-content: space-between;
 
     @media (max-width: 767px) {
-      top: 240px;
+      top: 50px;
       width: calc(100% - 60px);
       padding: 0px 30px;
     }
@@ -4281,8 +4272,15 @@ const ProfileDiv = styled.div`
     grid-template-columns: repeat(1, 1fr);
     grid-template-rows: auto;
     grid-column-gap: 10px;
-    grid-row-gap: 10px;
     place-items: center;
+
+    @media (max-width: 767px) {
+      grid-row-gap: 5px;
+    }
+
+    @media (min-width: 768px) {
+      grid-row-gap: 10px;
+    }
   }
 
   &.profile-contacts-box {
@@ -5275,6 +5273,30 @@ const Button = styled.button`
   
       @media (min-width: 1024px) {
       }
+    }
+
+  &.dropdown-btn {
+      color: ${(props) => props.theme.Green};
+      font-weight: 400;
+      margin: 0;
+      padding: 0px 20px;
+  
+      &:hover {
+        color: ${(props) => props.theme.HoverGreen};
+        transition: 0.3s ease;
+      }
+  
+      @media (max-width: 767px) {
+        font-size: 14px;
+      }
+  
+      @media (min-width: 768px) {
+        font-size: 16px;
+      }
+  
+      @media (min-width: 1024px) {
+      }
+  
     }
 `;
 
