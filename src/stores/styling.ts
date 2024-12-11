@@ -91,15 +91,6 @@ import { ReactComponent as HeartLine } from "../assets/icons/heart_outlined.svg"
 import { ReactComponent as HeartFull } from "../assets/icons/heart_full.svg";
 import { PopUpBelow } from "../components/FramerMotions/scrollMotions";
 
-const Engraved = styled.div`
-  background-color: #999;
-  -webkit-background-clip: text;
-  -moz-background-clip: text;
-  background-clip: text;
-  color: transparent;
-  text-shadow: rgba(245, 245, 245, 0.5) 3px 3px 1px;
-`;
-
 const GlobalStyle = createGlobalStyle`
   body, html {
     margin: 0;
@@ -2054,29 +2045,6 @@ const MaskText = styled.div`
   }
 `;
 
-const CirText = styled.span`
-  &.splitting {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 300px;
-    height: 300px;
-    position: relative;
-    margin: auto;
-    border-radius: 50%;
-    border: 1px solid green;
-  }
-
-  &.splitting .char {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform-origin: 0 0;
-    opacity: 0;
-    animation: ${fadeInRotate} 2s ease forwards;
-  }
-`;
-
 const CareerDiv = styled.div`
   &.career-row {
     width: 100%;
@@ -3384,8 +3352,7 @@ const ArticleDiv = styled.div`
     @media (min-width: 1024px) {
       width: 50px;
       height: 50px;
-      top: auto;
-      bottom: 100px;
+      bottom: 120px;
       right: 12px;
     }
   }
@@ -3393,29 +3360,31 @@ const ArticleDiv = styled.div`
 
 const Portfolio = styled.div`
   &.portfolio-wrapper {
-    width: calc(100vw - 40px);
+    width: calc(100vw - 100px);
     height: auto;
     margin: 0 auto;
-    margin-top: 65px;
 
     @media (max-width: 767px) {
       width: calc(100vw - 20px);
-      margin-bottom: 120px;
+      margin: 120px 0px;
     }
 
     @media (min-width: 768px) {
       width: calc(100vw - 40px);
+      padding-top: 200px;
     }
 
     @media (min-width: 1024px) {
       margin-bottom: 0px;
+      padding-top: 200px;
     }
   }
 
   &.header-wrapper {
-    width: 100%;
+    width: calc(100% - 100px);
     height: auto;
     margin-bottom: 40px;
+    padding: 0px 50px;
 
     display: flex;
     flex-direction: column;
@@ -3535,27 +3504,21 @@ const Portfolio = styled.div`
   }
 
   &.mid-wrapper {
-    width: 100%;
+    width: calc(100% - 100px);
     height: auto;
+    padding: 0px 50px;
     display: flex;
     flex-direction: row;
     margin: 40px 0px;
   }
 
-  &.work-wrapper-line {
-    width: 100%;
-    height: auto;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-  }
-
   &.work-wrapper {
+    width: calc(100% - 100px);
     height: auto;
+    padding: 0px 50px;
     display: flex;
     flex-direction: row;
-
-    @media (max-width: 767px) {
+    border-y @media (max-width: 767px) {
       height: auto;
     }
 
@@ -3646,39 +3609,6 @@ const Portfolio = styled.div`
     display: flex;
     align-items: stretch;
     flex-direction: column;
-  }
-`;
-
-const Test = styled.div`
-  width: 100vw;
-  height: 100vh;
-  color: #000;
-  font-size: 50px;
-
-  position: sticky;
-  top: 0;
-  left: 0;
-
-  &.wrapper {
-    margin-top: 50px;
-  }
-
-  &.gradient {
-    background: rgb(2, 0, 36);
-    background: linear-gradient(
-      45deg,
-      rgba(2, 0, 36, 1) 0%,
-      rgba(9, 9, 121, 1) 35%,
-      rgba(0, 212, 255, 1) 100%
-    );
-  }
-
-  &.animate {
-    animation: ${moveUp} 1s forwards;
-  }
-
-  &.active {
-    animation: ${moveUp} 1s forwards;
   }
 `;
 
@@ -3875,11 +3805,6 @@ const GenDiv = styled.div`
     justify-content: space-between;
     align-items: center;
   }
-`;
-
-const Map = styled.div`
-  width: 100%;
-  height: 500px;
 `;
 
 const WishIconLine = styled(HeartLine)`
@@ -4236,117 +4161,6 @@ const Footer = styled.div`
     @media (min-width: 1024px) {
       width: 30%;
     }
-  }
-`;
-
-const Contact = styled.div`
-  &.contact-wrapper {
-    width: 100%;
-    height: auto;
-
-    @media (max-width: 767px) {
-      margin: 0;
-    }
-
-    @media (min-width: 768px) {
-      margin: 50px 0px;
-    }
-
-    @media (min-width: 1024px) {
-    }
-  }
-
-  &.contact-container {
-    width: calc(100% - 20px);
-    padding: 0px 10px 0px 10px;
-  }
-
-  &.title {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-  }
-
-  &.line {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-    margin: 20px 0px 20px 0px;
-  }
-
-  &.icon-text-box {
-    :hover: {
-      color: red;
-    }
-  }
-
-  &.card-wrapper {
-    width: 100%;
-    height: 560px;
-    display: flex;
-    flex-direction: column;
-
-    margin-top: 200px;
-
-    &:last-child {
-      margin-bottom: 100px;
-    }
-  }
-
-  &.card-container {
-    border: 2px solid ${(props) => props.theme.Grey};
-    height: 100%;
-    display: flex;
-    padding: 30px 30px;
-
-    @media (max-width: 767px) {
-      flex-direction: column;
-    }
-
-    @media (min-width: 768px) {
-      flex-direction: row-reverse;
-    }
-
-    @media (min-width: 1024px) {
-    }
-  }
-
-  &.contact-card-box {
-    display: flex;
-    align-items: flex-end;
-    overflow: hidden;
-
-    @media (max-width: 767px) {
-      width: 100%;
-      height: 50%;
-      max-height: 400px;
-    }
-
-    @media (min-width: 768px) {
-      width: 50%;
-      height: 100%;
-    }
-
-    @media (min-width: 1024px) {
-    }
-
-    &:first-child {
-    }
-  }
-
-  &.maps {
-    width: 100%;
-    height: 100%;
-  }
-
-  &.contact-info-box {
-    height: auto;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: flex-start;
   }
 `;
 
@@ -6181,9 +5995,8 @@ const RemoveIcon = styled(GoX)`
 const s = {
   GlobalStyle,
   App,
-  Engraved,
-  ArticleCard,
   Accordion,
+  ArticleCard,
   ArticleDiv,
   ArticleGrid,
   AboutDiv,
@@ -6193,20 +6006,15 @@ const s = {
   DarkButton,
   Button,
   Loading,
-  MaskText,
-  CirText,
   CareerDetail,
   CareerDiv,
   CareerItem,
   Portfolio,
   Carousel,
-  Test,
-  Contact,
   Div,
   ModalText,
   Footer,
   Form,
-  GridImage,
   HeaderDiv,
   Modal,
   Sticky,
@@ -6224,7 +6032,6 @@ const s = {
   LoginDiv,
   MainImage,
   GenDiv,
-  Map,
   Mask,
   NavBar,
   Overlay,

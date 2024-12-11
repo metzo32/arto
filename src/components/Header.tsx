@@ -29,8 +29,6 @@ export default function Header() {
 
   const handleNavigation = (path: string) => {
     navigate(path);
-    const viewportHeight = window.innerHeight;
-    console.log(viewportHeight);
   };
 
   const showSidebar = () => setSidebar(!sidebar);

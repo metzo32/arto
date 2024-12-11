@@ -1,7 +1,11 @@
 import React from "react";
 import s from "../stores/styling";
 
-const ArtistSkillComponent: React.FC<{ hash: string[] }> = ({ hash }) => {
+interface ArtistSkillProps {
+  hash: string[];
+}
+
+const ArtistSkillComponent = ({ hash }: ArtistSkillProps) => {
   return (
     <s.Portfolio className="work-container-right">
       {hash.map((skill, index) => {

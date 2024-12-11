@@ -55,7 +55,7 @@ export default function Loading() {
 
   return (
     <s.Loading className="loading-wrapper">
-      <s.MaskText className="text-contatiner">
+      {/* <s.MaskText className="text-contatiner">
         <s.MaskText className="fake-box">null</s.MaskText>
 
           <s.MaskText className="loading-title">Tapttoo</s.MaskText>
@@ -86,7 +86,7 @@ export default function Loading() {
         </s.MaskText>
 
         <s.MaskText className="white-box" />
-      </s.MaskText>
+      </s.MaskText> */}
       <s.Image className="loading-image" src={selectedImage} alt="image" />
     </s.Loading>
   );

@@ -149,8 +149,6 @@ const ArtistProfile = ({ artist }: ArtistDetailPageProps) => {
           </s.Portfolio>
         </s.Portfolio>
 
-        <s.Portfolio className="work-wrapper-line">
-          <s.Line className="horizontal dark margin-h" />
           <s.Portfolio className="work-wrapper">
             <s.Portfolio className="work-container-left">
               <s.StyledH3 className="work-title">What I do</s.StyledH3>
@@ -161,7 +159,6 @@ const ArtistProfile = ({ artist }: ArtistDetailPageProps) => {
 
             <ArtistSkillComponent hash={artist.hash || []} />
           </s.Portfolio>
-          <s.Line className="horizontal dark margin-h" />
         </s.Portfolio>
 
         <s.Portfolio className="img-wrapper">
@@ -170,23 +167,7 @@ const ArtistProfile = ({ artist }: ArtistDetailPageProps) => {
             src={artist.randomImage01}
             alt="image"
           />
-          <s.Image
-            className="artist-page-portfolio"
-            src={artist.randomImage02}
-            alt="image"
-          />
-          <s.Image
-            className="artist-page-portfolio"
-            src={artist.randomImage03}
-            alt="image"
-          />
-          <s.Image
-            className="artist-page-portfolio"
-            src={artist.randomImage04}
-            alt="image"
-          />
         </s.Portfolio>
-      </s.Portfolio>
     </>
   );
 };
