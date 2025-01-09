@@ -1,32 +1,18 @@
-// @media (max-width: 767px) {
-
-// }
-
-// @media (min-width: 768px) {
-
-// }
-
-// @media (min-width: 1024px) {
-// }
 
 import styled, { css, createGlobalStyle } from "styled-components";
 import { Link as RouterLink } from "react-router-dom";
 import { motion } from "framer-motion";
 import {
   CounterMove,
-  fadeInUp,
   WaterAnimation,
-  loadingSlide,
   moveArrow,
   bounce,
   reverseBounce,
   drawLetter,
-  fadeInRotate,
   openDrop,
   closeDrop,
   openPop,
   closePop,
-  infiniteSlideLeft,
   animateIn,
   animateOut,
   ButtonFadeIn,
@@ -39,7 +25,6 @@ import {
   pulse01,
   pulse02,
   pulse03,
-  moveUp,
   ClickAnimation,
 } from "./animations";
 
@@ -62,8 +47,6 @@ import { RiInstagramLine } from "react-icons/ri"; //인스타그램
 import { BiLogoFacebook } from "react-icons/bi"; //페이스북
 import { AiOutlineTikTok } from "react-icons/ai"; //틱톡
 import { FaYoutube } from "react-icons/fa6"; //유튜브
-
-import { ReactComponent as LetterTIcon } from "../assets/icons/letter_t.svg"; // T
 
 import { PiSunBold } from "react-icons/pi"; //태양
 import { PiMoonBold } from "react-icons/pi"; //달
@@ -89,7 +72,6 @@ import { ReactComponent as CheckboxAfter } from "../assets/icons/checkbox-active
 import { ReactComponent as Logo } from "../assets/icons/v.svg";
 import { ReactComponent as HeartLine } from "../assets/icons/heart_outlined.svg";
 import { ReactComponent as HeartFull } from "../assets/icons/heart_full.svg";
-import { PopUpBelow } from "../components/FramerMotions/scrollMotions";
 
 const GlobalStyle = createGlobalStyle`
   body, html {
@@ -588,8 +570,7 @@ const HeaderDiv = styled.div`
   &.header-wrapper {
     width: 100%;
     display: flex;
-    flex-direction: row;
-    background-color: ${(props) => props.theme.Light};
+    justify-content: center;
 
     position: fixed;
     z-index: 9999;
@@ -606,12 +587,12 @@ const HeaderDiv = styled.div`
     }
 
     @media (min-width: 768px) {
-      // background: transparent;
+      background: linear-gradient(0deg, rgba(0,0,0,0) 4%, rgba(0,0,0,0.2) 40%, rgba(0,0,0,0.4) 88%);
       width: calc(100% - 40px);
       height: 50px;
       padding: 10px 20px;
       top: 0;
-      // justify-content: center;
+      gap: 150px;
       align-items: center;
     }
   }
@@ -775,7 +756,7 @@ const StyledH1 = styled.h1`
   }
 
   &.gen-title {
-    color: ${lightTheme.Light};
+    color: ${(props) => props.theme.Green};
     text-align: left;
     text-transform: uppercase;
 
@@ -921,7 +902,7 @@ const StyledH1 = styled.h1`
 
     @media (max-width: 767px) {
       font-size: 60px;
-      letter-spacing: -6px;
+      letter-spacing: -2px;
     }
 
     @media (min-width: 768px) {
@@ -976,6 +957,7 @@ const StyledH2 = styled.h2`
 
   &.gen-top-title {
     font-family: "Arimo", sans-serif;
+    color: ${(props) => props.theme.Grey};
     font-weight: 700;
     text-align: left;
     letter-spacing: -2px;
@@ -991,7 +973,7 @@ const StyledH2 = styled.h2`
       letter-spacing: -1px;
       margin-bottom: 20px;
 
-      -webkit-text-stroke: 1px white;
+      -webkit-text-stroke: 1px ${(props) => props.theme.Grey};;
     }
 
     @media (min-width: 768px) {
@@ -999,7 +981,7 @@ const StyledH2 = styled.h2`
       letter-spacing: 0px;
       margin-bottom: 28px;
 
-      -webkit-text-stroke: 2px white;
+      -webkit-text-stroke: 2px ${(props) => props.theme.Grey};;
     }
 
     @media (min-width: 1024px) {
@@ -1191,22 +1173,18 @@ const StyledH3 = styled.h3`
     letter-spacing: -1px;
 
     @media (max-width: 767px) {
-      font-size: 16px;
-      line-height: 20px;
+      font-size: 1.2rem;
+      line-height: 24px;
     }
 
     @media (min-width: 768px) {
-      font-size: 25px;
+      font-size: 1.4rem;
       line-height: 30px;
     }
 
     @media (min-width: 1024px) {
-      font-size: 30px;
-      line-height: 40px;
-    }
-
-    &.steady-dark-title {
-      color: ${darkTheme.Green};
+      font-size: 1.8rem;
+      line-height: 35px;
     }
   }
 
@@ -1576,36 +1554,32 @@ const StyledP = styled.p`
   padding: 0;
 
   @media (max-width: 767px) {
-    font-size: 0.8rem;
-    line-height: 20px;
+    font-size: 1.2rem;
+    line-height: 24px;
   }
 
   @media (min-width: 768px) {
-    font-size: 1rem;
-    line-height: 24px;
+    font-size: 1.4rem;
+    line-height: 30px;
   }
 
   @media (min-width: 1024px) {
     font-size: 1.8rem;
-    line-height: 28px;
+    line-height: 35px;
   }
 
   &.small {
     @media (max-width: 767px) {
-      font-size: 0.8rem;
-    }
-
-    @media (min-width: 768px) {
       font-size: 1rem;
     }
 
-    @media (min-width: 1024px) {
+    @media (min-width: 768px) {
       font-size: 1.2rem;
     }
-  }
 
-  &.steady-dark-p {
-    color: ${darkTheme.Grey};
+    @media (min-width: 1024px) {
+      font-size: 1.5rem;
+    }
   }
 
   &.about-first-title {
@@ -1745,28 +1719,26 @@ const StyledP = styled.p`
   }
 
   &.number {
-    font-size: 16px;
+    font-size: 1rem;
     font-weight: 500;
   }
 
   &.modal-text {
     color: ${lightTheme.Grey};
     text-align: center;
+
+    @media (max-width: 767px) {
+      font-size: 0.8rem;
+    }
+
+    @media (min-width: 768px) {
+      font-size: 1rem;
+    }
+
+    @media (min-width: 1024px) {
+      font-size: 1.2rem;
+    }
   }
-
-  // &.small {
-  //   @media (max-width: 767px) {
-  //     font-size: 12px;
-  //   }
-
-  //   @media (min-width: 768px) {
-  //     font-size: 14px;
-  //   }
-
-  //   @media (min-width: 1024px) {
-  //     font-size: 16px;
-  //   }
-  // }
 
   &.search-top-des-main {
     width: calc(50% - 15px);
@@ -1898,101 +1870,6 @@ const Loading = styled.div`
     height: 100vh;
     overflow: hidden;
     position: relative;
-  }
-`;
-
-const MaskText = styled.div`
-  &.text-contatiner {
-    width: 100%;
-    height: 50%;
-    overflow: hidden;
-    position: absolute;
-
-    display: flex;
-    flex-direction: column-reverse;
-
-    @media (max-width: 767px) {
-    height: 40%;
-    }
-
-    @media (min-width: 768px) {
-    height: 50%;
-    }
-
-    @media (min-width: 1024px) {
-        height: 60%;
-    }
-  }
-
-  &.white-box {
-    width: 100%;
-    flex-grow: 1; 
-  background-color: ${lightTheme.Light};
-  }
-
-  &.small-text-container {
-    height: 20%;
-    background-color: ${lightTheme.Light};
-
-    display: flex;
-    flex-direction: row;
-    align-items: flex-end;
-    justify-content: space-between;
-
-    z-index: 1;
-
-    @media (max-width: 767px) {
-      width: calc(100vw - 20px);
-      padding: 0 10px;
-    }
-
-    @media (min-width: 768px) {
-      width: calc(100vw - 40px);
-      padding: 0 20px;
-    }
-  }
-
-  &.small-text-box {
-    font-size: 12px;
-    letter-spacing: 0;
-
-    display: flex;
-    flex-direction: column;
-  }
-
-  &.loading-title {
-    width: 200%;
-    background-color: ${lightTheme.Light};
-
-    color: #000;
-    font-size: 31vw;
-    font-weight: 600;
-    line-height: 1em;
-    letter-spacing: -2vw;
-    text-align- bottom;
-    margin: 0;
-    
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    transform-origin: bottom;
-    transform: translateX(-50%) translateY(18%); 
-
-     mix-blend-mode: lighten;
-     animation: ${loadingSlide} 1.5s ease;
-  }
-  
-  &.fake-box {
-    display: block;
-    width: 100%;
-    margin: 0;
-
-    color: transparent;
-    font-size: 22vw;
-    font-weight: 600;
-    line-height: 1em;
-    letter-spacing: -2vw;
-    text-align- bottom;
   }
 `;
 
@@ -2602,16 +2479,13 @@ const Modal = styled.div`
     }
 
     @media (max-width: 767px) {
-      width: 300px;
+      width: 400px;
       height: 300px;
     }
 
     @media (min-width: 768px) {
-      width: 400px;
+      width: 500px;
       height: 400px;
-    }
-
-    @media (min-width: 1024px) {
     }
   }
 
@@ -3194,7 +3068,6 @@ const Search = styled.div`
 `;
 
 const ModalText = styled.div`
-  width: 80%;
   height: auto;
 `;
 
@@ -3397,7 +3270,7 @@ const Portfolio = styled.div`
   &.mid-box-right {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    gap: 10px;
 
     @media (max-width: 767px) {
       width: 100%;
@@ -3590,7 +3463,6 @@ const Portfolio = styled.div`
   }
 
   &.img-wrapper {
-    // margin-top: 40px;
     display: flex;
     flex-direction: column;
   }
@@ -3650,7 +3522,6 @@ const Carousel = styled.div`
   }
 
   &.carousel-box {
-    // 가상요소까지 모두 포함
     display: flex;
   }
 
@@ -3692,7 +3563,6 @@ const GenDiv = styled.div`
   &.gen-wrapper {
     width: 100%;
     height: 2000px;
-    // background-color: black;
     display: block;
     overflow: hidden;
 
@@ -4114,6 +3984,7 @@ const Footer = styled.div`
     @media (max-width: 767px) {
       width: 150px;
       margin: 0 auto;
+      margin-bottom: 20px;
       justify-content: center;
     }
 
@@ -4123,34 +3994,6 @@ const Footer = styled.div`
       flex-direction: row;
       align-items: center;
       margin: 0px 60px 0px 0px;
-    }
-  }
-
-  &.footer-button-wrapper {
-    width: 100%;
-    height: 30px;
-    margin: 0 auto;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-
-    @media (max-width: 767px) {
-      width: 90%;
-      justify-content: space-between;
-      margin-top: 10px;
-      margin-bottom: 10px;
-    }
-
-    @media (min-width: 768px) {
-      width: 50%;
-      flex-direction: row;
-      align-items: center;
-      justify-content: center;
-      margin: 0;
-    }
-
-    @media (min-width: 1024px) {
-      width: 30%;
     }
   }
 `;
@@ -4767,7 +4610,8 @@ const Input = styled.input`
   }
 
   &.prompt-input {
-    border-bottom: 2px solid white;
+    border-bottom: 2px solid ${(props) => props.theme.Grey};
+    margin-right: 10px;
   }
 
   &.photo-add {
@@ -4790,6 +4634,14 @@ const Label = styled.label`
   color: ${(props) => props.theme.Grey};
   letter-spacing: -0.1px;
   cursor: pointer;
+
+  &.colorCheck {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+  }
 
   &.login-info {
     position: absolute;
@@ -4896,45 +4748,6 @@ const Label = styled.label`
 
         .checkbox-icon-checked {
           color: ${(props) => props.theme.HoverGreen};
-        }
-      }
-    }
-
-    @media (min-width: 1024px) {
-      font-size: 14px;
-    }
-  }
-
-  &.steady-dark {
-    font-size: 12px;
-    color: ${darkTheme.Grey};
-    cursor: pointer;
-    padding: 10px 0px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    transition: color 0.3s ease;
-
-    &:hover {
-      color: ${darkTheme.HoverGrey};
-
-      .checkbox-icon-checked {
-        color: ${darkTheme.Green};
-      }
-    }
-
-    .checkbox-icon-checked {
-      color: ${darkTheme.Green};
-    }
-
-    @media (min-width: 768px) {
-      font-size: 13px;
-
-      &:hover {
-        color: ${darkTheme.HoverGrey};
-
-        .checkbox-icon-checked {
-          color: ${darkTheme.HoverGreen};
         }
       }
     }
@@ -5225,6 +5038,16 @@ const Button = styled.button`
       }
     }
 
+    &.back {
+        @media (max-width: 767px) {
+        width: 60px;
+      }
+  
+      @media (min-width: 768px) {
+        width: 100px;
+      }
+    }
+
   &.outlined {
       border: 1px solid ${(props) => props.theme.LightGrey};
       padding: 5px 10px;
@@ -5235,30 +5058,35 @@ const Button = styled.button`
   
       @media (max-width: 767px) {
         font-size: 10px;
-           margin: 20px 0px;
+        margin-bottom: 20px;
       }
   
       @media (min-width: 768px) {
         font-size: 12px;
-           margin: 30px 0px;
+        margin-bottom: 30px;
       }
   
       @media (min-width: 1024px) {
         font-size: 14px;
-           margin: 30px 0px;
+        margin-bottom: 30px;
       }
     }
   
   &.header-button-item {
       width: 55px;
       padding: 0;
-      font-size: 12px;
+      color: ${(props) => props.theme.Grey};
   
       &:last-child {
         margin: 0;
       }
+      
+      &:hover {
+        color: ${(props) => props.theme.hoverGrey};
+      }
   
       @media (max-width: 767px) {
+        font-size: 12px;
         height: 42px;
         display: flex;
         flex-direction: column;
@@ -5269,9 +5097,7 @@ const Button = styled.button`
       @media (min-width: 768px) {
         height: 100%;
         display: block;
-      }
-  
-      @media (min-width: 1024px) {
+        font-size: 18px;
       }
     }
 
@@ -5299,43 +5125,6 @@ const Button = styled.button`
   
     }
 `;
-
-//   &.more {
-//     color: ${(props) => props.theme.LightGrey};
-//     margin-top: 10px;
-//     padding: 5px;
-
-//     display: flex;
-//     justify-content: space-between;
-//     align-items: center;
-
-//     @media (max-width: 767px) {
-//       font-size: 16px;
-//       width: 70px;
-//     }
-
-//     @media (min-width: 768px) {
-//       font-size: 20px;
-//       width: 90px;
-//     }
-
-//     @media (min-width: 1024px) {
-//       font-size: 20px;
-//       width: 90px;
-//     }
-
-//     &:hover {
-//       color: ${(props) => props.theme.Grey};
-//     }
-
-//     &:hover .none {
-//       fill: ${(props) => props.theme.Grey};
-//     }
-
-//     &:hover .rotated {
-//       fill: ${(props) => props.theme.Grey};
-//     }
-//   }
 
 //   &.outlined {
 //     border: 1px solid ${(props) => props.theme.LightGrey};
@@ -5382,85 +5171,6 @@ const Button = styled.button`
 //       stroke: ${(props) => lightTheme.HoverGrey};
 //       fill: ${(props) => lightTheme.HoverGrey};
 //       color: ${(props) => lightTheme.HoverGrey};
-//     }
-//   }
-
-//   &.footer-btn {
-//     color: ${(props) => props.theme.Grey};
-
-//     @media (max-width: 767px) {
-//       font-size: 12px;
-//       margin: 0;
-//       padding: 10px;
-//     }
-
-//     @media (min-width: 768px) {
-//       font-size: 13px;
-//       margin: 4px 2px;
-//       padding: 10px 20px;
-//     }
-
-//     @media (min-width: 1024px) {
-//     }
-
-//     &:hover {
-//       color: ${(props) => props.theme.HoverGrey};
-//     }
-//   }
-
-//   &.dropdown-btn {
-//     color: ${(props) => props.theme.Green};
-//     font-weight: 400;
-//     margin: 0;
-//     padding: 0px 20px;
-
-//     &:hover {
-//       color: ${(props) => props.theme.HoverGreen};
-//       transition: 0.3s ease;
-//     }
-
-//     @media (max-width: 767px) {
-//       font-size: 14px;
-//     }
-
-//     @media (min-width: 768px) {
-//       font-size: 16px;
-//     }
-
-//     @media (min-width: 1024px) {
-//     }
-
-//   }
-
-//   &.left {
-//     position: absolute;
-//     left: 0;
-//     top: 0;
-//   }
-
-//   &.header-button-item {
-//     width: 55px;
-//     padding: 0;
-//     font-size: 12px;
-
-//     &:last-child {
-//       margin: 0;
-//     }
-
-//     @media (max-width: 767px) {
-//       height: 42px;
-//       display: flex;
-//       flex-direction: column;
-//       justify-content: space-between;
-//       align-items: center;
-//     }
-
-//     @media (min-width: 768px) {
-//       height: 100%;
-//       display: block;
-//     }
-
-//     @media (min-width: 1024px) {
 //     }
 //   }
 
@@ -5609,55 +5319,7 @@ const ProfileGrid = styled.div`
   overflow: hidden;
 `;
 
-const GridImage = styled.img`
-  width: 100%;
-  height: 300px;
-  object-fit: cover;
-
-  &.gridimg01 {
-    grid-column: 1 / 4;
-    grid-row: 1;
-  }
-
-  &.gridimg02 {
-    grid-column: 4 / 6;
-    grid-row: 1;
-  }
-
-  &.gridimg03 {
-    grid-column: 1 / 6;
-    grid-row: 2;
-  }
-
-  &.gridimg04 {
-    grid-column: 1 / 3;
-    grid-row: 3;
-  }
-
-  &.gridimg05 {
-    grid-column: 3 / 6;
-    grid-row: 3;
-  }
-
-  &.gridlikeimg01 {
-    grid-column: 1 / 2;
-    grid-row: 1 / 2;
-  }
-
-  &.gridlikeimg02 {
-    grid-column: 2 / 3;
-    grid-row: 1 / 2;
-  }
-
-  &.gridlikeimg03 {
-    grid-column: 3 / 4;
-    grid-row: 1 / 2;
-  }
-`;
-
 const Water = styled(water)`
-  // width: calc(4180px * 1.2);
-  // height: calc(760px * 1.2);
   width: 900%;
   height: 148%;
   position: absolute;
@@ -6001,7 +5663,6 @@ const WarnIcon = styled(TbExclamationMark)`
 `;
 
 const PlusIcon = styled(GoPlusCircle)`
-  // font-size: 40px;
   width: 20%;
   height: 20%;
 

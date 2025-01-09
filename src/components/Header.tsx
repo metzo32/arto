@@ -3,21 +3,15 @@ import { useNavigate } from "react-router-dom";
 import s from "../stores/styling";
 import SideBar from "./SideBar";
 import { AuthContext } from "../context/AuthContext";
-import { useIsMobile } from "../context/MobileContext";
 import useWindowSize from "../hooks/WindowSizeHook";
-
-import DarkModeButton from "./DarkModeButton";
-
-
 
 export default function Header() {
   const navigate = useNavigate();
-  const isMobile = useIsMobile()
 
   const { currentlyLoggedIn } = useContext(AuthContext);
   const [sidebar, setSidebar] = useState(false);
 
-  const {width} = useWindowSize()
+  const { width } = useWindowSize();
 
   const handleProfileNavigation = () => {
     if (currentlyLoggedIn) {
@@ -37,36 +31,34 @@ export default function Header() {
     <>
       <s.HeaderDiv className="header-wrapper">
         <SideBar sidebar={sidebar} showSidebar={showSidebar} />
-          
-          <s.Button onClick={showSidebar} className="header-button-item">
-            <s.HamburgerIcon />
-            {width && width <= 767 ? "메뉴" : null}
-          </s.Button>
 
-          <s.Button
-            onClick={() => handleNavigation("/")}
-            className="header-button-item"
-          >
-            <s.HomeIcon />
-            {width && width <= 767 ? "홈" : null}
-          </s.Button>
+        <s.Button onClick={showSidebar} className="header-button-item">
+          {width && width <= 767 ? <s.HamburgerIcon /> : null}
+          메뉴
+        </s.Button>
 
-          <s.Button
-            onClick={() => handleNavigation("/article")}
-            className="header-button-item"
-          >
-            <s.SearchIcon />
-            {width && width <= 767 ? "둘러보기" : null}
-          </s.Button>
+        <s.Button
+          onClick={() => handleNavigation("/")}
+          className="header-button-item"
+        >
+          {width && width <= 767 ? <s.HomeIcon /> : null}홈
+        </s.Button>
 
-          {!isMobile && <DarkModeButton />}
-          <s.Button
-            onClick={() => handleProfileNavigation()}
-            className="header-button-item"
-          >
-            <s.ProfileIcon />
-            {width && width <= 767 ? "마이" : null}
-          </s.Button>
+        <s.Button
+          onClick={() => handleNavigation("/article")}
+          className="header-button-item"
+        >
+          {width && width <= 767 ? <s.SearchIcon /> : null}
+          둘러보기
+        </s.Button>
+
+        {/* {!isMobile && <DarkModeButton />} */}
+        <s.Button
+          onClick={() => handleProfileNavigation()}
+          className="header-button-item"
+        >
+          {width && width <= 767 ? <s.ProfileIcon /> : null}내 정보
+        </s.Button>
       </s.HeaderDiv>
     </>
   );

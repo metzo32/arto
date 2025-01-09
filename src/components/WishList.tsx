@@ -30,7 +30,8 @@ const WishList: React.FC<WishListProps> = ({
         try {
           const userDoc = await getDoc(userRef);
           const currentWishlist = userDoc.data()?.wishList || [];
-          const isAlreadyWishlisted = currentWishlist.some( //배열 중 하나라도 만족하면 true
+          const isAlreadyWishlisted = currentWishlist.some(
+            //배열 중 하나라도 만족하면 true
             (item: { id: number }) => item.id === artistId
           );
           setWishButton(isAlreadyWishlisted);
@@ -39,7 +40,7 @@ const WishList: React.FC<WishListProps> = ({
         }
       }
     });
-  
+
     return () => unsubscribe(); // 컴포넌트 언마운트 시 unsubscribe
   }, [artistId]);
 

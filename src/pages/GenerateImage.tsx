@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import GenerateImageApi from "../components/api/GenerateImageApi";
 import s from "../stores/styling";
-import bgImage from "../assets/images/tattoo_50.webp";
 import HoverButton from "../components/HoverButton";
 import {
   CircleAnimation,
@@ -140,7 +139,7 @@ const GenerateImage = () => {
           </s.GenDiv>
 
           <PopUpBelow>
-            <s.StyledP className="steady-dark-p">
+            <s.StyledP>
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam
               sunt deleniti, non sit labore ullam, id quia voluptates qui
               nostrum alias incidunt odit praesentium accusantium reiciendis
@@ -164,7 +163,7 @@ const GenerateImage = () => {
                   required
                 />
 
-                <s.Label className="steady-dark">
+                <s.Label className="colorCheck">
                   <s.Input
                     type="checkbox"
                     checked={color}

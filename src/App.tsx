@@ -25,7 +25,6 @@ import RegisterPage from "./pages/RegisterPage";
 import ScrollTest from "./pages/ScrollTest";
 import ArtistData from "./assets/datas/artitst_data";
 import ScrollToTopButton from "./components/ScrollToTopButton";
-import Modal from "./components/Modal";
 import GenerateImage from "./pages/GenerateImage";
 import Loading from "./components/Loading";
 
@@ -64,14 +63,7 @@ const App = () => {
                 <ScrollToTopButton />
                 <Routes>
                   <Route path="/" element={<GenerateImage />} />
-                  <Route
-                    path="/article"
-                    element={
-                      <ProtectedRouteHoc>
-                        <Article />
-                      </ProtectedRouteHoc>
-                    }
-                  />
+                  <Route path="/article" element={<Article />} />
                   <Route path="/login" element={<LoginPage />} />
 
                   <Route path="/loading" element={<Loading />} />

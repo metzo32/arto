@@ -1,7 +1,5 @@
-import React from "react";
 import s from "../stores/styling";
 import { SideBarData } from "../stores/SideBarData";
-import { useIsMobile } from "../context/MobileContext";
 import DarkModeButton from "./DarkModeButton";
 
 interface SideBarProps {
@@ -10,8 +8,6 @@ interface SideBarProps {
 }
 
 const SideBar = ({ sidebar, showSidebar }: SideBarProps) => {
-
-  const isMobile = useIsMobile();
 
   return (
     <>
@@ -32,7 +28,7 @@ const SideBar = ({ sidebar, showSidebar }: SideBarProps) => {
             </s.StyledUl>
 
             <s.StyledUl className="nav-menu-items">
-              {isMobile && <DarkModeButton />}
+              <DarkModeButton />
             </s.StyledUl>
           </s.SideBar>
         </s.NavBar>

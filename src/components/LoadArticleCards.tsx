@@ -34,7 +34,7 @@ const LoadArticleCards = () => {
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
-          addArticles(); // 로더가 뷰포트에 들어오면 새 기사 추가
+          addArticles(); // 로더가 뷰포트에 들어오면 새 카드 추가
         }
       });
     });

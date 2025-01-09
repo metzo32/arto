@@ -285,7 +285,7 @@ const RegisterPage = () => {
 
           {step === 2 && (
             <s.LoginDiv className="container step02">
-              <s.Button className="register-back" onClick={handlePrevStep}>
+              <s.Button className="back" onClick={handlePrevStep}>
                 <s.LeftIcon className="back-button"/>
               </s.Button>
 

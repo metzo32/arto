@@ -1,6 +1,6 @@
 import React, { useRef, useEffect } from 'react';
 
-const MagneticBox: React.FC = () => {
+const MagneticBox = () => {
   const boxRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {

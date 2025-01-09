@@ -19,32 +19,7 @@ const Footer: React.FC<FooterProps> = ({ wrapperClassName }) => {
           <s.BrandLogo />
           <s.StyledH4 className="brand-text">Tapttoo</s.StyledH4>
         </s.Footer>
-        <s.Footer className="footer-button-wrapper">
-          <s.Button
-            className="footer-btn"
-            onClick={() => handleNavigation("/")}
-          >
-            Home
-          </s.Button>
-          <s.Button
-            className="footer-btn"
-            onClick={() => handleNavigation("/aboutus")}
-          >
-            About us
-          </s.Button>
-          <s.Button
-            className="footer-btn"
-            onClick={() => handleNavigation("/Career")}
-          >
-            Career
-          </s.Button>
-          <s.Button
-            className="footer-btn"
-            onClick={() => handleNavigation("/Contact")}
-          >
-            Contact
-          </s.Button>
-        </s.Footer>
+  
         <s.Footer className="footer-icon-box">
           <a
             href="https://www.facebook.com"
