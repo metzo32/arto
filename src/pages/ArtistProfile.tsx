@@ -9,7 +9,13 @@ interface ArtistDetailPageProps {
 }
 
 const ArtistProfile = ({ artist }: ArtistDetailPageProps) => {
-  const handleNavigation = () => {};
+  const handleSendEmail = (email: string) => {
+    if (!email) {
+      console.error("Email is not provided!");
+      return;
+    }
+    window.location.href = `mailto:${email}`;
+  };
 
   const CopyToClipboard = (text: string) => {
     navigator.clipboard.writeText(text).then(
@@ -88,8 +94,8 @@ const ArtistProfile = ({ artist }: ArtistDetailPageProps) => {
                 <s.Portfolio className="ask-btn-box">
                   <HoverButton
                     circle={false}
-                    text=" 작가에게 문의하기"
-                    onClick={handleNavigation}
+                    text="작게에게 문의하기"
+                    onClick={() => handleSendEmail(artist.email)}
                     className="center"
                   />
                 </s.Portfolio>
@@ -107,67 +113,67 @@ const ArtistProfile = ({ artist }: ArtistDetailPageProps) => {
           <s.StyledH3 className="profile-portfolio">PORTFOLIO</s.StyledH3>
         </s.Portfolio>
 
-          <s.Portfolio className="work-wrapper">
-            <s.Portfolio className="work-container-left">
-              <s.StyledH3 className="work-title">What I do</s.StyledH3>
-              <s.ArrowIcon />
+        <s.Portfolio className="work-wrapper">
+          <s.Portfolio className="work-container-left">
+            <s.StyledH3 className="work-title">What I do</s.StyledH3>
+            <s.ArrowIcon />
+          </s.Portfolio>
+
+          <s.Line className="vertical dark margin-v " />
+
+          <ArtistSkillComponent hash={artist.hash || []} />
+        </s.Portfolio>
+      </s.Portfolio>
+
+      <s.Portfolio className="img-wrapper">
+        <s.Image
+          className="artist-page-portfolio"
+          src={artist.randomImage01}
+          alt="image"
+        />
+      </s.Portfolio>
+
+      <s.Portfolio className="mid-wrapper">
+        <s.Portfolio className="header-container">
+          <s.Portfolio className="mid-box-left">
+            <s.StyledH2 className="artist-description">
+              Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quod
+              dicta ut, fugit neque explicabo totam tenetur eum et odit ipsa
+              nulla repudiandae commodi voluptas quos molestiae nostrum autem
+              hic itaque?
+            </s.StyledH2>
+          </s.Portfolio>
+
+          <s.Line className="vertical dark display-narrow" />
+
+          <s.Portfolio className="mid-box-right centered">
+            <s.StyledH4 className="profile-sns">Have a Look</s.StyledH4>
+            <s.Portfolio className="sns-box">
+              <a
+                href="https://www.facebook.com"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <s.FaceBookIcon className="outlined" />
+              </a>
+              <a
+                href="https://www.instagram.com"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <s.InstagramIcon className="outlined" />
+              </a>
+              <a
+                href="https://www.youtube.com"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <s.YoutubeIcon className="outlined" />
+              </a>
             </s.Portfolio>
-
-            <s.Line className="vertical dark margin-v " />
-
-            <ArtistSkillComponent hash={artist.hash || []} />
           </s.Portfolio>
         </s.Portfolio>
-
-        <s.Portfolio className="img-wrapper">
-          <s.Image
-            className="artist-page-portfolio"
-            src={artist.randomImage01}
-            alt="image"
-          />
-        </s.Portfolio>
-
-        <s.Portfolio className="mid-wrapper">
-          <s.Portfolio className="header-container">
-            <s.Portfolio className="mid-box-left">
-              <s.StyledH2 className="artist-description">
-                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quod
-                dicta ut, fugit neque explicabo totam tenetur eum et odit ipsa
-                nulla repudiandae commodi voluptas quos molestiae nostrum autem
-                hic itaque?
-              </s.StyledH2>
-            </s.Portfolio>
-
-            <s.Line className="vertical dark display-narrow" />
-
-            <s.Portfolio className="mid-box-right centered">
-              <s.StyledH4 className="profile-sns">Have a Look</s.StyledH4>
-              <s.Portfolio className="sns-box">
-                <a
-                  href="https://www.facebook.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <s.FaceBookIcon className="outlined" />
-                </a>
-                <a
-                  href="https://www.instagram.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <s.InstagramIcon className="outlined" />
-                </a>
-                <a
-                  href="https://www.youtube.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <s.YoutubeIcon className="outlined" />
-                </a>
-              </s.Portfolio>
-            </s.Portfolio>
-          </s.Portfolio>
-        </s.Portfolio>
+      </s.Portfolio>
     </>
   );
 };

@@ -22,7 +22,6 @@ import Profile from "./pages/Profile";
 import ArtistProfile from "./pages/ArtistProfile";
 import RegisterTerms from "./pages/RegisterTerms";
 import RegisterPage from "./pages/RegisterPage";
-import ScrollTest from "./pages/ScrollTest";
 import ArtistData from "./assets/datas/artitst_data";
 import ScrollToTopButton from "./components/ScrollToTopButton";
 import GenerateImage from "./pages/GenerateImage";
@@ -83,7 +82,6 @@ const App = () => {
                     path="/your_custom_tattoo"
                     element={<GenerateImage />}
                   />
-                  <Route path="/scroll" element={<ScrollTest />} />
                   {ArtistData.map((artist) => (
                     <Route
                       key={artist.id}
