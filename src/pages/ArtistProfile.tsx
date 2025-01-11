@@ -94,7 +94,7 @@ const ArtistProfile = ({ artist }: ArtistDetailPageProps) => {
                 <s.Portfolio className="ask-btn-box">
                   <HoverButton
                     circle={false}
-                    text="작게에게 문의하기"
+                    text="작가에게 문의하기"
                     onClick={() => handleSendEmail(artist.email)}
                     className="center"
                   />
