@@ -1,4 +1,3 @@
-
 import styled, { css, createGlobalStyle } from "styled-components";
 import { Link as RouterLink } from "react-router-dom";
 import { motion } from "framer-motion";
@@ -83,6 +82,8 @@ const GlobalStyle = createGlobalStyle`
 
 const App = styled.div`
   &.wrapper {
+    display: flex;
+    flex-direction: row;
     min-width: 320px;
     height: auto;
     background-color: ${(props) => props.theme.Light};
@@ -587,7 +588,12 @@ const HeaderDiv = styled.div`
     }
 
     @media (min-width: 768px) {
-      background: linear-gradient(0deg, rgba(0,0,0,0) 4%, rgba(0,0,0,0.2) 40%, rgba(0,0,0,0.4) 88%);
+      background: linear-gradient(
+        0deg,
+        rgba(0, 0, 0, 0) 4%,
+        rgba(0, 0, 0, 0.2) 40%,
+        rgba(0, 0, 0, 0.4) 88%
+      );
       width: calc(100% - 40px);
       height: 50px;
       padding: 10px 20px;
@@ -862,8 +868,9 @@ const StyledH1 = styled.h1`
     text-transform: uppercase;
     white-space: nowrap;
     position: absolute;
-    right: 20px;
+    right: 0;
     bottom: 0;
+    transform: translateX(-50%);
 
     @media (max-width: 767px) {
       display: none;
@@ -973,7 +980,7 @@ const StyledH2 = styled.h2`
       letter-spacing: -1px;
       margin-bottom: 20px;
 
-      -webkit-text-stroke: 1px ${(props) => props.theme.Grey};;
+      -webkit-text-stroke: 1px ${(props) => props.theme.Grey};
     }
 
     @media (min-width: 768px) {
@@ -981,7 +988,7 @@ const StyledH2 = styled.h2`
       letter-spacing: 0px;
       margin-bottom: 28px;
 
-      -webkit-text-stroke: 2px ${(props) => props.theme.Grey};;
+      -webkit-text-stroke: 2px ${(props) => props.theme.Grey};
     }
 
     @media (min-width: 1024px) {
@@ -3087,6 +3094,7 @@ const ArticleDiv = styled.div`
   display: flex;
 
   &.article-wrapper {
+    width: calc(100% - 280px);
     flex-direction: column;
   }
 
@@ -3096,6 +3104,10 @@ const ArticleDiv = styled.div`
   }
 
   .article-cards {
+    width: 100vw;
+    height: 100vh;
+    min-width: 320px;
+    min-height: 320px;
     margin: 0;
     position: relative;
     z-index: 1;
@@ -3107,12 +3119,12 @@ const ArticleDiv = styled.div`
     justify-content: center;
     align-items: center;
 
-    &:hover .article-name {
-      font-size: 100px;
-      letter-spacing: -4px;
-      opacity: 1;
-      transition: 0.5s ease 0.5s;
-    }
+    // &:hover .article-name {
+    //   font-size: 100px;
+    //   letter-spacing: -4px;
+    //   opacity: 1;
+    //   transition: 0.5s ease 0.5s;
+    // }
 
     @media (max-width: 767px) {
       width: 100vw;
@@ -3125,16 +3137,6 @@ const ArticleDiv = styled.div`
         opacity: inherit;
         transition: none;
       }
-    }
-
-    @media (min-width: 768px) and (max-width: 1023px) {
-      width: 100vw;
-      height: 100vw;
-    }
-
-    @media (min-width: 1024px) {
-      width: 100vw;
-      aspect-ratio: 16/9;
     }
   }
 
@@ -3156,7 +3158,7 @@ const ArticleDiv = styled.div`
 
   &.heart-wrapper {
     position: absolute;
-    z-index: 3;
+    z-index: 10;
     touch-action: manipulation;
 
     @media (max-width: 767px) {
@@ -3177,118 +3179,13 @@ const ArticleDiv = styled.div`
       width: 50px;
       height: 50px;
       bottom: 120px;
-      right: 12px;
+      left: 0;
     }
   }
 `;
 
 const Portfolio = styled.div`
-  &.portfolio-wrapper {
-    width: calc(100vw - 100px);
-    height: auto;
-    margin: 0 auto;
-
-    @media (max-width: 767px) {
-      width: 100%;
-      padding-top: 50px;
-    }
-
-    @media (min-width: 768px) {
-      width: calc(100vw - 40px);
-      padding-top: 200px;
-    }
-
-    @media (min-width: 1024px) {
-      margin-bottom: 0px;
-      padding-top: 200px;
-    }
-  }
-
-  &.header-wrapper {
-    height: auto;
-    display: flex;
-    flex-direction: column;
-
-    @media (max-width: 767px) {
-      width: calc(100% - 40px);
-      padding: 0px 20px;
-    }
-
-    @media (min-width: 768px) {
-      width: calc(100% - 60px);
-      padding: 0px 30px;
-    }
-
-    @media (min-width: 1024px) {
-      width: calc(100% - 100px);
-      padding: 0px 50px;
-      margin-bottom: 40px;
-    }
-  }
-
-  &.header-container {
-    height: auto;
-    margin-bottom: 100px;
-
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-
-    @media (max-width: 767px) {
-      margin-top: 20px;
-
-      flex-direction: column;
-    }
-
-    @media (min-width: 768px) {
-      margin-top: 40px;
-      flex-direction: column;
-
-      align-items: flex-end;
-    }
-
-    @media (min-width: 1024px) {
-      flex-direction: row;
-      align-items: flex-start;
-    }
-  }
-
-  &.mid-box-left {
-    @media (max-width: 767px) {
-      width: 100%;
-    }
-
-    @media (min-width: 768px) {
-      width: 100%;
-    }
-
-    @media (min-width: 1024px) {
-      width: calc(60% - 10px);
-    }
-  }
-
-  &.mid-box-right {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-
-    @media (max-width: 767px) {
-      width: 100%;
-      height: 120px;
-      margin: 40px 0px;
-    }
-
-    @media (min-width: 768px) {
-      width: 100%;
-      height: 180px;
-      margin: 80px 0px;
-    }
-
-    @media (min-width: 1024px) {
-      width: calc(30% - 10px);
-      height: 200px;
-      margin-top: 0px;
-    }
+  
 
     &.centered {
       @media (max-width: 767px) {

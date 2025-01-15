@@ -1,4 +1,3 @@
-// src/firebase/firebaseUtils.ts
 import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { doc, updateDoc, getDoc } from "firebase/firestore";
 import { auth, db } from "./firebaseConfig";

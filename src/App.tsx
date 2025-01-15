@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./App.css";
-import s from "./stores/styling";
+import styled from "styled-components";
 import {
   BrowserRouter as Router,
   Route,
@@ -13,21 +13,23 @@ import ProtectedRouteHoc from "./components/ProtectedRouteHoc";
 import CustomThemeProvider from "./context/CustomThemeProvider";
 import { MobileProvider } from "./context/MobileContext";
 
-import Header from "./components/Header";
+import Header from "./components/Header/Header";
 import LoginPage from "./pages/LoginPage";
 import Article from "./pages/Article";
 
-import Footer from "./components/Footer";
 import Profile from "./pages/Profile";
 import ArtistProfile from "./pages/ArtistProfile";
 import RegisterTerms from "./pages/RegisterTerms";
 import RegisterPage from "./pages/RegisterPage";
 import ArtistData from "./assets/datas/artitst_data";
 import ScrollToTopButton from "./components/ScrollToTopButton";
-import GenerateImage from "./pages/GenerateImage";
 import Loading from "./components/Loading";
+import { ArtistDataProps } from "./assets/datas/artitst_data";
+import artistdata from "./assets/datas/artitst_data";
 
 const App = () => {
+  // const [artistData, setArtistData] = useState<ArtistDataProps[]>(artistdata);
+
   const [currentlyLoggedIn, setCurrentlyLoggedIn] = useState(false);
   const [isLoading, setIsLoading] = useState(true); // 추가
 
@@ -50,19 +52,26 @@ const App = () => {
     return <Loading />; // 로딩 화면에 헤더와 푸터가 보이지 않도록 설정
   }
 
+  const AppContainer = styled.div`
+    display: flex;
+    flex-direction: row;
+    min-width: 320px;
+    height: auto;
+    background-color: ${(props) => props.theme.Light};
+    position: relative;
+    overflow: hidden;G
+  `;
+
   return (
     <>
       <AuthContext.Provider value={{ currentlyLoggedIn, setCurrentlyLoggedIn }}>
         <CustomThemeProvider>
           <MobileProvider>
-            <s.GlobalStyle />
-            <s.App className="wrapper">
+            <AppContainer>
               <Router>
                 <Header />
-                <ScrollToTopButton />
                 <Routes>
-                  <Route path="/" element={<GenerateImage />} />
-                  <Route path="/article" element={<Article />} />
+                  <Route path="/" element={<Article />} />
                   <Route path="/login" element={<LoginPage />} />
 
                   <Route path="/loading" element={<Loading />} />
@@ -78,41 +87,25 @@ const App = () => {
                   <Route path="/registerterms" element={<RegisterTerms />} />
                   <Route path="/register" element={<RegisterPage />} />
 
-                  <Route
-                    path="/your_custom_tattoo"
-                    element={<GenerateImage />}
-                  />
-                  {ArtistData.map((artist) => (
-                    <Route
-                      key={artist.id}
-                      path={`/profile_artist_${artist.nickname}`}
-                      element={<ArtistProfile artist={artist} />}
-                    />
-                  ))}
+                  {ArtistData.map(
+                    (
+                      artist // 아티스트 명에 따른 동적 경로 생성
+                    ) => (
+                      <Route
+                        key={artist.id}
+                        path={`/profile_artist_${artist.nickname.toLowerCase()}`}
+                        element={<ArtistProfile artist={artist} />} //해당 아티스트 아이템으로 페이지 구성
+                      />
+                    )
+                  )}
                 </Routes>
-
-                <FooterRender />
               </Router>
-            </s.App>
+            </AppContainer>
           </MobileProvider>
         </CustomThemeProvider>
       </AuthContext.Provider>
     </>
   );
-};
-
-const FooterRender = () => {
-  const location = useLocation();
-
-  const renderFooter = location.pathname !== "/article";
-  const footerStyleException =
-    location.pathname === "/your_custom_tattoo"
-      ? "footer-wrapper-exception"
-      : "footer-wrapper";
-
-  return renderFooter ? (
-    <Footer wrapperClassName={footerStyleException} />
-  ) : null;
 };
 
 export default App;

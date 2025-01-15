@@ -11,13 +11,13 @@ interface WishListProps {
   onToggleWishlist: () => void;
 }
 
-const WishList: React.FC<WishListProps> = ({
+const WishList = ({
   artistId,
   artistNickname,
   artistRandomImage,
   isWishlisted,
   onToggleWishlist,
-}) => {
+}: WishListProps) => {
   const [wishButton, setWishButton] = useState<boolean>(isWishlisted);
   const [hovered, setHovered] = useState(false);
 

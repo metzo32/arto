@@ -24,6 +24,14 @@ interface colorTheme {
   OverlayGradient: string;
 }
 
+export const newTheme = {
+  text: "#4A505B",
+  base: "#F2F7F8",
+  white: "#FFFFFF",
+  outline: "#DEE1E7",
+  shadow: "#BEC2C8",
+}
+
 export const lightTheme: colorTheme = {
   Green: "#40A93E",
   HoverGreen: "#276E27",

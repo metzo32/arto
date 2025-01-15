@@ -48,6 +48,16 @@ body {
 ol, ul {
     list-style: none;
 }
+
+button {
+  box-sizing: border-box;
+  background: none; 
+  border: none;     
+  outline: none;  
+  padding: 0;      
+  cursor: pointer;  
+  white-space: nowrap; 
+}
 blockquote, q {
     quotes: none;
 }

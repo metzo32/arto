@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useRef } from "react";
 import styled from "styled-components";
 import { useTransform, useScroll, useMotionValueEvent } from "framer-motion";
-import useWindowSize from "../../hooks/WindowSizeHook";
+import useWindowSize from "../../hooks/useWindowSize";
 
 interface SnapParentProps {
   children: React.ReactNode;
@@ -11,11 +11,10 @@ interface SnapParentProps {
 
 const StyledSnapParent = styled.div`
   scroll-snap-type: y mandatory;
+  overflow-x: hidden;
   overflow-y: scroll;
   height: 100vh;
   position: relative;
-
-  border: "1px solid red";
 `;
 
 const SnapParent = React.forwardRef<HTMLDivElement, SnapParentProps>(

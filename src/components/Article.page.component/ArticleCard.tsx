@@ -1,32 +1,30 @@
+import { Div, Img, H3 } from "./ArticleCard.style";
 import { useState, useEffect, useRef } from "react";
-import s from "../stores/styling";
-import { auth, db } from "../firebase/firebaseConfig";
+import artistdata from "../../assets/datas/artitst_data";
+import { getRandomImage } from "../../assets/datas/getRandomImages";
+import { auth, db } from "../../firebase/firebaseConfig";
 import { doc, getDoc } from "firebase/firestore";
-import ArtistData from "../assets/datas/artitst_data";
-import WishList from "../components/WishList";
-import SortButtons from "./Sort/SortButtons";
-import ScrollToTopButton from "./ScrollToTopButton";
-import { getRandomImage } from "../assets/datas/getRandomImages";
-import StartFromTop from "../components/StartFromTop";
+import WishList from "../WishList";
 
-const LoadArticleCards = () => {
-  const [articles, setArticles] = useState<number[]>([0, 1, 2, 3]);
+export default function ArticleCard() {
+  const [cards, setCards] = useState<number[]>([0, 1, 2, 3]);
   const [sortedData, setSortedData] = useState(
-    ArtistData.map((artist) => ({
+    artistdata.map((artist) => ({
       ...artist,
-      randomImage: getRandomImage(),
+      //   randomImage: getRandomImage(),
     }))
   );
+
   const loaderRef = useRef<HTMLDivElement | null>(null); // 로더 요소를 참조할 ref 생성
   const count = 4; // 한 번에 추가할 카드 수
 
   // 무한 스크롤
-  const addArticles = () => {
+  const addCards = () => {
     const newArticles = Array.from(
       { length: count },
-      (_, i) => articles.length + i
+      (_, i) => cards.length + i
     );
-    setArticles((prevArticles) => [...prevArticles, ...newArticles]);
+    setCards((prevArticles) => [...prevArticles, ...newArticles]);
   };
 
   // IntersectionObserver 설정
@@ -37,7 +35,7 @@ const LoadArticleCards = () => {
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
-          addArticles(); // 로더가 뷰포트에 들어오면 새 카드 추가
+          addCards(); // 로더가 뷰포트에 들어오면 새 카드 추가
         }
       });
     });
@@ -49,9 +47,9 @@ const LoadArticleCards = () => {
         observer.unobserve(loader);
       }
     };
-  }, [loaderRef, articles]);
+  }, [loaderRef, cards]);
 
-  // 위시리스트 관련 함수
+  // 위시리스트
   useEffect(() => {
     const fetchWishlist = async () => {
       const user = auth.currentUser;
@@ -73,23 +71,6 @@ const LoadArticleCards = () => {
     fetchWishlist();
   }, []);
 
-  const handleCardRedirect = (nickname: string) => {
-    const url = `/profile_artist_${nickname}`;
-    if (url) {
-      window.location.href = url;
-    } else {
-      console.error("URL 찾을 수 없음");
-    }
-  };
-
-  const handleSort = (sortedArray: typeof ArtistData) => {
-    const sortedWithImages = sortedArray.map((artist) => ({
-      ...artist,
-      randomImage: getRandomImage(),
-    }));
-    setSortedData(sortedWithImages);
-  };
-
   const toggleWishlist = (artistId: number) => {
     setSortedData((prevData) =>
       prevData.map((artist) =>
@@ -100,18 +81,24 @@ const LoadArticleCards = () => {
     );
   };
 
+  const handleCardRedirect = (nickname: string) => {
+    const url = `/profile_artist_${nickname}`;
+    if (url) {
+      window.location.href = url;
+    } else {
+      console.error("URL 찾을 수 없음");
+    }
+  };
+
   return (
     <>
-      <s.ArticleDiv className="article-wrapper">
-        <SortButtons sortBefore={sortedData} sortHandle={handleSort} />
-
-        <s.ArticleDiv className="article-card-wrapper">
-          {articles.map((index) => {
+      <Div className="wrapper">
+        <Div className="article-card-wrapper">
+          {cards.map((index) => {
             const artist = sortedData[index];
             if (!artist) return null;
-
             return (
-              <s.ArticleDiv
+              <Div
                 key={artist.id}
                 className="article-cards"
                 onClick={() => handleCardRedirect(artist.nickname)}
@@ -124,26 +111,21 @@ const LoadArticleCards = () => {
                   artistRandomImage={artist.randomImage}
                 />
 
-                <s.Image
+                <Img
                   src={artist.randomImage}
                   alt={`${artist.nickname}`}
                   className="article-random-image"
                 />
 
-                <s.StyledH1 className="article-name">
-                  {artist.nickname}
-                </s.StyledH1>
-              </s.ArticleDiv>
+                <H3 className="article-name">{artist.nickname}</H3>
+              </Div>
             );
           })}
-
-          <s.ArticleDiv ref={loaderRef} className="loader">
+          <Div ref={loaderRef} className="loader">
             Loading more...
-          </s.ArticleDiv>
-        </s.ArticleDiv>
-      </s.ArticleDiv>
+          </Div>
+        </Div>
+      </Div>
     </>
   );
-};
-
-export default LoadArticleCards;
+}
