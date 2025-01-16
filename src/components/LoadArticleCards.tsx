@@ -3,7 +3,7 @@ import s from "../stores/styling";
 import { auth, db } from "../firebase/firebaseConfig";
 import { doc, getDoc } from "firebase/firestore";
 import ArtistData from "../assets/datas/artitst_data";
-import WishList from "../components/WishList";
+import WishList from "./Wishlist/WishList";
 import SortButtons from "./Sort/SortButtons";
 import ScrollToTopButton from "./ScrollToTopButton";
 import { getRandomImage } from "../assets/datas/getRandomImages";

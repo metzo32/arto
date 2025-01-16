@@ -15,7 +15,7 @@ import countrycode from "../assets/datas/country_code";
 
 import HoverButton from "../components/HoverButton";
 import useModal from "../hooks/ModalHook";
-import WishList from "../components/WishList";
+import WishList from "../components/Wishlist/WishList";
 import Modal from "../components/Modal";
 
 const RegisterPage = () => {

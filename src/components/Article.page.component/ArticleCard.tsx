@@ -4,7 +4,7 @@ import artistdata from "../../assets/datas/artitst_data";
 import { getRandomImage } from "../../assets/datas/getRandomImages";
 import { auth, db } from "../../firebase/firebaseConfig";
 import { doc, getDoc } from "firebase/firestore";
-import WishList from "../WishList";
+import WishList from "../Wishlist/WishList";
 
 export default function ArticleCard() {
   const [cards, setCards] = useState<number[]>([0, 1, 2, 3]);

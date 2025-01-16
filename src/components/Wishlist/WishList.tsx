@@ -1,7 +1,8 @@
 import { doc, getDoc, updateDoc } from "firebase/firestore";
-import s from "../stores/styling";
+import s from "../../stores/styling";
+import { IconLine, IconClicked, IconHover, Span } from "./Wishlist.style";
 import { useState, useEffect } from "react";
-import { auth, db } from "../firebase/firebaseConfig";
+import { auth, db } from "../../firebase/firebaseConfig";
 
 interface WishListProps {
   artistId: number;
@@ -112,24 +113,23 @@ const WishList = ({
 
   const renderIcon = () => {
     if (wishButton) {
-      return <s.WishIconClicked />;
+      return <IconClicked />;
     } else if (hovered) {
-      return <s.WishIconHover />;
+      return <IconHover />;
     } else {
-      return <s.WishIconLine />;
+      return <IconLine />;
     }
   };
 
   return (
-    <s.ArticleDiv
-      className="heart-wrapper"
+    <Span
       onMouseOver={handleMouseEnter}
       onMouseOut={handleMouseLeave}
       onClick={handleMouseClick}
       onTouchStart={handleTouchStart}
     >
       {renderIcon()}
-    </s.ArticleDiv>
+    </Span>
   );
 };
 

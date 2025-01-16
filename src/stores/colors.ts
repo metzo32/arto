@@ -30,6 +30,7 @@ export const newTheme = {
   white: "#FFFFFF",
   outline: "#DEE1E7",
   shadow: "#BEC2C8",
+  main: "#f4451b",
 }
 
 export const lightTheme: colorTheme = {

@@ -36,12 +36,12 @@ export const Div = styled.div`
       height: 100vw;
     }
 
-    // &:hover .article-name {
-    //   font-size: 100px;
-    //   letter-spacing: -4px;
-    //   opacity: 1;
-    //   transition: 0.5s ease 0.5s;
-    // }
+    &:hover .article-name {
+      font-size: 100px;
+      letter-spacing: -4px;
+      opacity: 1;
+      transition: 0.3s ease 0.3s;
+    }
   }
 `;
 
@@ -54,44 +54,29 @@ export const Img = styled.img`
 
 export const H3 = styled.h3`
   width: 100%;
-//   padding-right: 255px;
-  display: flex;
   color: ${newTheme.white};
   opacity: 0.5;
   font-size: 120px;
 
-  text-align: end;
+  text-align: right;
   text-transform: uppercase;
   white-space: nowrap;
-
 
   position: absolute;
   right: 0;
   bottom: 0;
 
-  //   @media (max-width: 767px) {
-  //     display: none;
-  //   }
+  @media (max-width: 767px) {
+    display: none;
+  }
 
-  //   @media (min-width: 768px) {
-  //     display: block;
-  //     font-size: 90px;
-  //   }
+  @media (min-width: 768px) {
+    font-size: 90px;
+    padding-right: 80px;
+  }
 
-  //   @media (min-width: 1024px) {
-  //     font-size: 120px;
-  //   }
-
-  //   :hover {
-  //     @media (max-width: 767px) {
-  //       font-size: 40px;
-  //     }
-
-  //     @media (min-width: 768px) {
-  //       font-size: 60px;
-  //     }
-
-  //     @media (min-width: 1024px) {
-  //       font-size: 90px;
-  //     }
+  @media (min-width: 1024px) {
+    font-size: 120px;
+    line-height: 110px;
+  }
 `;
