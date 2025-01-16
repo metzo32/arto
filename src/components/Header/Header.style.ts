@@ -2,7 +2,6 @@ import styled from "styled-components";
 import { newTheme } from "../../stores/colors";
 
 export const HeaderTag = styled.header`
-opacity: 0.3;
   height: 100vh;
   background-color: ${newTheme.base};
   border-radius: 0 5px 5px 0;
@@ -39,30 +38,13 @@ export const Div = styled.div`
     overflow: hidden;
     transition: all 0.2s ease;
 
-    &.fold {
-      @media (min-width: 768px) {
-        width: 70px;
-        border-radius: 0 12px 12px 0;
-      }
-
-      @media (min-width: 1024px) {
-        width: 70px;
-        border-radius: 0 10px 10px 0;
-      }
-    }
-
-    @media (max-width: 767px) {
-      width: 70px;
-      border-radius: 0 5px 5px 0;
-    }
-
     @media (min-width: 768px) {
-      width: 200px;
+      width: 70px;
       border-radius: 0 12px 12px 0;
     }
 
     @media (min-width: 1024px) {
-      width: 280px;
+      width: 70px;
       border-radius: 0 10px 10px 0;
     }
   }

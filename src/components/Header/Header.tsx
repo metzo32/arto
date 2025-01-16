@@ -62,7 +62,7 @@ const Header = () => {
 
   return (
     <>
-      <Div className={`header-area ${isFolded ? "fold" : ""}`} />
+      <Div className="header-area" />
       <HeaderTag className={`${isFolded ? "fold" : ""}`}>
         <nav>
           {isMobile ? null : (

@@ -32,6 +32,7 @@ const App = () => {
 
   const [currentlyLoggedIn, setCurrentlyLoggedIn] = useState(false);
   const [isLoading, setIsLoading] = useState(true); // 추가
+  
 
   useEffect(() => {
     // 로컬 스토리지에서 사용자 정보를 확인하여 로그인 상태 설정

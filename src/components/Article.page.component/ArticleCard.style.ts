@@ -24,7 +24,6 @@ export const Div = styled.div`
     justify-content: center;
     align-items: center;
 
-    border: 1px solid green;
     position: relative;
     z-index: 1;
     overflow: hidden;
@@ -65,7 +64,6 @@ export const H3 = styled.h3`
   text-transform: uppercase;
   white-space: nowrap;
 
-  border: 2px solid blue;
 
   position: absolute;
   right: 0;
