@@ -1,7 +1,6 @@
-import React, { useState, useEffect } from "react";
-import s from "../stores/styling";
+import { useState, useEffect } from "react";
 
-const ScrollToTopButton: React.FC = () => {
+const ScrollToTbutton = () => {
   const [isVisible, setIsVisible] = useState(false);
 
   const toggleVisibility = () => {
@@ -19,7 +18,7 @@ const ScrollToTopButton: React.FC = () => {
     };
   }, []);
 
-const handleScrollToTop = () => {
+  const handleScrollToTop = () => {
     window.scrollTo({
       top: 0,
       behavior: "smooth",
@@ -29,14 +28,15 @@ const handleScrollToTop = () => {
   return (
     <>
       {isVisible && (
-        <s.Overlay className="scroll-top-box">
-          <s.Button onClick={handleScrollToTop} className="scroll-top-btn">
-            <s.TopArrowIcon />
-          </s.Button>
-        </s.Overlay>
+        <div className="scroll-top-box">
+          <button onClick={handleScrollToTop} className="scroll-top-btn">
+            {/* <s.TopArrowIcon /> */}
+            위로 화살표 아이콘
+          </button>
+        </div>
       )}
     </>
   );
 };
 
-export default ScrollToTopButton;
+export default ScrollToTbutton;

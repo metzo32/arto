@@ -1,5 +1,4 @@
 import { doc, getDoc, updateDoc } from "firebase/firestore";
-import s from "../../stores/styling";
 import { IconLine, IconClicked, IconHover, Span } from "./Wishlist.style";
 import { useState, useEffect } from "react";
 import { auth, db } from "../../firebase/firebaseConfig";

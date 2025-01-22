@@ -1,6 +1,4 @@
-import React, { useState, useEffect } from "react";
-import s from "../../stores/styling";
-import { ArtistDataProps } from "../../assets/datas/artitst_data";
+import { ArtistDataProps } from "../../assets/datas/artitstData";
 
 interface SortButtonsProps {
   sortBefore: ArtistDataProps[];
@@ -40,43 +38,45 @@ export default function SortButtons({
 
   return (
     <>
-      <s.StyledUl className={`dropdown-box ${"open-drop-left"}`}>
-        <s.StyledLi className="dropdown-li">
-          <s.Button className="dropdown-btn" onClick={handleSortAlphabet}>
+      <ul className={`dropdown-box ${"open-drop-left"}`}>
+        <li className="dropdown-li">
+          <button className="dropdown-btn" onClick={handleSortAlphabet}>
             오름차순
-          </s.Button>
-        </s.StyledLi>
-        <s.StyledLi className="dropdown-li">
-          <s.Button
+          </button>
+        </li>
+        <li className="dropdown-li">
+          <button
             className="dropdown-btn"
             onClick={handleSortAlphabetReverse}
           >
             내림차순
-          </s.Button>
-        </s.StyledLi>
-        <s.StyledLi className="dropdown-li">
-          <s.Button className="dropdown-btn" onClick={handleSortNew}>
+          </button>
+        </li>
+        <li className="dropdown-li">
+          <button className="dropdown-btn" onClick={handleSortNew}>
             신규순
-          </s.Button>
-        </s.StyledLi>
-        <s.StyledLi className="dropdown-li">
-          <s.Button className="dropdown-btn" onClick={handleSortOld}>
+          </button>
+        </li>
+        <li className="dropdown-li">
+          <button className="dropdown-btn" onClick={handleSortOld}>
             오래된순
-          </s.Button>
-        </s.StyledLi>
-        <s.Button className="sort-menu-close">
-          <s.RemoveIcon />
-        </s.Button>
-      </s.StyledUl>
+          </button>
+        </li>
+        <button className="sort-menu-close">
+          {/* <s.RemoveIcon /> */}
+          제거 아이콘
+        </button>
+      </ul>
 
-      <s.Button className="sort-btn">
-        <s.SortIcon />
+      <button className="sort-btn">
+        정렬아이콘
+        {/* <s.SortIcon /> */}
         {/* {isScrolled ? (
           <s.TopArrowIcon onClick={handleScrollToTop} />
         ) : (
           <s.SortIcon onClick={handleDropLeft} />
         )} */}
-      </s.Button>
+      </button>
     </>
   );
 }

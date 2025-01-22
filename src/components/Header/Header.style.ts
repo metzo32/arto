@@ -1,15 +1,15 @@
 import styled from "styled-components";
-import { newTheme } from "../../stores/colors";
 
 export const HeaderTag = styled.header`
   height: 100vh;
-  background-color: ${newTheme.base};
+  background-color: ${(props) => props.theme.base};
   border-radius: 0 5px 5px 0;
   position: fixed;
   top: 0;
   overflow: hidden;
   z-index: 10;
   transition: all 0.2s ease;
+  box-shadow: 3px 5px 8px rgba(0, 0, 0, 0.2);
 
   &.fold {
     @media (min-width: 768px) {
@@ -33,7 +33,7 @@ export const HeaderTag = styled.header`
 
 export const Div = styled.div`
   &.header-area {
-    background-color: ${newTheme.base};
+    background-color: ${(props) => props.theme.base};
     height: 100vh;
     overflow: hidden;
     transition: all 0.2s ease;
@@ -71,7 +71,7 @@ export const Div = styled.div`
 
   &.line-box {
     padding: 10px;
-    border-bottom: 2px solid LightGrey;
+    border-bottom: 2px solid ${(props) => props.theme.outline_strong};
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -82,7 +82,7 @@ export const Div = styled.div`
 export const Button = styled.button`
   &.menu-button {
     font-size: 20px;
-    color: ${newTheme.text};
+    color: ${(props) => props.theme.text};
     text-align: start;
 
     width: 100%;
@@ -92,15 +92,16 @@ export const Button = styled.button`
     padding: 10px 20px;
 
     display: flex;
+    // justify-content: center;
     align-items: center;
     gap: 5px;
 
     transition: all 0.2s ease;
 
     &:hover {
-      border-color: ${newTheme.outline};
-      background-color: ${newTheme.white};
-      box-shadow: 2px 2px 3px ${newTheme.shadow};
+      border-color: ${(props) => props.theme.outline};
+      background-color: ${(props) => props.theme.extraLight};
+      box-shadow: 2px 2px 3px ${(props) => props.theme.shadow};
     }
 
     @media (max-width: 767px) {
@@ -117,14 +118,14 @@ export const Button = styled.button`
   }
 
   &.menu-button.selected {
-    border-color: ${newTheme.outline};
-    background-color: ${newTheme.white};
-    box-shadow: 2px 2px 3px ${newTheme.shadow};
+    border-color: ${(props) => props.theme.outline};
+    background-color: ${(props) => props.theme.extraLight};
+    box-shadow: 2px 2px 3px ${(props) => props.theme.shadow};
   }
 `;
 
 export const Span = styled.span`
-  color: black;
+  color: ${(props) => props.theme.text};
   display: flex;
   justify-content: center;
   align-items: center;

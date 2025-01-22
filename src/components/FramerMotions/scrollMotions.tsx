@@ -8,7 +8,6 @@ import {
 } from "framer-motion";
 import styled from "styled-components";
 
-import { GenImageCircle } from "../../stores/styling";
 
 interface Props {
   children?: JSX.Element;
@@ -20,6 +19,30 @@ interface Props {
   };
   text?: string;
 }
+
+
+export const GenImageCircle = styled(motion.div)`
+  &.circle-wrapper {
+    border: 1px solid white;
+
+    border-radius: 50%;
+
+    width: 80%;
+    max-width: 512px;
+    aspect-ratio: 1/1;
+    margin: 0 auto;
+    overflow: hidden;
+
+    opacity: 1;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    position: relative;
+  }
+`;
+
 
 const AnimatedComponent = ({
   children,

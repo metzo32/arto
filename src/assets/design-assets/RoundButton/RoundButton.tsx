@@ -1,5 +1,5 @@
 import { ReactNode } from "react";
-import { Button } from "./RoundButton.styled";
+import { Button } from "./RoundButton.style"
 
 interface RoundButtonProps {
   children: ReactNode;

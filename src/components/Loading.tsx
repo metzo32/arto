@@ -1,5 +1,3 @@
-import React from "react";
-import s from "../stores/styling";
 import { CloseDown } from "./FramerMotions/scrollMotions";
 import { useState, useEffect } from "react";
 import loading01 from "../assets/images/loading01.jpg";
@@ -54,7 +52,7 @@ export default function Loading() {
   hours = hours ? hours : 12;
 
   return (
-    <s.Loading className="loading-wrapper">
+    <div className="loading-wrapper">
       {/* <s.MaskText className="text-contatiner">
         <s.MaskText className="fake-box">null</s.MaskText>
 
@@ -87,7 +85,7 @@ export default function Loading() {
 
         <s.MaskText className="white-box" />
       </s.MaskText> */}
-      <s.Image className="loading-image" src={selectedImage} alt="image" />
-    </s.Loading>
+      <img className="loading-image" src={selectedImage} alt="img" />
+    </div>
   );
 }

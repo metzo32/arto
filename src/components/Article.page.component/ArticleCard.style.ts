@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import { newTheme } from "../../stores/colors";
 
 export const Div = styled.div`
   &.wrapper {
@@ -43,6 +42,24 @@ export const Div = styled.div`
       transition: 0.3s ease 0.3s;
     }
   }
+
+  &.search-bar-container {
+    padding: 20px;
+    display: flex;
+
+    position: fixed;
+    top: 0;
+    right: 0;
+    z-index: 10;
+
+    @media (max-width: 767px) {
+      gap: 10px;
+    }
+
+    @media (min-width: 768px) {
+      gap: 20px;
+    }
+  }
 `;
 
 export const Img = styled.img`
@@ -54,7 +71,7 @@ export const Img = styled.img`
 
 export const H3 = styled.h3`
   width: 100%;
-  color: ${newTheme.white};
+  color: ${(props) => props.theme.white};
   opacity: 0.5;
   font-size: 120px;
 
@@ -78,5 +95,49 @@ export const H3 = styled.h3`
   @media (min-width: 1024px) {
     font-size: 120px;
     line-height: 110px;
+  }
+`;
+
+export const Input = styled.input`
+  width: 300px;
+  border: none;
+  background: ${(props) => props.theme.white};
+  outline: 2px solid ${(props) => props.theme.outline};
+  border-radius: 5px;
+  padding: 10px;
+  transition: all 0.1s ease;
+
+  &::placeholder {
+    color: ${(props) => props.theme.deact};
+  }
+
+  &:hover {
+    outline: 2px solid $${(props) => props.theme.outline_strong};
+  }
+
+  &:focus {
+    outline: 2px solid ${(props) => props.theme.accent};
+  }
+
+  @media (max-width: 767px) {
+    width: 130px;
+  }
+
+  @media (min-width: 768px) {
+    width: 300px;
+  }
+`;
+
+export const Span = styled.span`
+  &.overlay {
+    width: 100vw;
+    height: 100vw;
+    background-color: black;
+    opacity: 0.5;
+
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 9;
   }
 `;

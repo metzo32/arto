@@ -3,7 +3,18 @@
 // randomImage02: `https://picsum.photos/1440/900?random=${getRandomInt(1000)}`,
 // randomImage03: `https://picsum.photos/1440/900?random=${getRandomInt(1000)}`,
 // randomImage04: `https://picsum.photos/1440/900?random=${getRandomInt(1000)}`,
+import { RiLayoutMasonryLine } from "react-icons/ri";
+import { RiCheckboxMultipleBlankFill } from "react-icons/ri";
+import { IoApertureOutline } from "react-icons/io5";
+import { MdFormatAlignCenter } from "react-icons/md";
+
 import { getRandomImage } from "./getRandomImages";
+
+interface ArtistSkillProps {
+  id: number;
+  icon: React.ComponentType; // React 컴포넌트 타입 (React Icons 포함)
+  skill: string;
+}
 
 export interface ArtistDataProps {
   id: number;
@@ -20,37 +31,37 @@ export interface ArtistDataProps {
   randomImage04: string;
   hash?: string[];
   url?: string;
+  skills: ArtistSkillProps[];
   isWishlisted?: boolean;
 }
 
-
-const skills = [
-  "Handpoke",
-  "Machine tattoo",
-  "Watercolor",
-  "Handpainting",
-  "Old School",
-  "Oriental",
-  "Geometric",
-  "Small",
-  "Cover-up",
-  "Color",
-  "Fine",
+export const artistSkills:ArtistSkillProps[] = [
+  { id: 1, icon: RiLayoutMasonryLine, skill: "디지털" },
+  { id: 2, icon: RiCheckboxMultipleBlankFill, skill: "설치" },
+  { id: 3, icon: IoApertureOutline, skill: "다중매체" },
+  { id: 4, icon: MdFormatAlignCenter, skill: "추상" },
+  // { icon: PiTriangleDashed, skill: "구상" },
+  // { icon: PiTriangleDashed, skill: "페인팅" },
+  // { icon: PiTriangleDashed, skill: "전통" },
+  // { icon: PiTriangleDashed, skill: "도예" },
+  // { icon: PiTriangleDashed, skill: "금속" },
+  // { icon: PiTriangleDashed, skill: "목공" },
+  // { icon: PiTriangleDashed, skill: "환경" },
+  // { icon: PiTriangleDashed, skill: "조각" },
+  // { icon: PiTriangleDashed, skill: "사회" },
 ];
 
-function getRandomSkills(): string[] {
-  let result: string[] = [];
-  while (result.length < 4) {
-    const randomSkills =
-      skills[Math.floor(Math.random() * skills.length)];
-    if (!result.includes(randomSkills)) {
-      result.push(randomSkills);
-    }
-  }
-  return result;
-}
+// function getRandomSkills(): string[] {
+//   let result: string[] = [];
+//   while (result.length < 4) {
+//     const randomSkills = skills[Math.floor(Math.random() * skills.length)];
+//     if (!result.includes(randomSkills)) {
+//       result.push(randomSkills);
+//     }
+//   }
+//   return result;
+// }
 //데이터 최하단에 forEach로 할당
-
 
 const artistdata: ArtistDataProps[] = [
   {
@@ -67,6 +78,7 @@ const artistdata: ArtistDataProps[] = [
     randomImage02: getRandomImage(),
     randomImage03: getRandomImage(),
     randomImage04: getRandomImage(),
+    skills: artistSkills,
   },
   {
     id: 2,
@@ -82,6 +94,7 @@ const artistdata: ArtistDataProps[] = [
     randomImage02: getRandomImage(),
     randomImage03: getRandomImage(),
     randomImage04: getRandomImage(),
+    skills: artistSkills,
   },
   {
     id: 3,
@@ -97,6 +110,7 @@ const artistdata: ArtistDataProps[] = [
     randomImage02: getRandomImage(),
     randomImage03: getRandomImage(),
     randomImage04: getRandomImage(),
+    skills: artistSkills,
   },
   {
     id: 4,
@@ -112,6 +126,7 @@ const artistdata: ArtistDataProps[] = [
     randomImage02: getRandomImage(),
     randomImage03: getRandomImage(),
     randomImage04: getRandomImage(),
+    skills: artistSkills,
   },
   {
     id: 5,
@@ -127,6 +142,7 @@ const artistdata: ArtistDataProps[] = [
     randomImage02: getRandomImage(),
     randomImage03: getRandomImage(),
     randomImage04: getRandomImage(),
+    skills: artistSkills,
   },
   {
     id: 6,
@@ -142,6 +158,7 @@ const artistdata: ArtistDataProps[] = [
     randomImage02: getRandomImage(),
     randomImage03: getRandomImage(),
     randomImage04: getRandomImage(),
+    skills: artistSkills,
   },
   {
     id: 7,
@@ -157,6 +174,7 @@ const artistdata: ArtistDataProps[] = [
     randomImage02: getRandomImage(),
     randomImage03: getRandomImage(),
     randomImage04: getRandomImage(),
+    skills: artistSkills,
   },
   {
     id: 8,
@@ -172,6 +190,7 @@ const artistdata: ArtistDataProps[] = [
     randomImage02: getRandomImage(),
     randomImage03: getRandomImage(),
     randomImage04: getRandomImage(),
+    skills: artistSkills,
   },
   {
     id: 9,
@@ -187,6 +206,7 @@ const artistdata: ArtistDataProps[] = [
     randomImage02: getRandomImage(),
     randomImage03: getRandomImage(),
     randomImage04: getRandomImage(),
+    skills: artistSkills,
   },
   {
     id: 10,
@@ -202,6 +222,7 @@ const artistdata: ArtistDataProps[] = [
     randomImage02: getRandomImage(),
     randomImage03: getRandomImage(),
     randomImage04: getRandomImage(),
+    skills: artistSkills,
   },
   {
     id: 11,
@@ -217,6 +238,7 @@ const artistdata: ArtistDataProps[] = [
     randomImage02: getRandomImage(),
     randomImage03: getRandomImage(),
     randomImage04: getRandomImage(),
+    skills: artistSkills,
   },
   {
     id: 12,
@@ -232,6 +254,7 @@ const artistdata: ArtistDataProps[] = [
     randomImage02: getRandomImage(),
     randomImage03: getRandomImage(),
     randomImage04: getRandomImage(),
+    skills: artistSkills,
   },
   {
     id: 13,
@@ -247,6 +270,7 @@ const artistdata: ArtistDataProps[] = [
     randomImage02: getRandomImage(),
     randomImage03: getRandomImage(),
     randomImage04: getRandomImage(),
+    skills: artistSkills,
   },
   {
     id: 14,
@@ -262,6 +286,7 @@ const artistdata: ArtistDataProps[] = [
     randomImage02: getRandomImage(),
     randomImage03: getRandomImage(),
     randomImage04: getRandomImage(),
+    skills: artistSkills,
   },
   {
     id: 15,
@@ -277,6 +302,7 @@ const artistdata: ArtistDataProps[] = [
     randomImage02: getRandomImage(),
     randomImage03: getRandomImage(),
     randomImage04: getRandomImage(),
+    skills: artistSkills,
   },
   {
     id: 16,
@@ -292,6 +318,7 @@ const artistdata: ArtistDataProps[] = [
     randomImage02: getRandomImage(),
     randomImage03: getRandomImage(),
     randomImage04: getRandomImage(),
+    skills: artistSkills,
   },
   {
     id: 17,
@@ -307,6 +334,7 @@ const artistdata: ArtistDataProps[] = [
     randomImage02: getRandomImage(),
     randomImage03: getRandomImage(),
     randomImage04: getRandomImage(),
+    skills: artistSkills,
   },
   {
     id: 18,
@@ -322,6 +350,7 @@ const artistdata: ArtistDataProps[] = [
     randomImage02: getRandomImage(),
     randomImage03: getRandomImage(),
     randomImage04: getRandomImage(),
+    skills: artistSkills,
   },
   {
     id: 19,
@@ -337,6 +366,7 @@ const artistdata: ArtistDataProps[] = [
     randomImage02: getRandomImage(),
     randomImage03: getRandomImage(),
     randomImage04: getRandomImage(),
+    skills: artistSkills,
   },
   {
     id: 20,
@@ -352,6 +382,7 @@ const artistdata: ArtistDataProps[] = [
     randomImage02: getRandomImage(),
     randomImage03: getRandomImage(),
     randomImage04: getRandomImage(),
+    skills: artistSkills,
   },
   {
     id: 21,
@@ -366,6 +397,7 @@ const artistdata: ArtistDataProps[] = [
     randomImage02: getRandomImage(),
     randomImage03: getRandomImage(),
     randomImage04: getRandomImage(),
+    skills: artistSkills,
   },
   {
     id: 22,
@@ -381,6 +413,7 @@ const artistdata: ArtistDataProps[] = [
     randomImage02: getRandomImage(),
     randomImage03: getRandomImage(),
     randomImage04: getRandomImage(),
+    skills: artistSkills,
   },
   {
     id: 23,
@@ -396,6 +429,7 @@ const artistdata: ArtistDataProps[] = [
     randomImage02: getRandomImage(),
     randomImage03: getRandomImage(),
     randomImage04: getRandomImage(),
+    skills: artistSkills,
   },
   {
     id: 24,
@@ -411,6 +445,7 @@ const artistdata: ArtistDataProps[] = [
     randomImage02: getRandomImage(),
     randomImage03: getRandomImage(),
     randomImage04: getRandomImage(),
+    skills: artistSkills,
   },
   {
     id: 25,
@@ -426,6 +461,7 @@ const artistdata: ArtistDataProps[] = [
     randomImage02: getRandomImage(),
     randomImage03: getRandomImage(),
     randomImage04: getRandomImage(),
+    skills: artistSkills,
   },
   {
     id: 26,
@@ -441,6 +477,7 @@ const artistdata: ArtistDataProps[] = [
     randomImage02: getRandomImage(),
     randomImage03: getRandomImage(),
     randomImage04: getRandomImage(),
+    skills: artistSkills,
   },
   {
     id: 27,
@@ -456,6 +493,7 @@ const artistdata: ArtistDataProps[] = [
     randomImage02: getRandomImage(),
     randomImage03: getRandomImage(),
     randomImage04: getRandomImage(),
+    skills: artistSkills,
   },
   {
     id: 28,
@@ -471,6 +509,7 @@ const artistdata: ArtistDataProps[] = [
     randomImage02: getRandomImage(),
     randomImage03: getRandomImage(),
     randomImage04: getRandomImage(),
+    skills: artistSkills,
   },
   {
     id: 29,
@@ -486,6 +525,7 @@ const artistdata: ArtistDataProps[] = [
     randomImage02: getRandomImage(),
     randomImage03: getRandomImage(),
     randomImage04: getRandomImage(),
+    skills: artistSkills,
   },
   {
     id: 30,
@@ -501,6 +541,7 @@ const artistdata: ArtistDataProps[] = [
     randomImage02: getRandomImage(),
     randomImage03: getRandomImage(),
     randomImage04: getRandomImage(),
+    skills: artistSkills,
   },
   {
     id: 31,
@@ -516,6 +557,7 @@ const artistdata: ArtistDataProps[] = [
     randomImage02: getRandomImage(),
     randomImage03: getRandomImage(),
     randomImage04: getRandomImage(),
+    skills: artistSkills,
   },
   {
     id: 32,
@@ -531,6 +573,7 @@ const artistdata: ArtistDataProps[] = [
     randomImage02: getRandomImage(),
     randomImage03: getRandomImage(),
     randomImage04: getRandomImage(),
+    skills: artistSkills,
   },
   {
     id: 33,
@@ -545,6 +588,7 @@ const artistdata: ArtistDataProps[] = [
     randomImage02: getRandomImage(),
     randomImage03: getRandomImage(),
     randomImage04: getRandomImage(),
+    skills: artistSkills,
   },
   {
     id: 34,
@@ -560,6 +604,7 @@ const artistdata: ArtistDataProps[] = [
     randomImage02: getRandomImage(),
     randomImage03: getRandomImage(),
     randomImage04: getRandomImage(),
+    skills: artistSkills,
   },
   {
     id: 35,
@@ -575,6 +620,7 @@ const artistdata: ArtistDataProps[] = [
     randomImage02: getRandomImage(),
     randomImage03: getRandomImage(),
     randomImage04: getRandomImage(),
+    skills: artistSkills,
   },
   {
     id: 36,
@@ -590,6 +636,7 @@ const artistdata: ArtistDataProps[] = [
     randomImage02: getRandomImage(),
     randomImage03: getRandomImage(),
     randomImage04: getRandomImage(),
+    skills: artistSkills,
   },
   {
     id: 37,
@@ -605,6 +652,7 @@ const artistdata: ArtistDataProps[] = [
     randomImage02: getRandomImage(),
     randomImage03: getRandomImage(),
     randomImage04: getRandomImage(),
+    skills: artistSkills,
   },
   {
     id: 38,
@@ -620,6 +668,7 @@ const artistdata: ArtistDataProps[] = [
     randomImage02: getRandomImage(),
     randomImage03: getRandomImage(),
     randomImage04: getRandomImage(),
+    skills: artistSkills,
   },
   {
     id: 39,
@@ -635,6 +684,7 @@ const artistdata: ArtistDataProps[] = [
     randomImage02: getRandomImage(),
     randomImage03: getRandomImage(),
     randomImage04: getRandomImage(),
+    skills: artistSkills,
   },
   {
     id: 40,
@@ -650,6 +700,7 @@ const artistdata: ArtistDataProps[] = [
     randomImage02: getRandomImage(),
     randomImage03: getRandomImage(),
     randomImage04: getRandomImage(),
+    skills: artistSkills,
   },
   {
     id: 41,
@@ -665,6 +716,7 @@ const artistdata: ArtistDataProps[] = [
     randomImage02: getRandomImage(),
     randomImage03: getRandomImage(),
     randomImage04: getRandomImage(),
+    skills: artistSkills,
   },
   {
     id: 42,
@@ -680,6 +732,7 @@ const artistdata: ArtistDataProps[] = [
     randomImage02: getRandomImage(),
     randomImage03: getRandomImage(),
     randomImage04: getRandomImage(),
+    skills: artistSkills,
   },
   {
     id: 43,
@@ -694,6 +747,7 @@ const artistdata: ArtistDataProps[] = [
     randomImage02: getRandomImage(),
     randomImage03: getRandomImage(),
     randomImage04: getRandomImage(),
+    skills: artistSkills,
   },
   {
     id: 44,
@@ -709,6 +763,7 @@ const artistdata: ArtistDataProps[] = [
     randomImage02: getRandomImage(),
     randomImage03: getRandomImage(),
     randomImage04: getRandomImage(),
+    skills: artistSkills,
   },
   {
     id: 45,
@@ -724,6 +779,7 @@ const artistdata: ArtistDataProps[] = [
     randomImage02: getRandomImage(),
     randomImage03: getRandomImage(),
     randomImage04: getRandomImage(),
+    skills: artistSkills,
   },
   {
     id: 46,
@@ -739,6 +795,7 @@ const artistdata: ArtistDataProps[] = [
     randomImage02: getRandomImage(),
     randomImage03: getRandomImage(),
     randomImage04: getRandomImage(),
+    skills: artistSkills,
   },
   {
     id: 47,
@@ -754,6 +811,7 @@ const artistdata: ArtistDataProps[] = [
     randomImage02: getRandomImage(),
     randomImage03: getRandomImage(),
     randomImage04: getRandomImage(),
+    skills: artistSkills,
   },
   {
     id: 48,
@@ -768,6 +826,7 @@ const artistdata: ArtistDataProps[] = [
     randomImage02: getRandomImage(),
     randomImage03: getRandomImage(),
     randomImage04: getRandomImage(),
+    skills: artistSkills,
   },
   {
     id: 49,
@@ -783,6 +842,7 @@ const artistdata: ArtistDataProps[] = [
     randomImage02: getRandomImage(),
     randomImage03: getRandomImage(),
     randomImage04: getRandomImage(),
+    skills: artistSkills,
   },
   {
     id: 50,
@@ -798,6 +858,7 @@ const artistdata: ArtistDataProps[] = [
     randomImage02: getRandomImage(),
     randomImage03: getRandomImage(),
     randomImage04: getRandomImage(),
+    skills: artistSkills,
   },
   {
     id: 51,
@@ -813,6 +874,7 @@ const artistdata: ArtistDataProps[] = [
     randomImage02: getRandomImage(),
     randomImage03: getRandomImage(),
     randomImage04: getRandomImage(),
+    skills: artistSkills,
   },
   {
     id: 52,
@@ -828,6 +890,7 @@ const artistdata: ArtistDataProps[] = [
     randomImage02: getRandomImage(),
     randomImage03: getRandomImage(),
     randomImage04: getRandomImage(),
+    skills: artistSkills,
   },
   {
     id: 53,
@@ -843,6 +906,7 @@ const artistdata: ArtistDataProps[] = [
     randomImage02: getRandomImage(),
     randomImage03: getRandomImage(),
     randomImage04: getRandomImage(),
+    skills: artistSkills,
   },
   {
     id: 54,
@@ -858,6 +922,7 @@ const artistdata: ArtistDataProps[] = [
     randomImage02: getRandomImage(),
     randomImage03: getRandomImage(),
     randomImage04: getRandomImage(),
+    skills: artistSkills,
   },
   {
     id: 55,
@@ -873,6 +938,7 @@ const artistdata: ArtistDataProps[] = [
     randomImage02: getRandomImage(),
     randomImage03: getRandomImage(),
     randomImage04: getRandomImage(),
+    skills: artistSkills,
   },
   {
     id: 56,
@@ -888,6 +954,7 @@ const artistdata: ArtistDataProps[] = [
     randomImage02: getRandomImage(),
     randomImage03: getRandomImage(),
     randomImage04: getRandomImage(),
+    skills: artistSkills,
   },
   {
     id: 57,
@@ -903,6 +970,7 @@ const artistdata: ArtistDataProps[] = [
     randomImage02: getRandomImage(),
     randomImage03: getRandomImage(),
     randomImage04: getRandomImage(),
+    skills: artistSkills,
   },
   {
     id: 58,
@@ -918,6 +986,7 @@ const artistdata: ArtistDataProps[] = [
     randomImage02: getRandomImage(),
     randomImage03: getRandomImage(),
     randomImage04: getRandomImage(),
+    skills: artistSkills,
   },
   {
     id: 59,
@@ -932,6 +1001,7 @@ const artistdata: ArtistDataProps[] = [
     randomImage02: getRandomImage(),
     randomImage03: getRandomImage(),
     randomImage04: getRandomImage(),
+    skills: artistSkills,
   },
   {
     id: 60,
@@ -947,6 +1017,7 @@ const artistdata: ArtistDataProps[] = [
     randomImage02: getRandomImage(),
     randomImage03: getRandomImage(),
     randomImage04: getRandomImage(),
+    skills: artistSkills,
   },
   {
     id: 61,
@@ -962,6 +1033,7 @@ const artistdata: ArtistDataProps[] = [
     randomImage02: getRandomImage(),
     randomImage03: getRandomImage(),
     randomImage04: getRandomImage(),
+    skills: artistSkills,
   },
   {
     id: 62,
@@ -977,6 +1049,7 @@ const artistdata: ArtistDataProps[] = [
     randomImage02: getRandomImage(),
     randomImage03: getRandomImage(),
     randomImage04: getRandomImage(),
+    skills: artistSkills,
   },
   {
     id: 63,
@@ -992,6 +1065,7 @@ const artistdata: ArtistDataProps[] = [
     randomImage02: getRandomImage(),
     randomImage03: getRandomImage(),
     randomImage04: getRandomImage(),
+    skills: artistSkills,
   },
   {
     id: 64,
@@ -1006,6 +1080,7 @@ const artistdata: ArtistDataProps[] = [
     randomImage02: getRandomImage(),
     randomImage03: getRandomImage(),
     randomImage04: getRandomImage(),
+    skills: artistSkills,
   },
   {
     id: 65,
@@ -1021,6 +1096,7 @@ const artistdata: ArtistDataProps[] = [
     randomImage02: getRandomImage(),
     randomImage03: getRandomImage(),
     randomImage04: getRandomImage(),
+    skills: artistSkills,
   },
   {
     id: 66,
@@ -1036,6 +1112,7 @@ const artistdata: ArtistDataProps[] = [
     randomImage02: getRandomImage(),
     randomImage03: getRandomImage(),
     randomImage04: getRandomImage(),
+    skills: artistSkills,
   },
   {
     id: 67,
@@ -1051,6 +1128,7 @@ const artistdata: ArtistDataProps[] = [
     randomImage02: getRandomImage(),
     randomImage03: getRandomImage(),
     randomImage04: getRandomImage(),
+    skills: artistSkills,
   },
   {
     id: 68,
@@ -1066,6 +1144,7 @@ const artistdata: ArtistDataProps[] = [
     randomImage02: getRandomImage(),
     randomImage03: getRandomImage(),
     randomImage04: getRandomImage(),
+    skills: artistSkills,
   },
   {
     id: 69,
@@ -1081,6 +1160,7 @@ const artistdata: ArtistDataProps[] = [
     randomImage02: getRandomImage(),
     randomImage03: getRandomImage(),
     randomImage04: getRandomImage(),
+    skills: artistSkills,
   },
   {
     id: 70,
@@ -1096,6 +1176,7 @@ const artistdata: ArtistDataProps[] = [
     randomImage02: getRandomImage(),
     randomImage03: getRandomImage(),
     randomImage04: getRandomImage(),
+    skills: artistSkills,
   },
   {
     id: 71,
@@ -1111,6 +1192,7 @@ const artistdata: ArtistDataProps[] = [
     randomImage02: getRandomImage(),
     randomImage03: getRandomImage(),
     randomImage04: getRandomImage(),
+    skills: artistSkills,
   },
   {
     id: 72,
@@ -1126,6 +1208,7 @@ const artistdata: ArtistDataProps[] = [
     randomImage02: getRandomImage(),
     randomImage03: getRandomImage(),
     randomImage04: getRandomImage(),
+    skills: artistSkills,
   },
   {
     id: 73,
@@ -1141,6 +1224,7 @@ const artistdata: ArtistDataProps[] = [
     randomImage02: getRandomImage(),
     randomImage03: getRandomImage(),
     randomImage04: getRandomImage(),
+    skills: artistSkills,
   },
   {
     id: 74,
@@ -1156,6 +1240,7 @@ const artistdata: ArtistDataProps[] = [
     randomImage02: getRandomImage(),
     randomImage03: getRandomImage(),
     randomImage04: getRandomImage(),
+    skills: artistSkills,
   },
   {
     id: 75,
@@ -1171,6 +1256,7 @@ const artistdata: ArtistDataProps[] = [
     randomImage02: getRandomImage(),
     randomImage03: getRandomImage(),
     randomImage04: getRandomImage(),
+    skills: artistSkills,
   },
   {
     id: 76,
@@ -1186,6 +1272,7 @@ const artistdata: ArtistDataProps[] = [
     randomImage02: getRandomImage(),
     randomImage03: getRandomImage(),
     randomImage04: getRandomImage(),
+    skills: artistSkills,
   },
   {
     id: 77,
@@ -1201,6 +1288,7 @@ const artistdata: ArtistDataProps[] = [
     randomImage02: getRandomImage(),
     randomImage03: getRandomImage(),
     randomImage04: getRandomImage(),
+    skills: artistSkills,
   },
   {
     id: 78,
@@ -1216,6 +1304,7 @@ const artistdata: ArtistDataProps[] = [
     randomImage02: getRandomImage(),
     randomImage03: getRandomImage(),
     randomImage04: getRandomImage(),
+    skills: artistSkills,
   },
   {
     id: 79,
@@ -1231,6 +1320,7 @@ const artistdata: ArtistDataProps[] = [
     randomImage02: getRandomImage(),
     randomImage03: getRandomImage(),
     randomImage04: getRandomImage(),
+    skills: artistSkills,
   },
   {
     id: 80,
@@ -1246,6 +1336,7 @@ const artistdata: ArtistDataProps[] = [
     randomImage02: getRandomImage(),
     randomImage03: getRandomImage(),
     randomImage04: getRandomImage(),
+    skills: artistSkills,
   },
   {
     id: 81,
@@ -1261,6 +1352,7 @@ const artistdata: ArtistDataProps[] = [
     randomImage02: getRandomImage(),
     randomImage03: getRandomImage(),
     randomImage04: getRandomImage(),
+    skills: artistSkills,
   },
   {
     id: 82,
@@ -1276,6 +1368,7 @@ const artistdata: ArtistDataProps[] = [
     randomImage02: getRandomImage(),
     randomImage03: getRandomImage(),
     randomImage04: getRandomImage(),
+    skills: artistSkills,
   },
   {
     id: 83,
@@ -1291,6 +1384,7 @@ const artistdata: ArtistDataProps[] = [
     randomImage02: getRandomImage(),
     randomImage03: getRandomImage(),
     randomImage04: getRandomImage(),
+    skills: artistSkills,
   },
   {
     id: 84,
@@ -1306,6 +1400,7 @@ const artistdata: ArtistDataProps[] = [
     randomImage02: getRandomImage(),
     randomImage03: getRandomImage(),
     randomImage04: getRandomImage(),
+    skills: artistSkills,
   },
   {
     id: 85,
@@ -1321,6 +1416,7 @@ const artistdata: ArtistDataProps[] = [
     randomImage02: getRandomImage(),
     randomImage03: getRandomImage(),
     randomImage04: getRandomImage(),
+    skills: artistSkills,
   },
   {
     id: 86,
@@ -1336,6 +1432,7 @@ const artistdata: ArtistDataProps[] = [
     randomImage02: getRandomImage(),
     randomImage03: getRandomImage(),
     randomImage04: getRandomImage(),
+    skills: artistSkills,
   },
   {
     id: 87,
@@ -1351,6 +1448,7 @@ const artistdata: ArtistDataProps[] = [
     randomImage02: getRandomImage(),
     randomImage03: getRandomImage(),
     randomImage04: getRandomImage(),
+    skills: artistSkills,
   },
   {
     id: 88,
@@ -1366,6 +1464,7 @@ const artistdata: ArtistDataProps[] = [
     randomImage02: getRandomImage(),
     randomImage03: getRandomImage(),
     randomImage04: getRandomImage(),
+    skills: artistSkills,
   },
   {
     id: 89,
@@ -1381,6 +1480,7 @@ const artistdata: ArtistDataProps[] = [
     randomImage02: getRandomImage(),
     randomImage03: getRandomImage(),
     randomImage04: getRandomImage(),
+    skills: artistSkills,
   },
   {
     id: 90,
@@ -1396,6 +1496,7 @@ const artistdata: ArtistDataProps[] = [
     randomImage02: getRandomImage(),
     randomImage03: getRandomImage(),
     randomImage04: getRandomImage(),
+    skills: artistSkills,
   },
   {
     id: 91,
@@ -1411,6 +1512,7 @@ const artistdata: ArtistDataProps[] = [
     randomImage02: getRandomImage(),
     randomImage03: getRandomImage(),
     randomImage04: getRandomImage(),
+    skills: artistSkills,
   },
   {
     id: 92,
@@ -1426,6 +1528,7 @@ const artistdata: ArtistDataProps[] = [
     randomImage02: getRandomImage(),
     randomImage03: getRandomImage(),
     randomImage04: getRandomImage(),
+    skills: artistSkills,
   },
   {
     id: 93,
@@ -1441,6 +1544,7 @@ const artistdata: ArtistDataProps[] = [
     randomImage02: getRandomImage(),
     randomImage03: getRandomImage(),
     randomImage04: getRandomImage(),
+    skills: artistSkills,
   },
   {
     id: 94,
@@ -1456,6 +1560,7 @@ const artistdata: ArtistDataProps[] = [
     randomImage02: getRandomImage(),
     randomImage03: getRandomImage(),
     randomImage04: getRandomImage(),
+    skills: artistSkills,
   },
   {
     id: 95,
@@ -1471,6 +1576,7 @@ const artistdata: ArtistDataProps[] = [
     randomImage02: getRandomImage(),
     randomImage03: getRandomImage(),
     randomImage04: getRandomImage(),
+    skills: artistSkills,
   },
   {
     id: 96,
@@ -1486,6 +1592,7 @@ const artistdata: ArtistDataProps[] = [
     randomImage02: getRandomImage(),
     randomImage03: getRandomImage(),
     randomImage04: getRandomImage(),
+    skills: artistSkills,
   },
   {
     id: 97,
@@ -1501,6 +1608,7 @@ const artistdata: ArtistDataProps[] = [
     randomImage02: getRandomImage(),
     randomImage03: getRandomImage(),
     randomImage04: getRandomImage(),
+    skills: artistSkills,
   },
   {
     id: 98,
@@ -1515,6 +1623,7 @@ const artistdata: ArtistDataProps[] = [
     randomImage02: getRandomImage(),
     randomImage03: getRandomImage(),
     randomImage04: getRandomImage(),
+    skills: artistSkills,
   },
   {
     id: 99,
@@ -1530,6 +1639,7 @@ const artistdata: ArtistDataProps[] = [
     randomImage02: getRandomImage(),
     randomImage03: getRandomImage(),
     randomImage04: getRandomImage(),
+    skills: artistSkills,
   },
   {
     id: 100,
@@ -1545,11 +1655,12 @@ const artistdata: ArtistDataProps[] = [
     randomImage02: getRandomImage(),
     randomImage03: getRandomImage(),
     randomImage04: getRandomImage(),
+    skills: artistSkills,
   },
-]
+];
 
-artistdata.forEach((artist) => {
-  artist.hash = getRandomSkills();
-});
+// artistdata.forEach((artist) => {
+//   artist.hash = getRandomSkills();
+// });
 
 export default artistdata;

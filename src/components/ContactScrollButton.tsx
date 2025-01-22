@@ -1,5 +1,3 @@
-import s from "../stores/styling";
-
 interface ContactScrollButtonProps {
   index: number;
   totalButtons: number;
@@ -13,7 +11,7 @@ const ContactScrollButton:React.FC<ContactScrollButtonProps> = ({ index, totalBu
       onClick(scrollPosition)
   }
     return ( 
-    <s.Button onClick={handleClick}>{index + 1}</s.Button>
+    <button onClick={handleClick}>{index + 1}</button>
   )
 }
 

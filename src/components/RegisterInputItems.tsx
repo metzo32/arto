@@ -1,25 +1,35 @@
-import s from "../stores/styling";
-
 interface RegisterInputItemsProps {
-    name: string;
-    type: string;
-     id: string;
-     value: string;
-     onChange: (e: React.ChangeEvent<HTMLInputElement>) => void; //이벤트 핸들러 함수
-     onBlur: (e: React.FocusEvent<HTMLInputElement>) => void;
-     required : boolean;
-     label: string;
-     minLength?: number;
-     maxLength?: number;
-     placeholder?: string;
-     extraClass?: string;
-     autocomplete?: string;
+  name: string;
+  type: string;
+  id: string;
+  value: string;
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void; //이벤트 핸들러 함수
+  onBlur: (e: React.FocusEvent<HTMLInputElement>) => void;
+  required: boolean;
+  label: string;
+  minLength?: number;
+  maxLength?: number;
+  placeholder?: string;
+  extraClass?: string;
+  autocomplete?: string;
 }
 
-const RegisterInputItems: React.FC<RegisterInputItemsProps> = ({ name, type, id, value, onChange, onBlur, required, label, minLength, placeholder, extraClass }) => {
+const RegisterInputItems = ({
+  name,
+  type,
+  id,
+  value,
+  onChange,
+  onBlur,
+  required,
+  label,
+  minLength,
+  placeholder,
+  extraClass,
+}: RegisterInputItemsProps) => {
   return (
-    <s.LoginDiv className={`input-box ${extraClass ? extraClass : ''}`}>
-      <s.Input
+    <div className={`input-box ${extraClass ? extraClass : ""}`}>
+      <input
         name={name}
         type={type}
         id={id}
@@ -31,10 +41,8 @@ const RegisterInputItems: React.FC<RegisterInputItemsProps> = ({ name, type, id,
         placeholder={placeholder}
         className="loginpage"
       />
-      <s.Label className={`login-info ${value ? "active" : ""}`}>
-        {label}
-      </s.Label>
-    </s.LoginDiv>
+      <label className={`login-info ${value ? "active" : ""}`}>{label}</label>
+    </div>
   );
 };
 

@@ -1,17 +1,5 @@
-/* Arimo */
-@import url('https://fonts.googleapis.com/css2?family=Arimo:ital,wght@0,400..700;1,400..700&display=swap');
-/* Tourney */
-@import url('https://fonts.googleapis.com/css2?family=Tourney:ital,wght@0,100..900;1,100..900&display=swap');
-/*Work Sans*/
-@import url('https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap');
-/*나눔스퀘어*/
-@import url('https://hangeul.pstatic.net/hangeul_static/css/nanum-square.css" rel="stylesheet');
-/* Noto Sans KR */
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap');
-/* Roboto */
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap');
-/* DM Serif Display */
-@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&display=swap');
+/* Nanum Gothic */
+@import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Nanum+Gothic&family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap');
 /* Eric Meyer's Reset CSS v2.0 (http://meyerweb.com/eric/tools/css/reset/)
    http://cssreset.com
    License: none (public domain)
@@ -36,6 +24,7 @@ time, mark, audio, video {
     font-size: 100%;
     font: inherit;
     vertical-align: baseline;
+
 }
 /* HTML5 display-role reset for older browsers */
 article, aside, details, figcaption, figure,
@@ -44,6 +33,12 @@ footer, header, hgroup, menu, nav, section {
 }
 body {
     line-height: 1;
+    font-family: "Nanum Gothic", serif;
+    
+}
+::selection {
+  background-color: pink; 
+  color: white; 
 }
 ol, ul {
     list-style: none;
@@ -88,18 +83,17 @@ h1, h2, h3, h4, h5, h6 {
   align-items: center;
   margin: 0 auto;
   text-align: center;
-  font-family: "Work Sans", sans-serif;
   user-select: none;
 }
 
 /* 영어에 Work Sans 적용 */
 .App:lang(en) {
-    font-family: "Work Sans", sans-serif;
+  font-family: "Nanum Gothic", serif;
   }
   
   /* 한글에 NanumSquare 적용 */
   .App:lang(ko) {
-    font-family: 'NanumSquare';
+    font-family: "Nanum Gothic", serif;
   }
 
   /* For all elements */

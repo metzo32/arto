@@ -1,7 +1,4 @@
-import s from "../stores/styling";
-import { ArtistDataProps } from "../assets/datas/artitst_data";
-import ArtistSkillComponent from "../components/ArtistSkillComponent";
-import HoverButton from "../components/HoverButton";
+import { ArtistDataProps } from "../assets/datas/artitstData";
 import { PopUpBelow } from "../components/FramerMotions/scrollMotions";
 import ArtistProfileComp from "../components/ArtistProfile.page.components/ArtistProfileComp";
 

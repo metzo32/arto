@@ -1,5 +1,4 @@
 import { useState } from "react";
-import s from "../stores/styling";
 
 interface Agreements {
     termsAgreed: boolean;
@@ -46,8 +45,8 @@ export default function RegisterTerms() {
     return (
         <div>
             <label>회원 정보 입력 및 이용약관 동의</label>
-            <s.StyledUl>
-                <s.StyledLi>
+            <ul>
+                <li>
                     <input 
                         type="checkbox"
                         id="agree_check_all"
@@ -56,8 +55,8 @@ export default function RegisterTerms() {
                         onChange={handleAllAgreementChange}
                     />
                     <label htmlFor="agree_check_all">이용약관 전체동의</label>
-                </s.StyledLi>
-                <s.StyledLi>
+                </li>
+                <li>
                     <input 
                         type="checkbox"
                         id="agree_check_used"
@@ -67,8 +66,8 @@ export default function RegisterTerms() {
                         onChange={handleAgreementChange}
                     />
                     <label htmlFor="agree_check_used">[필수] 이용약관 동의</label>
-                </s.StyledLi>
-                <s.StyledLi>
+                </li>
+                <li>
                     <input 
                         type="checkbox"
                         id="agree_check_info"
@@ -78,8 +77,8 @@ export default function RegisterTerms() {
                         onChange={handleAgreementChange}
                     />
                     <label htmlFor="agree_check_info">[필수] 개인정보 이용 수집 방침</label>
-                </s.StyledLi>
-                <s.StyledLi>
+                </li>
+                <li>
                     <input 
                         type="checkbox"
                         id="agree_check_info_other"
@@ -89,8 +88,8 @@ export default function RegisterTerms() {
                         onChange={handleAgreementChange}
                     />
                     <label htmlFor="agree_check_info_other">[필수] 개인정보 제 3자 제공 동의</label>
-                </s.StyledLi>
-                <s.StyledLi>
+                </li>
+                <li>
                     <input 
                         type="checkbox"
                         id="agree_check_pos"
@@ -100,8 +99,8 @@ export default function RegisterTerms() {
                         onChange={handleAgreementChange}
                     />
                     <label htmlFor="agree_check_pos">[필수] 위치정보 동의</label>
-                </s.StyledLi>
-                <s.StyledLi>
+                </li>
+                <li>
                     <input 
                         type="checkbox"
                         id="agree_check_event_receive"
@@ -110,8 +109,8 @@ export default function RegisterTerms() {
                         onChange={handleAgreementChange}
                     />
                     <label htmlFor="agree_check_event_recieve">[선택] 이벤트 및 혜택 알림 수신 동의</label>
-                </s.StyledLi>
-                <s.StyledLi>
+                </li>
+                <li>
                     <input 
                         type="checkbox"
                         id="agree_check_push"
@@ -120,9 +119,9 @@ export default function RegisterTerms() {
                         onChange={handleAgreementChange}
                     />
                     <label htmlFor="agree_check_push">[선택] 서비스 알림 수신 동의</label>
-                </s.StyledLi>
+                </li>
                 
-            </s.StyledUl>
+            </ul>
         </div>
     )
 }

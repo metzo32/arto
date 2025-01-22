@@ -1,5 +1,3 @@
-import s from "../stores/styling";
-
 interface SearchCardProps {
   imageMain: string;
   imageSub: string;
@@ -7,24 +5,28 @@ interface SearchCardProps {
   desSub: string;
 }
 
-
-const SearchCard: React.FC<SearchCardProps> = ({ imageMain, imageSub, desMain, desSub }) => {
+const SearchCard: React.FC<SearchCardProps> = ({
+  imageMain,
+  imageSub,
+  desMain,
+  desSub,
+}) => {
   return (
-    <s.Search className="top-container">
-      <s.Search className="sub-container extra-margin">
-        <s.Search className="mid-container left">
-          <s.Image src={imageMain} alt="image" className="search-square" />
-        </s.Search>
-        <s.Search className="mid-container right">
-          <s.Image src={imageSub} alt="image" className="search-square" />
-          <s.Search className="item-box">
-            <s.StyledP className="search-top-des-main">{desMain}</s.StyledP>
-            <s.StyledP className="search-top-des-sub">{desSub}</s.StyledP>
-          </s.Search>
-        </s.Search>
-      </s.Search>
-    </s.Search>
+    <div className="top-container">
+      <div className="sub-container extra-margin">
+        <div className="mid-container left">
+          <img src={imageMain} alt="img" className="search-square" />
+        </div>
+        <div className="mid-container right">
+          <img src={imageSub} alt="img" className="search-square" />
+          <div className="item-box">
+            <p className="search-top-des-main">{desMain}</p>
+            <p className="search-top-des-sub">{desSub}</p>
+          </div>
+        </div>
+      </div>
+    </div>
   );
-}
+};
 
 export default SearchCard;

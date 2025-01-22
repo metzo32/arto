@@ -1,5 +1,4 @@
-import s from "../stores/styling";
-import ArtistData from "../assets/datas/artitst_data";
+import ArtistData from "../assets/datas/artitstData";
 
 const SearchProfiles = () => {
   const limitedData = ArtistData.slice(50, 60);
@@ -7,15 +6,15 @@ const SearchProfiles = () => {
   return (
     <>
       {limitedData.map((artist) => (
-        <s.Search className="circle-profile-box">
-          <s.Image
+        <div className="circle-profile-box">
+          <img
             key={artist.id}
             src={artist.randomImage}
             alt={artist.nickname}
             className="search-circle-profile"
           />
-          <s.StyledP>{artist.nickname}</s.StyledP>
-        </s.Search>
+          <p>{artist.nickname}</p>
+        </div>
       ))}
     </>
   );

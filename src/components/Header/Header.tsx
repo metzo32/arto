@@ -1,15 +1,16 @@
 import { useContext, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { HeaderTag, Div, Button, Span } from "./Header.style";
-import { headerData, headerData2 } from "./Header.data";
+import { headerData } from "./Header.data";
 import { sortButtonsData } from "../Sort/SortButton.data";
 import { AuthContext } from "../../context/AuthContext";
 import useWindowSize from "../../hooks/useWindowSize";
-import { ArtistDataProps } from "../../assets/datas/artitst_data";
-import RoundButton from "../../assets/design-assets/RoundButton";
+import { ArtistDataProps } from "../../assets/datas/artitstData";
+import RoundButton from "../../assets/design-assets/RoundButton/RoundButton";
 import { FaArrowLeft } from "react-icons/fa6";
 import { FaArrowRight } from "react-icons/fa6";
 import logo from "../../assets/icons/logo/logo.svg";
+import DarkModeButton from "../DarkModeButton/DarkModeButton";
 
 // interface HeaderProps {
 //   data: ArtistDataProps[];
@@ -51,6 +52,10 @@ const Header = () => {
     //선택한 대상이 클릭된 인덱스라면 선택해제, 선택 안돼있었다면 isClicked를 해당 인덱스로 설정
   };
 
+  const clickLogoHandler = () => {
+    navigate("/");
+  };
+
   // const handleSort = (
   //   logic: (data: ArtistDataProps[]) => ArtistDataProps[],
   //   id: string
@@ -67,42 +72,33 @@ const Header = () => {
         <nav>
           {isMobile ? null : (
             <Div className={`brand-box ${isFolded ? "fold" : ""}`}>
-              {isFolded || isMobile ? null : <img src={logo} alt="Arto" />}
+              {isFolded || isMobile ? null : (
+                <img src={logo} alt="Arto" onClick={clickLogoHandler} />
+              )}
               <RoundButton onClick={handleFoldMenu}>
                 {isFolded ? <FaArrowRight /> : <FaArrowLeft />}
               </RoundButton>
             </Div>
           )}
+          {headerData.map((group, groupIndex) => (
+            <Div key={groupIndex} className="line-box">
+              {group.map((item) => (
+                <Button
+                  key={item.id}
+                  onClick={() => handleNavigation(item.path, item.id)}
+                  className={`menu-button ${
+                    clickedItem === item.id ? "selected" : ""
+                  } ${isFolded ? "fold-btn" : ""}`}
+                >
+                  <Span>{item.icon && <item.icon />}</Span>
+                  {isMobile || isFolded ? null : <Span>{item.name}</Span>}
+                </Button>
+              ))}
+            </Div>
+          ))}
+
           <Div className="line-box">
-            {headerData.map((item) => (
-              <Button
-                key={item.id}
-                onClick={() => handleNavigation(item.path, item.id)}
-                className={`menu-button ${
-                  clickedItem === item.id ? "selected" : ""
-                } ${isFolded ? "fold-btn" : ""}`}
-              >
-                <Span>{item.icon && <item.icon />}</Span>
-                {isMobile || isFolded ? null : <Span>{item.name}</Span>}
-                {/* <Span className={isMobile || isFolded ? "fold" : ""}>
-                  {item.name}
-                </Span> */}
-              </Button>
-            ))}
-          </Div>
-          <Div className="line-box">
-            {headerData2.map((item) => (
-              <Button
-                key={item.id}
-                onClick={() => handleNavigation(item.path, item.id)}
-                className={`menu-button ${
-                  clickedItem === item.id ? "selected" : ""
-                } ${isFolded ? "fold-btn" : ""}`}
-              >
-                <Span>{item.icon && <item.icon />}</Span>
-                {isMobile || isFolded ? null : <Span>{item.name}</Span>}
-              </Button>
-            ))}
+            <DarkModeButton isFolded={isFolded}/>
           </Div>
           {/* <Div className="line-box">
             {sortButtonsData.map((item) => (

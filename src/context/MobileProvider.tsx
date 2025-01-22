@@ -1,8 +1,9 @@
-import React, { createContext, useContext, useState, useEffect } from "react";
+import { createContext, useContext, useState, useEffect } from "react";
+import { ReactNode } from "react";
 
 const MobileContext = createContext<boolean | undefined>(undefined);
 
-export const MobileProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+export const MobileProvider = ({ children }: { children: ReactNode }) => {
   const [isMobile, setIsMobile] = useState<boolean>(window.innerWidth <= 768);
 
   useEffect(() => {
@@ -17,9 +18,7 @@ export const MobileProvider: React.FC<{ children: React.ReactNode }> = ({ childr
   }, []);
 
   return (
-    <MobileContext.Provider value={isMobile}>
-      {children}
-    </MobileContext.Provider>
+    <MobileContext.Provider value={isMobile}>{children}</MobileContext.Provider>
   );
 };
 

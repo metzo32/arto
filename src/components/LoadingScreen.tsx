@@ -1,11 +1,10 @@
-import React, { useEffect } from 'react';
-import s from '../stores/styling';
+import React, { useEffect } from "react";
 
 interface LoadingScreenProps {
-    onLoadComplete: () => void;
+  onLoadComplete: () => void;
 }
 
-const LoadingScreen: React.FC<LoadingScreenProps> = ({ onLoadComplete }) => {
+const LoadingScreen = ({ onLoadComplete }: LoadingScreenProps) => {
   useEffect(() => {
     const timer = setTimeout(() => {
       onLoadComplete();
@@ -16,9 +15,7 @@ const LoadingScreen: React.FC<LoadingScreenProps> = ({ onLoadComplete }) => {
 
   return (
     <div className="loading-screen">
-      <div className="loading-content">
-        Loading...
-      </div>
+      <div className="loading-content">Loading...</div>
     </div>
   );
 };

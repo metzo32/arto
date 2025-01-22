@@ -1,6 +1,6 @@
-import React, { createContext, useState, useEffect, ReactNode } from 'react';
-import { onAuthStateChanged } from 'firebase/auth';
-import { auth } from '../firebase/firebaseConfig';
+import React, { createContext, useState, useEffect, ReactNode } from "react";
+import { onAuthStateChanged } from "firebase/auth";
+import { auth } from "../firebase/firebaseConfig";
 
 interface AuthContextProps {
   currentlyLoggedIn: boolean;
@@ -12,7 +12,7 @@ export const AuthContext = createContext<AuthContextProps>({
   setCurrentlyLoggedIn: () => {},
 });
 
-const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
+const AuthProvider = ({ children }: { children: ReactNode }) => {
   const [currentlyLoggedIn, setCurrentlyLoggedIn] = useState(false);
 
   useEffect(() => {
