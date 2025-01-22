@@ -1,8 +1,5 @@
-import styled, { keyframes, css } from "styled-components";
-import { RiInstagramLine } from "react-icons/ri"; //인스타그램
-import { BiLogoFacebook } from "react-icons/bi"; //페이스북
-import { AiOutlineTikTok } from "react-icons/ai"; //틱톡
-import { FaYoutube } from "react-icons/fa6"; //유튜브
+import styled, { keyframes } from "styled-components";
+
 import { lightTheme } from "../../stores/colors";
 
 export const Section = styled.section`
@@ -68,7 +65,7 @@ export const Div = styled.div`
   &.wrapper {
     width: 100%;
     overflow-y: auto;
-    background: ${(props) => props.theme.bg_grad};
+    background: ${(props) => props.theme.bg_secondary};
 
     @media (max-width: 767px) {
       padding-left: 70px;
@@ -238,8 +235,15 @@ export const Div = styled.div`
   }
 
   &.contact-side {
+    padding: 20px;
+
     display: flex;
     flex-direction: column;
+    gap: 20px;
+
+    position: absolute;
+    bottom: 0;
+    right: 0;
   }
 `;
 
@@ -394,7 +398,7 @@ export const Button = styled.button`
 `;
 
 export const P = styled.p`
-  color: white;
+  color: ${(props) => props.theme.white};
 
   &.introduction {
     font-size: 28px;
@@ -419,35 +423,23 @@ export const P = styled.p`
   }
 `;
 
-const StyledIcon = css`
-  stroke: ${(props) => props.theme.Grey};
-  fill: ${(props) => props.theme.Grey};
-  color: ${(props) => props.theme.Grey};
+export const A = styled.a`
+  color: ${(props) => props.theme.text_secondary};
 
-  width: 20px;
-  height: 20px;
+  width: 40px;
+  height: 40px;
+  font-size: 20px;
   border-radius: 100px;
   border: 1px solid ${(props) => props.theme.Grey};
   padding: 5px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
   transition: border 0.3s ease, fill 0.5s ease;
 
   &:hover {
-    fill: ${(props) => props.theme.HoverGrey};
-    border: 1px solid ${(props) => props.theme.HoverGrey};
+    color: ${(props) => props.theme.accent};
   }
-`;
-
-export const FaceBookIcon = styled(BiLogoFacebook)`
-  ${StyledIcon}
-`;
-
-export const TiktokIcon = styled(AiOutlineTikTok)`
-  ${StyledIcon}
-`;
-export const InstagramIcon = styled(RiInstagramLine)`
-  ${StyledIcon}
-`;
-
-export const YoutubeIcon = styled(FaYoutube)`
-  ${StyledIcon}
 `;

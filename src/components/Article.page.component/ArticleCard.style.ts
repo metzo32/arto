@@ -120,7 +120,7 @@ export const Input = styled.input`
   }
 
   @media (max-width: 767px) {
-    width: 130px;
+    width: 150px;
   }
 
   @media (min-width: 768px) {

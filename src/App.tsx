@@ -23,6 +23,7 @@ import Register from "./pages/Register";
 import ScrollToTopButton from "./components/ScrollToTopButton";
 import Loading from "./components/Loading";
 import artistdata from "./assets/datas/artitstData";
+import { GlobalStyle } from "./stores/GlobalStyles";
 
 const App = () => {
   // const [artistData, setArtistData] = useState<ArtistDataProps[]>(artistdata);
@@ -54,39 +55,40 @@ const App = () => {
       <AuthContext.Provider value={{ currentlyLoggedIn, setCurrentlyLoggedIn }}>
         <CustomThemeProvider>
           <MobileProvider>
-            <AppContainer>
-              <Router>
-                <Header />
-                <Routes>
-                  <Route path="/" element={<Article />} />
-                  <Route path="/login" element={<Login />} />
+            <GlobalStyle/>
+              <AppContainer>
+                <Router>
+                  <Header />
+                  <Routes>
+                    <Route path="/" element={<Article />} />
+                    <Route path="/login" element={<Login />} />
 
-                  <Route path="/loading" element={<Loading />} />
+                    <Route path="/loading" element={<Loading />} />
 
-                  <Route
-                    path="/my"
-                    element={
-                      // <ProtectedRouteHoc>
+                    <Route
+                      path="/my"
+                      element={
+                        // <ProtectedRouteHoc>
                         <Profile />
-                      // </ProtectedRouteHoc>
-                    }
-                  />
-                  <Route path="/registerterms" element={<RegisterTerms />} />
-                  <Route path="/register" element={<Register />} />
+                        // </ProtectedRouteHoc>
+                      }
+                    />
+                    <Route path="/registerterms" element={<RegisterTerms />} />
+                    <Route path="/register" element={<Register />} />
 
-                  {artistdata.map((artist) => {
-                    if (!artist.nickname) return null; // nickname이 없는 경우 건너뜀
-                    return (
-                      <Route
-                        key={artist.id}
-                        path={`/profile_artist_${artist.nickname}`}
-                        element={<ArtistProfile artist={artist} />}
-                      />
-                    );
-                  })}
-                </Routes>
-              </Router>
-            </AppContainer>
+                    {artistdata.map((artist) => {
+                      if (!artist.nickname) return null; // nickname이 없는 경우 건너뜀
+                      return (
+                        <Route
+                          key={artist.id}
+                          path={`/profile_artist_${artist.nickname}`}
+                          element={<ArtistProfile artist={artist} />}
+                        />
+                      );
+                    })}
+                  </Routes>
+                </Router>
+              </AppContainer>
           </MobileProvider>
         </CustomThemeProvider>
       </AuthContext.Provider>

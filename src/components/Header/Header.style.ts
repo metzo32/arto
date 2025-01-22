@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { ReactComponent as Logo } from "../../assets/icons/logo/logo.svg";
 
 export const HeaderTag = styled.header`
   height: 100vh;
@@ -130,4 +131,10 @@ export const Span = styled.span`
   justify-content: center;
   align-items: center;
   transition: all 0.2s ease;
+`;
+
+
+export const Brand = styled(Logo)`
+width: 100px;
+  fill: ${(props) => props.theme.brand};
 `;

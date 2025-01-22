@@ -12,8 +12,6 @@ export const Div = styled.div`
     background-color: ${(props) => props.theme.bg_secondary};
     min-width: 320px;
     width: 100vw;
-    height: 100vh;
-
     display: flex;
     justify-content: center;
     align-items: center;
@@ -27,22 +25,22 @@ export const Div = styled.div`
     box-shadow: 3px 5px 8px rgba(0, 0, 0, 0.2);
 
     @media (max-width: 767px) {
-      width: calc(70% - 40px);
-      height: calc(480px - 40px);
-      padding: 20px;
-      margin-left: 70px;
+      width: 70%;
+      height: auto;
+      padding: 15px;
+      margin: 30px 0px 30px 70px;
     }
 
     @media (min-width: 768px) {
-      width: calc(640px - 40px);
-      height: calc(420px - 40px);
-      padding: 20px;
+      width: 700px;
+      height: 500px;
+      padding: 30px;
     }
 
     @media (min-width: 1024px) {
-      width: calc(800px - 40px);
-      height: calc(450px - 40px);
-      padding: 20px;
+      width: 800px;
+      height: 500px;
+      padding: 30px;
     }
   }
 
@@ -56,33 +54,45 @@ export const Div = styled.div`
     width: 100%;
     height: 100%;
     display: flex;
-    justify-content: space-between;
+
+    @media (max-width: 767px) {
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    @media (min-width: 768px) {
+      flex-direction: row;
+      gap: 20px;
+    }
+
+    @media (min-width: 1024px) {
+    }
   }
 
   &.form-wrapper {
     background-color: ${(props) => props.theme.base};
     border-radius: 5px;
+    height: 100%;
     box-shadow: 3px 5px 8px rgba(0, 0, 0, 0.2);
 
     display: flex;
     flex-direction: column;
     justify-content: center;
+    flex: 1;
 
     @media (max-width: 767px) {
-      height: calc(100% - 40px);
-      padding: 20px;
+      width: 100%;
+      padding: 30px 20px;
       gap: 20px;
     }
 
     @media (min-width: 768px) {
-      width: calc(300px - 40px);
-      height: calc(100% - 40px);
+      width: 50%;
       padding: 20px;
-      gap: 10px;
+      gap: 154px;
     }
 
     @media (min-width: 1024px) {
-      width: calc(370px - 40px);
       padding: 20px 20px;
       gap: 15px;
     }
@@ -103,27 +113,39 @@ export const Div = styled.div`
   }
 
   &.form-wrapper.step02-right {
-    height: calc(100% - 155px);
-    padding: 135px 20px 20px 20px;
-    justify-content: space-between;
+    height: 100%;
+    padding: 120px 20px 20px 20px;
+    gap: 30px;
 
-    // @media (max-width: 767px) {
-    //   gap: 20px;
-    // }
+    @media (max-width: 767px) {
+      padding: 60px 20px 60px 20px;
+    }
 
-    // @media (min-width: 768px) {
-    //   gap: 20px;
-    // }
+    @media (min-width: 768px) {
+      padding: 120px 20px 20px 20px;
+    }
 
-    // @media (min-width: 1024px) {
-    //   gap: 20px;
-    // }
+    @media (min-width: 1024px) {
+      padding: 120px 20px 20px 20px;
+    }
   }
 
   &.title-container {
     display: flex;
     justify-content: space-between;
-    margin-bottom: 35px;
+
+    @media (max-width: 767px) {
+      flex-direction: column;
+      margin-bottom: 0px;
+    }
+
+    @media (min-width: 768px) {
+      flex-direction: row;
+      margin-bottom: 35px;
+    }
+
+    @media (min-width: 1024px) {
+    }
   }
 
   &.button-wrapper {
@@ -147,19 +169,58 @@ export const Div = styled.div`
     display: flex;
     flex-direction: row;
     gap: 15px;
-    align-items: center;
+
+    @media (max-width: 767px) {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    @media (min-width: 768px) {
+      flex-direction: row;
+      align-items: center;
+    }
+
+    @media (min-width: 1024px) {
+      flex-direction: row;
+    }
   }
 
   &.gender-box {
     display: flex;
     justify-content: space-between;
-    align-items: center;
+
+    @media (max-width: 767px) {
+      flex-direction: column;
+      align-items: start;
+      gap: 5px;
+    }
+
+    @media (min-width: 768px) {
+      flex-direction: row;
+      align-items: center;
+    }
+
+    @media (min-width: 1024px) {
+    }
   }
 
   &.number-box {
     display: flex;
-    align-items: center;
     gap: 15px;
+
+    @media (max-width: 767px) {
+      flex-direction: column;
+      align-items: start;
+    }
+
+    @media (min-width: 768px) {
+      flex-direction: row;
+      align-items: center;
+    }
+
+    @media (min-width: 1024px) {
+      flex-direction: row;
+    }
   }
 `;
 
@@ -321,6 +382,7 @@ export const H3 = styled.h3`
 export const H4 = styled.h4`
   color: ${(props) => props.theme.deact};
   user-select: none;
+  white-space: nowrap;
 
   @media (max-width: 767px) {
     font-size: 12px;
@@ -343,15 +405,25 @@ export const Button = styled.button`
   }
 
   @media (max-width: 767px) {
+    width: 60px;
     font-size: 12px;
+    text-align: left;
   }
 
   @media (min-width: 768px) {
+    width: 80px;
     font-size: 16px;
+    text-align: center;
   }
 
   &.back {
-    margin-bottom: 20px;
+    @media (max-width: 767px) {
+      margin-bottom: 10px;
+    }
+
+    @media (min-width: 768px) {
+      margin-bottom: 20px;
+    }
   }
 `;
 
@@ -375,7 +447,8 @@ export const Select = styled.select`
   }
 
   @media (max-width: 767px) {
-    width: 60px;
+    min-width: 154px;
+    width: 50%;
   }
 
   @media (min-width: 768px) {

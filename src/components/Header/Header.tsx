@@ -1,6 +1,6 @@
 import { useContext, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { HeaderTag, Div, Button, Span } from "./Header.style";
+import { HeaderTag, Div, Button, Span, Brand } from "./Header.style";
 import { headerData } from "./Header.data";
 import { sortButtonsData } from "../Sort/SortButton.data";
 import { AuthContext } from "../../context/AuthContext";
@@ -9,7 +9,7 @@ import { ArtistDataProps } from "../../assets/datas/artitstData";
 import RoundButton from "../../assets/design-assets/RoundButton/RoundButton";
 import { FaArrowLeft } from "react-icons/fa6";
 import { FaArrowRight } from "react-icons/fa6";
-import logo from "../../assets/icons/logo/logo.svg";
+import { ReactComponent as Logo } from "../../assets/icons/logo/logo.svg";
 import DarkModeButton from "../DarkModeButton/DarkModeButton";
 
 // interface HeaderProps {
@@ -73,7 +73,7 @@ const Header = () => {
           {isMobile ? null : (
             <Div className={`brand-box ${isFolded ? "fold" : ""}`}>
               {isFolded || isMobile ? null : (
-                <img src={logo} alt="Arto" onClick={clickLogoHandler} />
+                <Brand onClick={clickLogoHandler} />
               )}
               <RoundButton onClick={handleFoldMenu}>
                 {isFolded ? <FaArrowRight /> : <FaArrowLeft />}

@@ -1,4 +1,5 @@
 export const lightTheme = {
+  brand: "#000000",
   text: "#4A505B",
   text_secondary: "#A1A4A8",
   deact: "#A6A9AF",
@@ -18,6 +19,7 @@ export const lightTheme = {
 };
 
 export const darkTheme = {
+  brand: "#FFFFFF",
   text: "#E3E8F1",
   text_secondary: "#848993",
   deact: "#B0B2B8",

@@ -9,20 +9,16 @@ import {
   Button,
   P,
   Img,
-  FaceBookIcon,
-  TiktokIcon,
-  InstagramIcon,
-  YoutubeIcon,
 } from "./ArtistProfile.style";
 import type { ArtistDataProps } from "../../assets/datas/artitstData";
 import useWindowSize from "../../hooks/useWindowSize";
 import { useModal } from "../../hooks/useModal";
-import BaseButton from "../../assets/design-assets/BaseButton/BaseButton";
 import { PopUpBelow } from "../FramerMotions/scrollMotions";
 import artistdata from "../../assets/datas/artitstData";
 import NameCard from "./NameCard/NameCard";
 
 import Modal from "../Modal/Modal";
+import Sidebar from "./Sidebar/Sidebar";
 
 export default function ArtistProfileComp({
   artist,
@@ -112,37 +108,7 @@ export default function ArtistProfileComp({
 
         <Section className="narrow">
           <NameCard artist={artist} />
-
-          <Div className="contact-side">
-            <a
-              href="https://www.facebook.com"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <FaceBookIcon />
-            </a>
-            <a
-              href="https://www.tiktok.com/"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <TiktokIcon />
-            </a>
-            <a
-              href="https://www.instagram.com"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <InstagramIcon />
-            </a>
-            <a
-              href="https://www.youtube.com"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <YoutubeIcon />
-            </a>
-          </Div>
+          <Sidebar />
         </Section>
         <button onClick={openModal}>Open Modal</button>
         <Modal

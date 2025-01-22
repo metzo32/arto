@@ -397,17 +397,15 @@ export default function RegisterComp() {
                 <PhoneNumber onPhoneNumberChange={handlePhoneNumberChange} />
                 <GenderSelect onGenderChange={handleGenderChange} />
 
-                <Div className="button-wrapper">
-                  <BaseButton type="submit" text="가입하기" />
-                  <Div className="register-box">
-                    <H4>이미 회원이신가요?</H4>
-                    <Button
-                      type="button"
-                      onClick={() => handleNavigation("/login")}
-                    >
-                      로그인하기
-                    </Button>
-                  </Div>
+                <BaseButton type="submit" text="가입하기" />
+                <Div className="register-box">
+                  <H4>이미 회원이신가요?</H4>
+                  <Button
+                    type="button"
+                    onClick={() => handleNavigation("/login")}
+                  >
+                    로그인하기
+                  </Button>
                 </Div>
               </Div>
             </Div>
