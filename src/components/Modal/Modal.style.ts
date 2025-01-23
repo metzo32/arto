@@ -73,16 +73,16 @@ export const Div = styled.div`
     position: relative;
 
     @media (max-width: 767px) {
-      width: 230px;
-      height: 100px;
-      padding: 20px;
+      width: 280px;
+      height: 180px;
+      padding: 20px 10px;
       border-radius: 5px;
     }
 
     @media (min-width: 768px) {
-      width: 440px;
-      height: 150px;
-      padding: 120px 0 30px 0;
+      width: 560px;
+      height: 350px;
+      padding: 20px 0px 40px 0px;
       border-radius: 10px;
     }
   }
@@ -95,9 +95,6 @@ export const Div = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-
-    position: relative;
-    z-index: 999;
 
     @media (max-width: 767px) {
       width: 30px;
@@ -114,7 +111,7 @@ export const H3 = styled.h3`
   color: ${(props) => props.theme.accent};
 
   @media (max-width: 767px) {
-    font-size: 24px;
+    font-size: 20px;
   }
 
   @media (min-width: 768px) {
@@ -126,7 +123,7 @@ export const P = styled.p`
   color: ${(props) => props.theme.text};
 
   @media (max-width: 767px) {
-    font-size: 18px;
+    font-size: 16px;
   }
 
   @media (min-width: 768px) {
@@ -136,14 +133,16 @@ export const P = styled.p`
 
 export const Circle = styled.span`
   &.wrapper {
+    width: 100px;
+    height: 100px;
     display: flex;
     justify-content: center;
     align-items: center;
 
-    position: absolute;
-    top: 0%;
-    left: 50%;
-    transform: translate(-50%, 100%);
+    position: relative;
+    // top: 0%;
+    // left: 50%;
+    // transform: translate(-50%, 100%);
   }
 
   &.circle {
@@ -214,10 +213,8 @@ export const Circle = styled.span`
 `;
 
 export const ModalIcon = styled(TbExclamationMark)`
-  position: absolute;
-  top: 0%;
-  left: 50%;
-  transform: translate(-50%, -0%);
+  position: relative;
+  z-index: 999;
 
   font-size: 30px;
   color: ${(props) => props.theme.white};

@@ -110,7 +110,9 @@ export default function ArtistProfileComp({
           <NameCard artist={artist} />
           <Sidebar />
         </Section>
-        <button onClick={openModal}>Open Modal</button>
+        <Button onClick={() => openModal("짠", "모달을 열었습니다.")}>
+          Open Modal
+        </Button>
         <Modal
           isOpen={isModalOpen}
           onClose={closeModal}

@@ -395,6 +395,8 @@ export const Button = styled.button`
   padding: 10px 20px;
   font-size: 18px;
   border-radius: 100px;
+  color: blue;
+  margin-left: 100px;
 `;
 
 export const P = styled.p`

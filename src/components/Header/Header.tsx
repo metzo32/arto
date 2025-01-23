@@ -98,7 +98,7 @@ const Header = () => {
           ))}
 
           <Div className="line-box">
-            <DarkModeButton isFolded={isFolded}/>
+            <DarkModeButton isFolded={isFolded} isMobile={isMobile}/>
           </Div>
           {/* <Div className="line-box">
             {sortButtonsData.map((item) => (

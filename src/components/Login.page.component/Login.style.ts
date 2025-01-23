@@ -1,7 +1,15 @@
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 
 import { RiCheckboxBlankLine } from "react-icons/ri";
 import { RiCheckboxFill } from "react-icons/ri";
+
+export const shaking = keyframes`
+ 0% { transform: translateX(0) }
+ 25% { transform: translateX(1px) }
+ 50% { transform: translateX(-1px) }
+ 75% { transform: translateX(1px) }
+ 100% { transform: translateX(0) }
+`;
 
 export const Div = styled.div`
   font-size: 18px;
@@ -89,7 +97,7 @@ export const Div = styled.div`
     @media (min-width: 768px) {
       width: 50%;
       padding: 20px;
-      gap: 154px;
+      gap: 15px;
     }
 
     @media (min-width: 1024px) {
@@ -222,6 +230,13 @@ export const Div = styled.div`
       flex-direction: row;
     }
   }
+
+  &.modal-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
 `;
 
 export const Form = styled.form`
@@ -318,6 +333,11 @@ export const Label = styled.label`
       color: ${(props) => props.theme.text_secondary};
     }
   }
+
+  &.invalid {
+    color: ${(props) => props.theme.accent};
+    animation: ${shaking} 0.2s infinite;
+  }
 `;
 
 export const Input = styled.input`
@@ -393,6 +413,17 @@ export const H4 = styled.h4`
   }
 `;
 
+export const P = styled.p`
+  color: ${(props) => props.theme.text};
+  @media (max-width: 767px) {
+    font-size: 16px;
+  }
+
+  @media (min-width: 768px) {
+    font-size: 18px;
+  }
+`;
+
 export const Button = styled.button`
   color: ${(props) => props.theme.main};
   font-size: 16px;
@@ -463,14 +494,12 @@ export const Select = styled.select`
 export const IconBox = styled(RiCheckboxBlankLine)`
   width: 20px;
   height: 20px;
-  margin-bottom: 3px;
   color: white;
 `;
 
 export const IconCheck = styled(RiCheckboxFill)`
   width: 20px;
   height: 20px;
-  margin-bottom: 3px;
   fill: ${(props) => props.theme.main};
   color: white;
 `;

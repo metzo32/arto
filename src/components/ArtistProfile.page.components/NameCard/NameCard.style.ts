@@ -1,4 +1,6 @@
 import styled from "styled-components";
+import { ReactComponent as LogoShadowDark } from "../../../assets/icons/logo/logo_shadow_dark.svg";
+import { ReactComponent as LogoShadowLight } from "../../../assets/icons/logo/logo_shadow_light.svg";
 
 export const Div = styled.div`
   &.wrapper {
@@ -95,7 +97,7 @@ export const P = styled.p`
 
 export const Logo = styled.img`
   width: 100px;
-  height: 50px;
+  // height: 50px;
 
   @media (max-width: 767px) {
     transform: rotate(90deg) translateX(20px) translateY(-155px);
@@ -131,4 +133,12 @@ export const A = styled.a`
   &:hover {
     color: ${(props) => props.theme.text};
   }
+`;
+
+export const BrandDark = styled(LogoShadowDark)`
+  width: 100px;
+`;
+
+export const BrandLight = styled(LogoShadowLight)`
+  width: 100px;
 `;

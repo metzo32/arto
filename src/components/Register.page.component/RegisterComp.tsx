@@ -1,3 +1,4 @@
+import { useState, useEffect, useContext } from "react";
 import {
   Div,
   Label,
@@ -8,27 +9,26 @@ import {
   Button,
 } from "../Login.page.component/Login.style";
 import BaseButton from "../../assets/design-assets/BaseButton/BaseButton";
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
 
 import { auth, db } from "../../firebase/firebaseConfig";
 import { setDoc, doc } from "firebase/firestore";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 
+import { useNavigate } from "react-router-dom";
+import { useModal } from "../../hooks/useModal";
+import Modal from "../Modal/Modal";
 import { nicknameRule, fullnameRule } from "../../stores/NameRule";
 import CalculateAge from "./CalculateAge";
 import GenderSelect from "./GenderSelect";
 import PhoneNumber from "./PhoneNumber";
+import { AuthContext } from "../../context/AuthContext";
 
-import { useModal } from "../../hooks/useModal";
-
-// import useModal from "../hooks/ModalHook";
 // import WishList from "../components/Wishlist/WishList";
-// import Modal from "../components/Modal";
 
 export default function RegisterComp() {
   const navigate = useNavigate();
-  const { isModalOpen, openModal, closeModal } = useModal();
+  const { isModalOpen, modalTitle, modalContent, openModal, closeModal } =
+    useModal();
 
   const [registerEmail, setRegisterEmail] = useState<string>("");
   const [registerPw, setRegisterPw] = useState<string>("");
@@ -45,7 +45,13 @@ export default function RegisterComp() {
 
   const [step, setStep] = useState<number>(1);
 
-  const [modalMessage, setModalMessage] = useState<string>("");
+  const { currentlyLoggedIn } = useContext(AuthContext);
+
+  useEffect(() => {
+    if (currentlyLoggedIn) {
+      navigate("/my"); // 이미 로그인된 상태라면 프로필 페이지로
+    }
+  }, [currentlyLoggedIn, navigate]);
 
   // 이메일 유효성 검사
   const isValidEmail = (email: string) => {
@@ -72,40 +78,46 @@ export default function RegisterComp() {
 
   const handleSignUp = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    console.log("Form submitted");
 
     // 비밀번호 확인
     if (registerPw !== registerPwConfirm) {
-      setModalMessage("비밀번호가 일치하지 않습니다.");
-      openModal();
+      openModal("잠깐!", "비밀번호가 일치하지 않습니다.");
       return;
     }
 
     // 이메일 유효성 검사
     if (!isValidEmail(registerEmail)) {
-      setModalMessage("유효하지 않은 이메일 주소입니다.");
-      openModal();
+      openModal("잠깐!", "유효하지 않은 이메일 주소입니다.");
       return;
     }
 
+    const validateForm = () => {
+      return (
+        validateStepOne() &&
+        registerFullname.length > 0 &&
+        registerPhonenumber.length > 0 &&
+        registerNickname.length > 0 &&
+        countryCode.length > 0
+      );
+    };
+
     if (!validateForm()) {
-      setModalMessage("필수 입력사항을 확인해주세요.");
-      openModal();
+      openModal("잠깐!", "필수 입력사항을 확인해주세요.");
       return;
     }
 
     try {
+      // 사용자 등록
       const userCredential = await createUserWithEmailAndPassword(
         auth,
         registerEmail,
         registerPw
       );
-      const user = userCredential.user;
-      console.log("User registered:", user);
+      const user = userCredential.user; // 이 부분 떄문에 회원가입 후 자동 로그인된다.
 
       try {
-        // Firestore에 사용자 정보 저장하기
-        await setDoc(doc(db, "users", user.uid), {
+        // Firestore에 사용자 정보 저장
+        const userData = {
           email: registerEmail,
           fullname: registerFullname,
           nickname: registerNickname,
@@ -116,37 +128,57 @@ export default function RegisterComp() {
           birthMonth: birthMonth,
           birthDay: birthDay,
           gender: gender,
-          wishList: [],
-        });
+          wishList: [], // 초기 위시리스트
+        };
+
+        console.log("Firestore에 저장할 데이터:", userData);
+
+        await setDoc(doc(db, "users", user.uid), userData);
         console.log("Firestore에 사용자 정보 저장 성공!");
 
-        resetForm(); //폼입력 초기화
-        navigate("/profile");
+        await auth.signOut(); // 가입 후 자동 로그아웃 처리
+        resetForm(); // 폼 초기화
+        openModal("가입 성공!", "로그인 화면으로 이동합니다.");
+
+        const handleModalClose = () => {
+          closeModal(); // 모달 닫기
+          if (!isModalOpen) {
+            navigate("/login"); // 로그인 페이지로 이동
+          }
+        };
+        return (
+          <Modal
+            isOpen={isModalOpen}
+            onClose={handleModalClose}
+            title={modalTitle}
+            content={modalContent}
+          />
+        );
       } catch (firestoreError) {
         console.error("Firestore에 사용자 정보 저장 실패:", firestoreError);
 
         // Firestore 저장 실패 시 사용자 계정 삭제
         await user.delete();
-        setModalMessage("회원가입에 실패했습니다. 다시 시도해주세요.");
-        openModal();
+        openModal(undefined, "회원가입에 실패했습니다. 다시 시도해주세요.");
       }
     } catch (authError) {
       const error = authError as { code: string };
       console.error("Error signing up:", error);
+
+      // Firebase 인증 에러 처리
       switch (error.code) {
         case "auth/email-already-in-use":
-          setModalMessage("이미 사용 중인 이메일입니다.");
+          openModal(undefined, "이미 사용 중인 이메일입니다.");
           break;
         case "auth/invalid-email":
-          setModalMessage("유효하지 않은 이메일 주소입니다.");
+          openModal(undefined, "유효하지 않은 이메일 주소입니다.");
           break;
         case "auth/operation-not-allowed":
-          setModalMessage("회원가입이 현재 허용되지 않습니다.");
+          openModal(undefined, "회원가입이 현재 허용되지 않습니다.");
           break;
         default:
-          setModalMessage("회원가입 중 알 수 없는 오류가 발생했습니다.");
+          openModal(undefined, "회원가입 중 알 수 없는 오류가 발생했습니다.");
       }
-      openModal();
     }
   };
 
@@ -164,14 +196,13 @@ export default function RegisterComp() {
       if (
         !target.checkValidity() ||
         (target.name === "passwordConfirm" &&
-          registerPw !== registerPwConfirm) ||
+          registerPw !== "registerPwConfirm") ||
         (target.name === "nickname" && !nicknameRule.test(target.value)) ||
         (target.name === "fullname" && !fullnameRule.test(target.value))
       ) {
         label.classList.add("invalid");
       } else {
         label.classList.remove("invalid");
-        label.classList.add("valid");
       }
     }
   };
@@ -195,65 +226,28 @@ export default function RegisterComp() {
     setIsValidAge(!isValid);
   };
 
-  const handleNextStep = (event: React.MouseEvent<HTMLButtonElement>) => {
-    event.preventDefault();
-
-    // 비밀번호 확인
-    if (registerPw !== registerPwConfirm) {
-      alert("비밀번호가 일치하지 않습니다.");
-      setModalMessage("비밀번호가 일치하지 않습니다.");
-      openModal();
-      return;
-    }
-
-    // 이메일 유효성 검사
-    if (!isValidEmail(registerEmail)) {
-      alert("유효하지 않은 이메일 주소입니다.");
-      setModalMessage("유효하지 않은 이메일 주소입니다.");
-      openModal();
-      return;
-    }
-
-    // 1단계 입력값 검증
-    if (validateStepOne()) {
-      setStep(step + 1);
-    } else {
-      alert("필수 입력 사항을 확인해주세요.");
-    }
-  };
-
   const validateStepOne = () => {
-    if (registerPw !== registerPwConfirm) {
-      alert("비밀번호가 일치하지 않습니다.");
-      return false;
-    }
-    if (registerPw.length < 6) {
-      alert("비밀번호는 6자리 이상이어야 합니다.");
-      return false;
-    }
     if (!registerEmail) {
-      alert("이메일을 입력해주세요.");
+      openModal(undefined, "이메일을 입력해주세요.");
       return false;
+    } else if (!isValidEmail(registerEmail)) {
+      openModal(undefined, "유효하지 않은 이메일 주소입니다.");
+      return false;
+    } else if (registerPw !== registerPwConfirm) {
+      openModal(undefined, "비밀번호가 일치하지 않습니다.");
+      return false;
+    } else if (registerPw.length < 6) {
+      openModal(undefined, "비밀번호는 6자리 이상이어야 합니다.");
+      return false;
+    } else {
+      return true;
     }
-    return true;
   };
 
-  const validateForm = () => {
-    console.log("Validation Step One:", validateStepOne()); // 로그 추가
-    console.log(
-      "Validation Other Fields:",
-      registerFullname,
-      registerPhonenumber,
-      registerNickname,
-      countryCode
-    );
-    return (
-      validateStepOne() &&
-      registerFullname.length > 0 &&
-      registerPhonenumber.length > 0 &&
-      registerNickname.length > 0 &&
-      countryCode.length > 0
-    );
+  const handleNextStep = () => {
+    if (validateStepOne()) {
+      setStep(2);
+    }
   };
 
   const handleBirthdateChange = (year: string, month: string, day: string) => {
@@ -277,6 +271,12 @@ export default function RegisterComp() {
 
   return (
     <Div className="page">
+      <Modal
+        isOpen={isModalOpen}
+        onClose={closeModal}
+        title={modalTitle}
+        content={modalContent}
+      />
       <Div className="container">
         <Form onSubmit={handleSignUp}>
           {step === 1 && (

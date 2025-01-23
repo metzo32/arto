@@ -1,7 +1,13 @@
 import { useState, useEffect } from "react";
-import { Div, Fieldset, Legend } from "../Login.page.component/Login.style";
+import {
+  Div,
+  Fieldset,
+  Legend,
+  Select,
+  P,
+} from "../Login.page.component/Login.style";
 import Modal from "../Modal/Modal";
-import { Select } from "../Login.page.component/Login.style";
+import { useModal } from "../../hooks/useModal";
 
 interface CalculateAgeProps {
   isAdult: (isValid: boolean | null) => void;
@@ -9,13 +15,12 @@ interface CalculateAgeProps {
 }
 
 const CalculateAge = ({ isAdult, onBirthdateChange }: CalculateAgeProps) => {
+  const { isModalOpen, modalTitle, modalContent, openModal, closeModal } =
+    useModal();
   const [year, setYear] = useState("");
   const [month, setMonth] = useState("");
   const [day, setDay] = useState("");
   const [isValid, setIsValid] = useState<boolean | null>(null);
-
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [isModalInvalid, setIsModalInvalid] = useState(false);
 
   const years = Array.from(
     { length: new Date().getFullYear() - 1899 },
@@ -62,7 +67,13 @@ const CalculateAge = ({ isAdult, onBirthdateChange }: CalculateAgeProps) => {
               today.getDate() < birthDate.getDate())));
 
       if (isUnder19) {
-        setIsModalOpen(true);
+        openModal(
+          "잠깐!",
+          <Div className="modal-box">
+            <P>19세 미만 회원의 경우,</P>
+            <P>이용에 제한이 있을 수 있습니다.</P>
+          </Div>
+        );
         setIsValid(false);
         isAdult(false);
       } else {
@@ -77,23 +88,14 @@ const CalculateAge = ({ isAdult, onBirthdateChange }: CalculateAgeProps) => {
     onBirthdateChange(year, month, day);
   }, [year, month, day]);
 
-  const handleModalClose = () => {
-    setIsModalOpen(false);
-    setIsModalInvalid(false);
-    setIsValid(true); // 모달이 닫힐 때 유효성을 true로 설정
-  };
-
-  const handleInvalid = () => {
-    setIsModalInvalid(true);
-  };
-
-  const handleCheckboxChange = () => {
-    setIsValid(true); // 체크박스가 체크되면 isValid 상태를 true로 설정
-    setIsModalInvalid(false); // invalid 상태 해제
-  };
-
   return (
     <Fieldset>
+      <Modal
+        isOpen={isModalOpen}
+        onClose={closeModal}
+        title={modalTitle}
+        content={modalContent}
+      />
       <Legend>생년월일</Legend>
       <Div
         className={`item-box ${isValid === true ? "valid" : ""} ${
@@ -133,17 +135,6 @@ const CalculateAge = ({ isAdult, onBirthdateChange }: CalculateAgeProps) => {
           ))}
         </Select>
       </Div>
-      <Modal
-        isOpen={isModalOpen}
-        onClose={handleModalClose}
-        title="잠깐!"
-        content={
-          <>
-            <p className="modal-text">19세 미만 회원의 경우,</p>
-            <p className="modal-text">일부 기능이 제한될 수 있습니다.</p>
-          </>
-        }
-      />
     </Fieldset>
   );
 };

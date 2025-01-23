@@ -5,6 +5,7 @@ import {
   Input,
   H3,
   H4,
+  P,
   Button,
   IconBox,
   IconCheck,
@@ -19,37 +20,55 @@ import {
   signInWithEmailAndPassword,
 } from "firebase/auth";
 import { auth } from "../../firebase/firebaseConfig";
+import Modal from "../Modal/Modal";
+import { useModal } from "../../hooks/useModal";
 
 export default function LoginComp() {
   const navigate = useNavigate();
 
   const { currentlyLoggedIn, setCurrentlyLoggedIn } = useContext(AuthContext);
-
+  const { isModalOpen, modalTitle, modalContent, openModal, closeModal } =
+    useModal();
   const [signInEmail, setSignInEmail] = useState("");
   const [signInPw, setSignInPw] = useState("");
   const [rememberMe, setRememberMe] = useState(false);
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-
-  //   const { isModalOpen, handleOpenModal, handleCloseModal } = useModal();
-  const [modalMessage, setModalMessage] = useState<React.ReactNode>(""); // 모달에 표시될 메시지 상태
 
   useEffect(() => {
     if (currentlyLoggedIn) {
-      navigate("/profile"); // 이미 로그인된 상태라면 프로필 페이지로
+      navigate("/my"); // 이미 로그인된 상태라면 프로필 페이지로
     }
   }, [currentlyLoggedIn, navigate]);
+
+  //유효한 입력인지 확인
+  const handleBlur = (event: React.FocusEvent<HTMLInputElement>) => {
+    const target = event.target;
+
+    if (!target.value) {
+      return; // 입력 필드가 비어 있으면 패스
+    }
+
+    const label = target.nextElementSibling as HTMLLabelElement | null; // 이벤트 타겟의 바로 다음 형제 요소
+    if (label) {
+      //타입가드
+      if (!target.checkValidity()) {
+        label.classList.add("invalid");
+      } else {
+        label.classList.remove("invalid");
+      }
+    }
+  };
 
   const handleSignIn = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
     try {
-      await setPersistence(auth, browserSessionPersistence); //세션에 유저 정보 저장
+      await setPersistence(auth, browserSessionPersistence); // 세션에 유저 정보 저장
       const userCredential = await signInWithEmailAndPassword(
         auth,
         signInEmail,
         signInPw
       );
-      console.log(userCredential);
+      // console.log(userCredential);
       const user = userCredential.user;
 
       if (rememberMe) {
@@ -58,73 +77,70 @@ export default function LoginComp() {
       } else {
         localStorage.removeItem("username");
       }
-
       setCurrentlyLoggedIn(true);
-      setIsLoggedIn(true);
       navigate("/"); // 성공 시 홈으로 이동
     } catch (error) {
       const typedError = error as { code: string }; // error를 명시적으로 타입 단언
       console.error("Error signing in:", typedError);
       const errorCode = typedError.code;
 
-      // 에러 코드에 따라 메시지 설정
       switch (errorCode) {
         case "auth/user-not-found":
-          setModalMessage(
-            <>
-              <p className="modal-text">등록되지 않은 계정입니다.</p>
-              <p className="modal-text">회원가입을 진행해 주세요.</p>
-            </>
+          openModal(
+            undefined,
+            <Div className="modal-box">
+              <P className="modal-text">등록되지 않은 계정입니다.</P>
+              <P className="modal-text">회원가입을 진행해 주세요.</P>
+            </Div>
           );
           break;
         case "auth/wrong-password":
-          setModalMessage(
-            <>
-              <p className="modal-text">비밀번호가 올바르지 않습니다.</p>
-              <p className="modal-text">다시 시도해주세요.</p>
-            </>
+          openModal(
+            undefined,
+            <Div className="modal-box">
+              <P className="modal-text">비밀번호가 올바르지 않습니다.</P>
+              <P className="modal-text">다시 시도해주세요.</P>
+            </Div>
           );
           break;
         case "auth/too-many-requests":
-          setModalMessage(
-            <>
-              <p className="modal-text">로그인 시도가 너무 많습니다.</p>
-              <p className="modal-text">잠시 후 다시 시도해주세요.</p>
-            </>
+          openModal(
+            undefined,
+            <Div className="modal-box">
+              <P className="modal-text">로그인 시도가 너무 많습니다.</P>
+              <P className="modal-text">잠시 후 다시 시도해주세요.</P>
+            </Div>
           );
           break;
+
         default:
-          setModalMessage(
-            <>
-              <p className="modal-text">로그인에 실패했습니다.</p>
-              <p className="modal-text">다시 시도해주세요.</p>
-            </>
+          openModal(
+            undefined,
+            <Div className="modal-box">
+              <P className="modal-text">로그인에 실패했습니다.</P>
+              <P className="modal-text">다시 시도해주세요.</P>
+            </Div>
           );
       }
-
-      //   handleOpenModal(); // 모달 열기
       setCurrentlyLoggedIn(false);
-      setIsLoggedIn(false);
 
       // label에 invalid 추가
       const emailLabel = document.querySelector(`label[for="useremail"]`);
       const passwordLabel = document.querySelector(`label[for="password"]`);
       if (emailLabel) {
-        emailLabel.classList.remove("valid");
         emailLabel.classList.add("invalid");
       }
       if (passwordLabel) {
-        passwordLabel.classList.remove("valid");
         passwordLabel.classList.add("invalid");
       }
     }
   };
 
-  const handleNavigation = (path: string) => {
-    navigate(path);
+  const handleNavigation = () => {
+    navigate("/register");
   };
 
-  // 아이디 기억하기
+  // 아이디 불러오기
   useEffect(() => {
     const savedUsername = localStorage.getItem("username");
     if (savedUsername) {
@@ -133,6 +149,7 @@ export default function LoginComp() {
     }
   }, []);
 
+  // 아이디 기억하기
   const handleRememberMeChange = (
     event: React.ChangeEvent<HTMLInputElement>
   ) => {
@@ -144,34 +161,22 @@ export default function LoginComp() {
     }
   };
 
-  //유효한 입력인지 확인
-  const handleBlur = (event: React.FocusEvent<HTMLInputElement>) => {
-    const target = event.target;
-    target.classList.remove("active"); //focus out시 클래스 제거
-
-    if (!target.value) {
-      return; // 입력 필드가 비어 있으면 클래스 변화를 발생시키지 않음
-    }
-
-    const label = target.nextElementSibling as HTMLLabelElement | null; // 이벤트 타겟의 바로 다음 형제 요소
-    if (label) {
-      //타입가드
-      if (!target.checkValidity()) {
-        label.classList.add("invalid");
-      } else {
-        label.classList.remove("invalid");
-        label.classList.add("valid");
-      }
-    }
-  };
-
   return (
     <Div className="page">
+      <Modal
+        isOpen={isModalOpen}
+        onClose={closeModal}
+        title={modalTitle}
+        content={modalContent}
+      />
       <Div className="container">
         <Form onSubmit={handleSignIn}>
           <Div className="form-wrapper">
             <H3>로그인</H3>
-            <Label htmlFor="useremail" className={`login-info ${signInEmail ? "active" : ""}`}>
+            <Label
+              htmlFor="useremail"
+              className={`login-info ${signInEmail ? "active" : ""}`}
+            >
               이메일
               <Input
                 name="email"
@@ -186,7 +191,10 @@ export default function LoginComp() {
               />
             </Label>
 
-            <Label htmlFor="password" className={`login-info ${signInPw ? "active" : ""}`}>
+            <Label
+              htmlFor="password"
+              className={`login-info ${signInPw ? "active" : ""}`}
+            >
               비밀번호
               <Input
                 name="password"
@@ -202,17 +210,12 @@ export default function LoginComp() {
               />
             </Label>
             <Label htmlFor="remember" className="remember">
-              {rememberMe ? (
-                <IconCheck className="checkbox-icon-checked" />
-              ) : (
-                <IconBox className="checkbox-icon" />
-              )}
+              {rememberMe ? <IconCheck /> : <IconBox />}
               <Input
                 type="checkbox"
                 id="remember"
                 checked={rememberMe}
                 onChange={handleRememberMeChange}
-                className="remember-check"
                 hidden
               />
               Remember me
@@ -222,10 +225,7 @@ export default function LoginComp() {
 
             <Div className="register-box">
               <H4>아직 회원이 아니신가요?</H4>
-              <Button
-                type="button"
-                onClick={() => handleNavigation("/register")}
-              >
+              <Button type="button" onClick={() => handleNavigation()}>
                 가입하기
               </Button>
             </Div>

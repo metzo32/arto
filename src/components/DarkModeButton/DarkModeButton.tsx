@@ -6,9 +6,10 @@ import { FiMoon } from "react-icons/fi";
 
 interface DarkModeButtonProps {
   isFolded: boolean;
+  isMobile: boolean;
 }
 
-const DarkModeButton = ({ isFolded }: DarkModeButtonProps) => {
+const DarkModeButton = ({ isFolded, isMobile }: DarkModeButtonProps) => {
   const themeContext = useContext(ThemeContext);
 
   if (!themeContext) {
@@ -37,7 +38,9 @@ const DarkModeButton = ({ isFolded }: DarkModeButtonProps) => {
       className={`menu-button selected ${isFolded ? "fold-btn" : ""}`}
     >
       <Span>{isDark ? <FiSun /> : <FiMoon />}</Span>
-      {!isFolded && (isDark ? <Span>Light View</Span> : <Span>Dark View</Span>)}
+      {!isFolded &&
+        !isMobile &&
+        (isDark ? <Span>Light View</Span> : <Span>Dark View</Span>)}
     </Button>
   );
 };

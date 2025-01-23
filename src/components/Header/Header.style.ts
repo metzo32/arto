@@ -133,8 +133,7 @@ export const Span = styled.span`
   transition: all 0.2s ease;
 `;
 
-
 export const Brand = styled(Logo)`
-width: 100px;
+  width: 100px;
   fill: ${(props) => props.theme.brand};
 `;

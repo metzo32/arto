@@ -1,6 +1,6 @@
-import { Div, H3, P, Logo, A } from "./NameCard.style";
+import { Div, H3, P, BrandDark, BrandLight, A } from "./NameCard.style";
 import { ArtistDataProps } from "../../../assets/datas/artitstData";
-import logo from "../../../assets/icons/logo/logo.svg";
+import { useDark } from "../../../hooks/useDark";
 
 export default function NameCard({ artist }: { artist: ArtistDataProps }) {
   const copyHandler = (e: React.MouseEvent<HTMLParagraphElement>) => {
@@ -8,6 +8,8 @@ export default function NameCard({ artist }: { artist: ArtistDataProps }) {
     navigator.clipboard.writeText(`${artist.street_address}, ${artist.city}`);
     alert("주소가 복사되었습니다!");
   };
+
+  const isDark = useDark();
 
   return (
     <Div className="wrapper">
@@ -26,7 +28,7 @@ export default function NameCard({ artist }: { artist: ArtistDataProps }) {
           <A href="tel:0000000000">000.000.0000</A>
         </Div>
       </Div>
-      <Logo src={logo} alt="Arto" />
+      {isDark ? <BrandLight /> : <BrandDark />}
     </Div>
   );
 }

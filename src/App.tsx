@@ -68,9 +68,9 @@ const App = () => {
                     <Route
                       path="/my"
                       element={
-                        // <ProtectedRouteHoc>
+                        <ProtectedRouteHoc>
                         <Profile />
-                        // </ProtectedRouteHoc>
+                        </ProtectedRouteHoc>
                       }
                     />
                     <Route path="/registerterms" element={<RegisterTerms />} />
