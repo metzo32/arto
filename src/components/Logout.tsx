@@ -4,14 +4,18 @@ import { useContext } from "react";
 import { AuthContext } from "../context/AuthContext";
 import { useModal } from "../hooks/useModal";
 import Modal from "./Modal/Modal";
+import { SecondaryButton } from "../assets/design-assets/BaseButton/BaseButton";
 
 const LogoutButton = () => {
   const { setCurrentlyLoggedIn } = useContext(AuthContext);
   const { isModalOpen, openModal, closeModal } = useModal();
   const navigate = useNavigate();
 
-  const handleLogout = async () => {
+  const handleLogout = () => {
     openModal();
+  };
+
+  const handleOkay = async () => {
     try {
       await auth.signOut(); // Firebase 로그아웃 처리
       setCurrentlyLoggedIn(false); // 로그아웃 후 로컬 상태 업데이트
@@ -20,18 +24,26 @@ const LogoutButton = () => {
     } catch (error) {
       console.error("로그아웃 중 오류 발생:", error);
     }
-  };
+  }
+
+  const handleNo = () => {
+    closeModal()
+  }
 
   return (
     <>
       <Modal
         isOpen={isModalOpen}
         onClose={closeModal}
-        title={"잠깐!"}
-        content={"정말 로그아웃 하시겠습니까?"}
+        title="잠깐!"
+        content="정말 로그아웃 하시겠습니까?"
+        isOptionOn={true}
+        primBtnText="취소"
+        secBtnText="로그아웃"
+        onSecClose={handleOkay}
       />
       <div className="logout-container">
-        <button onClick={handleLogout}>로그아웃</button>
+        <SecondaryButton onClick={handleLogout} text="로그아웃" />
       </div>
     </>
   );

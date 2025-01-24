@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Div, Input, Span } from "./ArticleCard.style";
-import BaseButton from "../../assets/design-assets/BaseButton/BaseButton";
+import { BaseButton } from "../../assets/design-assets/BaseButton/BaseButton";
 
 interface SearchBarProps {
   onSearch: (query: string) => void;

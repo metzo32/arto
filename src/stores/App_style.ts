@@ -5,7 +5,7 @@ display: flex;
 flex-direction: row;
 min-width: 320px;
 height: auto;
-background-color: ${(props) => props.theme.bg_primary};
+background-color: ${(props) => props.theme.bg_secondary};
 position: relative;
 overflow: hidden;
 `;

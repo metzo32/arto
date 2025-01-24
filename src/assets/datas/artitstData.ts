@@ -6,14 +6,20 @@
 import { RiLayoutMasonryLine } from "react-icons/ri";
 import { RiCheckboxMultipleBlankFill } from "react-icons/ri";
 import { IoApertureOutline } from "react-icons/io5";
-import { MdFormatAlignCenter } from "react-icons/md";
+import { RiPaintFill } from "react-icons/ri";
+import { FaCircleNotch } from "react-icons/fa";
+import { FaGripfire } from "react-icons/fa";
+import { LuTreePine } from "react-icons/lu";
+import { FaEnvira } from "react-icons/fa";
+import { MdPieChart } from "react-icons/md";
+import { IoShareSocialOutline } from "react-icons/io5";
 
 import { getRandomImage } from "./getRandomImages";
 
 interface ArtistSkillProps {
   id: number;
-  icon: React.ComponentType; // React 컴포넌트 타입 (React Icons 포함)
-  skill: string;
+  iconName: React.ComponentType;
+  skill: string;      
 }
 
 export interface ArtistDataProps {
@@ -31,37 +37,26 @@ export interface ArtistDataProps {
   randomImage04: string;
   hash?: string[];
   url?: string;
-  skills: ArtistSkillProps[];
+  skills: { id: number; iconName: React.ComponentType; skill: string }[];
   isWishlisted?: boolean;
 }
 
-export const artistSkills:ArtistSkillProps[] = [
-  { id: 1, icon: RiLayoutMasonryLine, skill: "디지털" },
-  { id: 2, icon: RiCheckboxMultipleBlankFill, skill: "설치" },
-  { id: 3, icon: IoApertureOutline, skill: "다중매체" },
-  { id: 4, icon: MdFormatAlignCenter, skill: "추상" },
-  // { icon: PiTriangleDashed, skill: "구상" },
-  // { icon: PiTriangleDashed, skill: "페인팅" },
-  // { icon: PiTriangleDashed, skill: "전통" },
-  // { icon: PiTriangleDashed, skill: "도예" },
-  // { icon: PiTriangleDashed, skill: "금속" },
-  // { icon: PiTriangleDashed, skill: "목공" },
-  // { icon: PiTriangleDashed, skill: "환경" },
-  // { icon: PiTriangleDashed, skill: "조각" },
-  // { icon: PiTriangleDashed, skill: "사회" },
+export const artistSkills: ArtistSkillProps[] = [
+  { id: 1, iconName: RiLayoutMasonryLine,  skill: "디지털" },
+  { id: 2, iconName: RiCheckboxMultipleBlankFill, skill: "설치" },
+  { id: 3, iconName: IoApertureOutline,skill: "다중매체" },
+  { id: 4, iconName: FaEnvira,  skill: "환경" },
+  { id: 5, iconName: IoShareSocialOutline, skill: "사회"  },
+  { id: 6, iconName: RiPaintFill, skill: "페인팅" },
+  { id: 7, iconName: MdPieChart, skill: "조각" },
+  { id: 8, iconName: FaCircleNotch,  skill: "도예" },
+  { id: 9, iconName: FaGripfire,  skill: "금속" },
+  { id: 10, iconName: LuTreePine,  skill: "목공" },
 ];
 
-// function getRandomSkills(): string[] {
-//   let result: string[] = [];
-//   while (result.length < 4) {
-//     const randomSkills = skills[Math.floor(Math.random() * skills.length)];
-//     if (!result.includes(randomSkills)) {
-//       result.push(randomSkills);
-//     }
-//   }
-//   return result;
-// }
-//데이터 최하단에 forEach로 할당
+const getSkillsByIds = (skillIds: number[]): { id: number; iconName: React.ComponentType; skill: string }[] => {
+  return artistSkills.filter(skill => skillIds.includes(skill.id));
+};
 
 const artistdata: ArtistDataProps[] = [
   {
@@ -78,7 +73,7 @@ const artistdata: ArtistDataProps[] = [
     randomImage02: getRandomImage(),
     randomImage03: getRandomImage(),
     randomImage04: getRandomImage(),
-    skills: artistSkills,
+    skills: getSkillsByIds([1, 2, 5, 10]),
   },
   {
     id: 2,
@@ -94,7 +89,7 @@ const artistdata: ArtistDataProps[] = [
     randomImage02: getRandomImage(),
     randomImage03: getRandomImage(),
     randomImage04: getRandomImage(),
-    skills: artistSkills,
+    skills: getSkillsByIds([3, 6, 7, 9]),
   },
   {
     id: 3,
@@ -110,7 +105,7 @@ const artistdata: ArtistDataProps[] = [
     randomImage02: getRandomImage(),
     randomImage03: getRandomImage(),
     randomImage04: getRandomImage(),
-    skills: artistSkills,
+    skills: getSkillsByIds([6, 7, 8, 9]),
   },
   {
     id: 4,
@@ -126,7 +121,7 @@ const artistdata: ArtistDataProps[] = [
     randomImage02: getRandomImage(),
     randomImage03: getRandomImage(),
     randomImage04: getRandomImage(),
-    skills: artistSkills,
+    skills: getSkillsByIds([4, 5, 8, 9]),
   },
   {
     id: 5,
@@ -142,7 +137,7 @@ const artistdata: ArtistDataProps[] = [
     randomImage02: getRandomImage(),
     randomImage03: getRandomImage(),
     randomImage04: getRandomImage(),
-    skills: artistSkills,
+    skills: getSkillsByIds([2, 5, 6, 8]),
   },
   {
     id: 6,
@@ -158,7 +153,7 @@ const artistdata: ArtistDataProps[] = [
     randomImage02: getRandomImage(),
     randomImage03: getRandomImage(),
     randomImage04: getRandomImage(),
-    skills: artistSkills,
+    skills: getSkillsByIds([3, 8, 9, 10]),
   },
   {
     id: 7,
@@ -174,7 +169,7 @@ const artistdata: ArtistDataProps[] = [
     randomImage02: getRandomImage(),
     randomImage03: getRandomImage(),
     randomImage04: getRandomImage(),
-    skills: artistSkills,
+    skills: getSkillsByIds([2, 3, 8, 9]),
   },
   {
     id: 8,
@@ -190,7 +185,7 @@ const artistdata: ArtistDataProps[] = [
     randomImage02: getRandomImage(),
     randomImage03: getRandomImage(),
     randomImage04: getRandomImage(),
-    skills: artistSkills,
+    skills: getSkillsByIds([5, 7, 8, 10]),
   },
   {
     id: 9,
@@ -206,7 +201,7 @@ const artistdata: ArtistDataProps[] = [
     randomImage02: getRandomImage(),
     randomImage03: getRandomImage(),
     randomImage04: getRandomImage(),
-    skills: artistSkills,
+    skills: getSkillsByIds([2, 5, 7, 8]),
   },
   {
     id: 10,
@@ -222,7 +217,7 @@ const artistdata: ArtistDataProps[] = [
     randomImage02: getRandomImage(),
     randomImage03: getRandomImage(),
     randomImage04: getRandomImage(),
-    skills: artistSkills,
+    skills: getSkillsByIds([4, 6, 7, 9]),
   },
   {
     id: 11,
@@ -238,7 +233,7 @@ const artistdata: ArtistDataProps[] = [
     randomImage02: getRandomImage(),
     randomImage03: getRandomImage(),
     randomImage04: getRandomImage(),
-    skills: artistSkills,
+    skills: getSkillsByIds([2, 3, 4, 8]),
   },
   {
     id: 12,
@@ -254,7 +249,7 @@ const artistdata: ArtistDataProps[] = [
     randomImage02: getRandomImage(),
     randomImage03: getRandomImage(),
     randomImage04: getRandomImage(),
-    skills: artistSkills,
+    skills: getSkillsByIds([1, 6, 7, 9]),
   },
   {
     id: 13,
@@ -270,7 +265,7 @@ const artistdata: ArtistDataProps[] = [
     randomImage02: getRandomImage(),
     randomImage03: getRandomImage(),
     randomImage04: getRandomImage(),
-    skills: artistSkills,
+    skills: getSkillsByIds([5, 8, 9, 10]),
   },
   {
     id: 14,
@@ -286,7 +281,7 @@ const artistdata: ArtistDataProps[] = [
     randomImage02: getRandomImage(),
     randomImage03: getRandomImage(),
     randomImage04: getRandomImage(),
-    skills: artistSkills,
+    skills: getSkillsByIds([3, 4, 5, 6]),
   },
   {
     id: 15,
@@ -302,7 +297,7 @@ const artistdata: ArtistDataProps[] = [
     randomImage02: getRandomImage(),
     randomImage03: getRandomImage(),
     randomImage04: getRandomImage(),
-    skills: artistSkills,
+    skills: getSkillsByIds([1, 2, 3, 4]),
   },
   {
     id: 16,
@@ -318,7 +313,7 @@ const artistdata: ArtistDataProps[] = [
     randomImage02: getRandomImage(),
     randomImage03: getRandomImage(),
     randomImage04: getRandomImage(),
-    skills: artistSkills,
+    skills: getSkillsByIds([3, 8, 9, 10]),
   },
   {
     id: 17,
@@ -334,7 +329,7 @@ const artistdata: ArtistDataProps[] = [
     randomImage02: getRandomImage(),
     randomImage03: getRandomImage(),
     randomImage04: getRandomImage(),
-    skills: artistSkills,
+    skills: getSkillsByIds([2, 3, 9, 10]),
   },
   {
     id: 18,
@@ -350,7 +345,7 @@ const artistdata: ArtistDataProps[] = [
     randomImage02: getRandomImage(),
     randomImage03: getRandomImage(),
     randomImage04: getRandomImage(),
-    skills: artistSkills,
+    skills: getSkillsByIds([1, 2, 5, 7]),
   },
   {
     id: 19,
@@ -366,7 +361,7 @@ const artistdata: ArtistDataProps[] = [
     randomImage02: getRandomImage(),
     randomImage03: getRandomImage(),
     randomImage04: getRandomImage(),
-    skills: artistSkills,
+    skills: getSkillsByIds([5, 7, 8, 9]),
   },
   {
     id: 20,
@@ -382,7 +377,7 @@ const artistdata: ArtistDataProps[] = [
     randomImage02: getRandomImage(),
     randomImage03: getRandomImage(),
     randomImage04: getRandomImage(),
-    skills: artistSkills,
+    skills: getSkillsByIds([4, 5, 6, 7]),
   },
   {
     id: 21,
@@ -397,7 +392,7 @@ const artistdata: ArtistDataProps[] = [
     randomImage02: getRandomImage(),
     randomImage03: getRandomImage(),
     randomImage04: getRandomImage(),
-    skills: artistSkills,
+    skills: getSkillsByIds([3, 4, 5, 6]),
   },
   {
     id: 22,
@@ -413,7 +408,7 @@ const artistdata: ArtistDataProps[] = [
     randomImage02: getRandomImage(),
     randomImage03: getRandomImage(),
     randomImage04: getRandomImage(),
-    skills: artistSkills,
+    skills: getSkillsByIds([6, 7, 8, 9]),
   },
   {
     id: 23,
@@ -429,7 +424,7 @@ const artistdata: ArtistDataProps[] = [
     randomImage02: getRandomImage(),
     randomImage03: getRandomImage(),
     randomImage04: getRandomImage(),
-    skills: artistSkills,
+    skills: getSkillsByIds([1, 7, 8, 9]),
   },
   {
     id: 24,
@@ -445,7 +440,7 @@ const artistdata: ArtistDataProps[] = [
     randomImage02: getRandomImage(),
     randomImage03: getRandomImage(),
     randomImage04: getRandomImage(),
-    skills: artistSkills,
+    skills: getSkillsByIds([3, 4, 7, 9]),
   },
   {
     id: 25,
@@ -461,7 +456,7 @@ const artistdata: ArtistDataProps[] = [
     randomImage02: getRandomImage(),
     randomImage03: getRandomImage(),
     randomImage04: getRandomImage(),
-    skills: artistSkills,
+    skills: getSkillsByIds([5, 6, 8, 10]),
   },
   {
     id: 26,
@@ -477,7 +472,7 @@ const artistdata: ArtistDataProps[] = [
     randomImage02: getRandomImage(),
     randomImage03: getRandomImage(),
     randomImage04: getRandomImage(),
-    skills: artistSkills,
+    skills: getSkillsByIds([2, 6, 8, 10]),
   },
   {
     id: 27,
@@ -493,7 +488,7 @@ const artistdata: ArtistDataProps[] = [
     randomImage02: getRandomImage(),
     randomImage03: getRandomImage(),
     randomImage04: getRandomImage(),
-    skills: artistSkills,
+    skills: getSkillsByIds([4, 7, 8, 9]),
   },
   {
     id: 28,
@@ -509,7 +504,7 @@ const artistdata: ArtistDataProps[] = [
     randomImage02: getRandomImage(),
     randomImage03: getRandomImage(),
     randomImage04: getRandomImage(),
-    skills: artistSkills,
+    skills: getSkillsByIds([1, 7, 8, 9]),
   },
   {
     id: 29,
@@ -525,7 +520,7 @@ const artistdata: ArtistDataProps[] = [
     randomImage02: getRandomImage(),
     randomImage03: getRandomImage(),
     randomImage04: getRandomImage(),
-    skills: artistSkills,
+    skills: getSkillsByIds([1, 2, 3, 4]),
   },
   {
     id: 30,
@@ -541,7 +536,7 @@ const artistdata: ArtistDataProps[] = [
     randomImage02: getRandomImage(),
     randomImage03: getRandomImage(),
     randomImage04: getRandomImage(),
-    skills: artistSkills,
+    skills: getSkillsByIds([2, 5, 6, 7]),
   },
   {
     id: 31,
@@ -557,7 +552,7 @@ const artistdata: ArtistDataProps[] = [
     randomImage02: getRandomImage(),
     randomImage03: getRandomImage(),
     randomImage04: getRandomImage(),
-    skills: artistSkills,
+    skills: getSkillsByIds([3, 6, 7, 10]),
   },
   {
     id: 32,
@@ -573,7 +568,7 @@ const artistdata: ArtistDataProps[] = [
     randomImage02: getRandomImage(),
     randomImage03: getRandomImage(),
     randomImage04: getRandomImage(),
-    skills: artistSkills,
+    skills: getSkillsByIds([2, 3, 6, 8]),
   },
   {
     id: 33,
@@ -588,7 +583,7 @@ const artistdata: ArtistDataProps[] = [
     randomImage02: getRandomImage(),
     randomImage03: getRandomImage(),
     randomImage04: getRandomImage(),
-    skills: artistSkills,
+    skills: getSkillsByIds([3, 4, 5, 6]),
   },
   {
     id: 34,
@@ -604,7 +599,7 @@ const artistdata: ArtistDataProps[] = [
     randomImage02: getRandomImage(),
     randomImage03: getRandomImage(),
     randomImage04: getRandomImage(),
-    skills: artistSkills,
+    skills: getSkillsByIds([2, 3, 7, 9]),
   },
   {
     id: 35,
@@ -620,7 +615,7 @@ const artistdata: ArtistDataProps[] = [
     randomImage02: getRandomImage(),
     randomImage03: getRandomImage(),
     randomImage04: getRandomImage(),
-    skills: artistSkills,
+    skills: getSkillsByIds([1, 8, 9, 10]),
   },
   {
     id: 36,
@@ -636,7 +631,7 @@ const artistdata: ArtistDataProps[] = [
     randomImage02: getRandomImage(),
     randomImage03: getRandomImage(),
     randomImage04: getRandomImage(),
-    skills: artistSkills,
+    skills: getSkillsByIds([5, 6, 7, 8]),
   },
   {
     id: 37,
@@ -652,7 +647,7 @@ const artistdata: ArtistDataProps[] = [
     randomImage02: getRandomImage(),
     randomImage03: getRandomImage(),
     randomImage04: getRandomImage(),
-    skills: artistSkills,
+    skills: getSkillsByIds([2, 3, 4, 5]),
   },
   {
     id: 38,
@@ -668,7 +663,7 @@ const artistdata: ArtistDataProps[] = [
     randomImage02: getRandomImage(),
     randomImage03: getRandomImage(),
     randomImage04: getRandomImage(),
-    skills: artistSkills,
+    skills: getSkillsByIds([4, 7, 8, 9]),
   },
   {
     id: 39,
@@ -684,7 +679,7 @@ const artistdata: ArtistDataProps[] = [
     randomImage02: getRandomImage(),
     randomImage03: getRandomImage(),
     randomImage04: getRandomImage(),
-    skills: artistSkills,
+    skills: getSkillsByIds([1, 2, 3, 4]),
   },
   {
     id: 40,
@@ -700,7 +695,7 @@ const artistdata: ArtistDataProps[] = [
     randomImage02: getRandomImage(),
     randomImage03: getRandomImage(),
     randomImage04: getRandomImage(),
-    skills: artistSkills,
+    skills: getSkillsByIds([1, 3, 5, 7]),
   },
   {
     id: 41,
@@ -716,7 +711,7 @@ const artistdata: ArtistDataProps[] = [
     randomImage02: getRandomImage(),
     randomImage03: getRandomImage(),
     randomImage04: getRandomImage(),
-    skills: artistSkills,
+    skills: getSkillsByIds([2, 3, 4, 10]),
   },
   {
     id: 42,
@@ -732,7 +727,7 @@ const artistdata: ArtistDataProps[] = [
     randomImage02: getRandomImage(),
     randomImage03: getRandomImage(),
     randomImage04: getRandomImage(),
-    skills: artistSkills,
+    skills: getSkillsByIds([6, 7, 8, 10]),
   },
   {
     id: 43,
@@ -747,7 +742,7 @@ const artistdata: ArtistDataProps[] = [
     randomImage02: getRandomImage(),
     randomImage03: getRandomImage(),
     randomImage04: getRandomImage(),
-    skills: artistSkills,
+    skills: getSkillsByIds([4, 6, 7, 8]),
   },
   {
     id: 44,
@@ -763,7 +758,7 @@ const artistdata: ArtistDataProps[] = [
     randomImage02: getRandomImage(),
     randomImage03: getRandomImage(),
     randomImage04: getRandomImage(),
-    skills: artistSkills,
+    skills: getSkillsByIds([2, 5, 7, 10]),
   },
   {
     id: 45,
@@ -779,7 +774,7 @@ const artistdata: ArtistDataProps[] = [
     randomImage02: getRandomImage(),
     randomImage03: getRandomImage(),
     randomImage04: getRandomImage(),
-    skills: artistSkills,
+    skills: getSkillsByIds([1, 3, 4, 5]),
   },
   {
     id: 46,
@@ -795,7 +790,7 @@ const artistdata: ArtistDataProps[] = [
     randomImage02: getRandomImage(),
     randomImage03: getRandomImage(),
     randomImage04: getRandomImage(),
-    skills: artistSkills,
+    skills: getSkillsByIds([1, 2, 3, 4]),
   },
   {
     id: 47,
@@ -811,7 +806,7 @@ const artistdata: ArtistDataProps[] = [
     randomImage02: getRandomImage(),
     randomImage03: getRandomImage(),
     randomImage04: getRandomImage(),
-    skills: artistSkills,
+    skills: getSkillsByIds([2, 6, 8, 10]),
   },
   {
     id: 48,
@@ -826,7 +821,7 @@ const artistdata: ArtistDataProps[] = [
     randomImage02: getRandomImage(),
     randomImage03: getRandomImage(),
     randomImage04: getRandomImage(),
-    skills: artistSkills,
+    skills: getSkillsByIds([3, 7, 8, 9]),
   },
   {
     id: 49,
@@ -842,7 +837,7 @@ const artistdata: ArtistDataProps[] = [
     randomImage02: getRandomImage(),
     randomImage03: getRandomImage(),
     randomImage04: getRandomImage(),
-    skills: artistSkills,
+    skills: getSkillsByIds([3, 4, 5, 7]),
   },
   {
     id: 50,
@@ -858,7 +853,7 @@ const artistdata: ArtistDataProps[] = [
     randomImage02: getRandomImage(),
     randomImage03: getRandomImage(),
     randomImage04: getRandomImage(),
-    skills: artistSkills,
+    skills: getSkillsByIds([4, 5, 6, 10]),
   },
   {
     id: 51,
@@ -874,7 +869,7 @@ const artistdata: ArtistDataProps[] = [
     randomImage02: getRandomImage(),
     randomImage03: getRandomImage(),
     randomImage04: getRandomImage(),
-    skills: artistSkills,
+    skills: getSkillsByIds([7, 8, 9, 10]),
   },
   {
     id: 52,
@@ -890,7 +885,7 @@ const artistdata: ArtistDataProps[] = [
     randomImage02: getRandomImage(),
     randomImage03: getRandomImage(),
     randomImage04: getRandomImage(),
-    skills: artistSkills,
+    skills: getSkillsByIds([4, 5, 6, 10]),
   },
   {
     id: 53,
@@ -906,7 +901,7 @@ const artistdata: ArtistDataProps[] = [
     randomImage02: getRandomImage(),
     randomImage03: getRandomImage(),
     randomImage04: getRandomImage(),
-    skills: artistSkills,
+    skills: getSkillsByIds([2, 3, 7, 9]),
   },
   {
     id: 54,
@@ -922,7 +917,7 @@ const artistdata: ArtistDataProps[] = [
     randomImage02: getRandomImage(),
     randomImage03: getRandomImage(),
     randomImage04: getRandomImage(),
-    skills: artistSkills,
+    skills: getSkillsByIds([3, 4, 6, 10]),
   },
   {
     id: 55,
@@ -938,7 +933,7 @@ const artistdata: ArtistDataProps[] = [
     randomImage02: getRandomImage(),
     randomImage03: getRandomImage(),
     randomImage04: getRandomImage(),
-    skills: artistSkills,
+    skills: getSkillsByIds([4, 5, 8, 9]),
   },
   {
     id: 56,
@@ -954,7 +949,7 @@ const artistdata: ArtistDataProps[] = [
     randomImage02: getRandomImage(),
     randomImage03: getRandomImage(),
     randomImage04: getRandomImage(),
-    skills: artistSkills,
+    skills: getSkillsByIds([1, 4, 5, 7]),
   },
   {
     id: 57,
@@ -970,7 +965,7 @@ const artistdata: ArtistDataProps[] = [
     randomImage02: getRandomImage(),
     randomImage03: getRandomImage(),
     randomImage04: getRandomImage(),
-    skills: artistSkills,
+    skills: getSkillsByIds([2, 4, 5, 6]),
   },
   {
     id: 58,
@@ -986,7 +981,7 @@ const artistdata: ArtistDataProps[] = [
     randomImage02: getRandomImage(),
     randomImage03: getRandomImage(),
     randomImage04: getRandomImage(),
-    skills: artistSkills,
+    skills: getSkillsByIds([5, 6, 7, 8]),
   },
   {
     id: 59,
@@ -1001,7 +996,7 @@ const artistdata: ArtistDataProps[] = [
     randomImage02: getRandomImage(),
     randomImage03: getRandomImage(),
     randomImage04: getRandomImage(),
-    skills: artistSkills,
+    skills: getSkillsByIds([1, 6, 7, 10]),
   },
   {
     id: 60,
@@ -1017,7 +1012,7 @@ const artistdata: ArtistDataProps[] = [
     randomImage02: getRandomImage(),
     randomImage03: getRandomImage(),
     randomImage04: getRandomImage(),
-    skills: artistSkills,
+    skills: getSkillsByIds([2, 5, 8, 10]),
   },
   {
     id: 61,
@@ -1033,7 +1028,7 @@ const artistdata: ArtistDataProps[] = [
     randomImage02: getRandomImage(),
     randomImage03: getRandomImage(),
     randomImage04: getRandomImage(),
-    skills: artistSkills,
+    skills: getSkillsByIds([4, 6, 8, 9]),
   },
   {
     id: 62,
@@ -1049,7 +1044,7 @@ const artistdata: ArtistDataProps[] = [
     randomImage02: getRandomImage(),
     randomImage03: getRandomImage(),
     randomImage04: getRandomImage(),
-    skills: artistSkills,
+    skills: getSkillsByIds([3, 4, 5, 8]),
   },
   {
     id: 63,
@@ -1065,7 +1060,7 @@ const artistdata: ArtistDataProps[] = [
     randomImage02: getRandomImage(),
     randomImage03: getRandomImage(),
     randomImage04: getRandomImage(),
-    skills: artistSkills,
+    skills: getSkillsByIds([2, 5, 7, 8]),
   },
   {
     id: 64,
@@ -1080,7 +1075,7 @@ const artistdata: ArtistDataProps[] = [
     randomImage02: getRandomImage(),
     randomImage03: getRandomImage(),
     randomImage04: getRandomImage(),
-    skills: artistSkills,
+    skills: getSkillsByIds([4, 5, 7, 8]),
   },
   {
     id: 65,
@@ -1096,7 +1091,7 @@ const artistdata: ArtistDataProps[] = [
     randomImage02: getRandomImage(),
     randomImage03: getRandomImage(),
     randomImage04: getRandomImage(),
-    skills: artistSkills,
+    skills: getSkillsByIds([2, 6, 7, 8]),
   },
   {
     id: 66,
@@ -1112,7 +1107,7 @@ const artistdata: ArtistDataProps[] = [
     randomImage02: getRandomImage(),
     randomImage03: getRandomImage(),
     randomImage04: getRandomImage(),
-    skills: artistSkills,
+    skills: getSkillsByIds([5, 7, 8, 9]),
   },
   {
     id: 67,
@@ -1128,7 +1123,7 @@ const artistdata: ArtistDataProps[] = [
     randomImage02: getRandomImage(),
     randomImage03: getRandomImage(),
     randomImage04: getRandomImage(),
-    skills: artistSkills,
+    skills: getSkillsByIds([3, 6, 8, 9]),
   },
   {
     id: 68,
@@ -1144,7 +1139,7 @@ const artistdata: ArtistDataProps[] = [
     randomImage02: getRandomImage(),
     randomImage03: getRandomImage(),
     randomImage04: getRandomImage(),
-    skills: artistSkills,
+    skills: getSkillsByIds([5, 6, 9, 10]),
   },
   {
     id: 69,
@@ -1160,7 +1155,7 @@ const artistdata: ArtistDataProps[] = [
     randomImage02: getRandomImage(),
     randomImage03: getRandomImage(),
     randomImage04: getRandomImage(),
-    skills: artistSkills,
+    skills: getSkillsByIds([1, 2, 3, 7]),
   },
   {
     id: 70,
@@ -1176,491 +1171,8 @@ const artistdata: ArtistDataProps[] = [
     randomImage02: getRandomImage(),
     randomImage03: getRandomImage(),
     randomImage04: getRandomImage(),
-    skills: artistSkills,
+    skills: getSkillsByIds([6, 7, 9, 10]),
   },
-  {
-    id: 71,
-    nickname: "Beth",
-    last_name: "Lezemore",
-    email: "blezemore1y@phpbb.com",
-    city: "Wansheng",
-    street_address: "075 Stang Trail",
-    introduction:
-      "Vestibulum ac est lacinia nisi venenatis tristique. Fusce congue, diam id ornare imperdiet, sapien urna pretium nisl, ut volutpat sapien arcu sed augue. Aliquam erat volutpat.",
-    randomImage: getRandomImage(),
-    randomImage01: getRandomImage(),
-    randomImage02: getRandomImage(),
-    randomImage03: getRandomImage(),
-    randomImage04: getRandomImage(),
-    skills: artistSkills,
-  },
-  {
-    id: 72,
-    nickname: "Rodrick",
-    last_name: "Goodwin",
-    email: "rgoodwin1z@ebay.com",
-    city: "Valdemarsvik",
-    street_address: "99 Di Loreto Avenue",
-    introduction:
-      "Duis bibendum, felis sed interdum venenatis, turpis enim blandit mi, in porttitor pede justo eu massa. Donec dapibus. Duis at velit eu est congue elementum.",
-    randomImage: getRandomImage(),
-    randomImage01: getRandomImage(),
-    randomImage02: getRandomImage(),
-    randomImage03: getRandomImage(),
-    randomImage04: getRandomImage(),
-    skills: artistSkills,
-  },
-  {
-    id: 73,
-    nickname: "Betti",
-    last_name: "Waters",
-    email: "bwaters20@ucla.edu",
-    city: "Pingshi",
-    street_address: "20 Esch Center",
-    introduction:
-      "Maecenas tristique, est et tempus semper, est quam pharetra magna, ac consequat metus sapien ut nunc. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Mauris viverra diam vitae quam. Suspendisse potenti.",
-    randomImage: getRandomImage(),
-    randomImage01: getRandomImage(),
-    randomImage02: getRandomImage(),
-    randomImage03: getRandomImage(),
-    randomImage04: getRandomImage(),
-    skills: artistSkills,
-  },
-  {
-    id: 74,
-    nickname: "Laina",
-    last_name: "Fairlem",
-    email: "lfairlem21@comsenz.com",
-    city: "Uchiza",
-    street_address: "12036 Karstens Pass",
-    introduction:
-      "Vestibulum ac est lacinia nisi venenatis tristique. Fusce congue, diam id ornare imperdiet, sapien urna pretium nisl, ut volutpat sapien arcu sed augue. Aliquam erat volutpat.",
-    randomImage: getRandomImage(),
-    randomImage01: getRandomImage(),
-    randomImage02: getRandomImage(),
-    randomImage03: getRandomImage(),
-    randomImage04: getRandomImage(),
-    skills: artistSkills,
-  },
-  {
-    id: 75,
-    nickname: "Shermy",
-    last_name: "Ruprechter",
-    email: "sruprechter22@accuweather.com",
-    city: "Orléans",
-    street_address: "716 Clarendon Pass",
-    introduction:
-      "Suspendisse potenti. In eleifend quam a odio. In hac habitasse platea dictumst.",
-    randomImage: getRandomImage(),
-    randomImage01: getRandomImage(),
-    randomImage02: getRandomImage(),
-    randomImage03: getRandomImage(),
-    randomImage04: getRandomImage(),
-    skills: artistSkills,
-  },
-  {
-    id: 76,
-    nickname: "Natalya",
-    last_name: "Biasotti",
-    email: "nbiasotti23@youtu.be",
-    city: "Mandalay",
-    street_address: "9 Golden Leaf Court",
-    introduction:
-      "Curabitur in libero ut massa volutpat convallis. Morbi odio odio, elementum eu, interdum eu, tincidunt in, leo. Maecenas pulvinar lobortis est.",
-    randomImage: getRandomImage(),
-    randomImage01: getRandomImage(),
-    randomImage02: getRandomImage(),
-    randomImage03: getRandomImage(),
-    randomImage04: getRandomImage(),
-    skills: artistSkills,
-  },
-  {
-    id: 77,
-    nickname: "Auguste",
-    last_name: "Hellen",
-    email: "ahellen24@odnoklassniki.ru",
-    city: "Sangkalputung",
-    street_address: "657 Raven Place",
-    introduction:
-      "Quisque porta volutpat erat. Quisque erat eros, viverra eget, congue eget, semper rutrum, nulla. Nunc purus.",
-    randomImage: getRandomImage(),
-    randomImage01: getRandomImage(),
-    randomImage02: getRandomImage(),
-    randomImage03: getRandomImage(),
-    randomImage04: getRandomImage(),
-    skills: artistSkills,
-  },
-  {
-    id: 78,
-    nickname: "Kimball",
-    last_name: "Fazzioli",
-    email: "kfazzioli25@nymag.com",
-    city: "Volosovo",
-    street_address: "7661 Monterey Point",
-    introduction:
-      "Duis consequat dui nec nisi volutpat eleifend. Donec ut dolor. Morbi vel lectus in quam fringilla rhoncus.",
-    randomImage: getRandomImage(),
-    randomImage01: getRandomImage(),
-    randomImage02: getRandomImage(),
-    randomImage03: getRandomImage(),
-    randomImage04: getRandomImage(),
-    skills: artistSkills,
-  },
-  {
-    id: 79,
-    nickname: "Miner",
-    last_name: "Trevance",
-    email: "mtrevance26@twitter.com",
-    city: "Xiaojia",
-    street_address: "8 Mayfield Drive",
-    introduction:
-      "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Proin risus. Praesent lectus.",
-    randomImage: getRandomImage(),
-    randomImage01: getRandomImage(),
-    randomImage02: getRandomImage(),
-    randomImage03: getRandomImage(),
-    randomImage04: getRandomImage(),
-    skills: artistSkills,
-  },
-  {
-    id: 80,
-    nickname: "Brandise",
-    last_name: "Mereweather",
-    email: "bmereweather27@prweb.com",
-    city: "Ćmielów",
-    street_address: "800 Aberg Alley",
-    introduction:
-      "In sagittis dui vel nisl. Duis ac nibh. Fusce lacus purus, aliquet at, feugiat non, pretium quis, lectus.",
-    randomImage: getRandomImage(),
-    randomImage01: getRandomImage(),
-    randomImage02: getRandomImage(),
-    randomImage03: getRandomImage(),
-    randomImage04: getRandomImage(),
-    skills: artistSkills,
-  },
-  {
-    id: 81,
-    nickname: "Terrill",
-    last_name: "Riolfo",
-    email: "triolfo28@baidu.com",
-    city: "Xinsheng",
-    street_address: "6929 Atwood Lane",
-    introduction:
-      "Quisque porta volutpat erat. Quisque erat eros, viverra eget, congue eget, semper rutrum, nulla. Nunc purus.",
-    randomImage: getRandomImage(),
-    randomImage01: getRandomImage(),
-    randomImage02: getRandomImage(),
-    randomImage03: getRandomImage(),
-    randomImage04: getRandomImage(),
-    skills: artistSkills,
-  },
-  {
-    id: 82,
-    nickname: "Hedda",
-    last_name: "Akred",
-    email: "hakred29@blinklist.com",
-    city: "Pawa",
-    street_address: "7845 Carey Park",
-    introduction:
-      "Praesent blandit. Nam nulla. Integer pede justo, lacinia eget, tincidunt eget, tempus vel, pede.",
-    randomImage: getRandomImage(),
-    randomImage01: getRandomImage(),
-    randomImage02: getRandomImage(),
-    randomImage03: getRandomImage(),
-    randomImage04: getRandomImage(),
-    skills: artistSkills,
-  },
-  {
-    id: 83,
-    nickname: "Any",
-    last_name: "Cowie",
-    email: "acowie2a@home.pl",
-    city: "El Puerto",
-    street_address: "6784 Doe Crossing Point",
-    introduction:
-      "Duis bibendum. Morbi non quam nec dui luctus rutrum. Nulla tellus.",
-    randomImage: getRandomImage(),
-    randomImage01: getRandomImage(),
-    randomImage02: getRandomImage(),
-    randomImage03: getRandomImage(),
-    randomImage04: getRandomImage(),
-    skills: artistSkills,
-  },
-  {
-    id: 84,
-    nickname: "Felicdad",
-    last_name: "Pauli",
-    email: "fpauli2b@forbes.com",
-    city: "Casma",
-    street_address: "62 Hudson Court",
-    introduction:
-      "In sagittis dui vel nisl. Duis ac nibh. Fusce lacus purus, aliquet at, feugiat non, pretium quis, lectus.",
-    randomImage: getRandomImage(),
-    randomImage01: getRandomImage(),
-    randomImage02: getRandomImage(),
-    randomImage03: getRandomImage(),
-    randomImage04: getRandomImage(),
-    skills: artistSkills,
-  },
-  {
-    id: 85,
-    nickname: "Mylo",
-    last_name: "Vidyapin",
-    email: "mvidyapin2c@hp.com",
-    city: "Abejorral",
-    street_address: "63 Golf Terrace",
-    introduction:
-      "Sed sagittis. Nam congue, risus semper porta volutpat, quam pede lobortis ligula, sit amet eleifend pede libero quis orci. Nullam molestie nibh in lectus.",
-    randomImage: getRandomImage(),
-    randomImage01: getRandomImage(),
-    randomImage02: getRandomImage(),
-    randomImage03: getRandomImage(),
-    randomImage04: getRandomImage(),
-    skills: artistSkills,
-  },
-  {
-    id: 86,
-    nickname: "Yoshiko",
-    last_name: "Ingre",
-    email: "yingre2d@usda.gov",
-    city: "Rosario",
-    street_address: "21899 Talmadge Point",
-    introduction:
-      "Duis bibendum, felis sed interdum venenatis, turpis enim blandit mi, in porttitor pede justo eu massa. Donec dapibus. Duis at velit eu est congue elementum.",
-    randomImage: getRandomImage(),
-    randomImage01: getRandomImage(),
-    randomImage02: getRandomImage(),
-    randomImage03: getRandomImage(),
-    randomImage04: getRandomImage(),
-    skills: artistSkills,
-  },
-  {
-    id: 87,
-    nickname: "Jasmin",
-    last_name: "Marzelle",
-    email: "jmarzelle2e@thetimes.co.uk",
-    city: "Krajan Dua Padomasan",
-    street_address: "2 Barnett Alley",
-    introduction:
-      "In sagittis dui vel nisl. Duis ac nibh. Fusce lacus purus, aliquet at, feugiat non, pretium quis, lectus.",
-    randomImage: getRandomImage(),
-    randomImage01: getRandomImage(),
-    randomImage02: getRandomImage(),
-    randomImage03: getRandomImage(),
-    randomImage04: getRandomImage(),
-    skills: artistSkills,
-  },
-  {
-    id: 88,
-    nickname: "Iris",
-    last_name: "Truran",
-    email: "itruran2f@google.it",
-    city: "Kolomanu",
-    street_address: "1 Canary Avenue",
-    introduction:
-      "Quisque id justo sit amet sapien dignissim vestibulum. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Nulla dapibus dolor vel est. Donec odio justo, sollicitudin ut, suscipit a, feugiat et, eros.",
-    randomImage: getRandomImage(),
-    randomImage01: getRandomImage(),
-    randomImage02: getRandomImage(),
-    randomImage03: getRandomImage(),
-    randomImage04: getRandomImage(),
-    skills: artistSkills,
-  },
-  {
-    id: 89,
-    nickname: "Emalia",
-    last_name: "Tebbett",
-    email: "etebbett2g@wufoo.com",
-    city: "Jobabo",
-    street_address: "65319 Troy Court",
-    introduction:
-      "Proin leo odio, porttitor id, consequat in, consequat ut, nulla. Sed accumsan felis. Ut at dolor quis odio consequat varius.",
-    randomImage: getRandomImage(),
-    randomImage01: getRandomImage(),
-    randomImage02: getRandomImage(),
-    randomImage03: getRandomImage(),
-    randomImage04: getRandomImage(),
-    skills: artistSkills,
-  },
-  {
-    id: 90,
-    nickname: "Brent",
-    last_name: "Voice",
-    email: "bvoice2h@tmall.com",
-    city: "Krajan Karangsari",
-    street_address: "757 Helena Hill",
-    introduction:
-      "Proin interdum mauris non ligula pellentesque ultrices. Phasellus id sapien in sapien iaculis congue. Vivamus metus arcu, adipiscing molestie, hendrerit at, vulputate vitae, nisl.",
-    randomImage: getRandomImage(),
-    randomImage01: getRandomImage(),
-    randomImage02: getRandomImage(),
-    randomImage03: getRandomImage(),
-    randomImage04: getRandomImage(),
-    skills: artistSkills,
-  },
-  {
-    id: 91,
-    nickname: "Lucretia",
-    last_name: "Steaning",
-    email: "lsteaning2i@tripod.com",
-    city: "Järfälla",
-    street_address: "938 Anthes Plaza",
-    introduction:
-      "Quisque porta volutpat erat. Quisque erat eros, viverra eget, congue eget, semper rutrum, nulla. Nunc purus.",
-    randomImage: getRandomImage(),
-    randomImage01: getRandomImage(),
-    randomImage02: getRandomImage(),
-    randomImage03: getRandomImage(),
-    randomImage04: getRandomImage(),
-    skills: artistSkills,
-  },
-  {
-    id: 92,
-    nickname: "Meaghan",
-    last_name: "Orkney",
-    email: "morkney2j@google.fr",
-    city: "Mundão",
-    street_address: "1 International Point",
-    introduction:
-      "Nam ultrices, libero non mattis pulvinar, nulla pede ullamcorper augue, a suscipit nulla elit ac nulla. Sed vel enim sit amet nunc viverra dapibus. Nulla suscipit ligula in lacus.",
-    randomImage: getRandomImage(),
-    randomImage01: getRandomImage(),
-    randomImage02: getRandomImage(),
-    randomImage03: getRandomImage(),
-    randomImage04: getRandomImage(),
-    skills: artistSkills,
-  },
-  {
-    id: 93,
-    nickname: "Oralee",
-    last_name: "Snaden",
-    email: "osnaden2k@engadget.com",
-    city: "Néa Róda",
-    street_address: "9627 Eagan Alley",
-    introduction:
-      "Aenean lectus. Pellentesque eget nunc. Donec quis orci eget orci vehicula condimentum.",
-    randomImage: getRandomImage(),
-    randomImage01: getRandomImage(),
-    randomImage02: getRandomImage(),
-    randomImage03: getRandomImage(),
-    randomImage04: getRandomImage(),
-    skills: artistSkills,
-  },
-  {
-    id: 94,
-    nickname: "Delphinia",
-    last_name: "Fraschetti",
-    email: "dfraschetti2l@gnu.org",
-    city: "Mora",
-    street_address: "53 Arrowood Crossing",
-    introduction:
-      "Quisque id justo sit amet sapien dignissim vestibulum. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Nulla dapibus dolor vel est. Donec odio justo, sollicitudin ut, suscipit a, feugiat et, eros.",
-    randomImage: getRandomImage(),
-    randomImage01: getRandomImage(),
-    randomImage02: getRandomImage(),
-    randomImage03: getRandomImage(),
-    randomImage04: getRandomImage(),
-    skills: artistSkills,
-  },
-  {
-    id: 95,
-    nickname: "Lari",
-    last_name: "Sainte Paul",
-    email: "lsaintepaul2m@rakuten.co.jp",
-    city: "Pārūn",
-    street_address: "2 Chinook Alley",
-    introduction:
-      "Morbi porttitor lorem id ligula. Suspendisse ornare consequat lectus. In est risus, auctor sed, tristique in, tempus sit amet, sem.",
-    randomImage: getRandomImage(),
-    randomImage01: getRandomImage(),
-    randomImage02: getRandomImage(),
-    randomImage03: getRandomImage(),
-    randomImage04: getRandomImage(),
-    skills: artistSkills,
-  },
-  {
-    id: 96,
-    nickname: "Nelly",
-    last_name: "Gibbs",
-    email: "ngibbs2n@ifeng.com",
-    city: "Massakory",
-    street_address: "89826 Northland Avenue",
-    introduction:
-      "Suspendisse potenti. In eleifend quam a odio. In hac habitasse platea dictumst.",
-    randomImage: getRandomImage(),
-    randomImage01: getRandomImage(),
-    randomImage02: getRandomImage(),
-    randomImage03: getRandomImage(),
-    randomImage04: getRandomImage(),
-    skills: artistSkills,
-  },
-  {
-    id: 97,
-    nickname: "Philomena",
-    last_name: "Thurlow",
-    email: "pthurlow2o@ezinearticles.com",
-    city: "Pingqiao",
-    street_address: "74395 Algoma Avenue",
-    introduction:
-      "Nullam sit amet turpis elementum ligula vehicula consequat. Morbi a ipsum. Integer a nibh.",
-    randomImage: getRandomImage(),
-    randomImage01: getRandomImage(),
-    randomImage02: getRandomImage(),
-    randomImage03: getRandomImage(),
-    randomImage04: getRandomImage(),
-    skills: artistSkills,
-  },
-  {
-    id: 98,
-    nickname: "Lissa",
-    last_name: "Glyssanne",
-    email: "lglyssanne2p@dyndns.org",
-    city: "Kowary",
-    street_address: "948 Vermont Hill",
-    introduction: "In congue. Etiam justo. Etiam pretium iaculis justo.",
-    randomImage: getRandomImage(),
-    randomImage01: getRandomImage(),
-    randomImage02: getRandomImage(),
-    randomImage03: getRandomImage(),
-    randomImage04: getRandomImage(),
-    skills: artistSkills,
-  },
-  {
-    id: 99,
-    nickname: "Daren",
-    last_name: "Blakeborough",
-    email: "dblakeborough2q@sogou.com",
-    city: "Longtian",
-    street_address: "036 Everett Drive",
-    introduction:
-      "Maecenas leo odio, condimentum id, luctus nec, molestie sed, justo. Pellentesque viverra pede ac diam. Cras pellentesque volutpat dui.",
-    randomImage: getRandomImage(),
-    randomImage01: getRandomImage(),
-    randomImage02: getRandomImage(),
-    randomImage03: getRandomImage(),
-    randomImage04: getRandomImage(),
-    skills: artistSkills,
-  },
-  {
-    id: 100,
-    nickname: "Lynnette",
-    last_name: "Piesing",
-    email: "lpiesing2r@reddit.com",
-    city: "Lubenec",
-    street_address: "11 Scott Way",
-    introduction:
-      "Nullam sit amet turpis elementum ligula vehicula consequat. Morbi a ipsum. Integer a nibh.",
-    randomImage: getRandomImage(),
-    randomImage01: getRandomImage(),
-    randomImage02: getRandomImage(),
-    randomImage03: getRandomImage(),
-    randomImage04: getRandomImage(),
-    skills: artistSkills,
-  },
-];
-
-// artistdata.forEach((artist) => {
-//   artist.hash = getRandomSkills();
-// });
+]
 
 export default artistdata;

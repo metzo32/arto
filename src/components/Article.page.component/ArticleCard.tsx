@@ -96,12 +96,11 @@ export default function ArticleCard() {
       console.error("URL 찾을 수 없음");
     }
   };
-  
 
   return (
     <>
       <Div className="wrapper">
-        <SearchBar onSearch={handleSearch}/>
+        <SearchBar onSearch={handleSearch} />
         <Div className="article-card-wrapper">
           {cards.map((index) => {
             const artist = sortedData[index];

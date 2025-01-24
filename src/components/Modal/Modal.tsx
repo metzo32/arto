@@ -1,5 +1,8 @@
 import { Span, Div, H3, P, Circle, ModalIcon } from "./Modal.style";
-import BaseButton from "../../assets/design-assets/BaseButton/BaseButton";
+import {
+  BaseButton,
+  SecondaryButton,
+} from "../../assets/design-assets/BaseButton/BaseButton";
 import useWindowSize from "../../hooks/useWindowSize";
 
 interface ModalProps {
@@ -7,9 +10,22 @@ interface ModalProps {
   onClose: () => void;
   title: string;
   content: string | JSX.Element;
+  isOptionOn?: boolean;
+  primBtnText?: string;
+  secBtnText?: string;
+  onSecClose?: () => void;
 }
 
-export default function Modal({ isOpen, onClose, title, content }: ModalProps) {
+export default function Modal({
+  isOpen,
+  onClose,
+  title,
+  content,
+  isOptionOn = false,
+  primBtnText = "닫기",
+  secBtnText = "닫기",
+  onSecClose,
+}: ModalProps) {
   const { isMobile } = useWindowSize();
   if (!isOpen) return null;
 
@@ -29,7 +45,12 @@ export default function Modal({ isOpen, onClose, title, content }: ModalProps) {
         )}
         <H3>{title}</H3>
         <P>{content}</P>
-        <BaseButton onClick={onClose} text="닫기" />
+        <Div className="btn-container">
+          <BaseButton onClick={onClose} text={primBtnText} />
+          {isOptionOn && (
+            <SecondaryButton onClick={onSecClose} text={secBtnText} />
+          )}
+        </Div>
       </Div>
     </Span>
   );

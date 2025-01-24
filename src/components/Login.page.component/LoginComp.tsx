@@ -10,7 +10,7 @@ import {
   IconBox,
   IconCheck,
 } from "./Login.style";
-import BaseButton from "../../assets/design-assets/BaseButton/BaseButton";
+import { BaseButton } from "../../assets/design-assets/BaseButton/BaseButton";
 import { useState, useEffect, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext";

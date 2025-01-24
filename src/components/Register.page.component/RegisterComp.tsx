@@ -8,7 +8,7 @@ import {
   H4,
   Button,
 } from "../Login.page.component/Login.style";
-import BaseButton from "../../assets/design-assets/BaseButton/BaseButton";
+import { BaseButton } from "../../assets/design-assets/BaseButton/BaseButton";
 
 import { auth, db } from "../../firebase/firebaseConfig";
 import { setDoc, doc } from "firebase/firestore";
@@ -141,8 +141,9 @@ export default function RegisterComp() {
         openModal("가입 성공!", "로그인 화면으로 이동합니다.");
 
         const handleModalClose = () => {
-          closeModal(); // 모달 닫기
+          closeModal();
           if (!isModalOpen) {
+            // 모달을 닫으면
             navigate("/login"); // 로그인 페이지로 이동
           }
         };

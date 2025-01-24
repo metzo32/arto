@@ -86,22 +86,20 @@ export const Div = styled.div`
   }
 
   &.main-img-container {
+    width: 100%;
     position: relative;
 
     @media (max-width: 767px) {
-      width: calc(100% - 20px);
       height: 180px;
       padding: 20px 10px;
     }
 
     @media (min-width: 768px) {
-      width: calc(100% - 80px);
       height: 500px;
       padding: 60px 40px;
     }
 
     @media (min-width: 1024px) {
-      width: calc(100% - 80px);
       height: 500px;
       padding: 60px 40px;
     }

@@ -3,14 +3,23 @@ import { Button } from "./BaseButton.style";
 interface BaseButtonProps {
   text: string;
   type?: "button" | "submit" | "reset";
-  // onClick?: (() => void) | ((event: React.MouseEvent<HTMLButtonElement>) => void);
-  onClick?: any;
+  onClick?: React.MouseEventHandler<HTMLButtonElement>;
 }
 
-export default function BaseButton({ text, type, onClick }: BaseButtonProps) {
+const BaseButton = ({ text, type, onClick }: BaseButtonProps) => {
   return (
-    <Button onClick={onClick} type={type}>
+    <Button onClick={onClick} type={type} className="primary">
       {text}
     </Button>
   );
-}
+};
+
+const SecondaryButton = ({ text, type, onClick }: BaseButtonProps) => {
+  return (
+    <Button onClick={onClick} type={type} className="secondary">
+      {text}
+    </Button>
+  );
+};
+
+export { BaseButton, SecondaryButton };

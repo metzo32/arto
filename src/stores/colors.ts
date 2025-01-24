@@ -12,8 +12,13 @@ export const lightTheme = {
   main: "#cb0d3c",
   main_vivid: "#e71745",
   accent: "#FE481D",
+  accent_secondary: "#FE9311",
   extraLight: "#FAFEFF",
   white: "#FFFFFF",
+  btnSecText: " #EAEAEA",
+  btnSecBg: "#CBCBCB",
+  btnSecBgHover: "#ABABAB",
+  btnSecBorder: "#BEBEBE",
   bg_grad:
     "linear-gradient(180deg, rgba(233,238,239,1) 0%, rgba(214,224,225,1) 50%)",
 };
@@ -32,8 +37,13 @@ export const darkTheme = {
   main: "#FC1A4C",
   main_vivid: "#D8083B",
   accent: "#FF7322",
+  accent_secondary: "#FF952C",
   extraLight: "#3F464E",
   white: "#FFFFFF",
+  btnSecText: "#76777b",
+  btnSecBg: "#373739",
+  btnSecBgHover: "#46464A",
+  btnSecBorder: " #56585b",
   bg_grad: "linear-gradient(180deg, rgba(22,24,28,1) 0%, rgba(10,12,16,1) 50%)",
 };
 

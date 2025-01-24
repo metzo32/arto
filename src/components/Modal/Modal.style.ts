@@ -90,7 +90,7 @@ export const Div = styled.div`
   &.icon-contianer {
     background-color: ${(props) => props.theme.accent};
     border-radius: 50%;
-    border: 3px solid${(props) => props.theme.accent};
+    border: 3px solid ${(props) => props.theme.accent};
 
     display: flex;
     justify-content: center;
@@ -105,6 +105,14 @@ export const Div = styled.div`
       width: 30px;
       height: 30px;
     }
+  }
+
+  &.btn-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+  }
 `;
 
 export const H3 = styled.h3`

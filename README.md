@@ -6,9 +6,14 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 In the project directory, you can run:
 
-### `npm start`
+### `회원가입, 로그인 구현`
 
-Runs the app in the development mode.\
+2025.01.24
+Firebase와 연결하여 회원가입 및 로그인 기능을 추가했습니다.\
+이메일 Validity, 비밀번호와 비밀번호 확인란의 일치 여부, 그 외 연락처와 닉네임 등을 유저 객체에 저장하고, 추가로 비어있는 wishlist 배열을 추가하여 향후 "좋아요" 목록을 확인할 수 있도록 하였습니다.\
+
+Context API를 통해 현재 로그인 여부에 따라 "/login"과 "register", 혹은 "/my" 페이지로 라우팅되도록 구현하였습니다.\
+
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
 The page will reload if you make edits.\

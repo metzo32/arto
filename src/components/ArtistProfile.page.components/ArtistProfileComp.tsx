@@ -14,7 +14,6 @@ import type { ArtistDataProps } from "../../assets/datas/artitstData";
 import useWindowSize from "../../hooks/useWindowSize";
 import { useModal } from "../../hooks/useModal";
 import { PopUpBelow } from "../FramerMotions/scrollMotions";
-import artistdata from "../../assets/datas/artitstData";
 import NameCard from "./NameCard/NameCard";
 
 import Modal from "../Modal/Modal";
@@ -74,11 +73,11 @@ export default function ArtistProfileComp({
               <Div key={skill.id} className="skills-box">
                 <Div className="skills-title">
                   <Div className="icon-container">
-                    <skill.icon />
+                    <skill.iconName />
                   </Div>
                   <H4>{skill.skill}</H4>
                 </Div>
-                <P className="skill">기술 설명 키워드</P>
+                <P className="skill">{skill.skill}에 대한 키워드</P>
               </Div>
             ))}
           </Div>
