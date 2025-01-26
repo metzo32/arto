@@ -2,11 +2,13 @@ import { doc, getDoc, updateDoc } from "firebase/firestore";
 import { IconLine, IconClicked, IconHover, Span } from "./Wishlist.style";
 import { useState, useEffect } from "react";
 import { auth, db } from "../../firebase/firebaseConfig";
+import { getSkillsByIds } from "../../assets/datas/artitstData"; // getSkillsByIds 함수 가져오기
 
 interface WishListProps {
   artistId: number;
   artistNickname: string;
   artistRandomImage: string;
+  artistSkills: number[]; // skill ID 배열로 변경
   isWishlisted: boolean;
   onToggleWishlist: () => void;
 }
@@ -15,6 +17,7 @@ const WishList = ({
   artistId,
   artistNickname,
   artistRandomImage,
+  artistSkills,
   isWishlisted,
   onToggleWishlist,
 }: WishListProps) => {
@@ -31,7 +34,7 @@ const WishList = ({
           const userDoc = await getDoc(userRef);
           const currentWishlist = userDoc.data()?.wishList || [];
           const isAlreadyWishlisted = currentWishlist.some(
-            //배열 중 하나라도 만족하면 true
+            // 배열 중 하나라도 만족하면 true
             (item: { id: number }) => item.id === artistId
           );
           setWishButton(isAlreadyWishlisted);
@@ -69,6 +72,7 @@ const WishList = ({
           id: artistId,
           nickname: artistNickname,
           randomImage: artistRandomImage,
+          skills: artistSkills, // skill ID 배열 저장
         };
 
         updatedWishlist = [newWishlistItem, ...currentWishlist];
@@ -119,6 +123,9 @@ const WishList = ({
       return <IconLine />;
     }
   };
+
+  // `artistSkills`를 `getSkillsByIds`를 통해 변환
+  const skillComponents = getSkillsByIds(artistSkills);
 
   return (
     <Span

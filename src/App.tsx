@@ -12,7 +12,6 @@ import { AuthContext } from "./context/AuthContext";
 import ProtectedRouteHoc from "./components/ProtectedRouteHoc";
 import CustomThemeProvider from "./context/ThemeContext";
 import { MobileProvider } from "./context/MobileProvider";
-
 import Header from "./components/Header/Header";
 import Login from "./pages/Login";
 import Article from "./pages/Article";
@@ -21,15 +20,23 @@ import ArtistProfile from "./pages/ArtistProfile";
 import RegisterTerms from "./pages/RegisterTerms";
 import Register from "./pages/Register";
 import ScrollToTopButton from "./components/ScrollToTopButton";
-import Loading from "./components/Loading";
 import artistdata from "./assets/datas/artitstData";
 import { GlobalStyle } from "./stores/GlobalStyles";
+import Test from "./components/Header/Test";
 
 const App = () => {
   // const [artistData, setArtistData] = useState<ArtistDataProps[]>(artistdata);
 
   const [currentlyLoggedIn, setCurrentlyLoggedIn] = useState(false);
-  const [isLoading, setIsLoading] = useState(true); // 추가
+  const [isFolded, setIsFolded] = useState(() => {
+    // localStorage에서 초기값 가져오기
+    const savedValue = localStorage.getItem("isFolded");
+    return savedValue === "true"; // 문자열을 불리언으로 변환
+  });
+
+  const handleFoldMenu = () => {
+    setIsFolded(!isFolded);
+  };
 
   useEffect(() => {
     // 로컬 스토리지에서 사용자 정보를 확인하여 로그인 상태 설정
@@ -37,18 +44,12 @@ const App = () => {
     if (savedLoggedIn === "true") {
       setCurrentlyLoggedIn(true);
     }
-    setIsLoading(false); // 로딩 완료 시 상태 변경
   }, []);
 
   // 로그인 상태 변경 시 로컬 스토리지에 반영
   useEffect(() => {
     localStorage.setItem("currentlyLoggedIn", currentlyLoggedIn.toString());
   }, [currentlyLoggedIn]);
-
-  // 초기 로딩 중이면 로딩 표시
-  if (isLoading) {
-    return <Loading />; // 로딩 화면에 헤더와 푸터가 보이지 않도록 설정
-  }
 
   return (
     <>
@@ -58,13 +59,10 @@ const App = () => {
             <GlobalStyle/>
               <AppContainer>
                 <Router>
-                  <Header />
+                  <Header isNarrow={isFolded} handleFold={handleFoldMenu}/>
                   <Routes>
-                    <Route path="/" element={<Article />} />
+                    <Route path="/" element={<Article isNarrow={isFolded}/>} />
                     <Route path="/login" element={<Login />} />
-
-                    <Route path="/loading" element={<Loading />} />
-
                     <Route
                       path="/my"
                       element={
@@ -82,7 +80,7 @@ const App = () => {
                         <Route
                           key={artist.id}
                           path={`/profile_artist_${artist.nickname}`}
-                          element={<ArtistProfile artist={artist} />}
+                          element={<ArtistProfile key={artist.id} artist={artist} />}
                         />
                       );
                     })}

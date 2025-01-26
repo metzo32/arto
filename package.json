@@ -38,6 +38,7 @@
     "react-scroll": "^1.9.0",
     "react-scroll-parallax": "^3.4.5",
     "react-slick": "^0.30.2",
+    "react-spinners": "^0.15.0",
     "reactstrap": "^9.2.2",
     "slick-carousel": "^1.8.1",
     "splitting": "^1.1.0",

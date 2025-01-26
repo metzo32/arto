@@ -26,13 +26,6 @@ const ArtistProfile = ({ artist }: ArtistDetailPageProps) => {
     );
   };
 
-  const handleCopy = (e: React.MouseEvent<HTMLAnchorElement>) => {
-    e.preventDefault();
-    const innerText = e.currentTarget.innerText;
-    // const innerText = e.target.innerText; --> 이 경우, target 속성에 innerText이 직접적으로 존재하지 않으므로 에러.
-    CopyToClipboard(innerText); //복사할 텍스트를 복사
-  };
-
   return (
     <ArtistProfileComp artist={artist}/>
 

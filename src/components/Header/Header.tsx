@@ -1,55 +1,44 @@
+import { HeaderTag, Nav, Div, Button, Span, Brand } from "./Header.style";
 import { useContext, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { HeaderTag, Div, Button, Span, Brand } from "./Header.style";
-import { headerData } from "./Header.data";
-import { sortButtonsData } from "../Sort/SortButton.data";
+import { headerData, bottomItem } from "./Header.data";
 import { AuthContext } from "../../context/AuthContext";
 import useWindowSize from "../../hooks/useWindowSize";
-import { ArtistDataProps } from "../../assets/datas/artitstData";
+import DarkModeButton from "../DarkModeButton/DarkModeButton";
 import RoundButton from "../../assets/design-assets/RoundButton/RoundButton";
 import { FaArrowLeft } from "react-icons/fa6";
 import { FaArrowRight } from "react-icons/fa6";
-import { ReactComponent as Logo } from "../../assets/icons/logo/logo.svg";
-import DarkModeButton from "../DarkModeButton/DarkModeButton";
 
-// interface HeaderProps {
-//   data: ArtistDataProps[];
-//   setData: (data: ArtistDataProps[]) => void;
-// }
+interface HeaderProps {
+  isNarrow: boolean;
+  handleFold: () => void;
+}
 
-const Header = () => {
+const Header = ({ isNarrow, handleFold }: HeaderProps) => {
   const navigate = useNavigate();
-  // const handleProfileNavigation = () => {
-  //   if (currentlyLoggedIn) {
-  //     navigate("/profile");
-  //   } else {
-  //     navigate("/login");
-  //   }
-  // };
   const { isMobile } = useWindowSize();
-  const showSidebar = () => setSidebar(!sidebar);
 
   const { currentlyLoggedIn } = useContext(AuthContext);
-  const [sidebar, setSidebar] = useState(false);
   const [clickedItem, setClickedItem] = useState<string | null>(null); //현재 클릭된 인덱스 저장
-  const [isFolded, setIsFolded] = useState(() => {
-    // localStorage에서 초기값 가져오기
-    const savedValue = localStorage.getItem("isFolded");
-    return savedValue === "true"; // 문자열을 불리언으로 변환
-  });
 
   useEffect(() => {
-    localStorage.setItem("isFolded", String(isFolded));
-  }, [isFolded]);
+    localStorage.setItem("isNarrow", String(isNarrow));
+  }, [isNarrow]);
 
-  const handleFoldMenu = () => {
-    setIsFolded(!isFolded);
+  const handleProfileNavigation = () => {
+    if (currentlyLoggedIn) {
+      navigate("/my");
+    } else {
+      navigate("/login");
+    }
   };
 
   const handleNavigation = (path: string, id: string) => {
+    // 현재 클릭된 버튼과 같은 경우 상태를 변경하지 않음
+    if (id !== clickedItem) {
+      setClickedItem(id);
+    }
     navigate(path);
-    setClickedItem(id === clickedItem ? null : id);
-    //선택한 대상이 클릭된 인덱스라면 선택해제, 선택 안돼있었다면 isClicked를 해당 인덱스로 설정
   };
 
   const clickLogoHandler = () => {
@@ -68,37 +57,63 @@ const Header = () => {
   return (
     <>
       <Div className="header-area" />
-      <HeaderTag className={`${isFolded ? "fold" : ""}`}>
-        <nav>
-          {isMobile ? null : (
-            <Div className={`brand-box ${isFolded ? "fold" : ""}`}>
-              {isFolded || isMobile ? null : (
-                <Brand onClick={clickLogoHandler} />
-              )}
-              <RoundButton onClick={handleFoldMenu}>
-                {isFolded ? <FaArrowRight /> : <FaArrowLeft />}
-              </RoundButton>
-            </Div>
-          )}
-          {headerData.map((group, groupIndex) => (
-            <Div key={groupIndex} className="line-box">
-              {group.map((item) => (
-                <Button
-                  key={item.id}
-                  onClick={() => handleNavigation(item.path, item.id)}
-                  className={`menu-button ${
-                    clickedItem === item.id ? "selected" : ""
-                  } ${isFolded ? "fold-btn" : ""}`}
-                >
-                  <Span>{item.icon && <item.icon />}</Span>
-                  {isMobile || isFolded ? null : <Span>{item.name}</Span>}
-                </Button>
-              ))}
-            </Div>
-          ))}
+      <HeaderTag className={`${isNarrow ? "fold" : ""}`}>
+        <Nav>
+          {/* {location.pathname === "/" && <SortButton />} */}
+          <Div>
+            {isMobile ? null : (
+              <Div className={`brand-box ${isNarrow ? "fold" : ""}`}>
+                {isNarrow || isMobile ? null : (
+                  <Brand onClick={clickLogoHandler} />
+                )}
+                <RoundButton onClick={handleFold}>
+                  {isNarrow ? <FaArrowRight /> : <FaArrowLeft />}
+                </RoundButton>
+              </Div>
+            )}
 
-          <Div className="line-box">
-            <DarkModeButton isFolded={isFolded} isMobile={isMobile}/>
+            {headerData.map((group, groupIndex) => (
+              <Div key={groupIndex} className="line-box">
+                {group.map((item, index) => (
+                  <Button
+                    key={item.id}
+                    onClick={() => handleNavigation(item.path, item.id)}
+                    className={`menu-button ${
+                      (window.location.pathname === "/" &&
+                        groupIndex === 0 &&
+                        index === 0) ||
+                      clickedItem === item.id
+                        ? ""
+                        : ""
+                    } ${isNarrow ? "fold-btn" : ""}`}
+                  >
+                    <Span>{item.icon && <item.icon />}</Span>
+                    {isMobile || isNarrow ? null : <Span>{item.name}</Span>}
+                  </Button>
+                ))}
+              </Div>
+            ))}
+          </Div>
+          <Div>
+            <Div className="line-box bottom">
+              <Button
+                key={bottomItem.id}
+                onClick={() => handleNavigation(bottomItem.path, bottomItem.id)}
+                className={`menu-button ${
+                  clickedItem === bottomItem.id ? "" : ""
+                } ${isNarrow ? "fold-btn" : ""}`}
+              >
+                <Span>{bottomItem.icon && <bottomItem.icon />}</Span>
+                {isMobile || isNarrow ? null : (
+                  <Span>
+                    {currentlyLoggedIn ? "회원 페이지" : bottomItem.name}
+                  </Span>
+                )}
+              </Button>
+            </Div>
+            <Div className="line-box bottom">
+              <DarkModeButton isNarrow={isNarrow} isMobile={isMobile} />
+            </Div>
           </Div>
           {/* <Div className="line-box">
             {sortButtonsData.map((item) => (
@@ -106,43 +121,14 @@ const Header = () => {
                 key={item.id}
                 onClick={() => handleSort(item.logic, item.id)}
                 className={`menu-button ${
-                  clickedItem === item.id ? "selected" : ""
+                  clickedItem === item.id ? "" : ""
                 }`}
               >
                 {item.name}
               </Button>
             ))}
           </Div> */}
-
-          {/* <SideBar sidebar={sidebar} showSidebar={showSidebar} /> */}
-          {/* 
-        <s.Button onClick={showSidebar} className={`${isClicked ? "selected" : ""}`}>
-          {width && width <= 767 ? <s.HamburgerIcon /> : null}
-          메뉴
-        </s.Button>
-
-        <s.Button
-          onClick={() => handleNavigation("/")}
-          className={`${isClicked ? "selected" : ""}`}
-        >
-          {width && width <= 767 ? <s.HomeIcon /> : null}홈
-        </s.Button>
-
-        <s.Button
-          onClick={() => handleNavigation("/article")}
-          className={`${isClicked ? "selected" : ""}`}
-        >
-          {width && width <= 767 ? <s.SearchIcon /> : null}
-          둘러보기
-        </s.Button>
-
-        <s.Button
-          onClick={() => handleProfileNavigation()}
-          className={`${isClicked ? "selected" : ""}`}
-        >
-          {width && width <= 767 ? <s.ProfileIcon /> : null}내 정보
-        </s.Button> */}
-        </nav>
+        </Nav>
       </HeaderTag>
     </>
   );

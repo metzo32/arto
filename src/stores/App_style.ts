@@ -4,8 +4,7 @@ export const AppContainer = styled.div`
 display: flex;
 flex-direction: row;
 min-width: 320px;
-height: auto;
 background-color: ${(props) => props.theme.bg_secondary};
-position: relative;
+// position: relative;
 overflow: hidden;
 `;

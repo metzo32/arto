@@ -1,5 +1,6 @@
 import styled from "styled-components";
 
+
 export const Div = styled.div`
   &.wrapper {
     height: 100vh;
@@ -24,7 +25,7 @@ export const Div = styled.div`
     align-items: center;
 
     position: relative;
-    z-index: 1;
+    // z-index: 1;
     overflow: hidden;
     cursor: pointer;
 
@@ -73,7 +74,9 @@ export const H3 = styled.h3`
   width: 100%;
   color: ${(props) => props.theme.white};
   opacity: 0.5;
+  font-family: "Kay Pho Du", sans-serif;
   font-size: 120px;
+  font-weight: bold;
 
   text-align: right;
   text-transform: uppercase;
@@ -112,7 +115,7 @@ export const Input = styled.input`
   }
 
   &:hover {
-    outline: 2px solid $${(props) => props.theme.outline_strong};
+    outline: 2px solid $ ${(props) => props.theme.outline_strong};
   }
 
   &:focus {

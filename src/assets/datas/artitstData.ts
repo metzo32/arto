@@ -54,10 +54,18 @@ export const artistSkills: ArtistSkillProps[] = [
   { id: 10, iconName: LuTreePine,  skill: "목공" },
 ];
 
-const getSkillsByIds = (skillIds: number[]): { id: number; iconName: React.ComponentType; skill: string }[] => {
-  return artistSkills.filter(skill => skillIds.includes(skill.id));
-};
+// export const mapSkillsToComponents = (skillIds: number[]): ArtistSkillProps[] => {
+//   return artistSkills.filter((skill) => skillIds.includes(skill.id));
+// };
 
+export const getSkillsByIds = (skillIds: number[] = []): ArtistSkillProps[] => {
+  if (!Array.isArray(skillIds)) {
+    console.error("Invalid skillIds:", skillIds);
+    return []; // skillIds가 배열이 아니면 빈 배열 반환
+  }
+
+  return artistSkills.filter((skill) => skillIds.includes(skill.id));
+};
 const artistdata: ArtistDataProps[] = [
   {
     id: 1,

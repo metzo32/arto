@@ -14,4 +14,9 @@ export const Button = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
+  transition: all 0.2s ease;
+
+  &:hover {
+    border-color: ${(props) => props.theme.outline_strong};
+  }
 `;

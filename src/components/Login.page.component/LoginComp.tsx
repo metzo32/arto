@@ -22,6 +22,8 @@ import {
 import { auth } from "../../firebase/firebaseConfig";
 import Modal from "../Modal/Modal";
 import { useModal } from "../../hooks/useModal";
+import useLoading from "../../hooks/useLoading";
+import LoadingSpinner from "../LoadingSpinner/LoadingSpinner";
 
 export default function LoginComp() {
   const navigate = useNavigate();
@@ -29,9 +31,14 @@ export default function LoginComp() {
   const { currentlyLoggedIn, setCurrentlyLoggedIn } = useContext(AuthContext);
   const { isModalOpen, modalTitle, modalContent, openModal, closeModal } =
     useModal();
+  const { isLoading, loadingProgress } = useLoading();
   const [signInEmail, setSignInEmail] = useState("");
   const [signInPw, setSignInPw] = useState("");
   const [rememberMe, setRememberMe] = useState(false);
+
+  useEffect(() => {
+    loadingProgress();
+  }, []);
 
   useEffect(() => {
     if (currentlyLoggedIn) {
@@ -163,6 +170,7 @@ export default function LoginComp() {
 
   return (
     <Div className="page">
+      {isLoading && <LoadingSpinner/>}
       <Modal
         isOpen={isModalOpen}
         onClose={closeModal}

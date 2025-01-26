@@ -1,18 +1,20 @@
 import { Div, Img, H3 } from "./ArticleCard.style";
 import { useState, useEffect, useRef } from "react";
 import artistdata from "../../assets/datas/artitstData";
-import { getRandomImage } from "../../assets/datas/getRandomImages";
 import { auth, db } from "../../firebase/firebaseConfig";
 import { doc, getDoc } from "firebase/firestore";
 import WishList from "../Wishlist/WishList";
 import SearchBar from "./SearchBar";
 
-export default function ArticleCard() {
+interface ArticleCardProps {
+  currentSort: string;
+}
+
+export default function ArticleCard({ currentSort }: ArticleCardProps) {
   const [cards, setCards] = useState<number[]>([0, 1, 2, 3]);
   const [sortedData, setSortedData] = useState(
     artistdata.map((artist) => ({
       ...artist,
-      //   randomImage: getRandomImage(),
     }))
   );
   const [searchResult, setSearchResult] = useState<string>("");
@@ -24,6 +26,34 @@ export default function ArticleCard() {
 
   const loaderRef = useRef<HTMLDivElement | null>(null); // 로더 요소를 참조할 ref 생성
   const count = 4; // 한 번에 추가할 카드 수
+
+  useEffect(() => {
+    const sortData = () => {
+      let sorted;
+      switch (currentSort) {
+        case "최신순":
+          sorted = [...artistdata].sort((a, b) => b.id - a.id); 
+          break;
+        case "오래된순":
+          sorted = [...artistdata].sort((a, b) => a.id - b.id); 
+          break;
+        case "오름차순":
+          sorted = [...artistdata].sort((a, b) =>
+            a.nickname.localeCompare(b.nickname)
+          ); 
+          break;
+        case "내림차순":
+          sorted = [...artistdata].sort((a, b) =>
+            b.nickname.localeCompare(a.nickname)
+          ); 
+          break;
+        default:
+          sorted = artistdata;
+      }
+      setSortedData(sorted);
+    };
+    sortData();
+  }, [currentSort]);
 
   // 무한 스크롤
   const addCards = () => {
@@ -117,6 +147,7 @@ export default function ArticleCard() {
                   onToggleWishlist={() => toggleWishlist(artist.id)}
                   artistNickname={artist.nickname}
                   artistRandomImage={artist.randomImage}
+                  artistSkills={artist.skills.map((skill) => skill.id)} // ID 배열로 전달
                 />
 
                 <Img

@@ -2,13 +2,14 @@ import styled from "styled-components";
 import { ReactComponent as Logo } from "../../assets/icons/logo/logo.svg";
 
 export const HeaderTag = styled.header`
-  height: 100vh;
+  height: calc(100%);
   background-color: ${(props) => props.theme.base};
   border-radius: 0 5px 5px 0;
+  overflow: hidden;
+
   position: fixed;
   top: 0;
-  overflow: hidden;
-  z-index: 10;
+  z-index: 9999;
   transition: all 0.2s ease;
   box-shadow: 3px 5px 8px rgba(0, 0, 0, 0.2);
 
@@ -32,6 +33,13 @@ export const HeaderTag = styled.header`
   }
 `;
 
+export const Nav = styled.nav`
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+`;
+
 export const Div = styled.div`
   &.header-area {
     background-color: ${(props) => props.theme.base};
@@ -50,9 +58,11 @@ export const Div = styled.div`
     }
   }
 
+  
+
   &.brand-box {
     padding: 10px 20px;
-    border-bottom: 2px solid LightGrey;
+    border-bottom: 2px solid ${(props) => props.theme.outline};
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -72,11 +82,16 @@ export const Div = styled.div`
 
   &.line-box {
     padding: 10px;
-    border-bottom: 2px solid ${(props) => props.theme.outline_strong};
+    border-bottom: 2px solid ${(props) => props.theme.outline};
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 10px;
+  }
+
+  &.line-box.bottom {
+    border-bottom: none;
+    border-top: 2px solid ${(props) => props.theme.outline};
   }
 `;
 
@@ -93,7 +108,6 @@ export const Button = styled.button`
     padding: 10px 20px;
 
     display: flex;
-    // justify-content: center;
     align-items: center;
     gap: 5px;
 
@@ -123,6 +137,12 @@ export const Button = styled.button`
     background-color: ${(props) => props.theme.extraLight};
     box-shadow: 2px 2px 3px ${(props) => props.theme.shadow};
   }
+
+  &.hovered {
+    &:hover {
+      border-color: ${(props) => props.theme.outline_strong};
+    }
+  }
 `;
 
 export const Span = styled.span`
@@ -136,4 +156,5 @@ export const Span = styled.span`
 export const Brand = styled(Logo)`
   width: 100px;
   fill: ${(props) => props.theme.brand};
+  cursor: pointer;
 `;

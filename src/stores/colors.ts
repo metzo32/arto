@@ -7,7 +7,7 @@ export const lightTheme = {
   bg_secondary: "#D6E0E1",
   base: "#F2F7F8",
   outline: "#DEE1E7",
-  outline_strong: "#A0A3A7",
+  outline_strong: "#C4C8D1",
   shadow: "#BEC2C8",
   main: "#cb0d3c",
   main_vivid: "#e71745",

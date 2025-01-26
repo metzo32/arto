@@ -17,11 +17,13 @@ import { createUserWithEmailAndPassword } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 import { useModal } from "../../hooks/useModal";
 import Modal from "../Modal/Modal";
+import useLoading from "../../hooks/useLoading";
 import { nicknameRule, fullnameRule } from "../../stores/NameRule";
 import CalculateAge from "./CalculateAge";
 import GenderSelect from "./GenderSelect";
 import PhoneNumber from "./PhoneNumber";
 import { AuthContext } from "../../context/AuthContext";
+import LoadingSpinner from "../LoadingSpinner/LoadingSpinner";
 
 // import WishList from "../components/Wishlist/WishList";
 
@@ -29,6 +31,7 @@ export default function RegisterComp() {
   const navigate = useNavigate();
   const { isModalOpen, modalTitle, modalContent, openModal, closeModal } =
     useModal();
+  const { isLoading, loadingProgress } = useLoading();
 
   const [registerEmail, setRegisterEmail] = useState<string>("");
   const [registerPw, setRegisterPw] = useState<string>("");
@@ -46,6 +49,10 @@ export default function RegisterComp() {
   const [step, setStep] = useState<number>(1);
 
   const { currentlyLoggedIn } = useContext(AuthContext);
+
+  useEffect(() => {
+    loadingProgress();
+  }, []);
 
   useEffect(() => {
     if (currentlyLoggedIn) {
@@ -272,6 +279,7 @@ export default function RegisterComp() {
 
   return (
     <Div className="page">
+      {isLoading && <LoadingSpinner />}
       <Modal
         isOpen={isModalOpen}
         onClose={closeModal}

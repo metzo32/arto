@@ -1,25 +1,21 @@
-import { useState, useEffect, useContext } from "react";
+import { useState, useEffect } from "react";
 import { Section, Div, H2, H3, H4, H5, Img, RemoveIcon } from "./Profile.style";
-import { AuthContext } from "../../context/AuthContext";
 import { auth, db } from "../../firebase/firebaseConfig";
 import { onAuthStateChanged } from "firebase/auth";
 import { doc, getDoc, updateDoc } from "firebase/firestore";
+import { useNavigate } from "react-router-dom";
 import LogoutButton from "../Logout";
-// import profileBanner from "../assets/images/profile-banner.jpg";
+import LoadingSpinner from "../LoadingSpinner/LoadingSpinner";
 import StartFromTop from "../StartFromTop";
 import { PopUpBelow } from "../FramerMotions/scrollMotions";
-
+import { getSkillsByIds } from "../../assets/datas/artitstData";
+import useLoading from "../../hooks/useLoading";
 import { IoMdPhonePortrait } from "react-icons/io";
 import { FaBirthdayCake } from "react-icons/fa";
 import { BaseButton } from "../../assets/design-assets/BaseButton/BaseButton";
-import { useNavigate } from "react-router-dom";
 
-interface WishProps {
-  artistNickname?: string;
-  artistRandomImage?: string;
-}
-
-const ProfileComp = ({ artistNickname, artistRandomImage }: WishProps) => {
+const ProfileComp = () => {
+  const { isLoading, setIsLoading, loadingProgress } = useLoading();
   const [userData, setUserData] = useState<any>(null);
   const [photoURL, setPhotoURL] = useState<string | null>(null);
   const [visibleCount, setVisibleCount] = useState(5); // 처음에 5개만 보여주기
@@ -47,11 +43,15 @@ const ProfileComp = ({ artistNickname, artistRandomImage }: WishProps) => {
         const data = userDoc.data();
         setUserData(data);
         setPhotoURL(data.photoURL);
+        loadingProgress();
       } else {
         console.log("No such document!");
+        loadingProgress();
       }
     } catch (error) {
       console.error("유저 데이터를 가져오는 중 오류 발생:", error);
+      setIsLoading(false);
+      loadingProgress();
     }
   };
 
@@ -106,6 +106,7 @@ const ProfileComp = ({ artistNickname, artistRandomImage }: WishProps) => {
   return (
     <>
       <StartFromTop />
+      {isLoading && <LoadingSpinner />}
       <Div className="container">
         <Section>
           <Div className="name-container">
@@ -149,22 +150,37 @@ const ProfileComp = ({ artistNickname, artistRandomImage }: WishProps) => {
 
           {groupedWishlist.map((group, groupIndex) => (
             <Div key={groupIndex} className="likes-container-large">
-              {group.map((wish: any, index: number) => (
-                <Div key={index} className="likes-card-large">
-                  <button
-                    className="delete"
-                    onClick={() => removeWish(wish.id)}
-                  >
-                    <RemoveIcon />
-                  </button>
-                  <Img className="large"
-                    src={wish.randomImage}
-                    alt={wish.nickname}
-                    onClick={() => handleCardRedirect(wish.nickname)}
-                  />
-                  <H4 className="profile-like-name">{wish.nickname}</H4>
-                </Div>
-              ))}
+              {group.map((wish: any, index: number) => {
+                // 스킬 ID를 스킬 이름으로 변환
+                const skillNames = getSkillsByIds(wish.skill).map(
+                  (skill) => skill.skill
+                );
+
+                return (
+                  <Div key={index} className="likes-card-large">
+                    <button
+                      className="delete"
+                      onClick={() => removeWish(wish.id)}
+                    >
+                      <RemoveIcon />
+                    </button>
+                    <Img
+                      className="large"
+                      src={wish.randomImage}
+                      alt={wish.nickname}
+                      onClick={() => handleCardRedirect(wish.nickname)}
+                    />
+                    <H4 className="profile-like-name">{wish.nickname}</H4>
+                    <Div className="skills-container">
+                      {skillNames.map((skillName, skillIndex) => (
+                        <Div key={skillIndex} className="skill-item">
+                          <span>{skillName}</span>
+                        </Div>
+                      ))}
+                    </Div>
+                  </Div>
+                );
+              })}
             </Div>
           ))}
 

@@ -5,11 +5,11 @@ import { FiSun } from "react-icons/fi";
 import { FiMoon } from "react-icons/fi";
 
 interface DarkModeButtonProps {
-  isFolded: boolean;
+  isNarrow: boolean;
   isMobile: boolean;
 }
 
-const DarkModeButton = ({ isFolded, isMobile }: DarkModeButtonProps) => {
+const DarkModeButton = ({ isNarrow, isMobile }: DarkModeButtonProps) => {
   const themeContext = useContext(ThemeContext);
 
   if (!themeContext) {
@@ -35,10 +35,10 @@ const DarkModeButton = ({ isFolded, isMobile }: DarkModeButtonProps) => {
   return (
     <Button
       onClick={toggleDark}
-      className={`menu-button selected ${isFolded ? "fold-btn" : ""}`}
+      className={`menu-button selected hovered ${isNarrow ? "fold-btn" : ""}`}
     >
       <Span>{isDark ? <FiSun /> : <FiMoon />}</Span>
-      {!isFolded &&
+      {!isNarrow &&
         !isMobile &&
         (isDark ? <Span>Light View</Span> : <Span>Dark View</Span>)}
     </Button>
