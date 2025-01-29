@@ -14,6 +14,20 @@ Firebase와 연결하여 회원가입 및 로그인 기능을 추가했습니다
 
 Context API를 통해 현재 로그인 여부에 따라 "/login"과 "register", 혹은 "/my" 페이지로 라우팅되도록 구현하였습니다.\
 
+
+
+2025.01.25
+정렬 버튼을 통해 아티스트의 등록일(id)과 이름의 오름차순, 내림차순 기능을 구현하였습니다.\
+artistdata 배열을 default state로 받아온 뒤 switch 문을 통해 sort 옵션과 버튼에 표시되는 문자열을 제어하였습니다.
+
+또한, 해당 버튼 스타일링 과정에서 부모요소보다 z-index를 낮게 설정하더라도 동작하지 않는 문제가 발생하였습니다.
+이에 따라 Stacking context라는 개념을 공부하고 습득하였고, 부모 요소와 형제관계인 가상요소를 생성하고 그 가상요소를 기준으로 삼아 버튼을 배치하는 방식으로 문제를 해결하였습니다.
+\
+
+
+
+
+
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
 The page will reload if you make edits.\

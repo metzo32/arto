@@ -19,7 +19,7 @@ import Profile from "./pages/Profile";
 import ArtistProfile from "./pages/ArtistProfile";
 import RegisterTerms from "./pages/RegisterTerms";
 import Register from "./pages/Register";
-import ScrollToTopButton from "./components/ScrollToTopButton";
+import ScrollToTopButton from "./components/ScrollToTopButton/ScrollToTopButton";
 import artistdata from "./assets/datas/artitstData";
 import { GlobalStyle } from "./stores/GlobalStyles";
 import Test from "./components/Header/Test";

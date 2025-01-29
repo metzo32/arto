@@ -4,9 +4,9 @@ import { AiOutlineTikTok } from "react-icons/ai"; //틱톡
 import { RiInstagramLine } from "react-icons/ri"; //인스타그램
 import { FaYoutube } from "react-icons/fa6"; //유튜브
 
-export default function Sidebar() {
+export default function Sidebar({ isVisible }: { isVisible: boolean }) {
   return (
-    <Div className="contact-side">
+    <Div className={`contact-side ${isVisible && "visible"}`}>
       <A
         href="https://www.facebook.com"
         target="_blank"

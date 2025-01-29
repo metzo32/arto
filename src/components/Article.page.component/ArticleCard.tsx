@@ -27,34 +27,6 @@ export default function ArticleCard({ currentSort }: ArticleCardProps) {
   const loaderRef = useRef<HTMLDivElement | null>(null); // 로더 요소를 참조할 ref 생성
   const count = 4; // 한 번에 추가할 카드 수
 
-  useEffect(() => {
-    const sortData = () => {
-      let sorted;
-      switch (currentSort) {
-        case "최신순":
-          sorted = [...artistdata].sort((a, b) => b.id - a.id); 
-          break;
-        case "오래된순":
-          sorted = [...artistdata].sort((a, b) => a.id - b.id); 
-          break;
-        case "오름차순":
-          sorted = [...artistdata].sort((a, b) =>
-            a.nickname.localeCompare(b.nickname)
-          ); 
-          break;
-        case "내림차순":
-          sorted = [...artistdata].sort((a, b) =>
-            b.nickname.localeCompare(a.nickname)
-          ); 
-          break;
-        default:
-          sorted = artistdata;
-      }
-      setSortedData(sorted);
-    };
-    sortData();
-  }, [currentSort]);
-
   // 무한 스크롤
   const addCards = () => {
     const newArticles = Array.from(
@@ -85,6 +57,36 @@ export default function ArticleCard({ currentSort }: ArticleCardProps) {
       }
     };
   }, [loaderRef, cards]);
+
+
+  useEffect(() => {
+    const sortData = () => {
+      let sorted;
+      switch (currentSort) {
+        case "최신순":
+          sorted = [...artistdata].sort((a, b) => b.id - a.id);
+          break;
+        case "오래된순":
+          sorted = [...artistdata].sort((a, b) => a.id - b.id);
+          break;
+        case "오름차순":
+          sorted = [...artistdata].sort((a, b) =>
+            a.nickname.localeCompare(b.nickname)
+          );
+          break;
+        case "내림차순":
+          sorted = [...artistdata].sort((a, b) =>
+            b.nickname.localeCompare(a.nickname)
+          );
+          break;
+        default:
+          sorted = artistdata;
+      }
+      setSortedData(sorted);
+    };
+    sortData();
+  }, [currentSort]);
+
 
   // 위시리스트
   useEffect(() => {
@@ -141,22 +143,22 @@ export default function ArticleCard({ currentSort }: ArticleCardProps) {
                 className="article-cards"
                 onClick={() => handleCardRedirect(artist.nickname)}
               >
-                <WishList
-                  artistId={artist.id}
-                  isWishlisted={!!artist.isWishlisted}
-                  onToggleWishlist={() => toggleWishlist(artist.id)}
-                  artistNickname={artist.nickname}
-                  artistRandomImage={artist.randomImage}
-                  artistSkills={artist.skills.map((skill) => skill.id)} // ID 배열로 전달
-                />
-
                 <Img
-                  src={artist.randomImage}
+                  src={artist.mainImage}
                   alt={`${artist.nickname}`}
                   className="article-random-image"
                 />
-
-                <H3 className="article-name">{artist.nickname}</H3>
+                <Div className="title-container">
+                  <WishList
+                    artistId={artist.id}
+                    isWishlisted={!!artist.isWishlisted}
+                    onToggleWishlist={() => toggleWishlist(artist.id)}
+                    artistNickname={artist.nickname}
+                    artistRandomImage={artist.mainImage}
+                    artistSkills={artist.skills.map((skill) => skill.id)} // ID 배열로 전달
+                  />
+                  <H3 className="article-name">{artist.nickname}</H3>
+                </Div>
               </Div>
             );
           })}

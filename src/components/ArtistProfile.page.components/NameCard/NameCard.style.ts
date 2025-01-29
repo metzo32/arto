@@ -14,8 +14,8 @@ export const Div = styled.div`
     justify-content: space-between;
 
     @media (max-width: 767px) {
-      width: calc(280px - 70px);
-      height: calc(504px - 70px);
+      width: 280px;
+      height: 504px;
       padding: 35px;
       display: flex;
       flex-direction: column-reverse;
@@ -23,15 +23,15 @@ export const Div = styled.div`
     }
 
     @media (min-width: 768px) {
-      width: calc(630px - 80px);
-      height: calc(350px - 80px);
+      width: 630px;
+      height: 350px;
       padding: 40px;
       flex-direction: row;
     }
 
     @media (min-width: 1024px) {
-      width: calc(720px - 100px);
-      height: calc(400px - 100px);
+      width: 720px;
+      height: 400px;
       padding: 50px;
     }
   }
@@ -75,6 +75,7 @@ export const P = styled.p`
 
   @media (max-width: 767px) {
     font-size: 14px;
+    line-height: 20px;
   }
 
   @media (min-width: 768px) {
@@ -97,7 +98,6 @@ export const P = styled.p`
 
 export const Logo = styled.img`
   width: 100px;
-  // height: 50px;
 
   @media (max-width: 767px) {
     transform: rotate(90deg) translateX(20px) translateY(-155px);

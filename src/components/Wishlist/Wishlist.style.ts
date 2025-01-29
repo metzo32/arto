@@ -35,22 +35,10 @@ export const IconClicked = styled(HeartFull)`
 export const Span = styled.span`
   width: 50px;
   height: 50px;
-  position: absolute;
-  z-index: 10;
   touch-action: manipulation;
 
-  @media (max-width: 767px) {
-    right: 10px;
-    bottom: 10px;
-  }
-
   @media (min-width: 768px) {
-    right: 80px;
-    bottom: 95px;
-  }
-
-  @media (min-width: 1024px) {
-    right: 85px;
-    bottom: 110px;
+    width: 65px;
+    height: 65px;
   }
 `;

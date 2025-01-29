@@ -2,6 +2,15 @@ import styled, { keyframes } from "styled-components";
 
 import { lightTheme } from "../../stores/colors";
 
+const slideIn = keyframes`
+  from {
+    transform: translate(70px, 0px);
+  }
+  to {
+    transform: translate(0px, 0px);
+  }
+`;
+
 export const Section = styled.section`
   display: flex;
   flex-direction: column;
@@ -16,7 +25,7 @@ export const Section = styled.section`
   }
 
   @media (min-width: 1024px) {
-    padding-bottom: 200px;
+    padding: 250px 0;
   }
 
   &.value {
@@ -66,6 +75,7 @@ export const Div = styled.div`
     width: 100%;
     overflow-y: auto;
     background: ${(props) => props.theme.bg_secondary};
+    position: relative;
 
     @media (max-width: 767px) {
       padding-left: 70px;
@@ -77,6 +87,7 @@ export const Div = styled.div`
   }
 
   &.image-container {
+    height: 100vh;
     display: block;
     position: relative;
   }
@@ -91,23 +102,30 @@ export const Div = styled.div`
 
     @media (max-width: 767px) {
       height: 180px;
-      padding: 20px 10px;
+      padding: 20px 40px;
     }
 
     @media (min-width: 768px) {
       height: 500px;
-      padding: 60px 40px;
+      padding: 60px 80px;
     }
 
     @media (min-width: 1024px) {
       height: 500px;
-      padding: 60px 40px;
+      padding: 60px 120px;
     }
   }
 
   &.text-container {
     position: relative;
+    height: 100%;
     z-index: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  &.text-box {
     display: flex;
     flex-direction: column;
     gap: 20px;
@@ -240,16 +258,26 @@ export const Div = styled.div`
     gap: 20px;
 
     position: absolute;
-    bottom: 0;
-    right: 0;
+    bottom: 270px;
+    right: 20px;
+    animation: ${slideIn} 0.3s ease;
+
+    &.visible {
+      // background-color: white;
+    }
   }
 `;
 
+export const Span = styled.span`
+  color: ${(props) => props.theme.main};
+`;
+
 export const H1 = styled.h1`
+  font-family: "Kay Pho Du", sans-serif;
   color: white;
 
   @media (max-width: 767px) {
-    font-size: 42px;
+    font-size: 64px;
   }
 
   @media (min-width: 768px) {
@@ -267,14 +295,12 @@ export const H2 = styled.h2`
 
   @media (max-width: 767px) {
     font-size: 40px;
+    line-height: 50px;
   }
 
   @media (min-width: 768px) {
     font-size: 64px;
-  }
-
-  @media (min-width: 1024px) {
-    font-size: 64px;
+    line-height: 72px;
   }
 `;
 
@@ -387,16 +413,6 @@ export const Img = styled.img`
   }
 `;
 
-export const Button = styled.button`
-  width: 200px;
-  background-color: ${(props) => props.theme.white};
-  padding: 10px 20px;
-  font-size: 18px;
-  border-radius: 100px;
-  color: blue;
-  margin-left: 100px;
-`;
-
 export const P = styled.p`
   color: ${(props) => props.theme.white};
 
@@ -424,22 +440,22 @@ export const P = styled.p`
 `;
 
 export const A = styled.a`
-  color: ${(props) => props.theme.text_secondary};
+  color: ${(props) => props.theme.text};
 
   width: 40px;
   height: 40px;
   font-size: 20px;
   border-radius: 100px;
-  border: 1px solid ${(props) => props.theme.Grey};
+  border: 1px solid ${(props) => props.theme.text};
   padding: 5px;
 
   display: flex;
   justify-content: center;
   align-items: center;
 
-  transition: border 0.3s ease, fill 0.5s ease;
-
   &:hover {
-    color: ${(props) => props.theme.accent};
+    color: ${(props) => props.theme.white};
+    border-color: ${(props) => props.theme.main};
+    background-color: ${(props) => props.theme.main};
   }
 `;

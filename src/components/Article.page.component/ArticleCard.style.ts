@@ -1,6 +1,5 @@
 import styled from "styled-components";
 
-
 export const Div = styled.div`
   &.wrapper {
     height: 100vh;
@@ -9,7 +8,6 @@ export const Div = styled.div`
 
     scroll-snap-type: y mandatory;
     overflow-x: hidden;
-    overflow-y: scroll;
 
     position: relative;
   }
@@ -20,13 +18,7 @@ export const Div = styled.div`
     min-width: 320px;
     min-height: 320px;
 
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
     position: relative;
-    // z-index: 1;
-    overflow: hidden;
     cursor: pointer;
 
     scroll-snap-align: center;
@@ -61,6 +53,21 @@ export const Div = styled.div`
       gap: 20px;
     }
   }
+
+  &.title-container {
+    padding: 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+
+    position: absolute;
+    bottom: 0;
+    right: 0;
+
+    @media (min-width: 768px) {
+      padding: 5px 15px;
+    }
+  }
 `;
 
 export const Img = styled.img`
@@ -82,17 +89,12 @@ export const H3 = styled.h3`
   text-transform: uppercase;
   white-space: nowrap;
 
-  position: absolute;
-  right: 0;
-  bottom: 0;
-
   @media (max-width: 767px) {
     display: none;
   }
 
   @media (min-width: 768px) {
     font-size: 90px;
-    padding-right: 80px;
   }
 
   @media (min-width: 1024px) {

@@ -2,10 +2,19 @@ import styled, { keyframes } from "styled-components";
 
 const slideIn = keyframes`
   from {
-    transform: rotate(90deg) translate(110px, -70px);
+    transform: rotate(90deg) translate(50px, -70px);
   }
   to {
-    transform: rotate(90deg) translate(110px, -100px);
+    transform: rotate(90deg) translate(50px, -100px);
+  }
+`;
+
+const slideInSmall = keyframes`
+  from {
+    transform: rotate(90deg) translate(110px, -60px);
+  }
+  to {
+    transform: rotate(90deg) translate(110px, -80px);
   }
 `;
 
@@ -63,15 +72,16 @@ export const Button = styled.button`
   right: 0px;
   z-index: 1;
 
-  transform: rotate(90deg) translate(110px, -80px);
+  transform: rotate(90deg) translate(90px, -80px);
   transform-origin: center;
-  animation: ${slideIn} 0.5s ease forwards;
+  animation: ${slideInSmall} 0.5s ease forwards;
 
   @media (min-width: 768px) {
     font-size: 18px;
     width: 140px;
     height: 70px;
     border-radius: 18px 18px 0 0;
-    transform: rotate(90deg) translate(90px, -100px);
+    transform: rotate(90deg) translate(110px, -80px);
+    animation: ${slideIn} 0.5s ease forwards;
   }
 `;

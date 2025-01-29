@@ -9,7 +9,7 @@ const SearchProfiles = () => {
         <div className="circle-profile-box">
           <img
             key={artist.id}
-            src={artist.randomImage}
+            src={artist.mainImage}
             alt={artist.nickname}
             className="search-circle-profile"
           />

@@ -1,8 +1,3 @@
-// randomImage: `https://picsum.photos/1440/900?random=${getRandomInt(1000)}`,
-// randomImage01: `https://picsum.photos/1440/900?random=${getRandomInt(1000)}`,
-// randomImage02: `https://picsum.photos/1440/900?random=${getRandomInt(1000)}`,
-// randomImage03: `https://picsum.photos/1440/900?random=${getRandomInt(1000)}`,
-// randomImage04: `https://picsum.photos/1440/900?random=${getRandomInt(1000)}`,
 import { RiLayoutMasonryLine } from "react-icons/ri";
 import { RiCheckboxMultipleBlankFill } from "react-icons/ri";
 import { IoApertureOutline } from "react-icons/io5";
@@ -14,7 +9,7 @@ import { FaEnvira } from "react-icons/fa";
 import { MdPieChart } from "react-icons/md";
 import { IoShareSocialOutline } from "react-icons/io5";
 
-import { getRandomImage } from "./getRandomImages";
+import { imagesArr, getRandomImage } from "./getRandomImages";
 
 interface ArtistSkillProps {
   id: number;
@@ -30,7 +25,7 @@ export interface ArtistDataProps {
   city: string;
   street_address: string;
   introduction: string;
-  randomImage: string;
+  mainImage: string;
   randomImage01: string;
   randomImage02: string;
   randomImage03: string;
@@ -54,6 +49,7 @@ export const artistSkills: ArtistSkillProps[] = [
   { id: 10, iconName: LuTreePine,  skill: "목공" },
 ];
 
+
 // export const mapSkillsToComponents = (skillIds: number[]): ArtistSkillProps[] => {
 //   return artistSkills.filter((skill) => skillIds.includes(skill.id));
 // };
@@ -66,6 +62,7 @@ export const getSkillsByIds = (skillIds: number[] = []): ArtistSkillProps[] => {
 
   return artistSkills.filter((skill) => skillIds.includes(skill.id));
 };
+
 const artistdata: ArtistDataProps[] = [
   {
     id: 1,
@@ -76,7 +73,7 @@ const artistdata: ArtistDataProps[] = [
     street_address: "78609 Main Parkway",
     introduction:
       "Duis consequat dui nec nisi volutpat eleifend. Donec ut dolor. Morbi vel lectus in quam fringilla rhoncus.",
-    randomImage: getRandomImage(),
+    mainImage: imagesArr[0],
     randomImage01: getRandomImage(),
     randomImage02: getRandomImage(),
     randomImage03: getRandomImage(),
@@ -92,7 +89,7 @@ const artistdata: ArtistDataProps[] = [
     street_address: "6935 Farragut Lane",
     introduction:
       "Integer ac leo. Pellentesque ultrices mattis odio. Donec vitae nisi.",
-    randomImage: getRandomImage(),
+    mainImage: imagesArr[1],
     randomImage01: getRandomImage(),
     randomImage02: getRandomImage(),
     randomImage03: getRandomImage(),
@@ -108,7 +105,7 @@ const artistdata: ArtistDataProps[] = [
     street_address: "25376 Shoshone Terrace",
     introduction:
       "Duis consequat dui nec nisi volutpat eleifend. Donec ut dolor. Morbi vel lectus in quam fringilla rhoncus.",
-    randomImage: getRandomImage(),
+    mainImage: imagesArr[2],
     randomImage01: getRandomImage(),
     randomImage02: getRandomImage(),
     randomImage03: getRandomImage(),
@@ -124,7 +121,7 @@ const artistdata: ArtistDataProps[] = [
     street_address: "77 Ridgeway Lane",
     introduction:
       "Nam ultrices, libero non mattis pulvinar, nulla pede ullamcorper augue, a suscipit nulla elit ac nulla. Sed vel enim sit amet nunc viverra dapibus. Nulla suscipit ligula in lacus.",
-    randomImage: getRandomImage(),
+    mainImage: imagesArr[3],
     randomImage01: getRandomImage(),
     randomImage02: getRandomImage(),
     randomImage03: getRandomImage(),
@@ -140,7 +137,7 @@ const artistdata: ArtistDataProps[] = [
     street_address: "63 Meadow Valley Trail",
     introduction:
       "Fusce posuere felis sed lacus. Morbi sem mauris, laoreet ut, rhoncus aliquet, pulvinar sed, nisl. Nunc rhoncus dui vel sem.",
-    randomImage: getRandomImage(),
+    mainImage: imagesArr[4],
     randomImage01: getRandomImage(),
     randomImage02: getRandomImage(),
     randomImage03: getRandomImage(),
@@ -156,7 +153,7 @@ const artistdata: ArtistDataProps[] = [
     street_address: "1348 Mosinee Hill",
     introduction:
       "Integer ac leo. Pellentesque ultrices mattis odio. Donec vitae nisi.",
-    randomImage: getRandomImage(),
+    mainImage: imagesArr[5],
     randomImage01: getRandomImage(),
     randomImage02: getRandomImage(),
     randomImage03: getRandomImage(),
@@ -172,7 +169,7 @@ const artistdata: ArtistDataProps[] = [
     street_address: "2 Washington Place",
     introduction:
       "Aenean fermentum. Donec ut mauris eget massa tempor convallis. Nulla neque libero, convallis eget, eleifend luctus, ultricies eu, nibh.",
-    randomImage: getRandomImage(),
+    mainImage: imagesArr[6],
     randomImage01: getRandomImage(),
     randomImage02: getRandomImage(),
     randomImage03: getRandomImage(),
@@ -188,7 +185,7 @@ const artistdata: ArtistDataProps[] = [
     street_address: "4 Delladonna Drive",
     introduction:
       "Duis consequat dui nec nisi volutpat eleifend. Donec ut dolor. Morbi vel lectus in quam fringilla rhoncus.",
-    randomImage: getRandomImage(),
+    mainImage: imagesArr[7],
     randomImage01: getRandomImage(),
     randomImage02: getRandomImage(),
     randomImage03: getRandomImage(),
@@ -204,7 +201,7 @@ const artistdata: ArtistDataProps[] = [
     street_address: "51 Scofield Place",
     introduction:
       "Duis bibendum, felis sed interdum venenatis, turpis enim blandit mi, in porttitor pede justo eu massa. Donec dapibus. Duis at velit eu est congue elementum.",
-    randomImage: getRandomImage(),
+    mainImage: imagesArr[8],
     randomImage01: getRandomImage(),
     randomImage02: getRandomImage(),
     randomImage03: getRandomImage(),
@@ -220,7 +217,7 @@ const artistdata: ArtistDataProps[] = [
     street_address: "53 Lindbergh Terrace",
     introduction:
       "Nam ultrices, libero non mattis pulvinar, nulla pede ullamcorper augue, a suscipit nulla elit ac nulla. Sed vel enim sit amet nunc viverra dapibus. Nulla suscipit ligula in lacus.",
-    randomImage: getRandomImage(),
+    mainImage: imagesArr[9],
     randomImage01: getRandomImage(),
     randomImage02: getRandomImage(),
     randomImage03: getRandomImage(),
@@ -236,7 +233,7 @@ const artistdata: ArtistDataProps[] = [
     street_address: "02598 Basil Trail",
     introduction:
       "Duis aliquam convallis nunc. Proin at turpis a pede posuere nonummy. Integer non velit.",
-    randomImage: getRandomImage(),
+    mainImage: imagesArr[10],
     randomImage01: getRandomImage(),
     randomImage02: getRandomImage(),
     randomImage03: getRandomImage(),
@@ -252,7 +249,7 @@ const artistdata: ArtistDataProps[] = [
     street_address: "1032 Myrtle Court",
     introduction:
       "Integer tincidunt ante vel ipsum. Praesent blandit lacinia erat. Vestibulum sed magna at nunc commodo placerat.",
-    randomImage: getRandomImage(),
+    mainImage: imagesArr[11],
     randomImage01: getRandomImage(),
     randomImage02: getRandomImage(),
     randomImage03: getRandomImage(),
@@ -268,7 +265,7 @@ const artistdata: ArtistDataProps[] = [
     street_address: "73575 Lien Terrace",
     introduction:
       "Suspendisse potenti. In eleifend quam a odio. In hac habitasse platea dictumst.",
-    randomImage: getRandomImage(),
+    mainImage: imagesArr[12],
     randomImage01: getRandomImage(),
     randomImage02: getRandomImage(),
     randomImage03: getRandomImage(),
@@ -284,7 +281,7 @@ const artistdata: ArtistDataProps[] = [
     street_address: "9 Farmco Parkway",
     introduction:
       "Quisque porta volutpat erat. Quisque erat eros, viverra eget, congue eget, semper rutrum, nulla. Nunc purus.",
-    randomImage: getRandomImage(),
+    mainImage: imagesArr[13],
     randomImage01: getRandomImage(),
     randomImage02: getRandomImage(),
     randomImage03: getRandomImage(),
@@ -300,7 +297,7 @@ const artistdata: ArtistDataProps[] = [
     street_address: "1 Village Green Hill",
     introduction:
       "Curabitur at ipsum ac tellus semper interdum. Mauris ullamcorper purus sit amet nulla. Quisque arcu libero, rutrum ac, lobortis vel, dapibus at, diam.",
-    randomImage: getRandomImage(),
+    mainImage: imagesArr[14],
     randomImage01: getRandomImage(),
     randomImage02: getRandomImage(),
     randomImage03: getRandomImage(),
@@ -316,7 +313,7 @@ const artistdata: ArtistDataProps[] = [
     street_address: "0 Vera Alley",
     introduction:
       "Cras mi pede, malesuada in, imperdiet et, commodo vulputate, justo. In blandit ultrices enim. Lorem ipsum dolor sit amet, consectetuer adipiscing elit.",
-    randomImage: getRandomImage(),
+    mainImage: imagesArr[15],
     randomImage01: getRandomImage(),
     randomImage02: getRandomImage(),
     randomImage03: getRandomImage(),
@@ -332,7 +329,7 @@ const artistdata: ArtistDataProps[] = [
     street_address: "27 Spaight Point",
     introduction:
       "Integer ac leo. Pellentesque ultrices mattis odio. Donec vitae nisi.",
-    randomImage: getRandomImage(),
+    mainImage: imagesArr[16],
     randomImage01: getRandomImage(),
     randomImage02: getRandomImage(),
     randomImage03: getRandomImage(),
@@ -348,7 +345,7 @@ const artistdata: ArtistDataProps[] = [
     street_address: "8859 Miller Crossing",
     introduction:
       "Duis consequat dui nec nisi volutpat eleifend. Donec ut dolor. Morbi vel lectus in quam fringilla rhoncus.",
-    randomImage: getRandomImage(),
+    mainImage: imagesArr[17],
     randomImage01: getRandomImage(),
     randomImage02: getRandomImage(),
     randomImage03: getRandomImage(),
@@ -364,7 +361,7 @@ const artistdata: ArtistDataProps[] = [
     street_address: "7 Sunfield Place",
     introduction:
       "Morbi non lectus. Aliquam sit amet diam in magna bibendum imperdiet. Nullam orci pede, venenatis non, sodales sed, tincidunt eu, felis.",
-    randomImage: getRandomImage(),
+    mainImage: imagesArr[18],
     randomImage01: getRandomImage(),
     randomImage02: getRandomImage(),
     randomImage03: getRandomImage(),
@@ -380,7 +377,7 @@ const artistdata: ArtistDataProps[] = [
     street_address: "5 Declaration Avenue",
     introduction:
       "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Proin risus. Praesent lectus.",
-    randomImage: getRandomImage(),
+    mainImage: imagesArr[19],
     randomImage01: getRandomImage(),
     randomImage02: getRandomImage(),
     randomImage03: getRandomImage(),
@@ -395,7 +392,7 @@ const artistdata: ArtistDataProps[] = [
     city: "Laspezia",
     street_address: "3465 Walton Circle",
     introduction: "Phasellus in felis. Donec semper sapien a libero. Nam dui.",
-    randomImage: getRandomImage(),
+    mainImage: imagesArr[20],
     randomImage01: getRandomImage(),
     randomImage02: getRandomImage(),
     randomImage03: getRandomImage(),
@@ -411,7 +408,7 @@ const artistdata: ArtistDataProps[] = [
     street_address: "7386 Ridgeview Point",
     introduction:
       "Duis aliquam convallis nunc. Proin at turpis a pede posuere nonummy. Integer non velit.",
-    randomImage: getRandomImage(),
+    mainImage: imagesArr[21],
     randomImage01: getRandomImage(),
     randomImage02: getRandomImage(),
     randomImage03: getRandomImage(),
@@ -427,7 +424,7 @@ const artistdata: ArtistDataProps[] = [
     street_address: "58086 Cambridge Pass",
     introduction:
       "Etiam vel augue. Vestibulum rutrum rutrum neque. Aenean auctor gravida sem.",
-    randomImage: getRandomImage(),
+    mainImage: imagesArr[22],
     randomImage01: getRandomImage(),
     randomImage02: getRandomImage(),
     randomImage03: getRandomImage(),
@@ -443,7 +440,7 @@ const artistdata: ArtistDataProps[] = [
     street_address: "0425 Beilfuss Junction",
     introduction:
       "Vestibulum ac est lacinia nisi venenatis tristique. Fusce congue, diam id ornare imperdiet, sapien urna pretium nisl, ut volutpat sapien arcu sed augue. Aliquam erat volutpat.",
-    randomImage: getRandomImage(),
+    mainImage: imagesArr[23],
     randomImage01: getRandomImage(),
     randomImage02: getRandomImage(),
     randomImage03: getRandomImage(),
@@ -459,7 +456,7 @@ const artistdata: ArtistDataProps[] = [
     street_address: "064 Loomis Alley",
     introduction:
       "Nulla ut erat id mauris vulputate elementum. Nullam varius. Nulla facilisi.",
-    randomImage: getRandomImage(),
+    mainImage: imagesArr[24],
     randomImage01: getRandomImage(),
     randomImage02: getRandomImage(),
     randomImage03: getRandomImage(),
@@ -475,7 +472,7 @@ const artistdata: ArtistDataProps[] = [
     street_address: "1 Bunker Hill Pass",
     introduction:
       "Sed sagittis. Nam congue, risus semper porta volutpat, quam pede lobortis ligula, sit amet eleifend pede libero quis orci. Nullam molestie nibh in lectus.",
-    randomImage: getRandomImage(),
+    mainImage: imagesArr[25],
     randomImage01: getRandomImage(),
     randomImage02: getRandomImage(),
     randomImage03: getRandomImage(),
@@ -491,7 +488,7 @@ const artistdata: ArtistDataProps[] = [
     street_address: "17543 Darwin Terrace",
     introduction:
       "Nulla ut erat id mauris vulputate elementum. Nullam varius. Nulla facilisi.",
-    randomImage: getRandomImage(),
+    mainImage: imagesArr[26],
     randomImage01: getRandomImage(),
     randomImage02: getRandomImage(),
     randomImage03: getRandomImage(),
@@ -507,7 +504,7 @@ const artistdata: ArtistDataProps[] = [
     street_address: "1902 Banding Road",
     introduction:
       "Duis bibendum, felis sed interdum venenatis, turpis enim blandit mi, in porttitor pede justo eu massa. Donec dapibus. Duis at velit eu est congue elementum.",
-    randomImage: getRandomImage(),
+    mainImage: imagesArr[27],
     randomImage01: getRandomImage(),
     randomImage02: getRandomImage(),
     randomImage03: getRandomImage(),
@@ -523,7 +520,7 @@ const artistdata: ArtistDataProps[] = [
     street_address: "03631 Cascade Junction",
     introduction:
       "Etiam vel augue. Vestibulum rutrum rutrum neque. Aenean auctor gravida sem.",
-    randomImage: getRandomImage(),
+    mainImage: imagesArr[28],
     randomImage01: getRandomImage(),
     randomImage02: getRandomImage(),
     randomImage03: getRandomImage(),
@@ -539,7 +536,7 @@ const artistdata: ArtistDataProps[] = [
     street_address: "488 Claremont Drive",
     introduction:
       "Aenean lectus. Pellentesque eget nunc. Donec quis orci eget orci vehicula condimentum.",
-    randomImage: getRandomImage(),
+    mainImage: imagesArr[29],
     randomImage01: getRandomImage(),
     randomImage02: getRandomImage(),
     randomImage03: getRandomImage(),
@@ -555,7 +552,7 @@ const artistdata: ArtistDataProps[] = [
     street_address: "0 Ryan Crossing",
     introduction:
       "Donec diam neque, vestibulum eget, vulputate ut, ultrices vel, augue. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec pharetra, magna vestibulum aliquet ultrices, erat tortor sollicitudin mi, sit amet lobortis sapien sapien non mi. Integer ac neque.",
-    randomImage: getRandomImage(),
+    mainImage: imagesArr[30],
     randomImage01: getRandomImage(),
     randomImage02: getRandomImage(),
     randomImage03: getRandomImage(),
@@ -571,7 +568,7 @@ const artistdata: ArtistDataProps[] = [
     street_address: "82053 Dovetail Alley",
     introduction:
       "Curabitur at ipsum ac tellus semper interdum. Mauris ullamcorper purus sit amet nulla. Quisque arcu libero, rutrum ac, lobortis vel, dapibus at, diam.",
-    randomImage: getRandomImage(),
+    mainImage: imagesArr[31],
     randomImage01: getRandomImage(),
     randomImage02: getRandomImage(),
     randomImage03: getRandomImage(),
@@ -586,7 +583,7 @@ const artistdata: ArtistDataProps[] = [
     city: "Rantaupanjangkiri",
     street_address: "356 Sauthoff Trail",
     introduction: "Fusce consequat. Nulla nisl. Nunc nisl.",
-    randomImage: getRandomImage(),
+    mainImage: imagesArr[32],
     randomImage01: getRandomImage(),
     randomImage02: getRandomImage(),
     randomImage03: getRandomImage(),
@@ -602,7 +599,7 @@ const artistdata: ArtistDataProps[] = [
     street_address: "01247 Colorado Way",
     introduction:
       "Aliquam quis turpis eget elit sodales scelerisque. Mauris sit amet eros. Suspendisse accumsan tortor quis turpis.",
-    randomImage: getRandomImage(),
+    mainImage: imagesArr[33],
     randomImage01: getRandomImage(),
     randomImage02: getRandomImage(),
     randomImage03: getRandomImage(),
@@ -618,7 +615,7 @@ const artistdata: ArtistDataProps[] = [
     street_address: "94089 Harbort Court",
     introduction:
       "Praesent id massa id nisl venenatis lacinia. Aenean sit amet justo. Morbi ut odio.",
-    randomImage: getRandomImage(),
+    mainImage: imagesArr[34],
     randomImage01: getRandomImage(),
     randomImage02: getRandomImage(),
     randomImage03: getRandomImage(),
@@ -634,7 +631,7 @@ const artistdata: ArtistDataProps[] = [
     street_address: "17531 Ryan Hill",
     introduction:
       "Quisque id justo sit amet sapien dignissim vestibulum. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Nulla dapibus dolor vel est. Donec odio justo, sollicitudin ut, suscipit a, feugiat et, eros.",
-    randomImage: getRandomImage(),
+    mainImage: imagesArr[35],
     randomImage01: getRandomImage(),
     randomImage02: getRandomImage(),
     randomImage03: getRandomImage(),
@@ -650,7 +647,7 @@ const artistdata: ArtistDataProps[] = [
     street_address: "91 Donald Park",
     introduction:
       "Etiam vel augue. Vestibulum rutrum rutrum neque. Aenean auctor gravida sem.",
-    randomImage: getRandomImage(),
+    mainImage: imagesArr[36],
     randomImage01: getRandomImage(),
     randomImage02: getRandomImage(),
     randomImage03: getRandomImage(),
@@ -666,7 +663,7 @@ const artistdata: ArtistDataProps[] = [
     street_address: "4 Eagan Drive",
     introduction:
       "Nullam sit amet turpis elementum ligula vehicula consequat. Morbi a ipsum. Integer a nibh.",
-    randomImage: getRandomImage(),
+    mainImage: imagesArr[37],
     randomImage01: getRandomImage(),
     randomImage02: getRandomImage(),
     randomImage03: getRandomImage(),
@@ -682,7 +679,7 @@ const artistdata: ArtistDataProps[] = [
     street_address: "65 Granby Parkway",
     introduction:
       "Duis aliquam convallis nunc. Proin at turpis a pede posuere nonummy. Integer non velit.",
-    randomImage: getRandomImage(),
+    mainImage: imagesArr[38],
     randomImage01: getRandomImage(),
     randomImage02: getRandomImage(),
     randomImage03: getRandomImage(),
@@ -698,7 +695,7 @@ const artistdata: ArtistDataProps[] = [
     street_address: "77444 Green Parkway",
     introduction:
       "Quisque porta volutpat erat. Quisque erat eros, viverra eget, congue eget, semper rutrum, nulla. Nunc purus.",
-    randomImage: getRandomImage(),
+    mainImage: imagesArr[39],
     randomImage01: getRandomImage(),
     randomImage02: getRandomImage(),
     randomImage03: getRandomImage(),
@@ -714,7 +711,7 @@ const artistdata: ArtistDataProps[] = [
     street_address: "599 Bowman Trail",
     introduction:
       "Pellentesque at nulla. Suspendisse potenti. Cras in purus eu magna vulputate luctus.",
-    randomImage: getRandomImage(),
+    mainImage: imagesArr[40],
     randomImage01: getRandomImage(),
     randomImage02: getRandomImage(),
     randomImage03: getRandomImage(),
@@ -730,7 +727,7 @@ const artistdata: ArtistDataProps[] = [
     street_address: "0674 Thompson Parkway",
     introduction:
       "Praesent blandit. Nam nulla. Integer pede justo, lacinia eget, tincidunt eget, tempus vel, pede.",
-    randomImage: getRandomImage(),
+    mainImage: imagesArr[41],
     randomImage01: getRandomImage(),
     randomImage02: getRandomImage(),
     randomImage03: getRandomImage(),
@@ -745,7 +742,7 @@ const artistdata: ArtistDataProps[] = [
     city: "Zitong",
     street_address: "1 Fordem Road",
     introduction: "Fusce consequat. Nulla nisl. Nunc nisl.",
-    randomImage: getRandomImage(),
+    mainImage: imagesArr[42],
     randomImage01: getRandomImage(),
     randomImage02: getRandomImage(),
     randomImage03: getRandomImage(),
@@ -761,7 +758,7 @@ const artistdata: ArtistDataProps[] = [
     street_address: "7 Manitowish Avenue",
     introduction:
       "Suspendisse potenti. In eleifend quam a odio. In hac habitasse platea dictumst.",
-    randomImage: getRandomImage(),
+    mainImage: imagesArr[43],
     randomImage01: getRandomImage(),
     randomImage02: getRandomImage(),
     randomImage03: getRandomImage(),
@@ -777,7 +774,7 @@ const artistdata: ArtistDataProps[] = [
     street_address: "4 Kennedy Center",
     introduction:
       "Sed sagittis. Nam congue, risus semper porta volutpat, quam pede lobortis ligula, sit amet eleifend pede libero quis orci. Nullam molestie nibh in lectus.",
-    randomImage: getRandomImage(),
+    mainImage: imagesArr[44],
     randomImage01: getRandomImage(),
     randomImage02: getRandomImage(),
     randomImage03: getRandomImage(),
@@ -793,7 +790,7 @@ const artistdata: ArtistDataProps[] = [
     street_address: "401 Fisk Place",
     introduction:
       "Aenean fermentum. Donec ut mauris eget massa tempor convallis. Nulla neque libero, convallis eget, eleifend luctus, ultricies eu, nibh.",
-    randomImage: getRandomImage(),
+    mainImage: imagesArr[45],
     randomImage01: getRandomImage(),
     randomImage02: getRandomImage(),
     randomImage03: getRandomImage(),
@@ -809,7 +806,7 @@ const artistdata: ArtistDataProps[] = [
     street_address: "4 Bellgrove Road",
     introduction:
       "Maecenas ut massa quis augue luctus tincidunt. Nulla mollis molestie lorem. Quisque ut erat.",
-    randomImage: getRandomImage(),
+    mainImage: imagesArr[46],
     randomImage01: getRandomImage(),
     randomImage02: getRandomImage(),
     randomImage03: getRandomImage(),
@@ -824,7 +821,7 @@ const artistdata: ArtistDataProps[] = [
     city: "Castlerea",
     street_address: "7710 Northridge Park",
     introduction: "Sed ante. Vivamus tortor. Duis mattis egestas metus.",
-    randomImage: getRandomImage(),
+    mainImage: imagesArr[47],
     randomImage01: getRandomImage(),
     randomImage02: getRandomImage(),
     randomImage03: getRandomImage(),
@@ -840,7 +837,7 @@ const artistdata: ArtistDataProps[] = [
     street_address: "99306 Florence Lane",
     introduction:
       "Aliquam quis turpis eget elit sodales scelerisque. Mauris sit amet eros. Suspendisse accumsan tortor quis turpis.",
-    randomImage: getRandomImage(),
+    mainImage: imagesArr[48],
     randomImage01: getRandomImage(),
     randomImage02: getRandomImage(),
     randomImage03: getRandomImage(),
@@ -856,7 +853,7 @@ const artistdata: ArtistDataProps[] = [
     street_address: "4708 Hanson Center",
     introduction:
       "Integer ac leo. Pellentesque ultrices mattis odio. Donec vitae nisi.",
-    randomImage: getRandomImage(),
+    mainImage: imagesArr[49],
     randomImage01: getRandomImage(),
     randomImage02: getRandomImage(),
     randomImage03: getRandomImage(),
@@ -872,7 +869,7 @@ const artistdata: ArtistDataProps[] = [
     street_address: "57701 Homewood Circle",
     introduction:
       "Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Vivamus vestibulum sagittis sapien. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.",
-    randomImage: getRandomImage(),
+    mainImage: imagesArr[50],
     randomImage01: getRandomImage(),
     randomImage02: getRandomImage(),
     randomImage03: getRandomImage(),
@@ -888,7 +885,7 @@ const artistdata: ArtistDataProps[] = [
     street_address: "422 Pepper Wood Terrace",
     introduction:
       "Duis aliquam convallis nunc. Proin at turpis a pede posuere nonummy. Integer non velit.",
-    randomImage: getRandomImage(),
+    mainImage: imagesArr[51],
     randomImage01: getRandomImage(),
     randomImage02: getRandomImage(),
     randomImage03: getRandomImage(),
@@ -904,7 +901,7 @@ const artistdata: ArtistDataProps[] = [
     street_address: "9 Oxford Pass",
     introduction:
       "Phasellus sit amet erat. Nulla tempus. Vivamus in felis eu sapien cursus vestibulum.",
-    randomImage: getRandomImage(),
+    mainImage: imagesArr[52],
     randomImage01: getRandomImage(),
     randomImage02: getRandomImage(),
     randomImage03: getRandomImage(),
@@ -920,7 +917,7 @@ const artistdata: ArtistDataProps[] = [
     street_address: "6352 Swallow Parkway",
     introduction:
       "Curabitur gravida nisi at nibh. In hac habitasse platea dictumst. Aliquam augue quam, sollicitudin vitae, consectetuer eget, rutrum at, lorem.",
-    randomImage: getRandomImage(),
+    mainImage: imagesArr[53],
     randomImage01: getRandomImage(),
     randomImage02: getRandomImage(),
     randomImage03: getRandomImage(),
@@ -936,7 +933,7 @@ const artistdata: ArtistDataProps[] = [
     street_address: "2070 Tennessee Parkway",
     introduction:
       "Suspendisse potenti. In eleifend quam a odio. In hac habitasse platea dictumst.",
-    randomImage: getRandomImage(),
+    mainImage: imagesArr[54],
     randomImage01: getRandomImage(),
     randomImage02: getRandomImage(),
     randomImage03: getRandomImage(),
@@ -952,7 +949,7 @@ const artistdata: ArtistDataProps[] = [
     street_address: "50886 Moulton Terrace",
     introduction:
       "Curabitur at ipsum ac tellus semper interdum. Mauris ullamcorper purus sit amet nulla. Quisque arcu libero, rutrum ac, lobortis vel, dapibus at, diam.",
-    randomImage: getRandomImage(),
+    mainImage: imagesArr[55],
     randomImage01: getRandomImage(),
     randomImage02: getRandomImage(),
     randomImage03: getRandomImage(),
@@ -968,7 +965,7 @@ const artistdata: ArtistDataProps[] = [
     street_address: "46 Burrows Terrace",
     introduction:
       "Fusce posuere felis sed lacus. Morbi sem mauris, laoreet ut, rhoncus aliquet, pulvinar sed, nisl. Nunc rhoncus dui vel sem.",
-    randomImage: getRandomImage(),
+    mainImage: imagesArr[56],
     randomImage01: getRandomImage(),
     randomImage02: getRandomImage(),
     randomImage03: getRandomImage(),
@@ -984,7 +981,7 @@ const artistdata: ArtistDataProps[] = [
     street_address: "55273 Shasta Park",
     introduction:
       "Vestibulum ac est lacinia nisi venenatis tristique. Fusce congue, diam id ornare imperdiet, sapien urna pretium nisl, ut volutpat sapien arcu sed augue. Aliquam erat volutpat.",
-    randomImage: getRandomImage(),
+    mainImage: imagesArr[57],
     randomImage01: getRandomImage(),
     randomImage02: getRandomImage(),
     randomImage03: getRandomImage(),
@@ -999,7 +996,7 @@ const artistdata: ArtistDataProps[] = [
     city: "Xinning",
     street_address: "536 Ramsey Hill",
     introduction: "Sed ante. Vivamus tortor. Duis mattis egestas metus.",
-    randomImage: getRandomImage(),
+    mainImage: imagesArr[58],
     randomImage01: getRandomImage(),
     randomImage02: getRandomImage(),
     randomImage03: getRandomImage(),
@@ -1015,7 +1012,7 @@ const artistdata: ArtistDataProps[] = [
     street_address: "1893 Coleman Plaza",
     introduction:
       "Maecenas leo odio, condimentum id, luctus nec, molestie sed, justo. Pellentesque viverra pede ac diam. Cras pellentesque volutpat dui.",
-    randomImage: getRandomImage(),
+    mainImage: imagesArr[59],
     randomImage01: getRandomImage(),
     randomImage02: getRandomImage(),
     randomImage03: getRandomImage(),
@@ -1031,7 +1028,7 @@ const artistdata: ArtistDataProps[] = [
     street_address: "7557 Drewry Place",
     introduction:
       "Morbi non lectus. Aliquam sit amet diam in magna bibendum imperdiet. Nullam orci pede, venenatis non, sodales sed, tincidunt eu, felis.",
-    randomImage: getRandomImage(),
+    mainImage: imagesArr[60],
     randomImage01: getRandomImage(),
     randomImage02: getRandomImage(),
     randomImage03: getRandomImage(),
@@ -1047,7 +1044,7 @@ const artistdata: ArtistDataProps[] = [
     street_address: "60 Milwaukee Circle",
     introduction:
       "Proin eu mi. Nulla ac enim. In tempor, turpis nec euismod scelerisque, quam turpis adipiscing lorem, vitae mattis nibh ligula nec sem.",
-    randomImage: getRandomImage(),
+    mainImage: imagesArr[61],
     randomImage01: getRandomImage(),
     randomImage02: getRandomImage(),
     randomImage03: getRandomImage(),
@@ -1063,7 +1060,7 @@ const artistdata: ArtistDataProps[] = [
     street_address: "8 Alpine Alley",
     introduction:
       "Donec diam neque, vestibulum eget, vulputate ut, ultrices vel, augue. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec pharetra, magna vestibulum aliquet ultrices, erat tortor sollicitudin mi, sit amet lobortis sapien sapien non mi. Integer ac neque.",
-    randomImage: getRandomImage(),
+    mainImage: imagesArr[62],
     randomImage01: getRandomImage(),
     randomImage02: getRandomImage(),
     randomImage03: getRandomImage(),
@@ -1078,7 +1075,7 @@ const artistdata: ArtistDataProps[] = [
     city: "Had Kourt",
     street_address: "0 Magdeline Place",
     introduction: "Phasellus in felis. Donec semper sapien a libero. Nam dui.",
-    randomImage: getRandomImage(),
+    mainImage: imagesArr[63],
     randomImage01: getRandomImage(),
     randomImage02: getRandomImage(),
     randomImage03: getRandomImage(),
@@ -1094,7 +1091,7 @@ const artistdata: ArtistDataProps[] = [
     street_address: "38 Trailsway Park",
     introduction:
       "Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Vivamus vestibulum sagittis sapien. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.",
-    randomImage: getRandomImage(),
+    mainImage: imagesArr[64],
     randomImage01: getRandomImage(),
     randomImage02: getRandomImage(),
     randomImage03: getRandomImage(),
@@ -1110,7 +1107,7 @@ const artistdata: ArtistDataProps[] = [
     street_address: "28 Bellgrove Street",
     introduction:
       "Duis bibendum. Morbi non quam nec dui luctus rutrum. Nulla tellus.",
-    randomImage: getRandomImage(),
+    mainImage: imagesArr[65],
     randomImage01: getRandomImage(),
     randomImage02: getRandomImage(),
     randomImage03: getRandomImage(),
@@ -1126,7 +1123,7 @@ const artistdata: ArtistDataProps[] = [
     street_address: "795 Derek Avenue",
     introduction:
       "Cras non velit nec nisi vulputate nonummy. Maecenas tincidunt lacus at velit. Vivamus vel nulla eget eros elementum pellentesque.",
-    randomImage: getRandomImage(),
+    mainImage: imagesArr[66],
     randomImage01: getRandomImage(),
     randomImage02: getRandomImage(),
     randomImage03: getRandomImage(),
@@ -1142,7 +1139,7 @@ const artistdata: ArtistDataProps[] = [
     street_address: "73027 Dunning Plaza",
     introduction:
       "Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Vivamus vestibulum sagittis sapien. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.",
-    randomImage: getRandomImage(),
+    mainImage: imagesArr[67],
     randomImage01: getRandomImage(),
     randomImage02: getRandomImage(),
     randomImage03: getRandomImage(),
@@ -1158,7 +1155,7 @@ const artistdata: ArtistDataProps[] = [
     street_address: "0246 Browning Point",
     introduction:
       "Nullam sit amet turpis elementum ligula vehicula consequat. Morbi a ipsum. Integer a nibh.",
-    randomImage: getRandomImage(),
+    mainImage: imagesArr[68],
     randomImage01: getRandomImage(),
     randomImage02: getRandomImage(),
     randomImage03: getRandomImage(),
@@ -1174,7 +1171,7 @@ const artistdata: ArtistDataProps[] = [
     street_address: "05 Crowley Junction",
     introduction:
       "Morbi non lectus. Aliquam sit amet diam in magna bibendum imperdiet. Nullam orci pede, venenatis non, sodales sed, tincidunt eu, felis.",
-    randomImage: getRandomImage(),
+    mainImage: imagesArr[69],
     randomImage01: getRandomImage(),
     randomImage02: getRandomImage(),
     randomImage03: getRandomImage(),
