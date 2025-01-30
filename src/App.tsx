@@ -22,7 +22,6 @@ import Register from "./pages/Register";
 import ScrollToTopButton from "./components/ScrollToTopButton/ScrollToTopButton";
 import artistdata from "./assets/datas/artitstData";
 import { GlobalStyle } from "./stores/GlobalStyles";
-import Test from "./components/Header/Test";
 
 const App = () => {
   // const [artistData, setArtistData] = useState<ArtistDataProps[]>(artistdata);

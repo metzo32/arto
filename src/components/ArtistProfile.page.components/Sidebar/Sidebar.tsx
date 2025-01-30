@@ -6,7 +6,7 @@ import { FaYoutube } from "react-icons/fa6"; //유튜브
 
 export default function Sidebar({ isVisible }: { isVisible: boolean }) {
   return (
-    <Div className={`contact-side ${isVisible && "visible"}`}>
+    <Div className={`contact-side ${isVisible ? "visible" : "invisible"}`}>
       <A
         href="https://www.facebook.com"
         target="_blank"

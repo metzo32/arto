@@ -154,7 +154,7 @@ export default function ArticleCard({ currentSort }: ArticleCardProps) {
                     isWishlisted={!!artist.isWishlisted}
                     onToggleWishlist={() => toggleWishlist(artist.id)}
                     artistNickname={artist.nickname}
-                    artistRandomImage={artist.mainImage}
+                    mainImage={artist.mainImage}
                     artistSkills={artist.skills.map((skill) => skill.id)} // ID 배열로 전달
                   />
                   <H3 className="article-name">{artist.nickname}</H3>

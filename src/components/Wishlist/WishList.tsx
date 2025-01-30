@@ -3,26 +3,31 @@ import { IconLine, IconClicked, IconHover, Span } from "./Wishlist.style";
 import { useState, useEffect } from "react";
 import { auth, db } from "../../firebase/firebaseConfig";
 import { getSkillsByIds } from "../../assets/datas/artitstData"; // getSkillsByIds 함수 가져오기
+import { useModal } from "../../hooks/useModal";
+import { useNavigate } from "react-router-dom";
+import Modal from "../Modal/Modal";
 
 interface WishListProps {
   artistId: number;
   artistNickname: string;
-  artistRandomImage: string;
+  mainImage: string;
   artistSkills: number[]; // skill ID 배열로 변경
   isWishlisted: boolean;
   onToggleWishlist: () => void;
 }
-
 const WishList = ({
   artistId,
   artistNickname,
-  artistRandomImage,
+  mainImage,
   artistSkills,
   isWishlisted,
   onToggleWishlist,
 }: WishListProps) => {
+  const { isModalOpen, modalTitle, modalContent, openModal, closeModal } =
+    useModal();
   const [wishButton, setWishButton] = useState<boolean>(isWishlisted);
   const [hovered, setHovered] = useState(false);
+  const navigate = useNavigate()
 
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged(async (user) => {
@@ -50,7 +55,7 @@ const WishList = ({
   const handleWishlistToggle = async () => {
     const user = auth.currentUser;
     if (!user) {
-      console.error("로그인이 필요합니다.");
+      openModal("잠깐!", "로그인이 필요한 서비스입니다.")
       return;
     }
 
@@ -71,7 +76,7 @@ const WishList = ({
         const newWishlistItem = {
           id: artistId,
           nickname: artistNickname,
-          randomImage: artistRandomImage,
+          mainImage: mainImage,
           skills: artistSkills, // skill ID 배열 저장
         };
 
@@ -124,18 +129,33 @@ const WishList = ({
     }
   };
 
+  const handleNavigation = () => {
+    navigate("/login")
+  }
+
   // `artistSkills`를 `getSkillsByIds`를 통해 변환
   const skillComponents = getSkillsByIds(artistSkills);
 
   return (
-    <Span
-      onMouseOver={handleMouseEnter}
-      onMouseOut={handleMouseLeave}
-      onClick={handleMouseClick}
-      onTouchStart={handleTouchStart}
-    >
-      {renderIcon()}
-    </Span>
+    <>
+      <Modal
+        isOpen={isModalOpen}
+        onClose={handleNavigation}
+        title={modalTitle}
+        content={modalContent}
+        primBtnText="로그인하기"
+        isOptionOn={true}
+        onSecClose={closeModal}
+      />
+      <Span
+        onMouseOver={handleMouseEnter}
+        onMouseOut={handleMouseLeave}
+        onClick={handleMouseClick}
+        onTouchStart={handleTouchStart}
+      >
+        {renderIcon()}
+      </Span>
+    </>
   );
 };
 

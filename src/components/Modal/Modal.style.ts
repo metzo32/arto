@@ -48,18 +48,40 @@ export const pulse03 = keyframes`
 `;
 
 export const Span = styled.span`
-  position: fixed;
-  top: 0;
-  left: 0;
-  min-width: 320px;
-  min-height: 100%;
-  width: 100vw;
-  height: 100vh;
-  background-color: rgba(0, 0, 0, 0.5);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 1000;
+  &.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    min-width: 320px;
+    min-height: 100%;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+  }
+
+  &.icon-contianer {
+    background-color: ${(props) => props.theme.accent};
+    border-radius: 50%;
+    border: 3px solid ${(props) => props.theme.accent};
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    @media (max-width: 767px) {
+      width: 30px;
+      height: 30px;
+    }
+
+    @media (min-width: 768px) {
+      width: 30px;
+      height: 30px;
+    }
+  }
 `;
 
 export const Div = styled.div`
@@ -84,26 +106,6 @@ export const Div = styled.div`
       height: 350px;
       padding: 20px 0px 40px 0px;
       border-radius: 10px;
-    }
-  }
-
-  &.icon-contianer {
-    background-color: ${(props) => props.theme.accent};
-    border-radius: 50%;
-    border: 3px solid ${(props) => props.theme.accent};
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    @media (max-width: 767px) {
-      width: 30px;
-      height: 30px;
-    }
-
-    @media (min-width: 768px) {
-      width: 30px;
-      height: 30px;
     }
   }
 

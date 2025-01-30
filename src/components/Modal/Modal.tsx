@@ -26,6 +26,7 @@ export default function Modal({
   secBtnText = "닫기",
   onSecClose,
 }: ModalProps) {
+  
   const { isMobile } = useWindowSize();
   if (!isOpen) return null;
 
@@ -34,9 +35,9 @@ export default function Modal({
       <Div className="modal-wrapper" onClick={(e) => e.stopPropagation()}>
         {!isMobile && (
           <Circle className="wrapper">
-            <Div className="icon-contianer ">
+            <Span className="icon-contianer ">
               <ModalIcon />
-            </Div>
+            </Span>
             <Circle className="circle circle00" />
             <Circle className="circle circle01" />
             <Circle className="circle circle02" />

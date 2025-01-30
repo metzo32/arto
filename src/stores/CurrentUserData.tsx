@@ -13,7 +13,7 @@ interface UserProfileProps {
   };
 }
 
-const CurrentUserData: React.FC<UserProfileProps> = ({ userData }) => {
+const CurrentUserData = ({ userData }: UserProfileProps) => {
   return (
     <div>
       <p>이름: {userData.fullname}</p>

@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { ReactComponent as DeleteIcon } from "../../assets/icons/icon_delete.svg";
 
 export const Section = styled.section`
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -23,19 +24,22 @@ export const Div = styled.div`
 
     @media (max-width: 767px) {
       width: 100%;
-      padding: 30px 10px;
+      // padding: 30px 10px;
+      padding: 30px 0px;
       margin-left: 70px;
     }
 
     @media (min-width: 768px) {
       width: 80%;
-      padding: 50px 80px;
+      // padding: 50px 80px;
+      padding: 50px 0px;
       margin: 0 auto;
     }
 
     @media (min-width: 1024px) {
       width: 900px;
-      padding: 80px 100px;
+      // padding: 80px 100px;
+      padding: 80px 0px;
     }
   }
 
@@ -44,41 +48,6 @@ export const Div = styled.div`
     flex-direction: column;
     align-items: center;
     gap: 20px;
-  }
-
-  &.likes-container {
-    border: 1px solid blue;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-  }
-
-  &.likes-container-large {
-    border: 1px solid blue;
-    width: 800px;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-  }
-
-  &.likes-card {
-    cursor: pointer;
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 10px;
-    position: relative;
-  }
-
-  &.likes-card-large {
-  border: 1px solid green;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 10px;
   }
 
   &.like-num-box {
@@ -94,6 +63,7 @@ export const Div = styled.div`
 
     @media (max-width: 767px) {
       flex-direction: column;
+      align-items: center;
     }
 
     @media (min-width: 768px) {
@@ -126,9 +96,17 @@ export const H3 = styled.h3`
 export const H4 = styled.h4`
   font-size: 20px;
 
+  @media (min-width: 768px) {
+    font-size: 24px;
+  }
+
   &.liked {
     font-size: 28px;
     font-weight: 600;
+  }
+
+  &.profile-like-name {
+    font-weight: bold;
   }
 `;
 
@@ -142,25 +120,21 @@ export const H5 = styled.h5`
   }
 `;
 
+export const Button = styled.button`
+  &.delete-small {
+    position: absolute;
+    top: -10px;
+    right: -10px;
+  }
+`;
+
 export const Img = styled.img`
   object-fit: cover;
-  border-radius: 100%;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.3);
+  cursor: pointer;
+  transition: all 0.2s ease;
 
-  @media (max-width: 767px) {
-    width: 80px;
-    height: 80px;
-  }
-
-  @media (min-width: 768px) {
-    width: 100px;
-    height: 100px;
-  }
-  @media (min-width: 1024px) {
-    width: 120px;
-    height: 120px;
-  }
-
-  &.large {
+  &.small-img {
     border-radius: 10px;
 
     @media (max-width: 767px) {
@@ -173,22 +147,151 @@ export const Img = styled.img`
       height: 100px;
     }
     @media (min-width: 1024px) {
+      width: 120px;
+      height: 120px;
+    }
+  }
+
+  &.large-img {
+    &:hover {
+      transform: scale(102%);
+    }
+
+    @media (max-width: 767px) {
+      border-radius: 10px;
       width: 100%;
-      height: 300px;
+      aspect-ratio: 1/1;
+      min-height: 210px;
+    }
+
+    @media (min-width: 768px) {
+      border-radius: 20px;
+      width: 100%;
+      height: 400px;
+    }
+    @media (min-width: 1024px) {
+      width: 100%;
+      height: 400px;
+    }
+  }
+
+  &.profile {
+    border-radius: 100%;
+
+    &:hover {
+      transform: scale(110%);
+    }
+
+    @media (max-width: 767px) {
+      width: 60px;
+      height: 60px;
+    }
+
+    @media (min-width: 768px) {
+      width: 80px;
+      height: 80px;
+    }
+    @media (min-width: 1024px) {
+      width: 80px;
+      height: 80px;
     }
   }
 `;
 
+export const SmallDiv = styled.div`
+  display: flex;
+
+  &.likes-container {
+    width: 100%;
+    padding: 0px 25px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 20px;
+
+    @media (min-width: 768px) {
+      padding: 0;
+      flex-direction: row;
+      justify-content: center;
+      gap: 30px;
+    }
+  }
+
+  &.likes-card {
+    cursor: pointer;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 20px;
+
+    position: relative;
+
+    @media (min-width: 768px) {
+      flex-direction: column;
+    }
+  }
+
+  &.likes-box {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+`;
+
+export const LargeDiv = styled.div`
+  display: flex;
+
+  &.likes-container {
+    width: 100%;
+    flex-direction: column;
+    gap: 50px;
+  }
+
+  &.likes-card {
+    background-color: ${(props) => props.theme.base};
+    flex-direction: column;
+    padding: 20px 30px 40px 30px;
+    gap: 20px;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.3);
+  }
+
+  &.name-container {
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 20px;
+
+    @media (min-width: 768px) {
+      flex-direction: row;
+      align-items: center;
+      padding: 20px;
+    }
+  }
+
+  &.name-box {
+    align-items: center;
+    gap: 10px;
+
+    @media (min-width: 768px) {
+      gap: 20px;
+    }
+  }
+
+  &.skills-container {
+    background-color: pink;
+    opacity: 0.5;
+    width: 100%;
+    height: 70px;
+  }
+`;
+
+export const Span = styled.span`
+  display: flex;
+`;
+
 export const RemoveIcon = styled(DeleteIcon)`
   fill: ${(props) => props.theme.accent_secondary};
-
-  position: absolute;
-  top: 0;
-  right: 0;
-
-  &:hover {
-    fill: ${(props) => props.theme.accent};
-  }
 
   @media (max-width: 767px) {
     width: 30px;
@@ -199,8 +302,13 @@ export const RemoveIcon = styled(DeleteIcon)`
     width: 30px;
     height: 30px;
   }
+
   @media (min-width: 1024px) {
     width: 35px;
     height: 35px;
+  }
+
+  &:hover {
+    fill: ${(props) => props.theme.accent};
   }
 `;

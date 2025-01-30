@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
-import { Div, Button } from "./ScrollToTopButton.style";
+import { Button } from "./ScrollToTopButton.style";
 import { RiArrowUpDoubleFill } from "react-icons/ri";
-
 
 const ScrollToTopbutton = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -29,11 +28,12 @@ const ScrollToTopbutton = () => {
   };
 
   return (
-    <Div>
-      <Button onClick={handleScrollToTop}>
-        <RiArrowUpDoubleFill/>
-      </Button>
-    </Div>
+    <Button
+      onClick={handleScrollToTop}
+      className={isVisible ? "" : "invisible"}
+    >
+      <RiArrowUpDoubleFill />
+    </Button>
   );
 };
 

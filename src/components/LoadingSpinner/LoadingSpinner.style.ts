@@ -11,4 +11,5 @@ export const Div = styled.div`
 
   position: fixed;
   top: 0;
+  z-index: 10;
 `;

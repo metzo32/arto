@@ -156,7 +156,7 @@ export default function ArtistProfileComp({
 
       <Section ref={contactRef} className="narrow">
         <NameCard artist={artist} />
-        {isVisible && <Sidebar isVisible={isVisible} />}
+        <Sidebar isVisible={isVisible} />
       </Section>
       <ScrollToTopbutton />
     </Div>

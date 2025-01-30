@@ -1,24 +1,44 @@
 import { useState, useEffect } from "react";
-import { Section, Div, H2, H3, H4, H5, Img, RemoveIcon } from "./Profile.style";
+import {
+  Section,
+  Div,
+  H2,
+  H3,
+  H4,
+  H5,
+  Button,
+  Img,
+  SmallDiv,
+  LargeDiv,
+  Span,
+  RemoveIcon,
+} from "./Profile.style";
 import { auth, db } from "../../firebase/firebaseConfig";
 import { onAuthStateChanged } from "firebase/auth";
 import { doc, getDoc, updateDoc } from "firebase/firestore";
 import { useNavigate } from "react-router-dom";
+import useLoading from "../../hooks/useLoading";
 import LogoutButton from "../Logout";
 import LoadingSpinner from "../LoadingSpinner/LoadingSpinner";
 import StartFromTop from "../StartFromTop";
-import { PopUpBelow } from "../FramerMotions/scrollMotions";
 import { getSkillsByIds } from "../../assets/datas/artitstData";
-import useLoading from "../../hooks/useLoading";
+import RoundButton from "../../assets/design-assets/RoundButton/RoundButton";
+import {
+  BaseButton,
+  SecondaryButton,
+} from "../../assets/design-assets/BaseButton/BaseButton";
+import ScrollToTopbutton from "../ScrollToTopButton/ScrollToTopButton";
 import { IoMdPhonePortrait } from "react-icons/io";
 import { FaBirthdayCake } from "react-icons/fa";
-import { BaseButton } from "../../assets/design-assets/BaseButton/BaseButton";
+import { PiCirclesThreeBold } from "react-icons/pi";
+import { FaExpand } from "react-icons/fa";
 
 const ProfileComp = () => {
   const { isLoading, setIsLoading, loadingProgress } = useLoading();
   const [userData, setUserData] = useState<any>(null);
   const [photoURL, setPhotoURL] = useState<string | null>(null);
   const [visibleCount, setVisibleCount] = useState(5); // 처음에 5개만 보여주기
+  const [isShowDetail, setIsShowDetail] = useState(true);
 
   const navigate = useNavigate();
 
@@ -103,6 +123,14 @@ const ProfileComp = () => {
     navigate("/");
   };
 
+  const handleShowDetail = () => {
+    setIsShowDetail(!isShowDetail);
+  };
+
+  const handleFold = () => {
+    setVisibleCount(5);
+  };
+
   return (
     <>
       <StartFromTop />
@@ -139,73 +167,98 @@ const ProfileComp = () => {
 
         <Section>
           {userData && (
-            <Div className="like-num-box">
-              <H4 className="liked">{userData.wishList.length}</H4>
-              <H4 className="profile-details bold">Likes</H4>
+            <Div>
+              <Div className="like-num-box">
+                <H4 className="liked">{userData.wishList.length}</H4>
+                <H4 className="profile-details bold">Likes</H4>
+              </Div>
+              <RoundButton onClick={handleShowDetail}>
+                {isShowDetail ? <PiCirclesThreeBold /> : <FaExpand />}
+              </RoundButton>
+
+              {visibleCount > 5 && (
+                <BaseButton onClick={handleFold} text="접기" />
+              )}
             </Div>
           )}
           {userData && userData.wishList.length === 0 && (
             <H5 onClick={handleBrowse}>둘러보러 가기</H5>
           )}
 
-          {groupedWishlist.map((group, groupIndex) => (
-            <Div key={groupIndex} className="likes-container-large">
-              {group.map((wish: any, index: number) => {
-                // 스킬 ID를 스킬 이름으로 변환
-                const skillNames = getSkillsByIds(wish.skill).map(
-                  (skill) => skill.skill
-                );
+          {isShowDetail
+            ? groupedWishlist.map((group, groupIndex) => (
+                <LargeDiv key={groupIndex} className="likes-container">
+                  {group.map((wish: any, index: number) => {
+                    // 스킬 ID를 스킬 이름으로 변환
+                    const skillNames = getSkillsByIds(wish.skill).map(
+                      (skill) => skill.skill
+                    );
 
-                return (
-                  <Div key={index} className="likes-card-large">
-                    <button
-                      className="delete"
-                      onClick={() => removeWish(wish.id)}
-                    >
-                      <RemoveIcon />
-                    </button>
-                    <Img
-                      className="large"
-                      src={wish.randomImage}
-                      alt={wish.nickname}
-                      onClick={() => handleCardRedirect(wish.nickname)}
-                    />
-                    <H4 className="profile-like-name">{wish.nickname}</H4>
-                    <Div className="skills-container">
-                      {skillNames.map((skillName, skillIndex) => (
-                        <Div key={skillIndex} className="skill-item">
-                          <span>{skillName}</span>
-                        </Div>
-                      ))}
-                    </Div>
-                  </Div>
-                );
-              })}
-            </Div>
-          ))}
+                    return (
+                      <LargeDiv key={index} className="likes-card">
+                        <LargeDiv className="name-container">
+                          <LargeDiv className="name-box">
+                            <Img
+                              className="profile"
+                              src={wish.randomImage}
+                              alt={wish.nickname}
+                              onClick={() => handleCardRedirect(wish.nickname)}
+                            />
+                            <H4 className="profile-like-name">
+                              {wish.nickname}
+                            </H4>
+                          </LargeDiv>
+                          <Span>
+                            <SecondaryButton
+                              type="button"
+                              text="삭제하기"
+                              onClick={() => removeWish(wish.id)}
+                            />
+                          </Span>
+                        </LargeDiv>
+                        <Img
+                          className="large-img"
+                          src={wish.randomImage}
+                          alt={wish.nickname}
+                          onClick={() => handleCardRedirect(wish.nickname)}
+                        />
+                        <LargeDiv className="skills-container">
+                          내용 내용 내용
+                        </LargeDiv>
 
-          {/* {groupedWishlist.map((group, groupIndex) => (
-            // <PopUpBelow key={groupIndex}>
-            <Div key={groupIndex} className="likes-container">
-              {group.map((wish: any, index: number) => (
-                <Div key={index} className="likes-card">
-                  <button
-                    className="delete"
-                    onClick={() => removeWish(wish.id)}
-                  >
-                    <RemoveIcon />
-                  </button>
-                  <Img
-                    src={wish.randomImage}
-                    alt={wish.nickname}
-                    onClick={() => handleCardRedirect(wish.nickname)}
-                  />
-                  <H4 className="profile-like-name">{wish.nickname}</H4>
-                </Div>
+                        <LargeDiv className="skills-container">
+                          {skillNames.map((skillName, skillIndex) => (
+                            <LargeDiv key={skillIndex} className="skill-item">
+                              <span>{skillName}</span>
+                            </LargeDiv>
+                          ))}
+                        </LargeDiv>
+                      </LargeDiv>
+                    );
+                  })}
+                </LargeDiv>
+              ))
+            : groupedWishlist.map((group, groupIndex) => (
+                <SmallDiv key={groupIndex} className="likes-container">
+                  {group.map((wish: any, index: number) => (
+                    <SmallDiv key={index} className="likes-card">
+                      <Button
+                        className="delete-small"
+                        onClick={() => removeWish(wish.id)}
+                      >
+                        <RemoveIcon />
+                      </Button>
+                      <Img
+                        className="small-img"
+                        src={wish.randomImage}
+                        alt={wish.nickname}
+                        onClick={() => handleCardRedirect(wish.nickname)}
+                      />
+                      <H4 className="profile-like-name">{wish.nickname}</H4>
+                    </SmallDiv>
+                  ))}
+                </SmallDiv>
               ))}
-            </Div>
-            // </PopUpBelow>
-          ))} */}
 
           {visibleCount < userData?.wishList?.length && (
             <BaseButton onClick={loadMore} text="더보기" />
@@ -216,6 +269,7 @@ const ProfileComp = () => {
           <LogoutButton />
         </Section>
       </Div>
+      <ScrollToTopbutton />
     </>
   );
 };

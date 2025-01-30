@@ -16,8 +16,8 @@ export const lightTheme = {
   extraLight: "#FAFEFF",
   white: "#FFFFFF",
   btnSecText: " #EAEAEA",
-  btnSecBg: "#CBCBCB",
-  btnSecBgHover: "#ABABAB",
+  btnSecBg: "#c4c8cc",
+  btnSecBgHover: "#d1d2d5",
   btnSecBorder: "#BEBEBE",
   bg_grad:
     "linear-gradient(180deg, rgba(233,238,239,1) 0%, rgba(214,224,225,1) 50%)",
@@ -41,8 +41,8 @@ export const darkTheme = {
   extraLight: "#3F464E",
   white: "#FFFFFF",
   btnSecText: "#76777b",
-  btnSecBg: "#373739",
-  btnSecBgHover: "#46464A",
+  btnSecBg: "#34373d",
+  btnSecBgHover: "#25272d",
   btnSecBorder: " #56585b",
   bg_grad: "linear-gradient(180deg, rgba(22,24,28,1) 0%, rgba(10,12,16,1) 50%)",
 };

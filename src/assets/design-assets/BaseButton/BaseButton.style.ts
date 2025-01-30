@@ -15,13 +15,14 @@ export const Button = styled.button`
     font-size: 18px;
   }
 
+
   &.primary {
     background-color: ${(props) => props.theme.main};
     border: 2px solid ${(props) => props.theme.main_vivid};
 
     &:hover {
       background-color: ${(props) => props.theme.main_vivid};
-      border: 2px solid $ ${(props) => props.theme.main};
+      border: 2px solid ${(props) => props.theme.main};
       box-shadow: 2px 2px 3px ${(props) => props.theme.shadow};
     }
   }
@@ -33,7 +34,7 @@ export const Button = styled.button`
 
     &:hover {
       background-color: ${(props) => props.theme.btnSecBgHover};
-      border: 2px solid $ ${(props) => props.theme.btnSecBorder};
+      border: 2px solid ${(props) => props.theme.btnSecBorder};
       box-shadow: 2px 2px 3px ${(props) => props.theme.shadow};
     }
   }

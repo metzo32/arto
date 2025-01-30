@@ -1,7 +1,7 @@
 import { useState, useRef } from "react";
 import { Div, Input, Span } from "./ArticleCard.style";
 import { BaseButton } from "../../assets/design-assets/BaseButton/BaseButton";
-import useModal from "../../hooks/ModalHook";
+import { useModal } from "../../hooks/useModal";
 import Modal from "../Modal/Modal";
 
 interface SearchBarProps {
@@ -13,7 +13,8 @@ export default function SearchBar({ onSearch }: SearchBarProps) {
 
   const [query, setQuery] = useState<string>("");
   const [isFocused, setIsFocused] = useState<boolean>(false);
-  const { isModalOpen, handleOpenModal, handleCloseModal } = useModal();
+  const { isModalOpen, modalTitle, modalContent, openModal, closeModal } =
+    useModal();
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setQuery(e.target.value);
@@ -23,7 +24,7 @@ export default function SearchBar({ onSearch }: SearchBarProps) {
     if (query.trim()) {
       onSearch(query.trim());
     } else {
-      handleOpenModal();
+      openModal();
     }
   };
 
@@ -38,10 +39,9 @@ export default function SearchBar({ onSearch }: SearchBarProps) {
 
   const handleCloseWithReset = () => {
     setQuery("");
-    handleCloseModal();
-    inputRef.current?.focus(); 
+    closeModal();
+    inputRef.current?.focus();
   };
-
 
   return (
     <>
@@ -49,8 +49,8 @@ export default function SearchBar({ onSearch }: SearchBarProps) {
         <Modal
           isOpen={isModalOpen}
           onClose={handleCloseWithReset}
-          title="앗!"
-          content="검색어를 입력해주세요."
+          title={modalTitle}
+          content={modalContent}
         />
         <Input
           ref={inputRef}

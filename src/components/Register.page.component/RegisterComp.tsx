@@ -15,6 +15,7 @@ import { setDoc, doc } from "firebase/firestore";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 
 import { useNavigate } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import { useModal } from "../../hooks/useModal";
 import Modal from "../Modal/Modal";
 import useLoading from "../../hooks/useLoading";
@@ -50,6 +51,8 @@ export default function RegisterComp() {
 
   const { currentlyLoggedIn } = useContext(AuthContext);
 
+  const location = useLocation();
+
   useEffect(() => {
     loadingProgress();
   }, []);
@@ -59,6 +62,13 @@ export default function RegisterComp() {
       navigate("/my"); // 이미 로그인된 상태라면 프로필 페이지로
     }
   }, [currentlyLoggedIn, navigate]);
+
+  // useEffect(() => {
+  //   if (location.pathname === "/register" && !isModalOpen) {
+  //     navigate("/login");
+  //   }
+  // }, [isModalOpen, navigate, location.pathname]);
+
 
   // 이메일 유효성 검사
   const isValidEmail = (email: string) => {
@@ -146,14 +156,12 @@ export default function RegisterComp() {
         await auth.signOut(); // 가입 후 자동 로그아웃 처리
         resetForm(); // 폼 초기화
         openModal("가입 성공!", "로그인 화면으로 이동합니다.");
-
+        
         const handleModalClose = () => {
-          closeModal();
-          if (!isModalOpen) {
-            // 모달을 닫으면
-            navigate("/login"); // 로그인 페이지로 이동
-          }
+          navigate("/login")
+          // closeModal();
         };
+
         return (
           <Modal
             isOpen={isModalOpen}

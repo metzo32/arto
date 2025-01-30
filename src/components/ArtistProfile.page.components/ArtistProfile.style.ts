@@ -11,6 +11,15 @@ const slideIn = keyframes`
   }
 `;
 
+const slideOut = keyframes`
+  from {
+    transform: translate(0px, 0px);
+  }
+  to {
+    transform: translate(100px, 0px);
+  }
+`;
+
 export const Section = styled.section`
   display: flex;
   flex-direction: column;
@@ -54,18 +63,18 @@ export const Section = styled.section`
 
   &.narrow {
     @media (max-width: 767px) {
-      padding-left: 20px;
-      padding-right: 20px;
+      padding-left: 40px;
+      padding-right: 40px;
     }
 
     @media (min-width: 768px) {
-      padding-left: 30px;
-      padding-right: 30px;
+      padding-left: 80px;
+      padding-right: 80px;
     }
 
     @media (min-width: 1024px) {
-      padding-left: 40px;
-      padding-right: 40px;
+      padding-left: 120px;
+      padding-right: 120px;
     }
   }
 `;
@@ -98,6 +107,7 @@ export const Div = styled.div`
 
   &.main-img-container {
     width: 100%;
+    background-color: ${(props) => props.theme.deact};
     position: relative;
 
     @media (max-width: 767px) {
@@ -155,6 +165,8 @@ export const Div = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
+    cursor: default;
+    transition: transform 0.2s ease;
 
     @media (max-width: 767px) {
       flex-direction: row;
@@ -167,7 +179,8 @@ export const Div = styled.div`
       gap: 20px;
     }
 
-    @media (min-width: 1024px) {
+    &:hover {
+      transform: scale(110%);
     }
   }
 
@@ -213,6 +226,11 @@ export const Div = styled.div`
     gap: 15px;
     overflow: hidden;
     box-shadow: 3px 5px 8px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s ease;
+
+    &:hover {
+      transform: translateY(-5%);
+    }
   }
 
   &.icon-container {
@@ -252,18 +270,24 @@ export const Div = styled.div`
 
   &.contact-side {
     padding: 20px;
-
     display: flex;
     flex-direction: column;
     gap: 20px;
 
-    position: absolute;
+    position: fixed;
     bottom: 270px;
-    right: 20px;
-    animation: ${slideIn} 0.3s ease;
+    right: 0;
+    transform: translateX(0);
+    transition: all 0.3s ease;
 
-    &.visible {
-      // background-color: white;
+    @media (min-width: 768px) {
+      right: 20px;
+    }
+
+    &.invisible {
+      transform: translateX(100px);
+      opacity: 0; 
+      pointer-events: none;
     }
   }
 `;
@@ -294,8 +318,8 @@ export const H2 = styled.h2`
   color: ${(props) => props.theme.text};
 
   @media (max-width: 767px) {
-    font-size: 40px;
-    line-height: 50px;
+    font-size: 32px;
+    line-height: 42px;
   }
 
   @media (min-width: 768px) {
@@ -404,6 +428,7 @@ export const Img = styled.img`
     top: 0;
     left: 0;
     z-index: 0;
+    filter: brightness(0.7);
   }
 
   &.card-img {

@@ -5,6 +5,5 @@ display: flex;
 flex-direction: row;
 min-width: 320px;
 background-color: ${(props) => props.theme.bg_secondary};
-// position: relative;
 overflow: hidden;
 `;
