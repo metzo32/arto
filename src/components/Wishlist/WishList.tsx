@@ -10,7 +10,7 @@ import Modal from "../Modal/Modal";
 interface WishListProps {
   artistId: number;
   artistNickname: string;
-  mainImage: string;
+  artistmainImage: string;
   artistSkills: number[]; // skill ID 배열로 변경
   isWishlisted: boolean;
   onToggleWishlist: () => void;
@@ -18,42 +18,43 @@ interface WishListProps {
 const WishList = ({
   artistId,
   artistNickname,
-  mainImage,
+  artistmainImage,
   artistSkills,
   isWishlisted,
   onToggleWishlist,
 }: WishListProps) => {
   const { isModalOpen, modalTitle, modalContent, openModal, closeModal } =
     useModal();
-  const [wishButton, setWishButton] = useState<boolean>(isWishlisted);
+  const [isClicked, setIsClicked] = useState<boolean>(isWishlisted);
   const [hovered, setHovered] = useState(false);
   const navigate = useNavigate()
 
-  useEffect(() => {
+  useEffect(() => {     //onAuthStateChanged: 사용자 인증상태가 바뀔 때마다 실행
     const unsubscribe = auth.onAuthStateChanged(async (user) => {
       if (!user) {
-        setWishButton(false); // 로그아웃 시 상태 초기화
+        setIsClicked(false); // 로그아웃 시 하트 초기화
+        return;
       } else {
-        const userRef = doc(db, "users", user.uid);
+        const userRef = doc(db, "users", user.uid); // db중 users 항목에서 uid문서 참조
         try {
-          const userDoc = await getDoc(userRef);
-          const currentWishlist = userDoc.data()?.wishList || [];
+          const userDoc = await getDoc(userRef); // 참조문서 가져오기
+          const currentWishlist = userDoc.data()?.wishList || []; //참조문서 중 wishlist배열
           const isAlreadyWishlisted = currentWishlist.some(
             // 배열 중 하나라도 만족하면 true
             (item: { id: number }) => item.id === artistId
           );
-          setWishButton(isAlreadyWishlisted);
+          setIsClicked(isAlreadyWishlisted);
         } catch (error) {
           console.error("위시리스트 임포트 에러:", error);
         }
       }
     });
 
-    return () => unsubscribe(); // 컴포넌트 언마운트 시 unsubscribe
+    return () => unsubscribe(); // 클린업. 컴포넌트 언마운트 시 unsubscribe
   }, [artistId]);
 
   const handleWishlistToggle = async () => {
-    const user = auth.currentUser;
+    const user = auth.currentUser; //현재 로그인된 사용자
     if (!user) {
       openModal("잠깐!", "로그인이 필요한 서비스입니다.")
       return;
@@ -68,7 +69,7 @@ const WishList = ({
 
       let updatedWishlist;
 
-      if (wishButton) {
+      if (isClicked) {
         updatedWishlist = currentWishlist.filter(
           (item: { id: number }) => item.id !== artistId
         );
@@ -76,7 +77,7 @@ const WishList = ({
         const newWishlistItem = {
           id: artistId,
           nickname: artistNickname,
-          mainImage: mainImage,
+          randomImage: artistmainImage,
           skills: artistSkills, // skill ID 배열 저장
         };
 
@@ -88,7 +89,7 @@ const WishList = ({
       }
 
       await updateDoc(userRef, { wishList: updatedWishlist });
-      setWishButton(!wishButton);
+      setIsClicked(!isClicked);
       onToggleWishlist();
     } catch (error) {
       console.error("위시리스트 업데이트 중 오류 발생:", error);
@@ -120,7 +121,7 @@ const WishList = ({
   };
 
   const renderIcon = () => {
-    if (wishButton) {
+    if (isClicked) {
       return <IconClicked />;
     } else if (hovered) {
       return <IconHover />;

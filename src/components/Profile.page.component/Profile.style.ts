@@ -44,21 +44,53 @@ export const Div = styled.div`
   }
 
   &.name-container {
-    display: flex;
     flex-direction: column;
     align-items: center;
     gap: 20px;
   }
 
+  &.like-container {
+    width: 100%;
+    padding: 0px 20px;
+    display: grid;
+    grid-template-columns: repeat(3, 2fr);
+    grid-template-rows: 1fr;
+    grid-column-gap: 0px;
+    grid-row-gap: 30px;
+
+    @media (min-width: 768px) {
+      padding: 0px 40px;
+    }
+
+    @media (min-width: 1024px) {
+      padding: 0px 80px;
+    }
+  }
+
   &.like-num-box {
-    display: flex;
+    grid-column: 2 / 3;
+    grid-row: 1 / 2;
     flex-direction: column;
     align-items: center;
     gap: 10px;
+    margin: 0 auto;
+  }
+
+  &.like-align-box {
+    grid-column: 3 / 3;
+    grid-row: 1 / 2;
+    justify-content: flex-end;
+    align-items: center;
+  }
+
+  &.like-fold-box {
+    grid-column: 2 / 3;
+    grid-row: 2 / 2;
+    justify-content: center;
+    align-items: center;
   }
 
   &.info-container {
-    display: flex;
     gap: 20px;
 
     @media (max-width: 767px) {
@@ -75,7 +107,6 @@ export const Div = styled.div`
   }
 
   &.info-box {
-    display: flex;
     align-items: center;
     gap: 5px;
   }
@@ -202,14 +233,17 @@ export const SmallDiv = styled.div`
   display: flex;
 
   &.likes-container {
-    width: 100%;
-    padding: 0px 25px;
+    min-width: 200px;
+    max-width: 500px;
+    width: 95%;
+    padding: 0px 20px;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    gap: 20px;
+    gap: 15px;
 
     @media (min-width: 768px) {
+      width: 100%;
       padding: 0;
       flex-direction: row;
       justify-content: center;
@@ -222,12 +256,18 @@ export const SmallDiv = styled.div`
     display: flex;
     flex-direction: row;
     align-items: center;
-    gap: 20px;
+    gap: 15px;
+    transition: all 0.3s ease;
 
     position: relative;
 
+    &:hover {
+      transform: translateY(-10px);
+    }
+
     @media (min-width: 768px) {
       flex-direction: column;
+      gap: 20px;
     }
   }
 

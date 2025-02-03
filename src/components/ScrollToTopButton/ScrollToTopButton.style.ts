@@ -18,6 +18,7 @@ export const Button = styled.button`
   right: 15px;
   transform: translateY(0);
   transition: all 0.2s ease;
+  z-index: 20;
 
   &:hover {
     background-color: ${(props) => props.theme.main};

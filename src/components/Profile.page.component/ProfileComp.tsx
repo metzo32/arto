@@ -18,6 +18,8 @@ import { onAuthStateChanged } from "firebase/auth";
 import { doc, getDoc, updateDoc } from "firebase/firestore";
 import { useNavigate } from "react-router-dom";
 import useLoading from "../../hooks/useLoading";
+import { useModal } from "../../hooks/useModal";
+import Modal from "../Modal/Modal";
 import LogoutButton from "../Logout";
 import LoadingSpinner from "../LoadingSpinner/LoadingSpinner";
 import StartFromTop from "../StartFromTop";
@@ -34,6 +36,8 @@ import { PiCirclesThreeBold } from "react-icons/pi";
 import { FaExpand } from "react-icons/fa";
 
 const ProfileComp = () => {
+  const { isModalOpen, modalTitle, modalContent, openModal, closeModal } =
+    useModal();
   const { isLoading, setIsLoading, loadingProgress } = useLoading();
   const [userData, setUserData] = useState<any>(null);
   const [photoURL, setPhotoURL] = useState<string | null>(null);
@@ -95,7 +99,7 @@ const ProfileComp = () => {
 
   const removeWish = async (artistId: number) => {
     if (!auth.currentUser) {
-      alert("로그인이 필요합니다.");
+      openModal("잠깐!", "로그인이 필요합니다.");
       return;
     }
 
@@ -135,6 +139,12 @@ const ProfileComp = () => {
     <>
       <StartFromTop />
       {isLoading && <LoadingSpinner />}
+      <Modal
+        isOpen={isModalOpen}
+        onClose={closeModal}
+        title={modalTitle}
+        content={modalContent}
+      />
       <Div className="container">
         <Section>
           <Div className="name-container">
@@ -167,17 +177,21 @@ const ProfileComp = () => {
 
         <Section>
           {userData && (
-            <Div>
+            <Div className="like-container">
               <Div className="like-num-box">
                 <H4 className="liked">{userData.wishList.length}</H4>
                 <H4 className="profile-details bold">Likes</H4>
               </Div>
-              <RoundButton onClick={handleShowDetail}>
-                {isShowDetail ? <PiCirclesThreeBold /> : <FaExpand />}
-              </RoundButton>
+              <Div className="like-align-box">
+                <RoundButton onClick={handleShowDetail}>
+                  {isShowDetail ? <PiCirclesThreeBold /> : <FaExpand />}
+                </RoundButton>
+              </Div>
 
               {visibleCount > 5 && (
-                <BaseButton onClick={handleFold} text="접기" />
+                <Div className="like-fold-box">
+                  <BaseButton onClick={handleFold} text="접기" />
+                </Div>
               )}
             </Div>
           )}

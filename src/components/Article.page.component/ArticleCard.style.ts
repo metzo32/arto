@@ -2,17 +2,18 @@ import styled from "styled-components";
 
 export const Div = styled.div`
   &.wrapper {
+    min-width: 320px;
+    width: 100vw;
     height: 100vh;
     display: flex;
     flex-direction: column;
 
-    scroll-snap-type: y mandatory;
+    // scroll-snap-type: y mandatory;
     overflow-x: hidden;
-
-    position: relative;
   }
 
   &.article-cards {
+      // scroll-snap-align: start;
     width: 100vw;
     height: 100vh;
     min-width: 320px;
@@ -68,6 +69,31 @@ export const Div = styled.div`
       padding: 5px 15px;
     }
   }
+
+  &.no-result {
+    width: calc(100% - 70px);
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    margin-left: 70px;
+
+    @media (max-width: 767px) {
+      margin-top: 80px;
+      gap: 20px;
+    }
+
+    @media (min-width: 768px) {
+      margin-top: 120px;
+      gap: 30px;
+    }
+
+    @media (min-width: 1024px) {
+      margin-top: 150px;
+    }
+  }
 `;
 
 export const Img = styled.img`
@@ -100,6 +126,16 @@ export const H3 = styled.h3`
   @media (min-width: 1024px) {
     font-size: 120px;
     line-height: 110px;
+  }
+`;
+
+export const H4 = styled.h4`
+  @media (max-width: 767px) {
+    font-size: 20px;
+  }
+
+  @media (min-width: 768px) {
+    font-size: 32px;
   }
 `;
 

@@ -17,7 +17,6 @@ import { PopUpBelow } from "../FramerMotions/scrollMotions";
 import NameCard from "./NameCard/NameCard";
 import { BaseButton } from "../../assets/design-assets/BaseButton/BaseButton";
 import ScrollToTopbutton from "../ScrollToTopButton/ScrollToTopButton";
-
 import Sidebar from "./Sidebar/Sidebar";
 
 export default function ArtistProfileComp({
@@ -31,7 +30,7 @@ export default function ArtistProfileComp({
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
-        // 단일한 요소를 구조분해할당
+        // 단일한 요소를 구조분해할당z
 
         if (entry.isIntersecting) {
           setIsVisible(true);

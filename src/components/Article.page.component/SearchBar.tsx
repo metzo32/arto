@@ -6,9 +6,10 @@ import Modal from "../Modal/Modal";
 
 interface SearchBarProps {
   onSearch: (query: string) => void;
+  onReset: () => void;
 }
 
-export default function SearchBar({ onSearch }: SearchBarProps) {
+export default function SearchBar({ onSearch, onReset }: SearchBarProps) {
   const inputRef = useRef<HTMLInputElement>(null);
 
   const [query, setQuery] = useState<string>("");
@@ -23,14 +24,16 @@ export default function SearchBar({ onSearch }: SearchBarProps) {
   const handleSearch = () => {
     if (query.trim()) {
       onSearch(query.trim());
+      handleBlur()
     } else {
-      openModal();
+      openModal("앗!", "검색어를 입력해주세요.");
     }
   };
 
   const handleKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === "Enter" && query.trim()) {
       onSearch(query.trim());
+      inputRef.current?.blur(); 
     }
   };
 
@@ -60,6 +63,7 @@ export default function SearchBar({ onSearch }: SearchBarProps) {
           onKeyDown={handleKeyPress}
           onFocus={handleFocus}
           onBlur={handleBlur}
+          onReset={onReset}
           placeholder="검색어를 입력하세요"
           className="search-input"
         />

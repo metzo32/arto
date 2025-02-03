@@ -1,10 +1,12 @@
-import { Div, Img, H3 } from "./ArticleCard.style";
 import { useState, useEffect, useRef } from "react";
+import { Div, Img, H3, H4 } from "./ArticleCard.style";
 import artistdata from "../../assets/datas/artitstData";
 import { auth, db } from "../../firebase/firebaseConfig";
 import { doc, getDoc } from "firebase/firestore";
 import WishList from "../Wishlist/WishList";
 import SearchBar from "./SearchBar";
+import { usefilteredLength } from "../../stores/states/filteredDataLength";
+import { BaseButton } from "../../assets/design-assets/BaseButton/BaseButton";
 
 interface ArticleCardProps {
   currentSort: string;
@@ -20,9 +22,16 @@ export default function ArticleCard({ currentSort }: ArticleCardProps) {
   const [searchResult, setSearchResult] = useState<string>("");
 
   const handleSearch = (query: string) => {
-    console.log("검색 실행:", query);
-    setSearchResult(query); // 결과를 상태로 저장하거나 API 요청을 실행
+    setSearchResult(query); // 저장된 쿼리를 기반으로 결과를 필터링
   };
+
+  const filteredData = sortedData.filter((artist) =>
+    artist.nickname.toLowerCase().includes(searchResult.toLowerCase())
+  );
+
+  useEffect(() => {
+    usefilteredLength.setState({ length: filteredData.length });
+  }, [filteredData]);
 
   const loaderRef = useRef<HTMLDivElement | null>(null); // 로더 요소를 참조할 ref 생성
   const count = 4; // 한 번에 추가할 카드 수
@@ -58,7 +67,6 @@ export default function ArticleCard({ currentSort }: ArticleCardProps) {
     };
   }, [loaderRef, cards]);
 
-
   useEffect(() => {
     const sortData = () => {
       let sorted;
@@ -86,7 +94,6 @@ export default function ArticleCard({ currentSort }: ArticleCardProps) {
     };
     sortData();
   }, [currentSort]);
-
 
   // 위시리스트
   useEffect(() => {
@@ -129,43 +136,55 @@ export default function ArticleCard({ currentSort }: ArticleCardProps) {
     }
   };
 
+  const handleReset = () => {
+    setSearchResult(""); // 검색어 초기화
+    setCards([0, 1, 2, 3]); // 초기 카드 리스트로 복원
+  };
+
   return (
     <>
       <Div className="wrapper">
-        <SearchBar onSearch={handleSearch} />
+        <SearchBar onSearch={handleSearch} onReset={handleReset} />
         <Div className="article-card-wrapper">
-          {cards.map((index) => {
-            const artist = sortedData[index];
-            if (!artist) return null;
-            return (
-              <Div
-                key={artist.id}
-                className="article-cards"
-                onClick={() => handleCardRedirect(artist.nickname)}
-              >
-                <Img
-                  src={artist.mainImage}
-                  alt={`${artist.nickname}`}
-                  className="article-random-image"
-                />
-                <Div className="title-container">
-                  <WishList
-                    artistId={artist.id}
-                    isWishlisted={!!artist.isWishlisted}
-                    onToggleWishlist={() => toggleWishlist(artist.id)}
-                    artistNickname={artist.nickname}
-                    mainImage={artist.mainImage}
-                    artistSkills={artist.skills.map((skill) => skill.id)} // ID 배열로 전달
+          {filteredData.length > 0 ? (
+            filteredData.map((artist) => {
+              return (
+                <Div
+                  key={artist.id}
+                  className="article-cards"
+                  onClick={() => handleCardRedirect(artist.nickname)}
+                >
+                  <Img
+                    src={artist.mainImage}
+                    alt={`${artist.nickname}`}
+                    className="article-random-image"
                   />
-                  <H3 className="article-name">{artist.nickname}</H3>
+                  <Div className="title-container">
+                    <WishList
+                      artistId={artist.id}
+                      isWishlisted={!!artist.isWishlisted}
+                      onToggleWishlist={() => toggleWishlist(artist.id)}
+                      artistNickname={artist.nickname}
+                      artistmainImage={artist.mainImage}
+                      artistSkills={artist.skills.map((skill) => skill.id)} // ID 배열로 전달
+                    />
+                    <H3 className="article-name">{artist.nickname}</H3>
+                  </Div>
                 </Div>
-              </Div>
-            );
-          })}
-          <Div ref={loaderRef} className="loader">
-            Loading more...
-          </Div>
+              );
+            })
+          ) : (
+            <Div className="no-result">
+              <H4>결과가 없습니다.</H4>
+              <BaseButton type="button" text="전체보기" onClick={handleReset}/>
+            </Div>
+          )}
         </Div>
+        {filteredData.length > 0 && (
+          <Div ref={loaderRef} className="loader">
+            Loading more cards...
+          </Div>
+        )}
       </Div>
     </>
   );
