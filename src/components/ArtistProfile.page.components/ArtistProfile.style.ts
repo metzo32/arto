@@ -26,11 +26,11 @@ export const Section = styled.section`
   gap: 30px;
 
   @media (max-width: 767px) {
-    padding-bottom: 100px;
+    padding: 80px 0;
   }
 
   @media (min-width: 768px) {
-    padding-bottom: 150px;
+    padding: 150px 0;
   }
 
   @media (min-width: 1024px) {
@@ -43,17 +43,18 @@ export const Section = styled.section`
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
 
     @media (max-width: 767px) {
       min-width: 200px;
       width: 85%;
       gap: 30px;
+      align-items: start;
     }
 
     @media (min-width: 768px) {
       width: 700px;
       gap: 50px;
+      align-items: center;
     }
 
     @media (min-width: 1024px) {
@@ -63,8 +64,8 @@ export const Section = styled.section`
 
   &.narrow {
     @media (max-width: 767px) {
-      padding-left: 40px;
-      padding-right: 40px;
+      padding-left: 30px;
+      padding-right: 30px;
     }
 
     @media (min-width: 768px) {
@@ -112,7 +113,7 @@ export const Div = styled.div`
 
     @media (max-width: 767px) {
       height: 180px;
-      padding: 20px 40px;
+      padding: 15px 30px;
     }
 
     @media (min-width: 768px) {
@@ -190,7 +191,7 @@ export const Div = styled.div`
     align-items: center;
 
     @media (max-width: 767px) {
-      width: 65px;
+      width: 55px;
       gap: 10px;
     }
 
@@ -209,16 +210,24 @@ export const Div = styled.div`
   }
 
   &.card-container {
-    min-width: 1230px;
-    padding: 20px 0px;
+    min-width: 635px;
     width: 100%;
+    padding: 20px 0px;
     display: flex;
     justify-content: space-between;
+
+    @media (min-width: 768px) {
+      min-width: 1280px;
+    }
+
+    @media (min-width: 1024px) {
+      min-width: 1440px;
+    }
   }
 
   &.skills-card {
-    width: 300px;
-    height: 400px;
+    width: 150px;
+    height: 200px;
     background-color: ${(props) => props.theme.bg_primary};
     border-radius: 10px;
     display: flex;
@@ -230,6 +239,11 @@ export const Div = styled.div`
 
     &:hover {
       transform: translateY(-5%);
+    }
+
+    @media (min-width: 768px) {
+      width: 300px;
+      height: 400px;
     }
   }
 
@@ -262,10 +276,14 @@ export const Div = styled.div`
   }
 
   &.history-box {
-    padding: 10px 20px;
+    padding: 5px 15px;
     display: flex;
     flex-direction: column;
     gap: 10px;
+
+    @media (min-width: 768px) {
+      padding: 10px 20px;
+    }
   }
 
   &.contact-side {
@@ -286,7 +304,7 @@ export const Div = styled.div`
 
     &.invisible {
       transform: translateX(100px);
-      opacity: 0; 
+      opacity: 0;
       pointer-events: none;
     }
   }
@@ -301,7 +319,7 @@ export const H1 = styled.h1`
   color: white;
 
   @media (max-width: 767px) {
-    font-size: 64px;
+    font-size: 56px;
   }
 
   @media (min-width: 768px) {
@@ -349,12 +367,12 @@ export const H4 = styled.h4`
   font-weight: bold;
 
   @media (max-width: 767px) {
-    font-size: 16px;
+    font-size: 14px;
     text-align: left;
   }
 
   @media (min-width: 768px) {
-    font-size: 24px;
+    font-size: 20px;
   }
 `;
 
@@ -433,8 +451,12 @@ export const Img = styled.img`
 
   &.card-img {
     width: 100%;
-    height: 300px;
+    height: 60%;
     object-fit: cover;
+
+    @media (min-width: 768px) {
+      height: 300px;
+    }
   }
 `;
 
@@ -451,12 +473,12 @@ export const P = styled.p`
   }
 
   @media (max-width: 767px) {
-    font-size: 16px;
+    font-size: 14px;
     line-height: 20px;
   }
 
   @media (min-width: 768px) {
-    font-size: 20px;
+    font-size: 18px;
     line-height: 28px;
   }
 

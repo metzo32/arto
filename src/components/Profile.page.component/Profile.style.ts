@@ -24,21 +24,18 @@ export const Div = styled.div`
 
     @media (max-width: 767px) {
       width: 100%;
-      // padding: 30px 10px;
-      padding: 30px 0px;
+      padding: 50px 0px;
       margin-left: 70px;
     }
 
     @media (min-width: 768px) {
       width: 80%;
-      // padding: 50px 80px;
       padding: 50px 0px;
       margin: 0 auto;
     }
 
     @media (min-width: 1024px) {
       width: 900px;
-      // padding: 80px 100px;
       padding: 80px 0px;
     }
   }
@@ -113,19 +110,28 @@ export const Div = styled.div`
 `;
 
 export const H2 = styled.h2`
-  font-size: 28px;
+  font-size: 24px;
   font-weight: 600;
   color: ${(props) => props.theme.text};
+
+  @media (min-width: 768px) {
+  font-size: 28px;
+  }
 `;
 
 export const H3 = styled.h3`
-  font-size: 20px;
+  font-size: 18px;
   font-weight: 600;
   color: ${(props) => props.theme.text_secondary};
+
+
+  @media (min-width: 768px) {
+    font-size: 24px;
+    }
 `;
 
 export const H4 = styled.h4`
-  font-size: 20px;
+  font-size: 18px;
 
   @media (min-width: 768px) {
     font-size: 24px;

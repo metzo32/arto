@@ -8,7 +8,7 @@ export const Div = styled.div`
     display: flex;
     flex-direction: column;
 
-    // scroll-snap-type: y mandatory;
+    scroll-snap-type: y mandatory;
     overflow-x: hidden;
   }
 
@@ -131,11 +131,11 @@ export const H3 = styled.h3`
 
 export const H4 = styled.h4`
   @media (max-width: 767px) {
-    font-size: 20px;
+    font-size: 18px;
   }
 
   @media (min-width: 768px) {
-    font-size: 32px;
+    font-size: 24px;
   }
 `;
 

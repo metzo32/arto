@@ -146,9 +146,9 @@ export default function ArticleCard({ currentSort }: ArticleCardProps) {
       <Div className="wrapper">
         <SearchBar onSearch={handleSearch} onReset={handleReset} />
         <Div className="article-card-wrapper">
-          {filteredData.length > 0 ? (
-            filteredData.map((artist) => {
-              return (
+          <Div className="article-card-wrapper">
+            {filteredData.length > 0 ? (
+              filteredData.slice(0, cards.length).map((artist) => (
                 <Div
                   key={artist.id}
                   className="article-cards"
@@ -166,25 +166,29 @@ export default function ArticleCard({ currentSort }: ArticleCardProps) {
                       onToggleWishlist={() => toggleWishlist(artist.id)}
                       artistNickname={artist.nickname}
                       artistmainImage={artist.mainImage}
-                      artistSkills={artist.skills.map((skill) => skill.id)} // ID 배열로 전달
+                      artistSkills={artist.skills.map((skill) => skill.id)}
                     />
                     <H3 className="article-name">{artist.nickname}</H3>
                   </Div>
                 </Div>
-              );
-            })
-          ) : (
-            <Div className="no-result">
-              <H4>결과가 없습니다.</H4>
-              <BaseButton type="button" text="전체보기" onClick={handleReset}/>
+              ))
+            ) : (
+              <Div className="no-result">
+                <H4>결과가 없습니다.</H4>
+                <BaseButton
+                  type="button"
+                  text="전체보기"
+                  onClick={handleReset}
+                />
+              </Div>
+            )}
+          </Div>
+          {filteredData.length > cards.length && (
+            <Div ref={loaderRef} className="loader">
+              Loading more cards...
             </Div>
           )}
         </Div>
-        {filteredData.length > 0 && (
-          <Div ref={loaderRef} className="loader">
-            Loading more cards...
-          </Div>
-        )}
       </Div>
     </>
   );
