@@ -1,18 +1,23 @@
+"use client";
+
 import { useState, useEffect, useRef } from "react";
-import { Div, Img, H3, H4 } from "./ArticleCard.style";
-import artistdata from "../../assets/datas/artitstData";
+import type { ArtistDataProps } from "../../pages/api/artists";
+import { Div, Img, H3, H4, Links } from "./ArticleCard.style";
+import artistdata from "../../../public/assets/datas/artitstData";
 import { auth, db } from "../../firebase/firebaseConfig";
 import { doc, getDoc } from "firebase/firestore";
 import WishList from "../Wishlist/WishList";
 import SearchBar from "./SearchBar";
 import { usefilteredLength } from "../../stores/states/filteredDataLength";
-import { BaseButton } from "../../assets/design-assets/BaseButton/BaseButton";
+import useLoading from "../../hooks/useLoading";
+import { BaseButton } from "../../../public/assets/design-assets/BaseButton/BaseButton";
 
 interface ArticleCardProps {
   currentSort: string;
 }
 
 export default function ArticleCard({ currentSort }: ArticleCardProps) {
+  const [artists, setArtists] = useState<ArtistDataProps[]>([]);
   const [cards, setCards] = useState<number[]>([0, 1, 2, 3]);
   const [sortedData, setSortedData] = useState(
     artistdata.map((artist) => ({
@@ -20,6 +25,28 @@ export default function ArticleCard({ currentSort }: ArticleCardProps) {
     }))
   );
   const [searchResult, setSearchResult] = useState<string>("");
+  const [isMounted, setIsMounted] = useState(false);
+  const  { isLoading, setIsLoading, loadingProgress} = useLoading();
+
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
+
+  useEffect(() => {
+    const fetchArtists = async () => {
+      try {
+        const response = await fetch("/api/artists"); // 클라이언트에서 API 호출
+        const data = await response.json();
+        setArtists(data);
+      } catch (error) {
+        console.error("Error fetching artist data:", error);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+    fetchArtists();
+  }, []);
+
 
   const handleSearch = (query: string) => {
     setSearchResult(query); // 저장된 쿼리를 기반으로 결과를 필터링
@@ -37,18 +64,20 @@ export default function ArticleCard({ currentSort }: ArticleCardProps) {
   const count = 4; // 한 번에 추가할 카드 수
 
   // 무한 스크롤
-  const addCards = () => {
-    const newArticles = Array.from(
-      { length: count },
-      (_, i) => cards.length + i
-    );
-    setCards((prevArticles) => [...prevArticles, ...newArticles]);
-  };
 
   // IntersectionObserver 설정
   useEffect(() => {
     const loader = loaderRef.current;
     if (!loader) return;
+
+    const addCards = () => {
+      const newArticles = Array.from(
+        { length: count },
+        (_, i) => cards.length + i
+      );
+      setCards((prevArticles) => [...prevArticles, ...newArticles]);
+    };
+  
 
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
@@ -127,15 +156,6 @@ export default function ArticleCard({ currentSort }: ArticleCardProps) {
     );
   };
 
-  const handleCardRedirect = (nickname: string) => {
-    const url = `/profile_artist_${nickname}`;
-    if (url) {
-      window.location.href = url;
-    } else {
-      console.error("URL 찾을 수 없음");
-    }
-  };
-
   const handleReset = () => {
     setSearchResult(""); // 검색어 초기화
     setCards([0, 1, 2, 3]); // 초기 카드 리스트로 복원
@@ -143,21 +163,26 @@ export default function ArticleCard({ currentSort }: ArticleCardProps) {
 
   return (
     <>
-      <Div className="wrapper">
+      <Div
+        suppressHydrationWarning={true}
+        className={`${isMounted ? "wrapper" : "default"}`}
+      >
         <SearchBar onSearch={handleSearch} onReset={handleReset} />
-        <Div className="article-card-wrapper">
-          <Div className="article-card-wrapper">
-            {filteredData.length > 0 ? (
-              filteredData.slice(0, cards.length).map((artist) => (
+        <Div>
+          {filteredData.length > 0 ? (
+            filteredData.slice(0, cards.length).map((artist) => (
+              <Links
+                href={`/profile_artist/${artist.nickname}`}
+                key={artist.id}
+              >
                 <Div
-                  key={artist.id}
                   className="article-cards"
-                  onClick={() => handleCardRedirect(artist.nickname)}
                 >
                   <Img
                     src={artist.mainImage}
                     alt={`${artist.nickname}`}
                     className="article-random-image"
+                    priority
                   />
                   <Div className="title-container">
                     <WishList
@@ -166,29 +191,27 @@ export default function ArticleCard({ currentSort }: ArticleCardProps) {
                       onToggleWishlist={() => toggleWishlist(artist.id)}
                       artistNickname={artist.nickname}
                       artistmainImage={artist.mainImage}
+                      artistStreet={artist.street_address}
+                      artistCity={artist.city}
                       artistSkills={artist.skills.map((skill) => skill.id)}
                     />
                     <H3 className="article-name">{artist.nickname}</H3>
                   </Div>
                 </Div>
-              ))
-            ) : (
-              <Div className="no-result">
-                <H4>결과가 없습니다.</H4>
-                <BaseButton
-                  type="button"
-                  text="전체보기"
-                  onClick={handleReset}
-                />
-              </Div>
-            )}
-          </Div>
-          {filteredData.length > cards.length && (
-            <Div ref={loaderRef} className="loader">
-              Loading more cards...
+              </Links>
+            ))
+          ) : (
+            <Div className="no-result">
+              <H4>결과가 없습니다.</H4>
+              <BaseButton type="button" text="전체보기" onClick={handleReset} />
             </Div>
           )}
         </Div>
+        {filteredData.length > cards.length && (
+          <Div ref={loaderRef} className="loader">
+            Loading more cards...
+          </Div>
+        )}
       </Div>
     </>
   );

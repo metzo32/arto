@@ -1,4 +1,10 @@
-const countrycode = [
+interface Code {
+  country: string;
+  code: string;
+  iso: string;
+}
+
+const countryCodeArray: Code[] = [
   { country: "Afghanistan", code: "93", iso: "AF" },
   { country: "Albania", code: "355", iso: "AL" },
   { country: "Algeria", code: "213", iso: "DZ" },
@@ -241,4 +247,4 @@ const countrycode = [
   { country: "Zimbabwe", code: "263", iso: "ZW" },
 ];
 
-export default countrycode;
+export default countryCodeArray;

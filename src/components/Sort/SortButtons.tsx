@@ -1,4 +1,4 @@
-import { ArtistDataProps } from "../../assets/datas/artitstData";
+import { ArtistDataProps } from "../../pages/api/artists";
 
 interface SortButtonsProps {
   sortBefore: ArtistDataProps[];

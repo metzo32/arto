@@ -41,6 +41,23 @@ artistdata 배열을 default state로 받아온 뒤 switch 문을 통해 sort �
 2. invlaid 클래스 및 애니메이션 누락
 
 
+### `Next.js로 마이그레이션 하기`
+
+2025.02.03
+기존 프로젝트를 App router 방식의 next.js로 바꾸는 작업을 진행하였습니다.
+기본적인 경로 구성을 하고, react-router-dom 방식 대신 next router로 교체했습니다.
+
+
+### `Query 기준으로 페이지 동적 생성하기`
+
+2025.02.07
+아티스트 별 페이지를 기존에는 해당 id를 추적하고 데이터 상에서 필터링하여 생성했다면, next.js로 바꾸면서 query string을 기준으로 동적 생성하도록 개선했습니다.
+
+### `Query 기준으로 페이지 동적 생성하기`
+
+2025.02.08
+목업 데이터를 로컬에 저장해두었다가, 실제 데이터를 fetching하는 듯한 효과를 주기 위해 Route API를 생성하여 불러오도록 수정하였습니다.
+또한 빌드 과정에서 의존성 배열의 누락, 과도한 state의 변경 및 호출 문제 등을 발견하고 개선하였습니다.
 
 
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.

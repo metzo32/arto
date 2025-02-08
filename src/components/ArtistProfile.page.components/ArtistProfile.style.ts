@@ -1,5 +1,5 @@
 import styled, { keyframes } from "styled-components";
-
+import Image from "next/image";
 import { lightTheme } from "../../stores/colors";
 
 const slideIn = keyframes`
@@ -87,13 +87,13 @@ export const Div = styled.div`
     background: ${(props) => props.theme.bg_secondary};
     position: relative;
 
-    @media (max-width: 767px) {
-      padding-left: 70px;
-    }
+    // @media (max-width: 767px) {
+    //  padding-left: 70px;
+    // }
 
-    @media (min-width: 768px) {
-      padding: 0;
-    }
+    // @media (min-width: 768px) {
+    //   padding: 0;
+    // }
   }
 
   &.image-container {
@@ -437,7 +437,10 @@ export const BarImg = styled.img`
   }
 `;
 
-export const Img = styled.img`
+export const Img = styled(Image)`
+  width: 100px;
+  height: 100px;
+  
   &.main-img {
     width: 100%;
     height: 100%;

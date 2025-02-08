@@ -18,17 +18,25 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
-    "jsx": "react-jsx",
-
+    "jsx": "preserve",
     "types": [
       "node",
       "react",
       "react-dom",
-      "@types/react-slick", // 여기에 추가
+      "@types/react-slick" // 여기에 추가
+    ],
+    "incremental": true,
+    "plugins": [
+      {
+        "name": "next"
+      }
     ]
-
   },
   "include": [
-    "src"
+    "src",
+    ".next/types/**/*.ts"
+  ],
+  "exclude": [
+    "node_modules"
   ]
 }

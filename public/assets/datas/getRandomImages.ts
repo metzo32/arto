@@ -4,7 +4,7 @@ export const imagesArr = Array.from({ length: 70 }, (_, i) => {
     return require(`../images/artist_image/${imageName}`)
 });
 
-export function getRandomImage(): string {
-  const randomIndex = Math.floor(Math.random() * imagesArr.length);
-  return imagesArr[randomIndex];
-}
+// export function getRandomImage(): string {
+//   const randomIndex = Math.floor(Math.random() * imagesArr.length);
+//   return imagesArr[randomIndex];
+// }

@@ -1,4 +1,4 @@
-import type { ArtistDataProps } from "../../assets/datas/artitstData";
+import type { ArtistDataProps } from "../../pages/api/artists";
 
 const handleSortAlphabet = (data: ArtistDataProps[]) =>
   [...data].sort((a, b) => a.nickname.localeCompare(b.nickname));

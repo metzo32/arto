@@ -1,6 +1,8 @@
-import { useState, useRef } from "react";
+"use client";
+
+import { useState, useEffect, useRef } from "react";
 import { Div, Input, Span } from "./ArticleCard.style";
-import { BaseButton } from "../../assets/design-assets/BaseButton/BaseButton";
+import { BaseButton } from "../../../public/assets/design-assets/BaseButton/BaseButton";
 import { useModal } from "../../hooks/useModal";
 import Modal from "../Modal/Modal";
 
@@ -14,8 +16,13 @@ export default function SearchBar({ onSearch, onReset }: SearchBarProps) {
 
   const [query, setQuery] = useState<string>("");
   const [isFocused, setIsFocused] = useState<boolean>(false);
+  const [isMounted, setIsMounted] = useState(false);
   const { isModalOpen, modalTitle, modalContent, openModal, closeModal } =
     useModal();
+
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setQuery(e.target.value);
@@ -24,7 +31,7 @@ export default function SearchBar({ onSearch, onReset }: SearchBarProps) {
   const handleSearch = () => {
     if (query.trim()) {
       onSearch(query.trim());
-      handleBlur()
+      handleBlur();
     } else {
       openModal("앗!", "검색어를 입력해주세요.");
     }
@@ -33,7 +40,7 @@ export default function SearchBar({ onSearch, onReset }: SearchBarProps) {
   const handleKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === "Enter" && query.trim()) {
       onSearch(query.trim());
-      inputRef.current?.blur(); 
+      inputRef.current?.blur();
     }
   };
 
@@ -48,7 +55,7 @@ export default function SearchBar({ onSearch, onReset }: SearchBarProps) {
 
   return (
     <>
-      <Div className="search-bar-container">
+      <Div className={`${isMounted ? "search-bar-container" : "hidden"}`}>
         <Modal
           isOpen={isModalOpen}
           onClose={handleCloseWithReset}

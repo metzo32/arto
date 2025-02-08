@@ -1,17 +1,26 @@
-import { createContext, useContext, useState, useEffect } from "react";
-import { ReactNode } from "react";
+"use client";
+
+import {
+  createContext,
+  useContext,
+  useState,
+  useEffect,
+  ReactNode,
+} from "react";
 
 const MobileContext = createContext<boolean | undefined>(undefined);
 
 export const MobileProvider = ({ children }: { children: ReactNode }) => {
-  const [isMobile, setIsMobile] = useState<boolean>(window.innerWidth <= 768);
+  const [isMobile, setIsMobile] = useState<boolean>(false);
 
   useEffect(() => {
     const handleResize = () => {
       setIsMobile(window.innerWidth <= 767); // 767px 이하를 모바일로 간주
     };
 
+    handleResize();
     window.addEventListener("resize", handleResize);
+    
     return () => {
       window.removeEventListener("resize", handleResize);
     };

@@ -1,5 +1,7 @@
 import styled from "styled-components";
-import { ReactComponent as DeleteIcon } from "../../assets/icons/icon_delete.svg";
+import Link from "next/link";
+import Image from "next/image";
+import DeleteIcon from "../../../public/assets/icons/icon_delete.svg";
 
 export const Section = styled.section`
   width: 100%;
@@ -14,18 +16,16 @@ export const Div = styled.div`
 
   &.container {
     min-width: 212px;
-    height: auto;
+    min-height: 1000px;
     background-color: ${(props) => props.theme.bg_primary};
     display: flex;
     flex-direction: column;
     gap: 100px;
     align-items: center;
-    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.3);
 
     @media (max-width: 767px) {
       width: 100%;
       padding: 50px 0px;
-      margin-left: 70px;
     }
 
     @media (min-width: 768px) {
@@ -115,7 +115,7 @@ export const H2 = styled.h2`
   color: ${(props) => props.theme.text};
 
   @media (min-width: 768px) {
-  font-size: 28px;
+    font-size: 28px;
   }
 `;
 
@@ -124,17 +124,16 @@ export const H3 = styled.h3`
   font-weight: 600;
   color: ${(props) => props.theme.text_secondary};
 
-
   @media (min-width: 768px) {
     font-size: 24px;
-    }
+  }
 `;
 
 export const H4 = styled.h4`
   font-size: 18px;
 
   @media (min-width: 768px) {
-    font-size: 24px;
+    font-size: 20px;
   }
 
   &.liked {
@@ -148,6 +147,19 @@ export const H4 = styled.h4`
 `;
 
 export const H5 = styled.h5`
+  height: 50px;
+  font-size: 18px;
+  color: ${(props) => props.theme.text};
+  background-color: ${(props) => props.theme.main};
+  border-radius: 10px;
+  padding: 0px 20px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+export const Links = styled(Link)`
   font-size: 20px;
   color: ${(props) => props.theme.text_secondary};
   cursor: pointer;
@@ -159,80 +171,32 @@ export const H5 = styled.h5`
 
 export const Button = styled.button`
   &.delete-small {
-    position: absolute;
-    top: -10px;
-    right: -10px;
+    border-radius: 100%;
+    overflow: hidden;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.3);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    position: static;
+
+    @media (min-width: 768px) {
+      position: absolute;
+      top: -10px;
+      right: -10px;
+    }
   }
 `;
 
-export const Img = styled.img`
+export const Img = styled(Image)`
+  width: 100%;
+  height: 100%;
   object-fit: cover;
+  object-position: center;
+
   box-shadow: 0 2px 12px rgba(0, 0, 0, 0.3);
   cursor: pointer;
-  transition: all 0.2s ease;
-
-  &.small-img {
-    border-radius: 10px;
-
-    @media (max-width: 767px) {
-      width: 80px;
-      height: 80px;
-    }
-
-    @media (min-width: 768px) {
-      width: 100px;
-      height: 100px;
-    }
-    @media (min-width: 1024px) {
-      width: 120px;
-      height: 120px;
-    }
-  }
-
-  &.large-img {
-    &:hover {
-      transform: scale(102%);
-    }
-
-    @media (max-width: 767px) {
-      border-radius: 10px;
-      width: 100%;
-      aspect-ratio: 1/1;
-      min-height: 210px;
-    }
-
-    @media (min-width: 768px) {
-      border-radius: 20px;
-      width: 100%;
-      height: 400px;
-    }
-    @media (min-width: 1024px) {
-      width: 100%;
-      height: 400px;
-    }
-  }
-
-  &.profile {
-    border-radius: 100%;
-
-    &:hover {
-      transform: scale(110%);
-    }
-
-    @media (max-width: 767px) {
-      width: 60px;
-      height: 60px;
-    }
-
-    @media (min-width: 768px) {
-      width: 80px;
-      height: 80px;
-    }
-    @media (min-width: 1024px) {
-      width: 80px;
-      height: 80px;
-    }
-  }
 `;
 
 export const SmallDiv = styled.div`
@@ -325,19 +289,78 @@ export const LargeDiv = styled.div`
   }
 
   &.skills-container {
-    background-color: pink;
-    opacity: 0.5;
     width: 100%;
     height: 70px;
+    align-items: center;
+    gap: 20px;
   }
 `;
 
 export const Span = styled.span`
   display: flex;
+  transition: all 0.2s ease;
+
+  &.profile-box {
+    width: 60px;
+    height: 60px;
+    border-radius: 100%;
+    overflow: hidden;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.3);
+
+    &:hover {
+      transform: scale(110%);
+    }
+
+    @media (min-width: 768px) {
+      width: 80px;
+      height: 80px;
+    }
+    @media (min-width: 1024px) {
+      width: 80px;
+      height: 80px;
+    }
+  }
+
+  &.small-img-box {
+    width: 80px;
+    height: 80px;
+    border-radius: 10px;
+
+    @media (min-width: 768px) {
+      width: 100px;
+      height: 100px;
+    }
+    @media (min-width: 1024px) {
+      width: 120px;
+      height: 120px;
+    }
+  }
+
+  &.large-img-box {
+    width: 100%;
+    aspect-ratio: 1/1;
+    border-radius: 10px;
+    min-height: 210px;
+
+    &:hover {
+      transform: scale(102%);
+    }
+
+    @media (min-width: 768px) {
+      border-radius: 20px;
+      width: 100%;
+      height: 400px;
+    }
+    @media (min-width: 1024px) {
+      width: 100%;
+      height: 400px;
+    }
+  }
 `;
 
 export const RemoveIcon = styled(DeleteIcon)`
-  fill: ${(props) => props.theme.accent_secondary};
+  fill: ${(props) => props.theme.deact};
+  transition: all 0.3s ease;
 
   @media (max-width: 767px) {
     width: 30px;

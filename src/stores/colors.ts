@@ -33,7 +33,7 @@ export const darkTheme = {
   base: "#20242a",
   outline: "#93979C",
   outline_strong: "#C3C7D0",
-  shadow: "#313439",
+  shadow: "#222427",
   main: "#FC1A4C",
   main_vivid: "#D8083B",
   accent: "#FF7322",

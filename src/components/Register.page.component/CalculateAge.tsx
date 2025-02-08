@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback, useRef } from "react";
 import {
   Div,
   Fieldset,
@@ -21,6 +21,7 @@ const CalculateAge = ({ isAdult, onBirthdateChange }: CalculateAgeProps) => {
   const [month, setMonth] = useState("");
   const [day, setDay] = useState("");
   const [isValid, setIsValid] = useState<boolean | null>(null);
+  const hasShownModal = useRef(false);
 
   const years = Array.from(
     { length: new Date().getFullYear() - 1899 },
@@ -31,27 +32,51 @@ const CalculateAge = ({ isAdult, onBirthdateChange }: CalculateAgeProps) => {
 
   const yearChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     setYear(event.target.value);
-    setIsValid(null); // 값이 변경될 때만 유효성 검사를 다시 수행하게 설정
+    setIsValid(null);
+    hasShownModal.current = false;
   };
 
   const monthChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     setMonth(event.target.value);
-    setIsValid(null); // 값이 변경될 때만 유효성 검사를 다시 수행하게 설정
+    setIsValid(null);
+    hasShownModal.current = false;
   };
 
   const dayChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     setDay(event.target.value);
-    setIsValid(null); // 값이 변경될 때만 유효성 검사를 다시 수행하게 설정
+    setIsValid(null);
+    hasShownModal.current = false;
   };
 
-  useEffect(() => {
-    const validateDate = () => {
-      if (!year || !month || !day) {
-        setIsValid(null);
-        isAdult(null);
-        return;
-      }
+  const handleBirthdateChange = useCallback(
+    (year: string, month: string, day: string) => {
+      onBirthdateChange(year, month, day);
+    },
+    [onBirthdateChange]
+  );
 
+  const handleAdultCheck = useCallback(
+    (isValid: boolean | null) => {
+      isAdult(isValid);
+    },
+    [isAdult]
+  );
+
+  const handleOpenModal = useCallback(
+    (title: string, content: JSX.Element) => {
+      openModal(title, content);
+    },
+    [openModal]
+  );
+
+  useEffect(() => {
+    if (!year || !month || !day) {
+      setIsValid(null);
+      handleAdultCheck(null);
+      return;
+    }
+
+    const validateDate = () => {
       const birthDate = new Date(
         parseInt(year, 10),
         parseInt(month, 10) - 1,
@@ -67,26 +92,34 @@ const CalculateAge = ({ isAdult, onBirthdateChange }: CalculateAgeProps) => {
               today.getDate() < birthDate.getDate())));
 
       if (isUnder19) {
-        openModal(
-          "잠깐!",
-          <Div className="modal-box">
-            <P>19세 미만 회원의 경우,</P>
-            <P>이용에 제한이 있을 수 있습니다.</P>
-          </Div>
-        );
+        if (!hasShownModal.current) {
+          handleOpenModal(
+            "잠깐!",
+            <Div className="modal-box">
+              <P>19세 미만 회원의 경우,</P>
+              <P>이용에 제한이 있을 수 있습니다.</P>
+            </Div>
+          );
+          hasShownModal.current = true;
+        }
         setIsValid(false);
-        isAdult(false);
+        handleAdultCheck(false);
       } else {
         setIsValid(true);
-        isAdult(true);
+        handleAdultCheck(true);
       }
     };
 
-    if (isValid === null) {
-      validateDate(); // 날짜가 변경된 경우에만 유효성 검사 수행
-    }
-    onBirthdateChange(year, month, day);
-  }, [year, month, day]);
+    validateDate();
+    handleBirthdateChange(year, month, day);
+  }, [
+    year,
+    month,
+    day,
+    handleBirthdateChange,
+    handleAdultCheck,
+    handleOpenModal,
+  ]);
 
   return (
     <Fieldset>

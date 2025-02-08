@@ -28,21 +28,17 @@ export const Area = styled.span`
   pointer-events: none;
 
   &.fold {
-    @media (min-width: 768px) {
+    width: 0px;
+  }
+
+  &.unfold {
+    @media (max-width: 767px) {
       width: 70px;
     }
-  }
 
-  @media (max-width: 767px) {
-    width: 70px;
-  }
-
-  @media (min-width: 768px) {
-    width: 200px;
-  }
-
-  @media (min-width: 1024px) {
-    width: 280px;
+    @media (min-width: 768px) {
+      width: 210px;
+    }
   }
 `;
 

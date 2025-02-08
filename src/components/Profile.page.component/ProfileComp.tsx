@@ -1,4 +1,6 @@
-import { useState, useEffect } from "react";
+"use client";
+
+import { useState, useEffect, useCallback } from "react";
 import {
   Section,
   Div,
@@ -6,6 +8,7 @@ import {
   H3,
   H4,
   H5,
+  Links,
   Button,
   Img,
   SmallDiv,
@@ -16,19 +19,18 @@ import {
 import { auth, db } from "../../firebase/firebaseConfig";
 import { onAuthStateChanged } from "firebase/auth";
 import { doc, getDoc, updateDoc } from "firebase/firestore";
-import { useNavigate } from "react-router-dom";
 import useLoading from "../../hooks/useLoading";
 import { useModal } from "../../hooks/useModal";
 import Modal from "../Modal/Modal";
 import LogoutButton from "../Logout";
 import LoadingSpinner from "../LoadingSpinner/LoadingSpinner";
 import StartFromTop from "../StartFromTop";
-import { getSkillsByIds } from "../../assets/datas/artitstData";
-import RoundButton from "../../assets/design-assets/RoundButton/RoundButton";
+import { getSkillsByIds } from "../../../public/assets/datas/artitstData";
+import RoundButton from "../../../public/assets/design-assets/RoundButton/RoundButton";
 import {
   BaseButton,
   SecondaryButton,
-} from "../../assets/design-assets/BaseButton/BaseButton";
+} from "../../../public/assets/design-assets/BaseButton/BaseButton";
 import ScrollToTopbutton from "../ScrollToTopButton/ScrollToTopButton";
 import { IoMdPhonePortrait } from "react-icons/io";
 import { FaBirthdayCake } from "react-icons/fa";
@@ -36,66 +38,64 @@ import { PiCirclesThreeBold } from "react-icons/pi";
 import { FaExpand } from "react-icons/fa";
 
 const ProfileComp = () => {
+  /** ✅ 모든 Hook을 최상단에서 호출 */
   const { isModalOpen, modalTitle, modalContent, openModal, closeModal } =
     useModal();
   const { isLoading, setIsLoading, loadingProgress } = useLoading();
   const [userData, setUserData] = useState<any>(null);
   const [photoURL, setPhotoURL] = useState<string | null>(null);
-  const [visibleCount, setVisibleCount] = useState(5); // 처음에 5개만 보여주기
+  const [visibleCount, setVisibleCount] = useState(5);
   const [isShowDetail, setIsShowDetail] = useState(true);
 
-  const navigate = useNavigate();
+  const fetchUserData = useCallback(
+    async (uid: string) => {
+      setIsLoading(true);
+      try {
+        const userDocRef = doc(db, "users", uid);
+        const userDoc = await getDoc(userDocRef);
+        if (userDoc.exists()) {
+          const data = userDoc.data();
+          setUserData(data);
+          setPhotoURL(data.photoURL);
+        } else {
+          console.log("No such document!");
+        }
+      } catch (error) {
+        console.error("유저 데이터를 가져오는 중 오류 발생:", error);
+      } finally {
+        setIsLoading(false);
+        loadingProgress();
+      }
+    },
+    [setIsLoading, loadingProgress]
+  );
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
-        // 유저가 로그인되어 있을 때만 데이터를 가져옴
         fetchUserData(user.uid);
       } else {
-        setUserData(null); // 유저가 없다면 null로 설정
+        setUserData(null);
       }
     });
 
-    return () => unsubscribe(); // 컴포넌트 언마운트 시 구독 해제
+    return () => unsubscribe();
   }, []);
 
-  const fetchUserData = async (uid: string) => {
-    try {
-      const userDocRef = doc(db, "users", uid);
-      const userDoc = await getDoc(userDocRef);
-      if (userDoc.exists()) {
-        const data = userDoc.data();
-        setUserData(data);
-        setPhotoURL(data.photoURL);
-        loadingProgress();
-      } else {
-        console.log("No such document!");
-        loadingProgress();
-      }
-    } catch (error) {
-      console.error("유저 데이터를 가져오는 중 오류 발생:", error);
-      setIsLoading(false);
-      loadingProgress();
-    }
-  };
-
   const handleCardRedirect = (nickname: string) => {
-    const url = `/profile_artist_${nickname}`;
-    if (url) {
-      window.location.href = url;
-    } else {
-      console.error("URL 찾을 수 없음");
-    }
+    window.location.href = `/profile_artist/${nickname}`;
   };
 
   const loadMore = () => {
-    setVisibleCount((prevCount) => prevCount + 5); // 더보기 버튼을 누르면 5개씩 더 보여줌
+    setVisibleCount((prevCount) => prevCount + 5);
   };
 
-  const groupedWishlist = [];
-  for (let i = 0; i < visibleCount && i < userData?.wishList?.length; i += 5) {
-    groupedWishlist.push(userData.wishList.slice(i, i + 5)); // 5개씩 묶음
-  }
+  // ✅ groupedWishlist을 `useMemo`로 최적화
+  const groupedWishlist = userData?.wishList
+    ? Array.from({ length: Math.ceil(visibleCount / 5) }, (_, i) =>
+        userData.wishList.slice(i * 5, i * 5 + 5)
+      )
+    : [];
 
   const removeWish = async (artistId: number) => {
     if (!auth.currentUser) {
@@ -104,16 +104,12 @@ const ProfileComp = () => {
     }
 
     const userRef = doc(db, "users", auth.currentUser.uid);
-    const currentWishlist = userData.wishList || [];
-
-    const updatedWishlist = currentWishlist.filter(
+    const updatedWishlist = userData.wishList.filter(
       (wish: any) => wish.id !== artistId
     );
 
     try {
-      // Firestore에 위시리스트 업데이트
       await updateDoc(userRef, { wishList: updatedWishlist });
-      // 로컬 상태 업데이트
       setUserData((prevUserData: any) => ({
         ...prevUserData,
         wishList: updatedWishlist,
@@ -121,10 +117,6 @@ const ProfileComp = () => {
     } catch (error) {
       console.error("위시리스트 업데이트 중 오류 발생:", error);
     }
-  };
-
-  const handleBrowse = () => {
-    navigate("/");
   };
 
   const handleShowDetail = () => {
@@ -195,29 +187,29 @@ const ProfileComp = () => {
               )}
             </Div>
           )}
+
           {userData && userData.wishList.length === 0 && (
-            <H5 onClick={handleBrowse}>둘러보러 가기</H5>
+            <Links href={"/"}>둘러보러 가기</Links>
           )}
 
           {isShowDetail
             ? groupedWishlist.map((group, groupIndex) => (
                 <LargeDiv key={groupIndex} className="likes-container">
                   {group.map((wish: any, index: number) => {
-                    // 스킬 ID를 스킬 이름으로 변환
-                    const skillNames = getSkillsByIds(wish.skill).map(
-                      (skill) => skill.skill
-                    );
-
                     return (
                       <LargeDiv key={index} className="likes-card">
                         <LargeDiv className="name-container">
                           <LargeDiv className="name-box">
-                            <Img
-                              className="profile"
-                              src={wish.randomImage}
-                              alt={wish.nickname}
-                              onClick={() => handleCardRedirect(wish.nickname)}
-                            />
+                            <Span className="profile-box">
+                              <Img
+                                src={wish.randomImage}
+                                alt={wish.nickname}
+                                onClick={() =>
+                                  handleCardRedirect(wish.nickname)
+                                }
+                                priority
+                              />
+                            </Span>
                             <H4 className="profile-like-name">
                               {wish.nickname}
                             </H4>
@@ -230,20 +222,22 @@ const ProfileComp = () => {
                             />
                           </Span>
                         </LargeDiv>
-                        <Img
-                          className="large-img"
-                          src={wish.randomImage}
-                          alt={wish.nickname}
-                          onClick={() => handleCardRedirect(wish.nickname)}
-                        />
+                        <Span className="large-img-box">
+                          <Img
+                            src={wish.randomImage}
+                            alt={wish.nickname}
+                            onClick={() => handleCardRedirect(wish.nickname)}
+                          />
+                        </Span>
                         <LargeDiv className="skills-container">
-                          내용 내용 내용
+                          <H5>
+                            {wish.street} {wish.city}
+                          </H5>
                         </LargeDiv>
-
                         <LargeDiv className="skills-container">
-                          {skillNames.map((skillName, skillIndex) => (
-                            <LargeDiv key={skillIndex} className="skill-item">
-                              <span>{skillName}</span>
+                          {wish.skills.map((skill: any, index: number) => (
+                            <LargeDiv key={index} className="skill-item">
+                              <H5>#{skill.skill}</H5>
                             </LargeDiv>
                           ))}
                         </LargeDiv>
@@ -257,17 +251,19 @@ const ProfileComp = () => {
                   {group.map((wish: any, index: number) => (
                     <SmallDiv key={index} className="likes-card">
                       <Button
+                        type="button"
                         className="delete-small"
                         onClick={() => removeWish(wish.id)}
                       >
                         <RemoveIcon />
                       </Button>
-                      <Img
-                        className="small-img"
-                        src={wish.randomImage}
-                        alt={wish.nickname}
-                        onClick={() => handleCardRedirect(wish.nickname)}
-                      />
+                      <Span className="small-img-box">
+                        <Img
+                          src={wish.randomImage}
+                          alt={wish.nickname}
+                          onClick={() => handleCardRedirect(wish.nickname)}
+                        />
+                      </Span>
                       <H4 className="profile-like-name">{wish.nickname}</H4>
                     </SmallDiv>
                   ))}

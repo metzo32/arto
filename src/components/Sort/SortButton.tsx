@@ -1,16 +1,19 @@
+"use client";
+
 import { useState } from "react";
 import { Area, Button } from "./SortButtons.style";
 import { usefilteredLength } from "../../stores/states/filteredDataLength";
+import { useIsHeaderFolded } from "../../stores/states/isHeaderFolded";
 
 interface SortButtonProps {
-  isNarrow: boolean;
   onSortChange: (sortType: string) => void;
 }
 
-const SortButton = ({ isNarrow, onSortChange }: SortButtonProps) => {
+const SortButton = ({ onSortChange }: SortButtonProps) => {
   const { length } = usefilteredLength();
   const sortName = ["최신순", "오래된순", "오름차순", "내림차순"];
   const [currentSort, setCurrentSort] = useState(sortName[0]);
+  const { folded } = useIsHeaderFolded();
 
   const handleSortChange = (event: React.MouseEvent) => {
     event.stopPropagation();
@@ -25,7 +28,7 @@ const SortButton = ({ isNarrow, onSortChange }: SortButtonProps) => {
   };
 
   return length > 1 ? (
-    <Area className={isNarrow ? "fold" : ""}>
+    <Area className={`${folded ? "fold" : "unfold"}`}>
       <Button onClick={handleSortChange}>{currentSort}</Button>
     </Area>
   ) : null;

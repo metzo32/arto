@@ -2,7 +2,7 @@ import { Span, Div, H3, P, Circle, ModalIcon } from "./Modal.style";
 import {
   BaseButton,
   SecondaryButton,
-} from "../../assets/design-assets/BaseButton/BaseButton";
+} from "../../../public/assets/design-assets/BaseButton/BaseButton";
 import useWindowSize from "../../hooks/useWindowSize";
 
 interface ModalProps {
@@ -26,13 +26,19 @@ export default function Modal({
   secBtnText = "닫기",
   onSecClose,
 }: ModalProps) {
-  
   const { isMobile } = useWindowSize();
   if (!isOpen) return null;
 
   return (
-    <Span className="overlay">
-      <Div className="modal-wrapper" onClick={(e) => e.stopPropagation()}>
+    <Span
+      className="overlay"
+      onClick={(e) => {
+        e.stopPropagation();
+        e.preventDefault();
+      }}
+      onMouseDown={(e) => e.preventDefault()} // 마우스 클릭 차단
+    >
+      <Div className="modal-wrapper">
         {!isMobile && (
           <Circle className="wrapper">
             <Span className="icon-contianer ">
@@ -47,9 +53,20 @@ export default function Modal({
         <H3>{title}</H3>
         <P>{content}</P>
         <Div className="btn-container">
-          <BaseButton onClick={onClose} text={primBtnText} />
-          {isOptionOn && (
-            <SecondaryButton onClick={onSecClose} text={secBtnText} />
+          <BaseButton
+            onClick={(e) => {
+              onClose();
+            }}
+            text={primBtnText}
+          />
+
+          {isOptionOn && onSecClose && (
+            <SecondaryButton
+              onClick={(e) => {
+                onSecClose();
+              }}
+              text={secBtnText}
+            />
           )}
         </Div>
       </Div>

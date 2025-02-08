@@ -1,5 +1,7 @@
 import styled from "styled-components";
-import { ReactComponent as Logo } from "../../assets/icons/logo/logo.svg";
+import Link from "next/link";
+import Logo from "../../../public/assets/icons/logo/logo.svg";
+import { HTMLAttributes } from "react";
 
 export const HeaderTag = styled.header`
   height: calc(100%);
@@ -25,7 +27,7 @@ export const HeaderTag = styled.header`
   }
 
   @media (min-width: 768px) {
-    width: 200px;
+    width: 280px;
   }
 
   @media (min-width: 1024px) {
@@ -57,8 +59,6 @@ export const Div = styled.div`
       border-radius: 0 10px 10px 0;
     }
   }
-
-  
 
   &.brand-box {
     padding: 10px 20px;
@@ -145,7 +145,58 @@ export const Button = styled.button`
   }
 `;
 
+export const Links = styled(Link)`
+  &.menu-button {
+    font-size: 20px;
+    color: ${(props) => props.theme.text};
+    text-align: start;
+
+    width: 100%;
+    height: 48px;
+    border: 2px solid transparent;
+    border-radius: 10px;
+    padding: 10px 20px;
+
+    display: flex;
+    align-items: center;
+    gap: 5px;
+
+    transition: all 0.2s ease;
+
+    &:hover {
+      border-color: ${(props) => props.theme.outline};
+      background-color: ${(props) => props.theme.extraLight};
+      box-shadow: 2px 2px 3px ${(props) => props.theme.shadow};
+    }
+
+    @media (max-width: 767px) {
+      padding: 0px;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+
+  &.menu-button.fold-btn {
+    padding: 0px;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &.menu-button.selected {
+    border-color: ${(props) => props.theme.outline};
+    background-color: ${(props) => props.theme.extraLight};
+    box-shadow: 2px 2px 3px ${(props) => props.theme.shadow};
+  }
+
+  &.hovered {
+    &:hover {
+      border-color: ${(props) => props.theme.outline_strong};
+    }
+  }
+`;
+
 export const Span = styled.span`
+  white-space: nowrap;
   color: ${(props) => props.theme.text};
   display: flex;
   justify-content: center;
@@ -153,7 +204,7 @@ export const Span = styled.span`
   transition: all 0.2s ease;
 `;
 
-export const Brand = styled(Logo)`
+export const Brand = styled(Logo).attrs<HTMLAttributes<SVGElement>>({})`
   width: 100px;
   fill: ${(props) => props.theme.brand};
   cursor: pointer;

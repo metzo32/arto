@@ -7,15 +7,15 @@ import {
   H3,
   H4,
   Button,
+  Links,
 } from "../Login.page.component/Login.style";
-import { BaseButton } from "../../assets/design-assets/BaseButton/BaseButton";
+import { BaseButton } from "../../../public/assets/design-assets/BaseButton/BaseButton";
 
 import { auth, db } from "../../firebase/firebaseConfig";
 import { setDoc, doc } from "firebase/firestore";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 
-import { useNavigate } from "react-router-dom";
-import { useLocation } from "react-router-dom";
+import { useRouter, usePathname } from "next/navigation";
 import { useModal } from "../../hooks/useModal";
 import Modal from "../Modal/Modal";
 import useLoading from "../../hooks/useLoading";
@@ -29,9 +29,17 @@ import LoadingSpinner from "../LoadingSpinner/LoadingSpinner";
 // import WishList from "../components/Wishlist/WishList";
 
 export default function RegisterComp() {
-  const navigate = useNavigate();
-  const { isModalOpen, modalTitle, modalContent, openModal, closeModal } =
-    useModal();
+  const router = useRouter();
+  const path = usePathname();
+
+  const {
+    isModalOpen,
+    modalTitle,
+    modalContent,
+    openModal,
+    closeModal,
+    // onCloseCallback,
+  } = useModal();
   const { isLoading, loadingProgress } = useLoading();
 
   const [registerEmail, setRegisterEmail] = useState<string>("");
@@ -51,24 +59,15 @@ export default function RegisterComp() {
 
   const { currentlyLoggedIn } = useContext(AuthContext);
 
-  const location = useLocation();
-
   useEffect(() => {
     loadingProgress();
-  }, []);
+  }, [loadingProgress]);
 
   useEffect(() => {
     if (currentlyLoggedIn) {
-      navigate("/my"); // 이미 로그인된 상태라면 프로필 페이지로
+      router.push("/mypage"); // 이미 로그인된 상태라면 프로필 페이지로
     }
-  }, [currentlyLoggedIn, navigate]);
-
-  // useEffect(() => {
-  //   if (location.pathname === "/register" && !isModalOpen) {
-  //     navigate("/login");
-  //   }
-  // }, [isModalOpen, navigate, location.pathname]);
-
+  }, [currentlyLoggedIn, router, path]);
 
   // 이메일 유효성 검사
   const isValidEmail = (email: string) => {
@@ -148,21 +147,19 @@ export default function RegisterComp() {
           wishList: [], // 초기 위시리스트
         };
 
-        console.log("Firestore에 저장할 데이터:", userData);
-
         await setDoc(doc(db, "users", user.uid), userData);
-        console.log("Firestore에 사용자 정보 저장 성공!");
-
         await auth.signOut(); // 가입 후 자동 로그아웃 처리
-        resetForm(); // 폼 초기화
-        openModal("가입 성공!", "로그인 화면으로 이동합니다.");
-        
+
+        openModal("가입 성공!", "로그인 화면으로 이동합니다.", () => {
+          router.push("/login");
+        });
+        resetForm();
+
         const handleModalClose = () => {
-          navigate("/login")
-          // closeModal();
+          closeModal();
         };
 
-        return (
+        return ( 
           <Modal
             isOpen={isModalOpen}
             onClose={handleModalClose}
@@ -196,10 +193,6 @@ export default function RegisterComp() {
           openModal(undefined, "회원가입 중 알 수 없는 오류가 발생했습니다.");
       }
     }
-  };
-
-  const handleNavigation = (path: string) => {
-    navigate(path);
   };
 
   const handleBlur = (event: React.FocusEvent<HTMLInputElement>) => {
@@ -356,12 +349,7 @@ export default function RegisterComp() {
                 />
                 <Div className="register-box">
                   <H4>이미 회원이신가요?</H4>
-                  <Button
-                    type="button"
-                    onClick={() => handleNavigation("/login")}
-                  >
-                    로그인하기
-                  </Button>
+                  <Links href={"/login"}>로그인하기</Links>
                 </Div>
               </>
             </Div>
@@ -417,12 +405,7 @@ export default function RegisterComp() {
                 <BaseButton type="submit" text="가입하기" />
                 <Div className="register-box">
                   <H4>이미 회원이신가요?</H4>
-                  <Button
-                    type="button"
-                    onClick={() => handleNavigation("/login")}
-                  >
-                    로그인하기
-                  </Button>
+                  <Links href={"/login"}>로그인하기</Links>
                 </Div>
               </Div>
             </Div>

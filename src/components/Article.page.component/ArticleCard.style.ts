@@ -1,20 +1,29 @@
 import styled from "styled-components";
+import Image from "next/image";
+import Link from "next/link";
 
 export const Div = styled.div`
   &.wrapper {
     min-width: 320px;
-    width: 100vw;
+    width: 100%;
     height: 100vh;
     display: flex;
     flex-direction: column;
+    position: relative;
 
     scroll-snap-type: y mandatory;
     overflow-x: hidden;
   }
 
+  &.default {
+    width: 1200px;
+    height: 900px;
+    display: flex;
+    flex-direction: column;
+  }
+
   &.article-cards {
-      // scroll-snap-align: start;
-    width: 100vw;
+    width: 100%;
     height: 100vh;
     min-width: 320px;
     min-height: 320px;
@@ -35,6 +44,10 @@ export const Div = styled.div`
       opacity: 1;
       transition: 0.3s ease 0.3s;
     }
+  }
+
+  &.hidden {
+    display: hidden;
   }
 
   &.search-bar-container {
@@ -96,7 +109,7 @@ export const Div = styled.div`
   }
 `;
 
-export const Img = styled.img`
+export const Img = styled(Image)`
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -137,6 +150,10 @@ export const H4 = styled.h4`
   @media (min-width: 768px) {
     font-size: 24px;
   }
+`;
+
+export const Links = styled(Link)`
+  display: flex;
 `;
 
 export const Input = styled.input`

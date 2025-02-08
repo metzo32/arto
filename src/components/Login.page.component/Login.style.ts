@@ -1,5 +1,5 @@
 import styled, { keyframes } from "styled-components";
-
+import Link from "next/link";
 import { RiCheckboxBlankLine } from "react-icons/ri";
 import { RiCheckboxFill } from "react-icons/ri";
 
@@ -19,11 +19,38 @@ export const Div = styled.div`
   &.page {
     background-color: ${(props) => props.theme.bg_secondary};
     min-width: 320px;
-    width: 100vw;
+    width: 100%;
+    height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
   }
+
+  //   &.page {
+  //   background-color: ${(props) => props.theme.bg_secondary};
+  //   min-width: 320px;
+  //   border: 1px solid red;
+  //   margin: 0 auto;
+
+  //   display: flex;
+  //   justify-content: center;
+  //   align-items: center;
+
+  //   @media (max-width: 767px) {
+  //     width: 320px;
+  //     height: 850px;
+  //   }
+
+  //   @media (min-width: 768px) {
+  //     width: 720px;
+  //     height: 850px;
+  //   }
+
+  //   @media (min-width: 1024px) {
+  //     width: 1665px;
+  //     height: 940px;
+  //   }
+  // }
 
   &.container {
     background-color: ${(props) => props.theme.bg_primary};
@@ -90,7 +117,7 @@ export const Div = styled.div`
 
     @media (max-width: 767px) {
       width: 100%;
-      padding: 30px 20px;
+      padding: 30px 12px;
       gap: 20px;
     }
 
@@ -425,6 +452,41 @@ export const P = styled.p`
 `;
 
 export const Button = styled.button`
+  color: ${(props) => props.theme.main};
+  font-size: 16px;
+  line-height: 16px;
+  padding-bottom: 2px;
+  transition: all 0.1s ease;
+
+  &:hover {
+    color: ${(props) => props.theme.main_vivid};
+  }
+
+  @media (max-width: 767px) {
+    width: 60px;
+    font-size: 12px;
+    text-align: left;
+  }
+
+  @media (min-width: 768px) {
+    width: 80px;
+    font-size: 16px;
+    text-align: center;
+  }
+
+  &.back {
+    white-space: nowrap;
+    @media (max-width: 767px) {
+      margin-bottom: 10px;
+    }
+
+    @media (min-width: 768px) {
+      margin-bottom: 20px;
+    }
+  }
+`;
+
+export const Links = styled(Link)`
   color: ${(props) => props.theme.main};
   font-size: 16px;
   line-height: 16px;

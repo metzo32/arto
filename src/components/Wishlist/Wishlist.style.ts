@@ -1,6 +1,8 @@
 import styled, { keyframes } from "styled-components";
-import { ReactComponent as HeartLine } from "../../assets/icons/heart_outlined.svg";
-import { ReactComponent as HeartFull } from "../../assets/icons/heart_full.svg";
+// import { ReactComponent as HeartLine } from "../../assets/icons/heart_outlined.svg";
+// import { ReactComponent as HeartFull } from "../../assets/icons/heart_full.svg";
+import HeartLine from "../../../public/assets/icons/heart_outlined.svg";
+import HeartFull from "../../../public/assets/icons/heart_full.svg";
 import { darkTheme, lightTheme } from "../../stores/colors";
 
 export const ClickAnimation = keyframes`
@@ -32,7 +34,7 @@ export const IconClicked = styled(HeartFull)`
   animation: ${ClickAnimation} 0.3s ease;
 `;
 
-export const Span = styled.span`
+export const Button = styled.button`
   width: 50px;
   height: 50px;
   touch-action: manipulation;

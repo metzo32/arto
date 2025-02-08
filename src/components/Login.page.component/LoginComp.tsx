@@ -1,3 +1,5 @@
+'use client'
+
 import {
   Div,
   Form,
@@ -7,12 +9,13 @@ import {
   H4,
   P,
   Button,
+  Links,
   IconBox,
   IconCheck,
 } from "./Login.style";
-import { BaseButton } from "../../assets/design-assets/BaseButton/BaseButton";
+import { BaseButton } from "../../../public/assets/design-assets/BaseButton/BaseButton";
 import { useState, useEffect, useContext } from "react";
-import { useNavigate } from "react-router-dom";
+import { useRouter } from "next/navigation";
 import { AuthContext } from "../../context/AuthContext";
 import {
   setPersistence,
@@ -26,7 +29,7 @@ import useLoading from "../../hooks/useLoading";
 import LoadingSpinner from "../LoadingSpinner/LoadingSpinner";
 
 export default function LoginComp() {
-  const navigate = useNavigate();
+  const router = useRouter();
 
   const { currentlyLoggedIn, setCurrentlyLoggedIn } = useContext(AuthContext);
   const { isModalOpen, modalTitle, modalContent, openModal, closeModal } =
@@ -35,16 +38,28 @@ export default function LoginComp() {
   const [signInEmail, setSignInEmail] = useState("");
   const [signInPw, setSignInPw] = useState("");
   const [rememberMe, setRememberMe] = useState(false);
+  const [windowActive, setWindowActive] = useState(false);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setWindowActive(true)
+    };
+
+    handleResize(); // 초기 로드 시 크기 설정
+    window.addEventListener("resize", handleResize);
+
+    return () => window.removeEventListener("resize", handleResize);
+  }, [windowActive]);
 
   useEffect(() => {
     loadingProgress();
-  }, []);
+  }, [loadingProgress]);
 
   useEffect(() => {
     if (currentlyLoggedIn) {
-      navigate("/my"); // 이미 로그인된 상태라면 프로필 페이지로
+      router.push("/mypage"); // 이미 로그인된 상태라면 프로필 페이지로
     }
-  }, [currentlyLoggedIn, navigate]);
+  }, [currentlyLoggedIn, router]);
 
   //유효한 입력인지 확인
   const handleBlur = (event: React.FocusEvent<HTMLInputElement>) => {
@@ -75,7 +90,6 @@ export default function LoginComp() {
         signInEmail,
         signInPw
       );
-      // console.log(userCredential);
       const user = userCredential.user;
 
       if (rememberMe) {
@@ -85,7 +99,7 @@ export default function LoginComp() {
         localStorage.removeItem("username");
       }
       setCurrentlyLoggedIn(true);
-      navigate("/"); // 성공 시 홈으로 이동
+      router.push("/"); // 성공 시 홈으로 이동
     } catch (error) {
       const typedError = error as { code: string }; // error를 명시적으로 타입 단언
       console.error("Error signing in:", typedError);
@@ -144,7 +158,7 @@ export default function LoginComp() {
   };
 
   const handleNavigation = () => {
-    navigate("/register");
+    router.push("/register");
   };
 
   // 아이디 불러오기
@@ -170,7 +184,7 @@ export default function LoginComp() {
 
   return (
     <Div className="page">
-      {isLoading && <LoadingSpinner/>}
+      {isLoading && <LoadingSpinner />}
       <Modal
         isOpen={isModalOpen}
         onClose={closeModal}
@@ -233,9 +247,9 @@ export default function LoginComp() {
 
             <Div className="register-box">
               <H4>아직 회원이 아니신가요?</H4>
-              <Button type="button" onClick={() => handleNavigation()}>
+              <Links href={"/register"}>
                 가입하기
-              </Button>
+              </Links>
             </Div>
           </Div>
         </Form>

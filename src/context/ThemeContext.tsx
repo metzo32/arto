@@ -1,3 +1,5 @@
+'use client'
+
 import { useState, createContext, ReactNode, Dispatch, SetStateAction } from "react";
 import { ThemeProvider as StyledThemeProvider } from "styled-components";
 import { lightTheme, darkTheme } from "../stores/colors";

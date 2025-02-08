@@ -9,7 +9,7 @@ import { FaEnvira } from "react-icons/fa";
 import { MdPieChart } from "react-icons/md";
 import { IoShareSocialOutline } from "react-icons/io5";
 
-import { imagesArr, getRandomImage } from "./getRandomImages";
+import { imagesArr } from "./getRandomImages";
 
 interface ArtistSkillProps {
   id: number;
@@ -41,7 +41,7 @@ export const artistSkills: ArtistSkillProps[] = [
   { id: 2, iconName: RiCheckboxMultipleBlankFill, skill: "설치" },
   { id: 3, iconName: IoApertureOutline,skill: "다중매체" },
   { id: 4, iconName: FaEnvira,  skill: "환경" },
-  { id: 5, iconName: IoShareSocialOutline, skill: "사회"  },
+  { id: 5, iconName: IoShareSocialOutline, skill: "사회" },
   { id: 6, iconName: RiPaintFill, skill: "페인팅" },
   { id: 7, iconName: MdPieChart, skill: "조각" },
   { id: 8, iconName: FaCircleNotch,  skill: "도예" },
@@ -49,10 +49,6 @@ export const artistSkills: ArtistSkillProps[] = [
   { id: 10, iconName: LuTreePine,  skill: "목공" },
 ];
 
-
-// export const mapSkillsToComponents = (skillIds: number[]): ArtistSkillProps[] => {
-//   return artistSkills.filter((skill) => skillIds.includes(skill.id));
-// };
 
 export const getSkillsByIds = (skillIds: number[] = []): ArtistSkillProps[] => {
   if (!Array.isArray(skillIds)) {
@@ -74,10 +70,10 @@ const artistdata: ArtistDataProps[] = [
     introduction:
       "Duis consequat dui nec nisi volutpat eleifend. Donec ut dolor. Morbi vel lectus in quam fringilla rhoncus.",
     mainImage: imagesArr[0],
-    randomImage01: getRandomImage(),
-    randomImage02: getRandomImage(),
-    randomImage03: getRandomImage(),
-    randomImage04: getRandomImage(),
+    randomImage01: imagesArr[1],
+    randomImage02: imagesArr[2],
+    randomImage03: imagesArr[3],
+    randomImage04: imagesArr[4],
     skills: getSkillsByIds([1, 2, 5, 10]),
   },
   {
@@ -90,10 +86,10 @@ const artistdata: ArtistDataProps[] = [
     introduction:
       "Integer ac leo. Pellentesque ultrices mattis odio. Donec vitae nisi.",
     mainImage: imagesArr[1],
-    randomImage01: getRandomImage(),
-    randomImage02: getRandomImage(),
-    randomImage03: getRandomImage(),
-    randomImage04: getRandomImage(),
+    randomImage01: imagesArr[2],
+    randomImage02: imagesArr[3],
+    randomImage03: imagesArr[4],
+    randomImage04: imagesArr[5],
     skills: getSkillsByIds([3, 6, 7, 9]),
   },
   {
@@ -106,10 +102,10 @@ const artistdata: ArtistDataProps[] = [
     introduction:
       "Duis consequat dui nec nisi volutpat eleifend. Donec ut dolor. Morbi vel lectus in quam fringilla rhoncus.",
     mainImage: imagesArr[2],
-    randomImage01: getRandomImage(),
-    randomImage02: getRandomImage(),
-    randomImage03: getRandomImage(),
-    randomImage04: getRandomImage(),
+    randomImage01: imagesArr[3],
+    randomImage02: imagesArr[4],
+    randomImage03: imagesArr[5],
+    randomImage04: imagesArr[6],
     skills: getSkillsByIds([6, 7, 8, 9]),
   },
   {
@@ -122,10 +118,10 @@ const artistdata: ArtistDataProps[] = [
     introduction:
       "Nam ultrices, libero non mattis pulvinar, nulla pede ullamcorper augue, a suscipit nulla elit ac nulla. Sed vel enim sit amet nunc viverra dapibus. Nulla suscipit ligula in lacus.",
     mainImage: imagesArr[3],
-    randomImage01: getRandomImage(),
-    randomImage02: getRandomImage(),
-    randomImage03: getRandomImage(),
-    randomImage04: getRandomImage(),
+    randomImage01: imagesArr[4],
+    randomImage02: imagesArr[5],
+    randomImage03: imagesArr[6],
+    randomImage04: imagesArr[7],
     skills: getSkillsByIds([4, 5, 8, 9]),
   },
   {
@@ -138,11 +134,11 @@ const artistdata: ArtistDataProps[] = [
     introduction:
       "Fusce posuere felis sed lacus. Morbi sem mauris, laoreet ut, rhoncus aliquet, pulvinar sed, nisl. Nunc rhoncus dui vel sem.",
     mainImage: imagesArr[4],
-    randomImage01: getRandomImage(),
-    randomImage02: getRandomImage(),
-    randomImage03: getRandomImage(),
-    randomImage04: getRandomImage(),
-    skills: getSkillsByIds([2, 5, 6, 8]),
+    randomImage01: imagesArr[5],
+    randomImage02: imagesArr[6],
+    randomImage03: imagesArr[7],
+    randomImage04: imagesArr[8],
+    skills: getSkillsByIds([2, 5, 6, 8, 10]),
   },
   {
     id: 6,
@@ -154,10 +150,10 @@ const artistdata: ArtistDataProps[] = [
     introduction:
       "Integer ac leo. Pellentesque ultrices mattis odio. Donec vitae nisi.",
     mainImage: imagesArr[5],
-    randomImage01: getRandomImage(),
-    randomImage02: getRandomImage(),
-    randomImage03: getRandomImage(),
-    randomImage04: getRandomImage(),
+    randomImage01: imagesArr[6],
+    randomImage02: imagesArr[7],
+    randomImage03: imagesArr[8],
+    randomImage04: imagesArr[9],
     skills: getSkillsByIds([3, 8, 9, 10]),
   },
   {
@@ -170,10 +166,10 @@ const artistdata: ArtistDataProps[] = [
     introduction:
       "Aenean fermentum. Donec ut mauris eget massa tempor convallis. Nulla neque libero, convallis eget, eleifend luctus, ultricies eu, nibh.",
     mainImage: imagesArr[6],
-    randomImage01: getRandomImage(),
-    randomImage02: getRandomImage(),
-    randomImage03: getRandomImage(),
-    randomImage04: getRandomImage(),
+    randomImage01: imagesArr[7],
+    randomImage02: imagesArr[8],
+    randomImage03: imagesArr[9],
+    randomImage04: imagesArr[10],
     skills: getSkillsByIds([2, 3, 8, 9]),
   },
   {
@@ -186,10 +182,10 @@ const artistdata: ArtistDataProps[] = [
     introduction:
       "Duis consequat dui nec nisi volutpat eleifend. Donec ut dolor. Morbi vel lectus in quam fringilla rhoncus.",
     mainImage: imagesArr[7],
-    randomImage01: getRandomImage(),
-    randomImage02: getRandomImage(),
-    randomImage03: getRandomImage(),
-    randomImage04: getRandomImage(),
+    randomImage01: imagesArr[8],
+    randomImage02: imagesArr[9],
+    randomImage03: imagesArr[10],
+    randomImage04: imagesArr[11],
     skills: getSkillsByIds([5, 7, 8, 10]),
   },
   {
@@ -202,10 +198,10 @@ const artistdata: ArtistDataProps[] = [
     introduction:
       "Duis bibendum, felis sed interdum venenatis, turpis enim blandit mi, in porttitor pede justo eu massa. Donec dapibus. Duis at velit eu est congue elementum.",
     mainImage: imagesArr[8],
-    randomImage01: getRandomImage(),
-    randomImage02: getRandomImage(),
-    randomImage03: getRandomImage(),
-    randomImage04: getRandomImage(),
+    randomImage01: imagesArr[9],
+    randomImage02: imagesArr[10],
+    randomImage03: imagesArr[11],
+    randomImage04: imagesArr[12],
     skills: getSkillsByIds([2, 5, 7, 8]),
   },
   {
@@ -218,10 +214,10 @@ const artistdata: ArtistDataProps[] = [
     introduction:
       "Nam ultrices, libero non mattis pulvinar, nulla pede ullamcorper augue, a suscipit nulla elit ac nulla. Sed vel enim sit amet nunc viverra dapibus. Nulla suscipit ligula in lacus.",
     mainImage: imagesArr[9],
-    randomImage01: getRandomImage(),
-    randomImage02: getRandomImage(),
-    randomImage03: getRandomImage(),
-    randomImage04: getRandomImage(),
+    randomImage01: imagesArr[10],
+    randomImage02: imagesArr[11],
+    randomImage03: imagesArr[12],
+    randomImage04: imagesArr[13],
     skills: getSkillsByIds([4, 6, 7, 9]),
   },
   {
@@ -234,10 +230,10 @@ const artistdata: ArtistDataProps[] = [
     introduction:
       "Duis aliquam convallis nunc. Proin at turpis a pede posuere nonummy. Integer non velit.",
     mainImage: imagesArr[10],
-    randomImage01: getRandomImage(),
-    randomImage02: getRandomImage(),
-    randomImage03: getRandomImage(),
-    randomImage04: getRandomImage(),
+    randomImage01: imagesArr[11],
+    randomImage02: imagesArr[12],
+    randomImage03: imagesArr[13],
+    randomImage04: imagesArr[14],
     skills: getSkillsByIds([2, 3, 4, 8]),
   },
   {
@@ -250,10 +246,10 @@ const artistdata: ArtistDataProps[] = [
     introduction:
       "Integer tincidunt ante vel ipsum. Praesent blandit lacinia erat. Vestibulum sed magna at nunc commodo placerat.",
     mainImage: imagesArr[11],
-    randomImage01: getRandomImage(),
-    randomImage02: getRandomImage(),
-    randomImage03: getRandomImage(),
-    randomImage04: getRandomImage(),
+    randomImage01: imagesArr[12],
+    randomImage02: imagesArr[13],
+    randomImage03: imagesArr[14],
+    randomImage04: imagesArr[15],
     skills: getSkillsByIds([1, 6, 7, 9]),
   },
   {
@@ -266,10 +262,10 @@ const artistdata: ArtistDataProps[] = [
     introduction:
       "Suspendisse potenti. In eleifend quam a odio. In hac habitasse platea dictumst.",
     mainImage: imagesArr[12],
-    randomImage01: getRandomImage(),
-    randomImage02: getRandomImage(),
-    randomImage03: getRandomImage(),
-    randomImage04: getRandomImage(),
+    randomImage01: imagesArr[13],
+    randomImage02: imagesArr[14],
+    randomImage03: imagesArr[15],
+    randomImage04: imagesArr[16],
     skills: getSkillsByIds([5, 8, 9, 10]),
   },
   {
@@ -282,10 +278,10 @@ const artistdata: ArtistDataProps[] = [
     introduction:
       "Quisque porta volutpat erat. Quisque erat eros, viverra eget, congue eget, semper rutrum, nulla. Nunc purus.",
     mainImage: imagesArr[13],
-    randomImage01: getRandomImage(),
-    randomImage02: getRandomImage(),
-    randomImage03: getRandomImage(),
-    randomImage04: getRandomImage(),
+    randomImage01: imagesArr[14],
+    randomImage02: imagesArr[15],
+    randomImage03: imagesArr[16],
+    randomImage04: imagesArr[17],
     skills: getSkillsByIds([3, 4, 5, 6]),
   },
   {
@@ -298,10 +294,10 @@ const artistdata: ArtistDataProps[] = [
     introduction:
       "Curabitur at ipsum ac tellus semper interdum. Mauris ullamcorper purus sit amet nulla. Quisque arcu libero, rutrum ac, lobortis vel, dapibus at, diam.",
     mainImage: imagesArr[14],
-    randomImage01: getRandomImage(),
-    randomImage02: getRandomImage(),
-    randomImage03: getRandomImage(),
-    randomImage04: getRandomImage(),
+    randomImage01: imagesArr[15],
+    randomImage02: imagesArr[16],
+    randomImage03: imagesArr[17],
+    randomImage04: imagesArr[18],
     skills: getSkillsByIds([1, 2, 3, 4]),
   },
   {
@@ -314,10 +310,10 @@ const artistdata: ArtistDataProps[] = [
     introduction:
       "Cras mi pede, malesuada in, imperdiet et, commodo vulputate, justo. In blandit ultrices enim. Lorem ipsum dolor sit amet, consectetuer adipiscing elit.",
     mainImage: imagesArr[15],
-    randomImage01: getRandomImage(),
-    randomImage02: getRandomImage(),
-    randomImage03: getRandomImage(),
-    randomImage04: getRandomImage(),
+    randomImage01: imagesArr[16],
+    randomImage02: imagesArr[17],
+    randomImage03: imagesArr[18],
+    randomImage04: imagesArr[19],
     skills: getSkillsByIds([3, 8, 9, 10]),
   },
   {
@@ -330,10 +326,10 @@ const artistdata: ArtistDataProps[] = [
     introduction:
       "Integer ac leo. Pellentesque ultrices mattis odio. Donec vitae nisi.",
     mainImage: imagesArr[16],
-    randomImage01: getRandomImage(),
-    randomImage02: getRandomImage(),
-    randomImage03: getRandomImage(),
-    randomImage04: getRandomImage(),
+    randomImage01: imagesArr[17],
+    randomImage02: imagesArr[18],
+    randomImage03: imagesArr[19],
+    randomImage04: imagesArr[20],
     skills: getSkillsByIds([2, 3, 9, 10]),
   },
   {
@@ -346,10 +342,10 @@ const artistdata: ArtistDataProps[] = [
     introduction:
       "Duis consequat dui nec nisi volutpat eleifend. Donec ut dolor. Morbi vel lectus in quam fringilla rhoncus.",
     mainImage: imagesArr[17],
-    randomImage01: getRandomImage(),
-    randomImage02: getRandomImage(),
-    randomImage03: getRandomImage(),
-    randomImage04: getRandomImage(),
+    randomImage01: imagesArr[18],
+    randomImage02: imagesArr[19],
+    randomImage03: imagesArr[20],
+    randomImage04: imagesArr[21],
     skills: getSkillsByIds([1, 2, 5, 7]),
   },
   {
@@ -362,10 +358,10 @@ const artistdata: ArtistDataProps[] = [
     introduction:
       "Morbi non lectus. Aliquam sit amet diam in magna bibendum imperdiet. Nullam orci pede, venenatis non, sodales sed, tincidunt eu, felis.",
     mainImage: imagesArr[18],
-    randomImage01: getRandomImage(),
-    randomImage02: getRandomImage(),
-    randomImage03: getRandomImage(),
-    randomImage04: getRandomImage(),
+    randomImage01: imagesArr[19],
+    randomImage02: imagesArr[20],
+    randomImage03: imagesArr[21],
+    randomImage04: imagesArr[22],
     skills: getSkillsByIds([5, 7, 8, 9]),
   },
   {
@@ -378,10 +374,10 @@ const artistdata: ArtistDataProps[] = [
     introduction:
       "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Proin risus. Praesent lectus.",
     mainImage: imagesArr[19],
-    randomImage01: getRandomImage(),
-    randomImage02: getRandomImage(),
-    randomImage03: getRandomImage(),
-    randomImage04: getRandomImage(),
+    randomImage01: imagesArr[20],
+    randomImage02: imagesArr[21],
+    randomImage03: imagesArr[22],
+    randomImage04: imagesArr[23],
     skills: getSkillsByIds([4, 5, 6, 7]),
   },
   {
@@ -393,10 +389,10 @@ const artistdata: ArtistDataProps[] = [
     street_address: "3465 Walton Circle",
     introduction: "Phasellus in felis. Donec semper sapien a libero. Nam dui.",
     mainImage: imagesArr[20],
-    randomImage01: getRandomImage(),
-    randomImage02: getRandomImage(),
-    randomImage03: getRandomImage(),
-    randomImage04: getRandomImage(),
+    randomImage01: imagesArr[21],
+    randomImage02: imagesArr[22],
+    randomImage03: imagesArr[23],
+    randomImage04: imagesArr[24],
     skills: getSkillsByIds([3, 4, 5, 6]),
   },
   {
@@ -409,10 +405,10 @@ const artistdata: ArtistDataProps[] = [
     introduction:
       "Duis aliquam convallis nunc. Proin at turpis a pede posuere nonummy. Integer non velit.",
     mainImage: imagesArr[21],
-    randomImage01: getRandomImage(),
-    randomImage02: getRandomImage(),
-    randomImage03: getRandomImage(),
-    randomImage04: getRandomImage(),
+    randomImage01: imagesArr[22],
+    randomImage02: imagesArr[23],
+    randomImage03: imagesArr[24],
+    randomImage04: imagesArr[25],
     skills: getSkillsByIds([6, 7, 8, 9]),
   },
   {
@@ -425,10 +421,10 @@ const artistdata: ArtistDataProps[] = [
     introduction:
       "Etiam vel augue. Vestibulum rutrum rutrum neque. Aenean auctor gravida sem.",
     mainImage: imagesArr[22],
-    randomImage01: getRandomImage(),
-    randomImage02: getRandomImage(),
-    randomImage03: getRandomImage(),
-    randomImage04: getRandomImage(),
+    randomImage01: imagesArr[23],
+    randomImage02: imagesArr[24],
+    randomImage03: imagesArr[25],
+    randomImage04: imagesArr[26],
     skills: getSkillsByIds([1, 7, 8, 9]),
   },
   {
@@ -441,10 +437,10 @@ const artistdata: ArtistDataProps[] = [
     introduction:
       "Vestibulum ac est lacinia nisi venenatis tristique. Fusce congue, diam id ornare imperdiet, sapien urna pretium nisl, ut volutpat sapien arcu sed augue. Aliquam erat volutpat.",
     mainImage: imagesArr[23],
-    randomImage01: getRandomImage(),
-    randomImage02: getRandomImage(),
-    randomImage03: getRandomImage(),
-    randomImage04: getRandomImage(),
+    randomImage01: imagesArr[24],
+    randomImage02: imagesArr[25],
+    randomImage03: imagesArr[26],
+    randomImage04: imagesArr[27],
     skills: getSkillsByIds([3, 4, 7, 9]),
   },
   {
@@ -457,10 +453,10 @@ const artistdata: ArtistDataProps[] = [
     introduction:
       "Nulla ut erat id mauris vulputate elementum. Nullam varius. Nulla facilisi.",
     mainImage: imagesArr[24],
-    randomImage01: getRandomImage(),
-    randomImage02: getRandomImage(),
-    randomImage03: getRandomImage(),
-    randomImage04: getRandomImage(),
+    randomImage01: imagesArr[25],
+    randomImage02: imagesArr[26],
+    randomImage03: imagesArr[27],
+    randomImage04: imagesArr[28],
     skills: getSkillsByIds([5, 6, 8, 10]),
   },
   {
@@ -473,10 +469,10 @@ const artistdata: ArtistDataProps[] = [
     introduction:
       "Sed sagittis. Nam congue, risus semper porta volutpat, quam pede lobortis ligula, sit amet eleifend pede libero quis orci. Nullam molestie nibh in lectus.",
     mainImage: imagesArr[25],
-    randomImage01: getRandomImage(),
-    randomImage02: getRandomImage(),
-    randomImage03: getRandomImage(),
-    randomImage04: getRandomImage(),
+    randomImage01: imagesArr[26],
+    randomImage02: imagesArr[27],
+    randomImage03: imagesArr[28],
+    randomImage04: imagesArr[29],
     skills: getSkillsByIds([2, 6, 8, 10]),
   },
   {
@@ -489,10 +485,10 @@ const artistdata: ArtistDataProps[] = [
     introduction:
       "Nulla ut erat id mauris vulputate elementum. Nullam varius. Nulla facilisi.",
     mainImage: imagesArr[26],
-    randomImage01: getRandomImage(),
-    randomImage02: getRandomImage(),
-    randomImage03: getRandomImage(),
-    randomImage04: getRandomImage(),
+    randomImage01: imagesArr[0],
+    randomImage02: imagesArr[0],
+    randomImage03: imagesArr[0],
+    randomImage04: imagesArr[0],
     skills: getSkillsByIds([4, 7, 8, 9]),
   },
   {
@@ -505,10 +501,10 @@ const artistdata: ArtistDataProps[] = [
     introduction:
       "Duis bibendum, felis sed interdum venenatis, turpis enim blandit mi, in porttitor pede justo eu massa. Donec dapibus. Duis at velit eu est congue elementum.",
     mainImage: imagesArr[27],
-    randomImage01: getRandomImage(),
-    randomImage02: getRandomImage(),
-    randomImage03: getRandomImage(),
-    randomImage04: getRandomImage(),
+    randomImage01: imagesArr[28],
+    randomImage02: imagesArr[29],
+    randomImage03: imagesArr[30],
+    randomImage04: imagesArr[31],
     skills: getSkillsByIds([1, 7, 8, 9]),
   },
   {
@@ -521,10 +517,10 @@ const artistdata: ArtistDataProps[] = [
     introduction:
       "Etiam vel augue. Vestibulum rutrum rutrum neque. Aenean auctor gravida sem.",
     mainImage: imagesArr[28],
-    randomImage01: getRandomImage(),
-    randomImage02: getRandomImage(),
-    randomImage03: getRandomImage(),
-    randomImage04: getRandomImage(),
+    randomImage01: imagesArr[29],
+    randomImage02: imagesArr[30],
+    randomImage03: imagesArr[31],
+    randomImage04: imagesArr[32],
     skills: getSkillsByIds([1, 2, 3, 4]),
   },
   {
@@ -537,10 +533,10 @@ const artistdata: ArtistDataProps[] = [
     introduction:
       "Aenean lectus. Pellentesque eget nunc. Donec quis orci eget orci vehicula condimentum.",
     mainImage: imagesArr[29],
-    randomImage01: getRandomImage(),
-    randomImage02: getRandomImage(),
-    randomImage03: getRandomImage(),
-    randomImage04: getRandomImage(),
+    randomImage01: imagesArr[30],
+    randomImage02: imagesArr[31],
+    randomImage03: imagesArr[32],
+    randomImage04: imagesArr[33],
     skills: getSkillsByIds([2, 5, 6, 7]),
   },
   {
@@ -553,10 +549,10 @@ const artistdata: ArtistDataProps[] = [
     introduction:
       "Donec diam neque, vestibulum eget, vulputate ut, ultrices vel, augue. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec pharetra, magna vestibulum aliquet ultrices, erat tortor sollicitudin mi, sit amet lobortis sapien sapien non mi. Integer ac neque.",
     mainImage: imagesArr[30],
-    randomImage01: getRandomImage(),
-    randomImage02: getRandomImage(),
-    randomImage03: getRandomImage(),
-    randomImage04: getRandomImage(),
+    randomImage01: imagesArr[31],
+    randomImage02: imagesArr[32],
+    randomImage03: imagesArr[33],
+    randomImage04: imagesArr[34],
     skills: getSkillsByIds([3, 6, 7, 10]),
   },
   {
@@ -569,10 +565,10 @@ const artistdata: ArtistDataProps[] = [
     introduction:
       "Curabitur at ipsum ac tellus semper interdum. Mauris ullamcorper purus sit amet nulla. Quisque arcu libero, rutrum ac, lobortis vel, dapibus at, diam.",
     mainImage: imagesArr[31],
-    randomImage01: getRandomImage(),
-    randomImage02: getRandomImage(),
-    randomImage03: getRandomImage(),
-    randomImage04: getRandomImage(),
+    randomImage01: imagesArr[32],
+    randomImage02: imagesArr[33],
+    randomImage03: imagesArr[34],
+    randomImage04: imagesArr[35],
     skills: getSkillsByIds([2, 3, 6, 8]),
   },
   {
@@ -584,10 +580,10 @@ const artistdata: ArtistDataProps[] = [
     street_address: "356 Sauthoff Trail",
     introduction: "Fusce consequat. Nulla nisl. Nunc nisl.",
     mainImage: imagesArr[32],
-    randomImage01: getRandomImage(),
-    randomImage02: getRandomImage(),
-    randomImage03: getRandomImage(),
-    randomImage04: getRandomImage(),
+    randomImage01: imagesArr[33],
+    randomImage02: imagesArr[34],
+    randomImage03: imagesArr[35],
+    randomImage04: imagesArr[36],
     skills: getSkillsByIds([3, 4, 5, 6]),
   },
   {
@@ -600,10 +596,10 @@ const artistdata: ArtistDataProps[] = [
     introduction:
       "Aliquam quis turpis eget elit sodales scelerisque. Mauris sit amet eros. Suspendisse accumsan tortor quis turpis.",
     mainImage: imagesArr[33],
-    randomImage01: getRandomImage(),
-    randomImage02: getRandomImage(),
-    randomImage03: getRandomImage(),
-    randomImage04: getRandomImage(),
+    randomImage01: imagesArr[34],
+    randomImage02: imagesArr[35],
+    randomImage03: imagesArr[36],
+    randomImage04: imagesArr[37],
     skills: getSkillsByIds([2, 3, 7, 9]),
   },
   {
@@ -616,10 +612,10 @@ const artistdata: ArtistDataProps[] = [
     introduction:
       "Praesent id massa id nisl venenatis lacinia. Aenean sit amet justo. Morbi ut odio.",
     mainImage: imagesArr[34],
-    randomImage01: getRandomImage(),
-    randomImage02: getRandomImage(),
-    randomImage03: getRandomImage(),
-    randomImage04: getRandomImage(),
+    randomImage01: imagesArr[35],
+    randomImage02: imagesArr[36],
+    randomImage03: imagesArr[37],
+    randomImage04: imagesArr[38],
     skills: getSkillsByIds([1, 8, 9, 10]),
   },
   {
@@ -632,10 +628,10 @@ const artistdata: ArtistDataProps[] = [
     introduction:
       "Quisque id justo sit amet sapien dignissim vestibulum. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Nulla dapibus dolor vel est. Donec odio justo, sollicitudin ut, suscipit a, feugiat et, eros.",
     mainImage: imagesArr[35],
-    randomImage01: getRandomImage(),
-    randomImage02: getRandomImage(),
-    randomImage03: getRandomImage(),
-    randomImage04: getRandomImage(),
+    randomImage01: imagesArr[36],
+    randomImage02: imagesArr[37],
+    randomImage03: imagesArr[38],
+    randomImage04: imagesArr[39],
     skills: getSkillsByIds([5, 6, 7, 8]),
   },
   {
@@ -648,10 +644,10 @@ const artistdata: ArtistDataProps[] = [
     introduction:
       "Etiam vel augue. Vestibulum rutrum rutrum neque. Aenean auctor gravida sem.",
     mainImage: imagesArr[36],
-    randomImage01: getRandomImage(),
-    randomImage02: getRandomImage(),
-    randomImage03: getRandomImage(),
-    randomImage04: getRandomImage(),
+    randomImage01: imagesArr[37],
+    randomImage02: imagesArr[38],
+    randomImage03: imagesArr[39],
+    randomImage04: imagesArr[40],
     skills: getSkillsByIds([2, 3, 4, 5]),
   },
   {
@@ -664,10 +660,10 @@ const artistdata: ArtistDataProps[] = [
     introduction:
       "Nullam sit amet turpis elementum ligula vehicula consequat. Morbi a ipsum. Integer a nibh.",
     mainImage: imagesArr[37],
-    randomImage01: getRandomImage(),
-    randomImage02: getRandomImage(),
-    randomImage03: getRandomImage(),
-    randomImage04: getRandomImage(),
+    randomImage01: imagesArr[38],
+    randomImage02: imagesArr[39],
+    randomImage03: imagesArr[40],
+    randomImage04: imagesArr[41],
     skills: getSkillsByIds([4, 7, 8, 9]),
   },
   {
@@ -680,10 +676,10 @@ const artistdata: ArtistDataProps[] = [
     introduction:
       "Duis aliquam convallis nunc. Proin at turpis a pede posuere nonummy. Integer non velit.",
     mainImage: imagesArr[38],
-    randomImage01: getRandomImage(),
-    randomImage02: getRandomImage(),
-    randomImage03: getRandomImage(),
-    randomImage04: getRandomImage(),
+    randomImage01: imagesArr[39],
+    randomImage02: imagesArr[40],
+    randomImage03: imagesArr[41],
+    randomImage04: imagesArr[42],
     skills: getSkillsByIds([1, 2, 3, 4]),
   },
   {
@@ -696,10 +692,10 @@ const artistdata: ArtistDataProps[] = [
     introduction:
       "Quisque porta volutpat erat. Quisque erat eros, viverra eget, congue eget, semper rutrum, nulla. Nunc purus.",
     mainImage: imagesArr[39],
-    randomImage01: getRandomImage(),
-    randomImage02: getRandomImage(),
-    randomImage03: getRandomImage(),
-    randomImage04: getRandomImage(),
+    randomImage01: imagesArr[40],
+    randomImage02: imagesArr[41],
+    randomImage03: imagesArr[42],
+    randomImage04: imagesArr[43],
     skills: getSkillsByIds([1, 3, 5, 7]),
   },
   {
@@ -712,10 +708,10 @@ const artistdata: ArtistDataProps[] = [
     introduction:
       "Pellentesque at nulla. Suspendisse potenti. Cras in purus eu magna vulputate luctus.",
     mainImage: imagesArr[40],
-    randomImage01: getRandomImage(),
-    randomImage02: getRandomImage(),
-    randomImage03: getRandomImage(),
-    randomImage04: getRandomImage(),
+    randomImage01: imagesArr[41],
+    randomImage02: imagesArr[42],
+    randomImage03: imagesArr[43],
+    randomImage04: imagesArr[44],
     skills: getSkillsByIds([2, 3, 4, 10]),
   },
   {
@@ -728,10 +724,10 @@ const artistdata: ArtistDataProps[] = [
     introduction:
       "Praesent blandit. Nam nulla. Integer pede justo, lacinia eget, tincidunt eget, tempus vel, pede.",
     mainImage: imagesArr[41],
-    randomImage01: getRandomImage(),
-    randomImage02: getRandomImage(),
-    randomImage03: getRandomImage(),
-    randomImage04: getRandomImage(),
+    randomImage01: imagesArr[42],
+    randomImage02: imagesArr[43],
+    randomImage03: imagesArr[44],
+    randomImage04: imagesArr[45],
     skills: getSkillsByIds([6, 7, 8, 10]),
   },
   {
@@ -743,10 +739,10 @@ const artistdata: ArtistDataProps[] = [
     street_address: "1 Fordem Road",
     introduction: "Fusce consequat. Nulla nisl. Nunc nisl.",
     mainImage: imagesArr[42],
-    randomImage01: getRandomImage(),
-    randomImage02: getRandomImage(),
-    randomImage03: getRandomImage(),
-    randomImage04: getRandomImage(),
+    randomImage01: imagesArr[43],
+    randomImage02: imagesArr[44],
+    randomImage03: imagesArr[45],
+    randomImage04: imagesArr[46],
     skills: getSkillsByIds([4, 6, 7, 8]),
   },
   {
@@ -759,10 +755,10 @@ const artistdata: ArtistDataProps[] = [
     introduction:
       "Suspendisse potenti. In eleifend quam a odio. In hac habitasse platea dictumst.",
     mainImage: imagesArr[43],
-    randomImage01: getRandomImage(),
-    randomImage02: getRandomImage(),
-    randomImage03: getRandomImage(),
-    randomImage04: getRandomImage(),
+    randomImage01: imagesArr[44],
+    randomImage02: imagesArr[45],
+    randomImage03: imagesArr[46],
+    randomImage04: imagesArr[47],
     skills: getSkillsByIds([2, 5, 7, 10]),
   },
   {
@@ -775,10 +771,10 @@ const artistdata: ArtistDataProps[] = [
     introduction:
       "Sed sagittis. Nam congue, risus semper porta volutpat, quam pede lobortis ligula, sit amet eleifend pede libero quis orci. Nullam molestie nibh in lectus.",
     mainImage: imagesArr[44],
-    randomImage01: getRandomImage(),
-    randomImage02: getRandomImage(),
-    randomImage03: getRandomImage(),
-    randomImage04: getRandomImage(),
+    randomImage01: imagesArr[45],
+    randomImage02: imagesArr[46],
+    randomImage03: imagesArr[47],
+    randomImage04: imagesArr[48],
     skills: getSkillsByIds([1, 3, 4, 5]),
   },
   {
@@ -791,10 +787,10 @@ const artistdata: ArtistDataProps[] = [
     introduction:
       "Aenean fermentum. Donec ut mauris eget massa tempor convallis. Nulla neque libero, convallis eget, eleifend luctus, ultricies eu, nibh.",
     mainImage: imagesArr[45],
-    randomImage01: getRandomImage(),
-    randomImage02: getRandomImage(),
-    randomImage03: getRandomImage(),
-    randomImage04: getRandomImage(),
+    randomImage01: imagesArr[46],
+    randomImage02: imagesArr[47],
+    randomImage03: imagesArr[48],
+    randomImage04: imagesArr[49],
     skills: getSkillsByIds([1, 2, 3, 4]),
   },
   {
@@ -807,10 +803,10 @@ const artistdata: ArtistDataProps[] = [
     introduction:
       "Maecenas ut massa quis augue luctus tincidunt. Nulla mollis molestie lorem. Quisque ut erat.",
     mainImage: imagesArr[46],
-    randomImage01: getRandomImage(),
-    randomImage02: getRandomImage(),
-    randomImage03: getRandomImage(),
-    randomImage04: getRandomImage(),
+    randomImage01: imagesArr[47],
+    randomImage02: imagesArr[48],
+    randomImage03: imagesArr[49],
+    randomImage04: imagesArr[50],
     skills: getSkillsByIds([2, 6, 8, 10]),
   },
   {
@@ -822,10 +818,10 @@ const artistdata: ArtistDataProps[] = [
     street_address: "7710 Northridge Park",
     introduction: "Sed ante. Vivamus tortor. Duis mattis egestas metus.",
     mainImage: imagesArr[47],
-    randomImage01: getRandomImage(),
-    randomImage02: getRandomImage(),
-    randomImage03: getRandomImage(),
-    randomImage04: getRandomImage(),
+    randomImage01: imagesArr[48],
+    randomImage02: imagesArr[49],
+    randomImage03: imagesArr[50],
+    randomImage04: imagesArr[51],
     skills: getSkillsByIds([3, 7, 8, 9]),
   },
   {
@@ -838,10 +834,10 @@ const artistdata: ArtistDataProps[] = [
     introduction:
       "Aliquam quis turpis eget elit sodales scelerisque. Mauris sit amet eros. Suspendisse accumsan tortor quis turpis.",
     mainImage: imagesArr[48],
-    randomImage01: getRandomImage(),
-    randomImage02: getRandomImage(),
-    randomImage03: getRandomImage(),
-    randomImage04: getRandomImage(),
+    randomImage01: imagesArr[49],
+    randomImage02: imagesArr[50],
+    randomImage03: imagesArr[51],
+    randomImage04: imagesArr[52],
     skills: getSkillsByIds([3, 4, 5, 7]),
   },
   {
@@ -854,10 +850,10 @@ const artistdata: ArtistDataProps[] = [
     introduction:
       "Integer ac leo. Pellentesque ultrices mattis odio. Donec vitae nisi.",
     mainImage: imagesArr[49],
-    randomImage01: getRandomImage(),
-    randomImage02: getRandomImage(),
-    randomImage03: getRandomImage(),
-    randomImage04: getRandomImage(),
+    randomImage01: imagesArr[50],
+    randomImage02: imagesArr[51],
+    randomImage03: imagesArr[52],
+    randomImage04: imagesArr[53],
     skills: getSkillsByIds([4, 5, 6, 10]),
   },
   {
@@ -870,10 +866,10 @@ const artistdata: ArtistDataProps[] = [
     introduction:
       "Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Vivamus vestibulum sagittis sapien. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.",
     mainImage: imagesArr[50],
-    randomImage01: getRandomImage(),
-    randomImage02: getRandomImage(),
-    randomImage03: getRandomImage(),
-    randomImage04: getRandomImage(),
+    randomImage01: imagesArr[51],
+    randomImage02: imagesArr[52],
+    randomImage03: imagesArr[53],
+    randomImage04: imagesArr[54],
     skills: getSkillsByIds([7, 8, 9, 10]),
   },
   {
@@ -886,10 +882,10 @@ const artistdata: ArtistDataProps[] = [
     introduction:
       "Duis aliquam convallis nunc. Proin at turpis a pede posuere nonummy. Integer non velit.",
     mainImage: imagesArr[51],
-    randomImage01: getRandomImage(),
-    randomImage02: getRandomImage(),
-    randomImage03: getRandomImage(),
-    randomImage04: getRandomImage(),
+    randomImage01: imagesArr[52],
+    randomImage02: imagesArr[53],
+    randomImage03: imagesArr[54],
+    randomImage04: imagesArr[55],
     skills: getSkillsByIds([4, 5, 6, 10]),
   },
   {
@@ -902,10 +898,10 @@ const artistdata: ArtistDataProps[] = [
     introduction:
       "Phasellus sit amet erat. Nulla tempus. Vivamus in felis eu sapien cursus vestibulum.",
     mainImage: imagesArr[52],
-    randomImage01: getRandomImage(),
-    randomImage02: getRandomImage(),
-    randomImage03: getRandomImage(),
-    randomImage04: getRandomImage(),
+    randomImage01: imagesArr[53],
+    randomImage02: imagesArr[54],
+    randomImage03: imagesArr[55],
+    randomImage04: imagesArr[56],
     skills: getSkillsByIds([2, 3, 7, 9]),
   },
   {
@@ -918,10 +914,10 @@ const artistdata: ArtistDataProps[] = [
     introduction:
       "Curabitur gravida nisi at nibh. In hac habitasse platea dictumst. Aliquam augue quam, sollicitudin vitae, consectetuer eget, rutrum at, lorem.",
     mainImage: imagesArr[53],
-    randomImage01: getRandomImage(),
-    randomImage02: getRandomImage(),
-    randomImage03: getRandomImage(),
-    randomImage04: getRandomImage(),
+    randomImage01: imagesArr[54],
+    randomImage02: imagesArr[55],
+    randomImage03: imagesArr[56],
+    randomImage04: imagesArr[57],
     skills: getSkillsByIds([3, 4, 6, 10]),
   },
   {
@@ -934,10 +930,10 @@ const artistdata: ArtistDataProps[] = [
     introduction:
       "Suspendisse potenti. In eleifend quam a odio. In hac habitasse platea dictumst.",
     mainImage: imagesArr[54],
-    randomImage01: getRandomImage(),
-    randomImage02: getRandomImage(),
-    randomImage03: getRandomImage(),
-    randomImage04: getRandomImage(),
+    randomImage01: imagesArr[55],
+    randomImage02: imagesArr[56],
+    randomImage03: imagesArr[57],
+    randomImage04: imagesArr[58],
     skills: getSkillsByIds([4, 5, 8, 9]),
   },
   {
@@ -950,10 +946,10 @@ const artistdata: ArtistDataProps[] = [
     introduction:
       "Curabitur at ipsum ac tellus semper interdum. Mauris ullamcorper purus sit amet nulla. Quisque arcu libero, rutrum ac, lobortis vel, dapibus at, diam.",
     mainImage: imagesArr[55],
-    randomImage01: getRandomImage(),
-    randomImage02: getRandomImage(),
-    randomImage03: getRandomImage(),
-    randomImage04: getRandomImage(),
+    randomImage01: imagesArr[56],
+    randomImage02: imagesArr[57],
+    randomImage03: imagesArr[58],
+    randomImage04: imagesArr[59],
     skills: getSkillsByIds([1, 4, 5, 7]),
   },
   {
@@ -966,10 +962,10 @@ const artistdata: ArtistDataProps[] = [
     introduction:
       "Fusce posuere felis sed lacus. Morbi sem mauris, laoreet ut, rhoncus aliquet, pulvinar sed, nisl. Nunc rhoncus dui vel sem.",
     mainImage: imagesArr[56],
-    randomImage01: getRandomImage(),
-    randomImage02: getRandomImage(),
-    randomImage03: getRandomImage(),
-    randomImage04: getRandomImage(),
+    randomImage01: imagesArr[57],
+    randomImage02: imagesArr[58],
+    randomImage03: imagesArr[59],
+    randomImage04: imagesArr[60],
     skills: getSkillsByIds([2, 4, 5, 6]),
   },
   {
@@ -982,10 +978,10 @@ const artistdata: ArtistDataProps[] = [
     introduction:
       "Vestibulum ac est lacinia nisi venenatis tristique. Fusce congue, diam id ornare imperdiet, sapien urna pretium nisl, ut volutpat sapien arcu sed augue. Aliquam erat volutpat.",
     mainImage: imagesArr[57],
-    randomImage01: getRandomImage(),
-    randomImage02: getRandomImage(),
-    randomImage03: getRandomImage(),
-    randomImage04: getRandomImage(),
+    randomImage01: imagesArr[58],
+    randomImage02: imagesArr[59],
+    randomImage03: imagesArr[60],
+    randomImage04: imagesArr[61],
     skills: getSkillsByIds([5, 6, 7, 8]),
   },
   {
@@ -997,10 +993,10 @@ const artistdata: ArtistDataProps[] = [
     street_address: "536 Ramsey Hill",
     introduction: "Sed ante. Vivamus tortor. Duis mattis egestas metus.",
     mainImage: imagesArr[58],
-    randomImage01: getRandomImage(),
-    randomImage02: getRandomImage(),
-    randomImage03: getRandomImage(),
-    randomImage04: getRandomImage(),
+    randomImage01: imagesArr[59],
+    randomImage02: imagesArr[60],
+    randomImage03: imagesArr[61],
+    randomImage04: imagesArr[62],
     skills: getSkillsByIds([1, 6, 7, 10]),
   },
   {
@@ -1013,10 +1009,10 @@ const artistdata: ArtistDataProps[] = [
     introduction:
       "Maecenas leo odio, condimentum id, luctus nec, molestie sed, justo. Pellentesque viverra pede ac diam. Cras pellentesque volutpat dui.",
     mainImage: imagesArr[59],
-    randomImage01: getRandomImage(),
-    randomImage02: getRandomImage(),
-    randomImage03: getRandomImage(),
-    randomImage04: getRandomImage(),
+    randomImage01: imagesArr[60],
+    randomImage02: imagesArr[61],
+    randomImage03: imagesArr[62],
+    randomImage04: imagesArr[63],
     skills: getSkillsByIds([2, 5, 8, 10]),
   },
   {
@@ -1029,10 +1025,10 @@ const artistdata: ArtistDataProps[] = [
     introduction:
       "Morbi non lectus. Aliquam sit amet diam in magna bibendum imperdiet. Nullam orci pede, venenatis non, sodales sed, tincidunt eu, felis.",
     mainImage: imagesArr[60],
-    randomImage01: getRandomImage(),
-    randomImage02: getRandomImage(),
-    randomImage03: getRandomImage(),
-    randomImage04: getRandomImage(),
+    randomImage01: imagesArr[61],
+    randomImage02: imagesArr[62],
+    randomImage03: imagesArr[63],
+    randomImage04: imagesArr[64],
     skills: getSkillsByIds([4, 6, 8, 9]),
   },
   {
@@ -1045,10 +1041,10 @@ const artistdata: ArtistDataProps[] = [
     introduction:
       "Proin eu mi. Nulla ac enim. In tempor, turpis nec euismod scelerisque, quam turpis adipiscing lorem, vitae mattis nibh ligula nec sem.",
     mainImage: imagesArr[61],
-    randomImage01: getRandomImage(),
-    randomImage02: getRandomImage(),
-    randomImage03: getRandomImage(),
-    randomImage04: getRandomImage(),
+    randomImage01: imagesArr[62],
+    randomImage02: imagesArr[63],
+    randomImage03: imagesArr[64],
+    randomImage04: imagesArr[65],
     skills: getSkillsByIds([3, 4, 5, 8]),
   },
   {
@@ -1061,10 +1057,10 @@ const artistdata: ArtistDataProps[] = [
     introduction:
       "Donec diam neque, vestibulum eget, vulputate ut, ultrices vel, augue. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec pharetra, magna vestibulum aliquet ultrices, erat tortor sollicitudin mi, sit amet lobortis sapien sapien non mi. Integer ac neque.",
     mainImage: imagesArr[62],
-    randomImage01: getRandomImage(),
-    randomImage02: getRandomImage(),
-    randomImage03: getRandomImage(),
-    randomImage04: getRandomImage(),
+    randomImage01: imagesArr[63],
+    randomImage02: imagesArr[64],
+    randomImage03: imagesArr[65],
+    randomImage04: imagesArr[66],
     skills: getSkillsByIds([2, 5, 7, 8]),
   },
   {
@@ -1076,10 +1072,10 @@ const artistdata: ArtistDataProps[] = [
     street_address: "0 Magdeline Place",
     introduction: "Phasellus in felis. Donec semper sapien a libero. Nam dui.",
     mainImage: imagesArr[63],
-    randomImage01: getRandomImage(),
-    randomImage02: getRandomImage(),
-    randomImage03: getRandomImage(),
-    randomImage04: getRandomImage(),
+    randomImage01: imagesArr[64],
+    randomImage02: imagesArr[65],
+    randomImage03: imagesArr[66],
+    randomImage04: imagesArr[67],
     skills: getSkillsByIds([4, 5, 7, 8]),
   },
   {
@@ -1092,10 +1088,10 @@ const artistdata: ArtistDataProps[] = [
     introduction:
       "Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Vivamus vestibulum sagittis sapien. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.",
     mainImage: imagesArr[64],
-    randomImage01: getRandomImage(),
-    randomImage02: getRandomImage(),
-    randomImage03: getRandomImage(),
-    randomImage04: getRandomImage(),
+    randomImage01: imagesArr[65],
+    randomImage02: imagesArr[66],
+    randomImage03: imagesArr[67],
+    randomImage04: imagesArr[68],
     skills: getSkillsByIds([2, 6, 7, 8]),
   },
   {
@@ -1108,10 +1104,10 @@ const artistdata: ArtistDataProps[] = [
     introduction:
       "Duis bibendum. Morbi non quam nec dui luctus rutrum. Nulla tellus.",
     mainImage: imagesArr[65],
-    randomImage01: getRandomImage(),
-    randomImage02: getRandomImage(),
-    randomImage03: getRandomImage(),
-    randomImage04: getRandomImage(),
+    randomImage01: imagesArr[66],
+    randomImage02: imagesArr[67],
+    randomImage03: imagesArr[68],
+    randomImage04: imagesArr[69],
     skills: getSkillsByIds([5, 7, 8, 9]),
   },
   {
@@ -1124,10 +1120,10 @@ const artistdata: ArtistDataProps[] = [
     introduction:
       "Cras non velit nec nisi vulputate nonummy. Maecenas tincidunt lacus at velit. Vivamus vel nulla eget eros elementum pellentesque.",
     mainImage: imagesArr[66],
-    randomImage01: getRandomImage(),
-    randomImage02: getRandomImage(),
-    randomImage03: getRandomImage(),
-    randomImage04: getRandomImage(),
+    randomImage01: imagesArr[67],
+    randomImage02: imagesArr[68],
+    randomImage03: imagesArr[69],
+    randomImage04: imagesArr[0],
     skills: getSkillsByIds([3, 6, 8, 9]),
   },
   {
@@ -1140,10 +1136,10 @@ const artistdata: ArtistDataProps[] = [
     introduction:
       "Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Vivamus vestibulum sagittis sapien. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.",
     mainImage: imagesArr[67],
-    randomImage01: getRandomImage(),
-    randomImage02: getRandomImage(),
-    randomImage03: getRandomImage(),
-    randomImage04: getRandomImage(),
+    randomImage01: imagesArr[68],
+    randomImage02: imagesArr[69],
+    randomImage03: imagesArr[0],
+    randomImage04: imagesArr[1],
     skills: getSkillsByIds([5, 6, 9, 10]),
   },
   {
@@ -1156,10 +1152,10 @@ const artistdata: ArtistDataProps[] = [
     introduction:
       "Nullam sit amet turpis elementum ligula vehicula consequat. Morbi a ipsum. Integer a nibh.",
     mainImage: imagesArr[68],
-    randomImage01: getRandomImage(),
-    randomImage02: getRandomImage(),
-    randomImage03: getRandomImage(),
-    randomImage04: getRandomImage(),
+    randomImage01: imagesArr[69],
+    randomImage02: imagesArr[0],
+    randomImage03: imagesArr[1],
+    randomImage04: imagesArr[2],
     skills: getSkillsByIds([1, 2, 3, 7]),
   },
   {
@@ -1172,10 +1168,10 @@ const artistdata: ArtistDataProps[] = [
     introduction:
       "Morbi non lectus. Aliquam sit amet diam in magna bibendum imperdiet. Nullam orci pede, venenatis non, sodales sed, tincidunt eu, felis.",
     mainImage: imagesArr[69],
-    randomImage01: getRandomImage(),
-    randomImage02: getRandomImage(),
-    randomImage03: getRandomImage(),
-    randomImage04: getRandomImage(),
+    randomImage01: imagesArr[0],
+    randomImage02: imagesArr[1],
+    randomImage03: imagesArr[2],
+    randomImage04: imagesArr[3],
     skills: getSkillsByIds([6, 7, 9, 10]),
   },
 ]

@@ -1,6 +1,7 @@
 import styled from "styled-components";
-import { ReactComponent as LogoShadowDark } from "../../../assets/icons/logo/logo_shadow_dark.svg";
-import { ReactComponent as LogoShadowLight } from "../../../assets/icons/logo/logo_shadow_light.svg";
+import { HTMLAttributes } from "react";
+import LogoShadowDark from "../../../../public/assets/icons/logo/logo_shadow_dark.svg";
+import LogoShadowLight from "../../../../public/assets/icons/logo/logo_shadow_light.svg";
 
 export const Div = styled.div`
   &.wrapper {
@@ -135,10 +136,10 @@ export const A = styled.a`
   }
 `;
 
-export const BrandDark = styled(LogoShadowDark)`
+export const BrandDark = styled(LogoShadowDark).attrs<HTMLAttributes<SVGElement>>({})`
   width: 100px;
 `;
 
-export const BrandLight = styled(LogoShadowLight)`
+export const BrandLight = styled(LogoShadowLight).attrs<HTMLAttributes<SVGElement>>({})`
   width: 100px;
 `;

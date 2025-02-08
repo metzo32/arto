@@ -7,7 +7,7 @@ import {
   Fieldset,
   Legend,
 } from "../Login.page.component/Login.style";
-import countrycode from "../../assets/datas/country_code";
+import countryCodeArray from "../../../public/assets/datas/countryCode"
 interface PhoneNumberProps {
   onPhoneNumberChange: (countryCode: string, phoneNumber: string) => void;
 }
@@ -45,7 +45,7 @@ export default function PhoneNumber({ onPhoneNumberChange }: PhoneNumberProps) {
               required
             >
               <option value="">국가</option>
-              {countrycode.map((item) => (
+              {countryCodeArray.map((item) => (
                 <option key={`${item.country}-${item.code}`} value={item.code}>
                   ({item.code}) {item.country}
                 </option>

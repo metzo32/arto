@@ -95,10 +95,11 @@ export const Div = styled.div`
     position: relative;
 
     @media (max-width: 767px) {
-      width: 280px;
-      height: 180px;
-      padding: 20px 10px;
+      width: 180px;
+      height: 240px;
+      padding: 25px;
       border-radius: 5px;
+      margin-left: 70px;
     }
 
     @media (min-width: 768px) {
@@ -113,7 +114,11 @@ export const Div = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 30px;
+    gap: 20px;
+
+    @media (max-width: 767px) {
+      gap: 30px;
+    }
   }
 `;
 
@@ -134,10 +139,12 @@ export const P = styled.p`
 
   @media (max-width: 767px) {
     font-size: 16px;
+    line-height: 18px;
   }
 
   @media (min-width: 768px) {
     font-size: 20px;
+    line-height: 24px;
   }
 `;
 

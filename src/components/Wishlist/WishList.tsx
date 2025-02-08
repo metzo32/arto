@@ -1,17 +1,19 @@
 import { doc, getDoc, updateDoc } from "firebase/firestore";
-import { IconLine, IconClicked, IconHover, Span } from "./Wishlist.style";
+import { IconLine, IconClicked, IconHover, Button } from "./Wishlist.style";
 import { useState, useEffect } from "react";
 import { auth, db } from "../../firebase/firebaseConfig";
-import { getSkillsByIds } from "../../assets/datas/artitstData"; // getSkillsByIds 함수 가져오기
+import { getSkillsByIds } from "../../../public/assets/datas/artitstData"; // getSkillsByIds 함수 가져오기
 import { useModal } from "../../hooks/useModal";
-import { useNavigate } from "react-router-dom";
+import { useRouter } from "next/navigation";
 import Modal from "../Modal/Modal";
 
 interface WishListProps {
   artistId: number;
   artistNickname: string;
   artistmainImage: string;
-  artistSkills: number[]; // skill ID 배열로 변경
+  artistSkills: number[]; 
+  artistStreet: string;
+  artistCity: string;
   isWishlisted: boolean;
   onToggleWishlist: () => void;
 }
@@ -20,6 +22,8 @@ const WishList = ({
   artistNickname,
   artistmainImage,
   artistSkills,
+  artistStreet, 
+  artistCity,
   isWishlisted,
   onToggleWishlist,
 }: WishListProps) => {
@@ -27,9 +31,10 @@ const WishList = ({
     useModal();
   const [isClicked, setIsClicked] = useState<boolean>(isWishlisted);
   const [hovered, setHovered] = useState(false);
-  const navigate = useNavigate()
+  const router = useRouter();
 
-  useEffect(() => {     //onAuthStateChanged: 사용자 인증상태가 바뀔 때마다 실행
+  useEffect(() => {
+    //onAuthStateChanged: 사용자 인증상태가 바뀔 때마다 실행
     const unsubscribe = auth.onAuthStateChanged(async (user) => {
       if (!user) {
         setIsClicked(false); // 로그아웃 시 하트 초기화
@@ -56,7 +61,7 @@ const WishList = ({
   const handleWishlistToggle = async () => {
     const user = auth.currentUser; //현재 로그인된 사용자
     if (!user) {
-      openModal("잠깐!", "로그인이 필요한 서비스입니다.")
+      openModal("잠깐!", "로그인이 필요한 서비스입니다.");
       return;
     }
 
@@ -74,11 +79,18 @@ const WishList = ({
           (item: { id: number }) => item.id !== artistId
         );
       } else {
+        const skillsWithNames = getSkillsByIds(artistSkills).map((skill) => ({
+          id: skill.id,
+          skill: skill.skill,
+        }));
+
         const newWishlistItem = {
           id: artistId,
           nickname: artistNickname,
           randomImage: artistmainImage,
-          skills: artistSkills, // skill ID 배열 저장
+          skills: skillsWithNames,
+          street: artistStreet,
+          city: artistCity,
         };
 
         updatedWishlist = [newWishlistItem, ...currentWishlist];
@@ -101,13 +113,14 @@ const WishList = ({
   }, [isWishlisted]);
 
   const handleMouseClick = (
-    event: React.MouseEvent<HTMLDivElement, MouseEvent>
+    event: React.MouseEvent<HTMLButtonElement, MouseEvent>
   ) => {
+    event.preventDefault();
     event.stopPropagation();
     handleWishlistToggle();
   };
 
-  const handleTouchStart = (event: React.TouchEvent<HTMLDivElement>) => {
+  const handleTouchStart = (event: React.TouchEvent<HTMLButtonElement>) => {
     event.stopPropagation();
     handleWishlistToggle();
   };
@@ -131,8 +144,8 @@ const WishList = ({
   };
 
   const handleNavigation = () => {
-    navigate("/login")
-  }
+    router.push("/login");
+  };
 
   // `artistSkills`를 `getSkillsByIds`를 통해 변환
   const skillComponents = getSkillsByIds(artistSkills);
@@ -148,14 +161,14 @@ const WishList = ({
         isOptionOn={true}
         onSecClose={closeModal}
       />
-      <Span
+      <Button
         onMouseOver={handleMouseEnter}
         onMouseOut={handleMouseLeave}
         onClick={handleMouseClick}
         onTouchStart={handleTouchStart}
       >
         {renderIcon()}
-      </Span>
+      </Button>
     </>
   );
 };

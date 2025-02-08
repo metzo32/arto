@@ -15,21 +15,21 @@ interface HeaderDataProps {
 export const headerData: HeaderDataProps[][] = [
   [
     { id: "Home", icon: HiOutlineHome, name: "Home", path: "/" },
-    { id: "New", icon: MdOutlineWorkspaces, name: "New", path: "/profile_artist_Ole" },
-    { id: "Upcoming", icon: MdOutlineWebhook, name: "Upcoming", path: "/profile_artist_Caz" },
+    { id: "New", icon: MdOutlineWorkspaces, name: "New", path: "/profile_artist/Ole" },
+    { id: "Upcoming", icon: MdOutlineWebhook, name: "Upcoming", path: "/profile_artist/Caz" },
   ],
   [
     {
       id: "Hot",
       icon: MdGraphicEq,
       name: "Hot",
-      path: "/profile_artist_Karel",
+      path: "/profile_artist/Karel",
     },
     {
       id: "For you",
       icon: BiNews,
       name: "For you",
-      path: "/profile_artist_Valentine",
+      path: "/profile_artist/Valentine",
     },
   ],
 ];
@@ -39,6 +39,6 @@ export const headerData: HeaderDataProps[][] = [
 export const bottomItem: HeaderDataProps = {
   id: "Login",
   icon: PiUserCircleDuotone,
-  name: "Login",
+  name: "로그인",
   path: "/login",
 };

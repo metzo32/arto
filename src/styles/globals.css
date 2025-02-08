@@ -1,5 +1,26 @@
-/* Nanum Gothic */
 @import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Nanum+Gothic&family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Kay+Pho+Du:wght@400;500;600;700&display=swap');
+
+body {
+  background-color: #D6E0E1;
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
+
+
+
+
+/* Nanum Gothic */
+/* @import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Nanum+Gothic&family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap'); */
 /* Eric Meyer's Reset CSS v2.0 (http://meyerweb.com/eric/tools/css/reset/)
    http://cssreset.com
    License: none (public domain)
@@ -86,12 +107,10 @@ h1, h2, h3, h4, h5, h6 {
   user-select: none;
 }
 
-/* 영어에 Work Sans 적용 */
 .App:lang(en) {
   font-family: "Nanum Gothic", serif;
   }
   
-  /* 한글에 NanumSquare 적용 */
   .App:lang(ko) {
     font-family: "Nanum Gothic", serif;
   }

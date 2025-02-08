@@ -214,7 +214,7 @@ export const EachTextPopUp = ({ duration, delay, text }: Props) => {
         aria-hidden
       >
         {text?.split("").map((char) => (
-          <motion.span className="inline-block" variants={variants}>
+          <motion.span key={char} className="inline-block" variants={variants}>
             {char}
           </motion.span>
         ))}

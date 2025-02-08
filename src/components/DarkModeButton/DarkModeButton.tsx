@@ -22,7 +22,7 @@ const DarkModeButton = ({ isNarrow, isMobile }: DarkModeButtonProps) => {
     if (savedTheme) {
       setIsDark(JSON.parse(savedTheme));
     }
-  }, []);
+  }, [setIsDark]);
 
   const toggleDark = () => {
     setIsDark((prevMode: boolean) => {
