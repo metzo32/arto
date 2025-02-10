@@ -14,12 +14,12 @@ import {
 import { useState, useEffect, useRef } from "react";
 import { useParams } from "next/navigation";
 import useWindowSize from "../../hooks/useWindowSize";
+import useLoading from "../../hooks/useLoading";
 import type { ArtistDataProps } from "../../pages/api/artists";
 import { BaseButton } from "../../../public/assets/design-assets/BaseButton/BaseButton";
 import NameCard from "./NameCard/NameCard";
 import ScrollToTopbutton from "../ScrollToTopButton/ScrollToTopButton";
 import Sidebar from "./Sidebar/Sidebar";
-import useLoading from "../../hooks/useLoading";
 import LoadingSpinner from "../LoadingSpinner/LoadingSpinner";
 
 export default function ArtistProfileComp() {
