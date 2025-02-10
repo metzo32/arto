@@ -86,14 +86,6 @@ export const Div = styled.div`
     overflow-y: auto;
     background: ${(props) => props.theme.bg_secondary};
     position: relative;
-
-    // @media (max-width: 767px) {
-    //  padding-left: 70px;
-    // }
-
-    // @media (min-width: 768px) {
-    //   padding: 0;
-    // }
   }
 
   &.image-container {

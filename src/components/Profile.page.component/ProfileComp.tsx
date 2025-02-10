@@ -25,7 +25,7 @@ import Modal from "../Modal/Modal";
 import LogoutButton from "../Logout";
 import LoadingSpinner from "../LoadingSpinner/LoadingSpinner";
 import StartFromTop from "../StartFromTop";
-import { getSkillsByIds } from "../../../public/assets/datas/artitstData";
+import { getSkillsByIds } from "../../pages/api/artists";
 import RoundButton from "../../../public/assets/design-assets/RoundButton/RoundButton";
 import {
   BaseButton,
@@ -230,14 +230,14 @@ const ProfileComp = () => {
                           />
                         </Span>
                         <LargeDiv className="skills-container">
-                          <H5>
-                            {wish.street} {wish.city}
+                          <H5 className="address">
+                            {wish.street}, {wish.city}
                           </H5>
                         </LargeDiv>
                         <LargeDiv className="skills-container">
                           {wish.skills.map((skill: any, index: number) => (
                             <LargeDiv key={index} className="skill-item">
-                              <H5>#{skill.skill}</H5>
+                              <H5 className="skills">#{skill.skill}</H5>
                             </LargeDiv>
                           ))}
                         </LargeDiv>

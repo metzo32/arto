@@ -1,11 +1,12 @@
-import { doc, getDoc, updateDoc } from "firebase/firestore";
+import { useState, useEffect, useContext } from "react";
 import { IconLine, IconClicked, IconHover, Button } from "./Wishlist.style";
-import { useState, useEffect } from "react";
+import { doc, getDoc, updateDoc } from "firebase/firestore";
 import { auth, db } from "../../firebase/firebaseConfig";
-import { getSkillsByIds } from "../../../public/assets/datas/artitstData"; // getSkillsByIds 함수 가져오기
+import { getSkillsByIds } from "../../pages/api/artists";
 import { useModal } from "../../hooks/useModal";
 import { useRouter } from "next/navigation";
 import Modal from "../Modal/Modal";
+import { AuthContext } from "../../context/AuthContext";
 
 interface WishListProps {
   artistId: number;
@@ -32,6 +33,7 @@ const WishList = ({
   const [isClicked, setIsClicked] = useState<boolean>(isWishlisted);
   const [hovered, setHovered] = useState(false);
   const router = useRouter();
+  const { currentlyLoggedIn } = useContext(AuthContext)
 
   useEffect(() => {
     //onAuthStateChanged: 사용자 인증상태가 바뀔 때마다 실행
@@ -54,9 +56,14 @@ const WishList = ({
         }
       }
     });
-
     return () => unsubscribe(); // 클린업. 컴포넌트 언마운트 시 unsubscribe
   }, [artistId]);
+
+  useEffect(() => {
+    if(!currentlyLoggedIn) {
+      setIsClicked(false)
+    }
+  }, [currentlyLoggedIn]);
 
   const handleWishlistToggle = async () => {
     const user = auth.currentUser; //현재 로그인된 사용자
@@ -147,8 +154,6 @@ const WishList = ({
     router.push("/login");
   };
 
-  // `artistSkills`를 `getSkillsByIds`를 통해 변환
-  const skillComponents = getSkillsByIds(artistSkills);
 
   return (
     <>

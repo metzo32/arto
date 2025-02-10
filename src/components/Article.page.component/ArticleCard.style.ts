@@ -11,7 +11,7 @@ export const Div = styled.div`
     flex-direction: column;
     position: relative;
 
-    scroll-snap-type: y mandatory;
+    // scroll-snap-type: y mandatory;
     overflow-x: hidden;
   }
 

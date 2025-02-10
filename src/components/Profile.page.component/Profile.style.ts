@@ -142,21 +142,35 @@ export const H4 = styled.h4`
   }
 
   &.profile-like-name {
+    font-size: 20px;
     font-weight: bold;
+
+    @media (min-width: 768px) {
+      font-size: 24px;
+    }
   }
 `;
 
 export const H5 = styled.h5`
-  height: 50px;
-  font-size: 18px;
   color: ${(props) => props.theme.text};
-  background-color: ${(props) => props.theme.main};
-  border-radius: 10px;
-  padding: 0px 20px;
 
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  &.address {
+    font-size: 18px;
+    line-height: 24px;
+
+    @media (min-width: 768px) {
+      font-size: 20px;
+    }
+  }
+
+  &.skills {
+    font-size: 16px;
+    white-space: nowrap;
+
+    @media (min-width: 768px) {
+      font-size: 18px;
+    }
+  }
 `;
 
 export const Links = styled(Link)`
@@ -293,6 +307,17 @@ export const LargeDiv = styled.div`
     height: 70px;
     align-items: center;
     gap: 20px;
+  }
+
+  &.skill-item {
+    width: 110px;
+    height: 40px;
+    background-color: ${(props) => props.theme.btnSecText};
+    border-radius: 100px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 `;
 

@@ -1,38 +1,90 @@
 "use client";
 
-import { Section, Div, Span, H1, H2, H3, H4, P } from "./ArtistProfile.style";
+import {
+  Section,
+  Div,
+  Span,
+  H1,
+  H2,
+  H3,
+  H4,
+  P,
+  Img,
+} from "./ArtistProfile.style";
 import { useState, useEffect, useRef } from "react";
 import { useParams } from "next/navigation";
 import useWindowSize from "../../hooks/useWindowSize";
+import type { ArtistDataProps } from "../../pages/api/artists";
 import { BaseButton } from "../../../public/assets/design-assets/BaseButton/BaseButton";
 import NameCard from "./NameCard/NameCard";
 import ScrollToTopbutton from "../ScrollToTopButton/ScrollToTopButton";
 import Sidebar from "./Sidebar/Sidebar";
-import artistdata from "../../../public/assets/datas/artitstData"; // 아티스트 데이터 가져오기
+import useLoading from "../../hooks/useLoading";
+import LoadingSpinner from "../LoadingSpinner/LoadingSpinner";
 
 export default function ArtistProfileComp() {
   const { isMobile } = useWindowSize();
   const contactRef = useRef<HTMLDivElement | null>(null);
   const [isVisible, setIsVisible] = useState(false);
+  const [artistData, setArtistData] = useState<ArtistDataProps[]>([]);
+  const [artist, setArtist] = useState<ArtistDataProps | null>(null);
+  const { isLoading, setIsLoading, loadingProgress } = useLoading();
 
   const params = useParams();
   const nickname = params.nickname as string;
 
-  const artist = artistdata.find((artist) => artist.nickname === nickname);
+  useEffect(() => {
+    const fetchArtists = async () => {
+      try {
+        const res = await fetch("/api/artists");
+        if (!res.ok) throw new Error("Failed to fetch data");
+
+        const data = await res.json();
+        setArtistData(data);
+      } catch (error) {
+        console.error("Error fetching artist data:", error);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchArtists();
+  }, []);
 
   useEffect(() => {
+    if (artistData.length > 0) {
+      const foundArtist = artistData.find(
+        (artist) => artist.nickname === nickname
+      );
+      setArtist(foundArtist || null);
+    }
+  }, [artistData, nickname]);
+
+  useEffect(() => {
+    if (!artist) return;
     if (!contactRef.current) return;
 
-    const observer = new IntersectionObserver(([entry]) => {
-      setIsVisible(entry.isIntersecting);
-    });
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsVisible(entry.isIntersecting);
+      },
+      { threshold: 0.3 }
+    );
 
     observer.observe(contactRef.current);
 
     return () => {
       observer.disconnect();
     };
-  }, []);
+  }, [artist]);
+
+  if (isLoading) {
+    return (
+      <Div className="wrapper">
+        <LoadingSpinner />
+      </Div>
+    );
+  }
 
   if (!artist) {
     return (
@@ -53,6 +105,11 @@ export default function ArtistProfileComp() {
     <Div className="wrapper">
       <Section>
         <Div className="main-img-container">
+          <Img
+            src={artist.mainImage}
+            alt={artist.nickname}
+            className="main-img"
+          />
           <Div className="text-container">
             <Div className="text-box">
               <H1>{artist.nickname}</H1>
@@ -88,6 +145,28 @@ export default function ArtistProfileComp() {
               <P className="skill">{skill.skill}에 대한 키워드</P>
             </Div>
           ))}
+        </Div>
+      </Section>
+
+      <Section className="narrow">
+        <H2 className="left-title">History</H2>
+        <Div className="card-wrapper">
+          <Div className="card-container">
+            {[
+              artist.randomImage01,
+              artist.randomImage02,
+              artist.randomImage03,
+              artist.randomImage04,
+            ].map((image, index) => (
+              <Div key={index} className="skills-card">
+                <Img src={image} alt={artist.nickname} className="card-img" />
+                <Div className="history-box">
+                  <H4>제목</H4>
+                  <P className="skill">YYYY MM DD</P>
+                </Div>
+              </Div>
+            ))}
+          </Div>
         </Div>
       </Section>
 

@@ -47,7 +47,7 @@ interface ArtistSkillProps {
     return artistSkills.filter((skill) => skillIds.includes(skill.id));
   };
   
-  const artistdata: ArtistDataProps[] = [
+  const artistData: ArtistDataProps[] = [
     {
       id: 1,
       nickname: "Lydon",
@@ -1166,5 +1166,5 @@ interface ArtistSkillProps {
   ]
   
 export default function handler(req: NextApiRequest, res: NextApiResponse) {
-    res.status(200).json(artistdata);
+    res.status(200).json(artistData);
   }
