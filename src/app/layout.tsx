@@ -3,7 +3,7 @@
 import "../styles/globals.css";
 import { ReactNode, useState, useEffect } from "react";
 import { Div } from "../stores/App_style";
-import { AuthContext } from "../context/AuthContext";
+import { AuthProvider } from "../context/AuthContext";
 import CustomThemeProvider from "../context/ThemeContext";
 import { MobileProvider } from "../context/MobileProvider";
 import { GlobalStyle } from "../stores/GlobalStyles";
@@ -27,20 +27,20 @@ export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="kr">
       <body>
-        <AuthContext.Provider
-          value={{ currentlyLoggedIn, setCurrentlyLoggedIn }}
-        >
+        <AuthProvider>
           <CustomThemeProvider>
             <MobileProvider>
               <GlobalStyle />
               <Div className="app-container">
                 <Header />
-                <Div className={`main ${isMounted ? "" : "default"}`}>{children}</Div>
+                <Div className={`main ${isMounted ? "" : "default"}`}>
+                  {children}
+                </Div>
                 <ScrollToTopbutton />
               </Div>
             </MobileProvider>
           </CustomThemeProvider>
-        </AuthContext.Provider>
+        </AuthProvider>
       </body>
     </html>
   );

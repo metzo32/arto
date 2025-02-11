@@ -11,7 +11,7 @@ export const Div = styled.div`
     flex-direction: column;
     position: relative;
 
-    scroll-snap-type: y mandatory;
+    // scroll-snap-type: y mandatory;
     overflow-x: hidden;
   }
 
@@ -31,7 +31,7 @@ export const Div = styled.div`
     position: relative;
     cursor: pointer;
 
-    scroll-snap-align: center;
+    // scroll-snap-align: center;
 
     @media (max-width: 767px) {
       width: 100vw;

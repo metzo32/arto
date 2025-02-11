@@ -114,15 +114,3 @@ h1, h2, h3, h4, h5, h6 {
   .App:lang(ko) {
     font-family: "Nanum Gothic", serif;
   }
-
-  /* For all elements */
-* {
-    scrollbar-width: none; /* Firefox */
-    -ms-overflow-style: none;  /* Internet Explorer 10+ */
-  }
-  
-  /* For webkit browsers like Chrome, Safari, and Edge */
-  *::-webkit-scrollbar {
-    display: none; /* Safari and Chrome */
-  }
-  
