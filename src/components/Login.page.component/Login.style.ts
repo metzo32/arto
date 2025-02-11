@@ -18,39 +18,14 @@ export const Div = styled.div`
 
   &.page {
     background-color: ${(props) => props.theme.bg_secondary};
-    min-width: 320px;
+    min-width: 250px;
     width: 100%;
     height: 100%;
+    margin: 0 auto;
     display: flex;
     justify-content: center;
     align-items: center;
   }
-
-  //   &.page {
-  //   background-color: ${(props) => props.theme.bg_secondary};
-  //   min-width: 320px;
-  //   border: 1px solid red;
-  //   margin: 0 auto;
-
-  //   display: flex;
-  //   justify-content: center;
-  //   align-items: center;
-
-  //   @media (max-width: 767px) {
-  //     width: 320px;
-  //     height: 850px;
-  //   }
-
-  //   @media (min-width: 768px) {
-  //     width: 720px;
-  //     height: 850px;
-  //   }
-
-  //   @media (min-width: 1024px) {
-  //     width: 1665px;
-  //     height: 940px;
-  //   }
-  // }
 
   &.container {
     background-color: ${(props) => props.theme.bg_primary};
@@ -60,10 +35,10 @@ export const Div = styled.div`
     box-shadow: 3px 5px 8px rgba(0, 0, 0, 0.2);
 
     @media (max-width: 767px) {
+      min-width: 250px;
       width: 70%;
       height: auto;
       padding: 15px;
-      margin: 30px 0px 30px 70px;
     }
 
     @media (min-width: 768px) {
@@ -107,6 +82,7 @@ export const Div = styled.div`
   &.form-wrapper {
     background-color: ${(props) => props.theme.base};
     border-radius: 5px;
+    min-height: 440px;
     height: 100%;
     box-shadow: 3px 5px 8px rgba(0, 0, 0, 0.2);
 

@@ -11,6 +11,7 @@ import SearchBar from "./SearchBar";
 import { usefilteredLength } from "../../stores/states/filteredDataLength";
 import useLoading from "../../hooks/useLoading";
 import { BaseButton } from "../../../public/assets/design-assets/BaseButton/BaseButton";
+import LoadingSpinner from "../LoadingSpinner/LoadingSpinner";
 
 interface ArticleCardProps {
   currentSort: string;
@@ -25,7 +26,7 @@ export default function ArticleCard({ currentSort }: ArticleCardProps) {
   const { isLoading, setIsLoading } = useLoading();
   const { currentlyLoggedIn } = useContext(AuthContext);
 
-  const itemsPerPage = 8; // ✅ 한 번에 8개씩 페칭
+  const itemsPerPage = 8;
 
   useEffect(() => {
     setIsMounted(true);
@@ -40,21 +41,21 @@ export default function ArticleCard({ currentSort }: ArticleCardProps) {
           throw new Error(`HTTP error! Status: ${response.status}`);
         }
         const data = await response.json();
-    
-        // ✅ 전체 데이터를 한 번만 저장
+
+        //전체 데이터를 한 번만 저장
         if (page === 0) {
           setArtists(data);
         }
-    
-        // ✅ 페이지 단위로 데이터 분할하여 렌더링
+
+        // 페이지 단위로 데이터 분할하여 렌더링
         const startIdx = page * itemsPerPage;
         const endIdx = startIdx + itemsPerPage;
         const newItems = data.slice(startIdx, endIdx);
-    
+
         if (newItems.length === 0) return;
-    
+
         setSortedData((prev) => [...prev, ...newItems]);
-    
+
         console.log(`총 데이터 개수: ${sortedData.length + newItems.length}`);
       } catch (error) {
         console.error("Error fetching artist data:", error);
@@ -62,8 +63,7 @@ export default function ArticleCard({ currentSort }: ArticleCardProps) {
         setIsLoading(false);
       }
     };
-    
-    
+
     fetchArtists();
   }, [page]);
 
@@ -179,52 +179,60 @@ export default function ArticleCard({ currentSort }: ArticleCardProps) {
 
   return (
     <>
-      <Div className={`${isMounted ? "wrapper" : "default"}`}>
-        <SearchBar onSearch={handleSearch} onReset={handleReset} />
-        <Div>
-          {filteredData.length > 0 ? (
-            filteredData.map((artist, index) => {
-              const isLastItem = index === filteredData.length - 1;
-              return (
-                <Links
-                  href={`/profile_artist/${artist.nickname}`}
-                  key={artist.id}
-                >
-                  <Div
-                    className="article-cards"
-                    ref={isLastItem ? lastItemRef : null}
+      {isLoading ? (
+        <LoadingSpinner />
+      ) : (
+        <Div className={`${isMounted ? "wrapper" : "default"}`}>
+          <SearchBar onSearch={handleSearch} onReset={handleReset} />
+          <Div>
+            {filteredData.length > 0 ? (
+              filteredData.map((artist, index) => {
+                const isLastItem = index === filteredData.length - 1;
+                return (
+                  <Links
+                    href={`/profile_artist/${artist.nickname}`}
+                    key={artist.id}
                   >
-                    <Img
-                      src={artist.mainImage}
-                      alt={`${artist.nickname}`}
-                      className="article-random-image"
-                      priority
-                    />
-                    <Div className="title-container">
-                      <WishList
-                        artistId={artist.id}
-                        isWishlisted={!!artist.isWishlisted}
-                        onToggleWishlist={() => toggleWishlist(artist.id)}
-                        artistNickname={artist.nickname}
-                        artistmainImage={artist.mainImage}
-                        artistStreet={artist.street_address}
-                        artistCity={artist.city}
-                        artistSkills={artist.skills.map((skill) => skill.id)}
+                    <Div
+                      className="article-cards"
+                      ref={isLastItem ? lastItemRef : null}
+                    >
+                      <Img
+                        src={artist.mainImage}
+                        alt={`${artist.nickname}`}
+                        className="article-random-image"
+                        priority
                       />
-                      <H3 className="article-name">{artist.nickname}</H3>
+                      <Div className="title-container">
+                        <WishList
+                          artistId={artist.id}
+                          isWishlisted={!!artist.isWishlisted}
+                          onToggleWishlist={() => toggleWishlist(artist.id)}
+                          artistNickname={artist.nickname}
+                          artistmainImage={artist.mainImage}
+                          artistStreet={artist.street_address}
+                          artistCity={artist.city}
+                          artistSkills={artist.skills.map((skill) => skill.id)}
+                        />
+                        <H3 className="article-name">{artist.nickname}</H3>
+                      </Div>
                     </Div>
-                  </Div>
-                </Links>
-              );
-            })
-          ) : (
-            <Div className="no-result">
-              <H4>결과가 없습니다.</H4>
-              <BaseButton type="button" text="전체보기" onClick={handleReset} />
-            </Div>
-          )}
+                  </Links>
+                );
+              })
+            ) : (
+              <Div className="no-result">
+                <H4>결과가 없습니다.</H4>
+                <BaseButton
+                  type="button"
+                  text="전체보기"
+                  onClick={handleReset}
+                />
+              </Div>
+            )}
+          </Div>
         </Div>
-      </Div>
+      )}
     </>
   );
 }
