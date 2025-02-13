@@ -2,7 +2,7 @@ import { useState, useEffect, useContext } from "react";
 import { IconLine, IconClicked, IconHover, Button } from "./Wishlist.style";
 import { doc, getDoc, updateDoc } from "firebase/firestore";
 import { auth, db } from "../../firebase/firebaseConfig";
-import { getSkillsByIds } from "../../pages/api/artists";
+import { getSkillsByIds } from "../../../public/assets/datas/artistData";
 import { useModal } from "../../hooks/useModal";
 import { useRouter } from "next/navigation";
 import Modal from "../Modal/Modal";

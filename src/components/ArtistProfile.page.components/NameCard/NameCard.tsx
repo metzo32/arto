@@ -1,5 +1,5 @@
 import { Div, H3, P, BrandDark, BrandLight, A } from "./NameCard.style";
-import type { ArtistDataProps } from "../../../pages/api/artists";
+import type { ArtistDataProps } from "../../../../public/assets/datas/artistData";
 import { useDark } from "../../../hooks/useDark";
 
 export default function NameCard({ artist }: { artist: ArtistDataProps }) {

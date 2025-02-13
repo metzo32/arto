@@ -15,7 +15,7 @@ import { useState, useEffect, useRef } from "react";
 import { useParams } from "next/navigation";
 import useWindowSize from "../../hooks/useWindowSize";
 import useLoading from "../../hooks/useLoading";
-import type { ArtistDataProps } from "../../pages/api/artists";
+import type { ArtistDataProps } from "../../../public/assets/datas/artistData";
 import { BaseButton } from "../../../public/assets/design-assets/BaseButton/BaseButton";
 import NameCard from "./NameCard/NameCard";
 import ScrollToTopbutton from "../ScrollToTopButton/ScrollToTopButton";
@@ -33,23 +33,23 @@ export default function ArtistProfileComp() {
   const params = useParams();
   const nickname = params.nickname as string;
 
-  useEffect(() => {
-    const fetchArtists = async () => {
-      try {
-        const res = await fetch("/api/artists");
-        if (!res.ok) throw new Error("Failed to fetch data");
+  // useEffect(() => {
+  //   const fetchArtists = async () => {
+  //     try {
+  //       const res = await fetch("/api/artists");
+  //       if (!res.ok) throw new Error("Failed to fetch data");
 
-        const data = await res.json();
-        setArtistData(data);
-      } catch (error) {
-        console.error("Error fetching artist data:", error);
-      } finally {
-        setIsLoading(false);
-      }
-    };
+  //       const data = await res.json();
+  //       setArtistData(data);
+  //     } catch (error) {
+  //       console.error("Error fetching artist data:", error);
+  //     } finally {
+  //       setIsLoading(false);
+  //     }
+  //   };
 
-    fetchArtists();
-  }, []);
+  //   fetchArtists();
+  // }, []);
 
   useEffect(() => {
     if (artistData.length > 0) {

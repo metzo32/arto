@@ -25,7 +25,7 @@ import Modal from "../Modal/Modal";
 import LogoutButton from "../Logout";
 import LoadingSpinner from "../LoadingSpinner/LoadingSpinner";
 import StartFromTop from "../StartFromTop";
-import { getSkillsByIds } from "../../pages/api/artists";
+import { getSkillsByIds } from "../../../public/assets/datas/artistData";
 import RoundButton from "../../../public/assets/design-assets/RoundButton/RoundButton";
 import {
   BaseButton,
