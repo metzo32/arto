@@ -1,7 +1,7 @@
 export const lightTheme = {
   brand: "#000000",
   text: "#4A505B",
-  text_secondary: "#A1A4A8",
+  text_secondary: "#787a7c",
   deact: "#A6A9AF",
   bg_primary: "#E9EEEF",
   bg_secondary: "#D6E0E1",
@@ -46,35 +46,3 @@ export const darkTheme = {
   btnSecBorder: " #56585b",
   bg_grad: "linear-gradient(180deg, rgba(22,24,28,1) 0%, rgba(10,12,16,1) 50%)",
 };
-
-// export const lightTheme: colorTheme = {
-//   Green: "#40A93E",
-//   HoverGreen: "#276E27",
-//   Orange: "#FF5C00",
-//   Yellow: "#FE9311",
-//   Grey: "#6E6560",
-//   LightGrey: "#A8A29C",
-//   HoverGrey: "#272423",
-//   Light: "#EEEDEB",
-//   White: "#FFF",
-//   Black: "#000",
-//   Overlay: "rgba(0, 0, 0, 0.5)",
-//   OverlayGradient:
-//     "linear-gradient(180deg, rgba(238,237,235,1) 0%, rgba(238,237,235,0) 95%);",
-// };
-
-// export const darkTheme: colorTheme = {
-//   Green: "#30B62E",
-//   HoverGreen: "#57d355",
-//   Orange: "#FF5C00",
-//   Yellow: "#FE9311",
-//   Grey: "#C8C3BC",
-//   LightGrey: "#6E6560",
-//   HoverGrey: "#FFFEF0",
-//   Light: "#272423",
-//   White: "#000",
-//   Black: "#FFF",
-//   Overlay: "rgba(0, 0, 0, 0.3)",
-//   OverlayGradient:
-//     "linear-gradient(180deg, rgba(39,36,35,1) 0%, rgba(238,237,235,0) 95%)",
-// };

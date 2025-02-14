@@ -15,28 +15,29 @@ export const Div = styled.div`
   display: flex;
 
   &.container {
-    min-width: 212px;
+    min-width: 250px;
     min-height: 1000px;
     background-color: ${(props) => props.theme.bg_primary};
     display: flex;
     flex-direction: column;
-    gap: 100px;
     align-items: center;
 
     @media (max-width: 767px) {
       width: 100%;
-      padding: 50px 0px;
+      padding: 80px 0px;
+      gap: 80px;
     }
 
     @media (min-width: 768px) {
       width: 80%;
-      padding: 50px 0px;
+      padding: 80px 0px;
       margin: 0 auto;
+      gap: 120px;
     }
 
     @media (min-width: 1024px) {
       width: 900px;
-      padding: 80px 0px;
+      padding: 100px 0px;
     }
   }
 
@@ -110,7 +111,7 @@ export const Div = styled.div`
 `;
 
 export const H2 = styled.h2`
-  font-size: 24px;
+  font-size: 20px;
   font-weight: 600;
   color: ${(props) => props.theme.text};
 
@@ -180,6 +181,31 @@ export const Links = styled(Link)`
 
   &:hover {
     color: ${(props) => props.theme.accent};
+  }
+
+  &.search {
+    color: ${(props) => props.theme.white};
+    border-radius: 5px;
+    transition: all 0.1s ease;
+
+    @media (max-width: 767px) {
+      padding: 5px 10px;
+      font-size: 14px;
+    }
+
+    @media (min-width: 768px) {
+      padding: 10px 20px;
+      font-size: 18px;
+    }
+
+    background-color: ${(props) => props.theme.main};
+    border: 2px solid ${(props) => props.theme.main_vivid};
+
+    &:hover {
+      background-color: ${(props) => props.theme.main_vivid};
+      border: 2px solid ${(props) => props.theme.main};
+      box-shadow: 2px 2px 3px ${(props) => props.theme.shadow};
+    }
   }
 `;
 

@@ -2,7 +2,7 @@
 
 import { useSearchParams } from "next/navigation";
 import { useState, useEffect } from "react";
-import ArticleCard from "../Article.page.component/ArticleCard";
+import ArticleCard from "../Article.page.component/ArticleComp";
 import type { ArtistDataProps } from "../../../public/assets/datas/artistData";
 
 export default function SearchResults() {

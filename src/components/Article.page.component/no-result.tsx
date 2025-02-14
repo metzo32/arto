@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Div, H4 } from "./ArticleCard.style";
+import { Div, H4 } from "./ArticleComp.style";
 import { BaseButton } from "../../../public/assets/design-assets/BaseButton/BaseButton";
 
 export default function NoResult() {

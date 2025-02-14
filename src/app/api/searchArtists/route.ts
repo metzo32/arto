@@ -5,8 +5,6 @@ export async function GET(req: Request) {
   const url = new URL(req.url); // 요청한 url을 다루기 쉬운 URL 객체로 변환
   const nickname = url.searchParams.get("nickname"); // 그 중 "nickname" 쿼리파라미터 추출
 
-  console.log("🔍 받은 요청:", nickname);
-
   if (!nickname) {
     console.log("🌍 전체 아티스트 데이터 반환");
     return NextResponse.json(artistData, { status: 200 }); 

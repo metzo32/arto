@@ -1,5 +1,5 @@
 import { useState, useEffect, useContext } from "react";
-import { Div } from "./ArticleCard.style";
+import { Div } from "./ArticleComp.style"
 import type { ArtistDataProps } from "../../../public/assets/datas/artistData";
 import { AuthContext } from "../../context/AuthContext";
 import { auth, db } from "../../firebase/firebaseConfig";
@@ -11,16 +11,16 @@ import { ArtistCard } from "./Card";
 import NoResult from "./no-result";
 import useSort from "../../stores/states/sortOption";
 
-interface ArticleCardProps {
+interface ArticleCompProps {
   artists?: ArtistDataProps[];
 }
 
-export default function ArticleCard({ artists }: ArticleCardProps) {
+export default function ArticleComp({ artists }: ArticleCompProps) {
   const [allArtists, setAllArtists] = useState<ArtistDataProps[]>([]);
   const [isMounted, setIsMounted] = useState(false);
   const { isLoading, setIsLoading } = useLoading();
   const { currentlyLoggedIn } = useContext(AuthContext);
-  const { sortedArtists } = useSort(); 
+  const { sortedArtists } = useSort();
 
   useEffect(() => {
     setIsMounted(true);
@@ -29,9 +29,10 @@ export default function ArticleCard({ artists }: ArticleCardProps) {
   useEffect(() => {
     const fetchArtists = async () => {
       if (artists) return;
-      setIsLoading(false);
+      setIsLoading(true);
       try {
-        const response = await fetch(`/api/allArtists`);
+        const response = await fetch(`/api/allArtists`, {
+        });
         if (!response.ok) {
           throw new Error(`HTTP error! Status: ${response.status}`);
         }

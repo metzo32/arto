@@ -1,7 +1,8 @@
 import styled from "styled-components";
 
 export const Div = styled.div`
-  min-width: 100vw;
+  min-width: 250px;
+  width: 100vw;
   min-height: 100vh;
   background-color: ${(props) => props.theme.bg_secondary};
 

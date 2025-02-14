@@ -4,7 +4,7 @@ import {
   H3,
   H4,
   Links,
-} from "../Article.page.component/ArticleCard.style";
+} from "./ArticleComp.style";
 import WishList from "../Wishlist/WishList";
 import type { ArtistDataProps } from "../../../public/assets/datas/artistData";
 

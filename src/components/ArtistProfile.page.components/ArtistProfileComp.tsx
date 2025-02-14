@@ -21,48 +21,39 @@ import NameCard from "./NameCard/NameCard";
 import ScrollToTopbutton from "../ScrollToTopButton/ScrollToTopButton";
 import Sidebar from "./Sidebar/Sidebar";
 import LoadingSpinner from "../LoadingSpinner/LoadingSpinner";
+import { getSkillsIcons } from "../../../public/assets/datas/getSkillsIcons";
 
 export default function ArtistProfileComp() {
   const { isMobile } = useWindowSize();
   const contactRef = useRef<HTMLDivElement | null>(null);
   const [isVisible, setIsVisible] = useState(false);
-  const [artistData, setArtistData] = useState<ArtistDataProps[]>([]);
   const [artist, setArtist] = useState<ArtistDataProps | null>(null);
-  const { isLoading, setIsLoading, loadingProgress } = useLoading();
+  const { isLoading, setIsLoading } = useLoading();
 
   const params = useParams();
+
   const nickname = params.nickname as string;
+  useEffect(() => {
+    const fetchArtist = async () => {
+      try {
+        setIsLoading(true);
+        const res = await fetch(`/api/indiv?nickname=${nickname}`);
+        if (!res.ok) throw new Error("Failed to fetch artist data");
 
-  // useEffect(() => {
-  //   const fetchArtists = async () => {
-  //     try {
-  //       const res = await fetch("/api/artists");
-  //       if (!res.ok) throw new Error("Failed to fetch data");
+        const data = await res.json();
+        setArtist(data); // 단일 아티스트 데이터 저장
+      } catch (error) {
+        console.error("Error fetching artist data:", error);
+      } finally {
+        setIsLoading(false);
+      }
+    };
 
-  //       const data = await res.json();
-  //       setArtistData(data);
-  //     } catch (error) {
-  //       console.error("Error fetching artist data:", error);
-  //     } finally {
-  //       setIsLoading(false);
-  //     }
-  //   };
-
-  //   fetchArtists();
-  // }, []);
+    fetchArtist();
+  }, [nickname, setIsLoading]);
 
   useEffect(() => {
-    if (artistData.length > 0) {
-      const foundArtist = artistData.find(
-        (artist) => artist.nickname === nickname
-      );
-      setArtist(foundArtist || null);
-    }
-  }, [artistData, nickname]);
-
-  useEffect(() => {
-    if (!artist) return;
-    if (!contactRef.current) return;
+    if (!artist || !contactRef.current) return;
 
     const observer = new IntersectionObserver(
       ([entry]) => {
@@ -134,17 +125,20 @@ export default function ArtistProfileComp() {
         </H2>
         <H3>{artist.introduction}</H3>
         <Div className="skills-container">
-          {artist.skills.map((skill) => (
-            <Div key={skill.id} className="skills-box">
-              <Div className="skills-title">
-                <Div className="icon-container">
-                  <skill.iconName />
+          {artist.skills.map((skill) => {
+            const IconComponent = getSkillsIcons(skill.iconName);
+            return (
+              <Div key={skill.id} className="skills-box">
+                <Div className="skills-title">
+                  <Div className="icon-container">
+                    {IconComponent ? <IconComponent /> : null}
+                  </Div>
+                  <H4>{skill.skill}</H4>
                 </Div>
-                <H4>{skill.skill}</H4>
+                <P className="skill">{skill.skill}에 대한 키워드</P>
               </Div>
-              <P className="skill">{skill.skill}에 대한 키워드</P>
-            </Div>
-          ))}
+            );
+          })}
         </Div>
       </Section>
 

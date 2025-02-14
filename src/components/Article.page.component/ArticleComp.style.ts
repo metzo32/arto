@@ -11,7 +11,7 @@ export const Div = styled.div`
     flex-direction: column;
     position: relative;
 
-    // scroll-snap-type: y mandatory;
+    scroll-snap-type: y mandatory;
     overflow-x: hidden;
   }
 
@@ -31,7 +31,7 @@ export const Div = styled.div`
     position: relative;
     cursor: pointer;
 
-    // scroll-snap-align: center;
+    scroll-snap-align: center;
 
     @media (max-width: 767px) {
       width: 100vw;
@@ -133,17 +133,3 @@ export const H4 = styled.h4`
 export const Links = styled(Link)`
   display: flex;
 `;
-
-// export const Span = styled.span`
-//   &.overlay {
-//     width: 100vw;
-//     height: 100vw;
-//     background-color: black;
-//     opacity: 0.5;
-
-//     position: fixed;
-//     top: 0;
-//     left: 0;
-//     z-index: 9;
-//   }
-// `;
