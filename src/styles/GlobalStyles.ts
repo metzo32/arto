@@ -13,6 +13,12 @@ export const GlobalStyle = createGlobalStyle`
     font-family: "Nanum Gothic", sans-serif;
     background-color: ${(props) => props.theme.bg_secondary};
     color: ${(props) => props.theme.text};
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  ::-webkit-scrollbar {
+    display: none;
   }
 
   ::selection {
@@ -27,5 +33,12 @@ export const GlobalStyle = createGlobalStyle`
 
   ul, li {
     list-style: none;
+  }
+
+  button {
+    all: unset;
+    box-sizing: border-box;
+    text-align: center;
+    cursor: pointer;
   }
 `;

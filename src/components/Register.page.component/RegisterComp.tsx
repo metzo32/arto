@@ -26,8 +26,6 @@ import PhoneNumber from "./PhoneNumber";
 import { AuthContext } from "../../context/AuthContext";
 import LoadingSpinner from "../LoadingSpinner/LoadingSpinner";
 
-// import WishList from "../components/Wishlist/WishList";
-
 export default function RegisterComp() {
   const router = useRouter();
   const path = usePathname();
@@ -38,7 +36,6 @@ export default function RegisterComp() {
     modalContent,
     openModal,
     closeModal,
-    // onCloseCallback,
   } = useModal();
   const { isLoading, loadingProgress } = useLoading();
 
@@ -238,28 +235,6 @@ export default function RegisterComp() {
     setFocusedInputs((prev) => ({ ...prev, [name]: true })); // 필드 입력 감지
   };
   
-
-  // const handleBlur = (event: React.FocusEvent<HTMLInputElement>) => {
-  //   const target = event.target;
-  //   target.classList.remove("active");
-  //   if (!target.value) return;
-
-  //   const label = target.nextElementSibling as HTMLLabelElement | null;
-  //   if (label) {
-  //     if (
-  //       !target.checkValidity() ||
-  //       (target.name === "passwordConfirm" &&
-  //         registerPw !== "registerPwConfirm") ||
-  //       (target.name === "nickname" && !nicknameRule.test(target.value)) ||
-  //       (target.name === "fullname" && !fullnameRule.test(target.value))
-  //     ) {
-  //       label.classList.add("invalid");
-  //     } else {
-  //       label.classList.remove("invalid");
-  //     }
-  //   }
-  // };
-
   const handleNicknameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const value = event.target.value;
     const capitalizedNickName = value.charAt(0).toUpperCase() + value.slice(1);
@@ -459,3 +434,4 @@ export default function RegisterComp() {
     </Div>
   );
 }
+

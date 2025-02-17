@@ -6,7 +6,7 @@ import { ReactNode, useState, useEffect } from "react";
 import { AuthProvider } from "../context/AuthContext";
 import CustomThemeProvider from "../context/ThemeContext";
 import { MobileProvider } from "../context/MobileProvider";
-import { GlobalStyle } from "../stores/GlobalStyles";
+import { GlobalStyle } from "../styles/GlobalStyles";
 import Header from "../components/Header/Header";
 import ScrollToTopbutton from "../components/ScrollToTopButton/ScrollToTopButton";
 

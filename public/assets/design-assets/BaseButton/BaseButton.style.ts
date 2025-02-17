@@ -4,6 +4,7 @@ export const Button = styled.button`
   color: ${(props) => props.theme.white};
   border-radius: 5px;
   transition: all 0.1s ease;
+  text-align: center;
 
   @media (max-width: 767px) {
     padding: 5px 10px;
