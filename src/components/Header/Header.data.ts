@@ -28,26 +28,6 @@ export const headerData: HeaderDataProps[][] = [
       path: "/profile_artist/Caz",
     },
   ],
-  [
-    {
-      id: "Login",
-      icon: PiUserCircleDuotone,
-      name: "로그인",
-      path: "/login",
-    },
-    {
-      id: "Hot",
-      icon: MdGraphicEq,
-      name: "Hot",
-      path: "/profile_artist/Karel",
-    },
-    {
-      id: "For you",
-      icon: BiNews,
-      name: "For you",
-      path: "/profile_artist/Valentine",
-    },
-  ],
 ];
 
 export const extraItem: HeaderDataProps = {
