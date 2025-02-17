@@ -54,6 +54,7 @@ export default function RegisterComp() {
   const [gender, setGender] = useState<string>("");
   const [countryCode, setCountryCode] = useState<string>("");
   const [registerPhonenumber, setRegisterPhonenumber] = useState<string>("");
+  const [focusedInputs, setFocusedInputs] = useState<{ [key: string]: boolean }>({});
 
   const [step, setStep] = useState<number>(1);
 
@@ -95,6 +96,8 @@ export default function RegisterComp() {
   const handleSignUp = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
+    validateAllFields();
+
     // 비밀번호 확인
     if (registerPw !== registerPwConfirm) {
       openModal("잠깐!", "비밀번호가 일치하지 않습니다.");
@@ -119,6 +122,11 @@ export default function RegisterComp() {
 
     if (!validateForm()) {
       openModal("잠깐!", "필수 입력사항을 확인해주세요.");
+      return;
+    }
+
+    if (document.querySelector(".invalid")) {
+      openModal("잠깐!", "입력값을 다시 확인해주세요.");
       return;
     }
 
@@ -195,26 +203,62 @@ export default function RegisterComp() {
     }
   };
 
-  const handleBlur = (event: React.FocusEvent<HTMLInputElement>) => {
-    const target = event.target;
-    target.classList.remove("active");
-    if (!target.value) return;
-
-    const label = target.nextElementSibling as HTMLLabelElement | null;
-    if (label) {
+  const validateAllFields = () => {
+    const inputs = document.querySelectorAll<HTMLInputElement>("input");
+    inputs.forEach((input) => {
+      const label = input.closest("label"); 
+      if (!label) return;
+  
       if (
-        !target.checkValidity() ||
-        (target.name === "passwordConfirm" &&
-          registerPw !== "registerPwConfirm") ||
-        (target.name === "nickname" && !nicknameRule.test(target.value)) ||
-        (target.name === "fullname" && !fullnameRule.test(target.value))
+        !input.checkValidity() ||
+        (input.name === "passwordConfirm" && registerPw !== registerPwConfirm) ||
+        (input.name === "nickname" && !nicknameRule.test(input.value)) ||
+        (input.name === "fullname" && !fullnameRule.test(input.value))
       ) {
         label.classList.add("invalid");
       } else {
         label.classList.remove("invalid");
       }
-    }
+    });
   };
+
+  const handleBlur = (event: React.FocusEvent<HTMLInputElement>) => {
+    const target = event.target;
+    const name = target.name;
+    
+    if (!focusedInputs[name]) return;
+    
+    target.classList.remove("active");
+
+    validateAllFields(); 
+  };
+
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const name = event.target.name;
+    setFocusedInputs((prev) => ({ ...prev, [name]: true })); // 필드 입력 감지
+  };
+  
+
+  // const handleBlur = (event: React.FocusEvent<HTMLInputElement>) => {
+  //   const target = event.target;
+  //   target.classList.remove("active");
+  //   if (!target.value) return;
+
+  //   const label = target.nextElementSibling as HTMLLabelElement | null;
+  //   if (label) {
+  //     if (
+  //       !target.checkValidity() ||
+  //       (target.name === "passwordConfirm" &&
+  //         registerPw !== "registerPwConfirm") ||
+  //       (target.name === "nickname" && !nicknameRule.test(target.value)) ||
+  //       (target.name === "fullname" && !fullnameRule.test(target.value))
+  //     ) {
+  //       label.classList.add("invalid");
+  //     } else {
+  //       label.classList.remove("invalid");
+  //     }
+  //   }
+  // };
 
   const handleNicknameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const value = event.target.value;

@@ -5,11 +5,11 @@ import { AuthContext } from "../../context/AuthContext";
 import { auth, db } from "../../firebase/firebaseConfig";
 import { doc, getDoc } from "firebase/firestore";
 import { usefilteredLength } from "../../stores/states/filteredDataLength";
+import useSort from "../../stores/states/sortOption";
 import useLoading from "../../hooks/useLoading";
 import LoadingSpinner from "../LoadingSpinner/LoadingSpinner";
 import { ArtistCard } from "./Card";
 import NoResult from "./no-result";
-import useSort from "../../stores/states/sortOption";
 
 interface ArticleCompProps {
   artists?: ArtistDataProps[];
@@ -101,7 +101,7 @@ export default function ArticleComp({ artists }: ArticleCompProps) {
         <LoadingSpinner />
       ) : (
         <Div className={`${isMounted ? "wrapper" : "default"}`}>
-          <Div>
+          {/* <Div> */}
             {sortedData.length > 0 ? (
               sortedData.map((artist) => (
                 <ArtistCard
@@ -113,7 +113,7 @@ export default function ArticleComp({ artists }: ArticleCompProps) {
             ) : (
               <NoResult />
             )}
-          </Div>
+          {/* </Div> */}
         </Div>
       )}
     </>

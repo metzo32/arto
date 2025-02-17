@@ -1,12 +1,15 @@
 import { useState } from "react";
 import { Div, H4 } from "./ArticleComp.style";
+import { useRouter } from "next/navigation";
 import { BaseButton } from "../../../public/assets/design-assets/BaseButton/BaseButton";
 
 export default function NoResult() {
   const [searchResult, setSearchResult] = useState<string>("");
+  const router = useRouter();
 
   const handleReset = () => {
     setSearchResult("");
+    router.push("/");
   };
 
   return (

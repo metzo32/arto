@@ -97,7 +97,7 @@ export const Div = styled.div`
     @media (max-width: 767px) {
       width: 180px;
       height: 240px;
-      padding: 25px;
+      padding: 30px;
       border-radius: 5px;
       margin-left: 70px;
     }
@@ -138,7 +138,7 @@ export const P = styled.p`
   color: ${(props) => props.theme.text};
 
   @media (max-width: 767px) {
-    font-size: 16px;
+    font-size: 12px;
     line-height: 18px;
   }
 

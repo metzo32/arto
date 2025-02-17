@@ -1,4 +1,3 @@
-import React from 'react'
 import ArtistProfileComp from '../../../components/ArtistProfile.page.components/ArtistProfileComp'
 
 export default function page() {

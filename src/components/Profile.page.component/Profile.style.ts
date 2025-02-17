@@ -44,7 +44,11 @@ export const Div = styled.div`
   &.name-container {
     flex-direction: column;
     align-items: center;
-    gap: 20px;
+    gap: 10px;
+
+    @media (min-width: 768px) {
+      gap: 20px;
+    }
   }
 
   &.like-container {
@@ -89,15 +93,13 @@ export const Div = styled.div`
   }
 
   &.info-container {
-    gap: 20px;
-
-    @media (max-width: 767px) {
-      flex-direction: column;
-      align-items: center;
-    }
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
 
     @media (min-width: 768px) {
       flex-direction: row;
+      gap: 20px;
     }
 
     @media (min-width: 1024px) {
@@ -156,7 +158,7 @@ export const H5 = styled.h5`
   color: ${(props) => props.theme.text};
 
   &.address {
-    font-size: 18px;
+    font-size: 16px;
     line-height: 24px;
 
     @media (min-width: 768px) {
@@ -165,11 +167,11 @@ export const H5 = styled.h5`
   }
 
   &.skills {
-    font-size: 16px;
+    font-size: 12px;
     white-space: nowrap;
 
     @media (min-width: 768px) {
-      font-size: 18px;
+      font-size: 16px;
     }
   }
 `;
@@ -302,7 +304,7 @@ export const LargeDiv = styled.div`
   &.likes-card {
     background-color: ${(props) => props.theme.base};
     flex-direction: column;
-    padding: 20px 30px 40px 30px;
+    padding: 40px 30px;
     gap: 20px;
     box-shadow: 0 2px 12px rgba(0, 0, 0, 0.3);
   }
@@ -328,22 +330,37 @@ export const LargeDiv = styled.div`
     }
   }
 
+  &.address-container {
+    width: 100%;
+  }
+
   &.skills-container {
     width: 100%;
-    height: 70px;
+    height: 40px;
     align-items: center;
-    gap: 20px;
+    gap: 5px;
+
+    @media (min-width: 768px) {
+      display: flex;
+      height: 70px;
+      gap: 20px;
+    }
   }
 
   &.skill-item {
-    width: 110px;
-    height: 40px;
-    background-color: ${(props) => props.theme.btnSecText};
+    width: 80px;
+    height: 30px;
+    background-color: ${(props) => props.theme.skillButton};
     border-radius: 100px;
 
     display: flex;
     justify-content: center;
     align-items: center;
+
+    @media (min-width: 768px) {
+      width: 110px;
+      height: 40px;
+    }
   }
 `;
 
@@ -366,6 +383,7 @@ export const Span = styled.span`
       width: 80px;
       height: 80px;
     }
+
     @media (min-width: 1024px) {
       width: 80px;
       height: 80px;

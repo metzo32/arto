@@ -63,6 +63,7 @@ export const Section = styled.section`
   }
 
   &.narrow {
+  gap: 10px;
     @media (max-width: 767px) {
       padding-left: 30px;
       padding-right: 30px;
@@ -82,8 +83,10 @@ export const Section = styled.section`
 
 export const Div = styled.div`
   &.wrapper {
+    min-width: 250px;
     width: 100%;
-    overflow-y: auto;
+    overflow: hidden;
+    // overflow-y: auto;
     background: ${(props) => props.theme.bg_secondary};
     position: relative;
   }
@@ -100,13 +103,10 @@ export const Div = styled.div`
 
   &.main-img-container {
     width: 100%;
+    height: 180px;
+    padding: 25px 30px;
     background-color: ${(props) => props.theme.deact};
     position: relative;
-
-    @media (max-width: 767px) {
-      height: 180px;
-      padding: 15px 30px;
-    }
 
     @media (min-width: 768px) {
       height: 500px;
@@ -137,17 +137,15 @@ export const Div = styled.div`
   &.skills-container {
     width: 100%;
     display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
     justify-content: space-between;
-
-    @media (max-width: 767px) {
-      flex-direction: column;
-      align-items: flex-start;
-      gap: 20px;
-    }
 
     @media (min-width: 768px) {
       flex-direction: row;
       align-items: center;
+      gap: 20px;
     }
 
     @media (min-width: 1024px) {
@@ -240,8 +238,9 @@ export const Div = styled.div`
   }
 
   &.icon-container {
-    padding: 10px;
-    font-size: 24px;
+    width: 40px;
+    height: 40px;
+    font-size: 18px;
     color: ${lightTheme.text};
     border-radius: 100px;
     box-shadow: 3px 5px 8px rgba(0, 0, 0, 0.2);
@@ -251,14 +250,11 @@ export const Div = styled.div`
     justify-content: center;
     align-items: center;
 
-    @media (max-width: 767px) {
-      width: 20px;
-      height: 20px;
-    }
-
     @media (min-width: 768px) {
       width: 50px;
       height: 50px;
+      padding: 10px;
+      font-size: 24px;
     }
 
     @media (min-width: 1024px) {
@@ -307,12 +303,9 @@ export const Span = styled.span`
 `;
 
 export const H1 = styled.h1`
+  font-size: 42px;
   font-family: "Kay Pho Du", sans-serif;
   color: white;
-
-  @media (max-width: 767px) {
-    font-size: 56px;
-  }
 
   @media (min-width: 768px) {
     font-size: 80px;
@@ -432,7 +425,7 @@ export const BarImg = styled.img`
 export const Img = styled(Image)`
   width: 100px;
   height: 100px;
-  
+
   &.main-img {
     width: 100%;
     height: 100%;

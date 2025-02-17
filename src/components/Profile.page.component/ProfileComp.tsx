@@ -25,7 +25,6 @@ import Modal from "../Modal/Modal";
 import LogoutButton from "../Logout";
 import LoadingSpinner from "../LoadingSpinner/LoadingSpinner";
 import StartFromTop from "../StartFromTop";
-import { getSkillsByIds } from "../../../public/assets/datas/artistData";
 import RoundButton from "../../../public/assets/design-assets/RoundButton/RoundButton";
 import {
   BaseButton,
@@ -196,80 +195,82 @@ const ProfileComp = () => {
             </Links>
           )}
 
-{userData?.wishList.length > 0 && (
-  isShowDetail
-    ? groupedWishlist.map((group, groupIndex) => (
-        <LargeDiv key={groupIndex} className="likes-container">
-          {group.map((wish: any, index: number) => (
-            <LargeDiv key={index} className="likes-card">
-              <LargeDiv className="name-container">
-                <LargeDiv className="name-box">
-                  <Span className="profile-box">
-                    <Img
-                      src={wish.randomImage}
-                      alt={wish.nickname}
-                      onClick={() => handleCardRedirect(wish.nickname)}
-                      priority
-                    />
-                  </Span>
-                  <H4 className="profile-like-name">{wish.nickname}</H4>
-                </LargeDiv>
-                <Span>
-                  <SecondaryButton
-                    type="button"
-                    text="삭제하기"
-                    onClick={() => removeWish(wish.id)}
-                  />
-                </Span>
-              </LargeDiv>
-              <Span className="large-img-box">
-                <Img
-                  src={wish.randomImage}
-                  alt={wish.nickname}
-                  onClick={() => handleCardRedirect(wish.nickname)}
-                />
-              </Span>
-              <LargeDiv className="skills-container">
-                <H5 className="address">
-                  {wish.street}, {wish.city}
-                </H5>
-              </LargeDiv>
-              <LargeDiv className="skills-container">
-                {wish.skills.map((skill: any, index: number) => (
-                  <LargeDiv key={index} className="skill-item">
-                    <H5 className="skills">#{skill.skill}</H5>
+          {userData?.wishList.length > 0 &&
+            (isShowDetail
+              ? groupedWishlist.map((group, groupIndex) => (
+                  <LargeDiv key={groupIndex} className="likes-container">
+                    {group.map((wish: any, index: number) => (
+                      <LargeDiv key={index} className="likes-card">
+                        <LargeDiv className="name-container">
+                          <LargeDiv className="name-box">
+                            <Span className="profile-box">
+                              <Img
+                                src={wish.randomImage}
+                                alt={wish.nickname}
+                                onClick={() =>
+                                  handleCardRedirect(wish.nickname)
+                                }
+                                priority
+                              />
+                            </Span>
+                            <H4 className="profile-like-name">
+                              {wish.nickname}
+                            </H4>
+                          </LargeDiv>
+                          <Span>
+                            <SecondaryButton
+                              type="button"
+                              text="삭제하기"
+                              onClick={() => removeWish(wish.id)}
+                            />
+                          </Span>
+                        </LargeDiv>
+                        <Span className="large-img-box">
+                          <Img
+                            src={wish.randomImage}
+                            alt={wish.nickname}
+                            onClick={() => handleCardRedirect(wish.nickname)}
+                          />
+                        </Span>
+                        <LargeDiv className="address-container">
+                          <H5 className="address">
+                            {wish.street}, {wish.city}
+                          </H5>
+                        </LargeDiv>
+                        <LargeDiv className="skills-container">
+                          {wish.skills.map((skill: any, index: number) => (
+                            <LargeDiv key={index} className="skill-item">
+                              <H5 className="skills">#{skill.skill}</H5>
+                            </LargeDiv>
+                          ))}
+                        </LargeDiv>
+                      </LargeDiv>
+                    ))}
                   </LargeDiv>
-                ))}
-              </LargeDiv>
-            </LargeDiv>
-          ))}
-        </LargeDiv>
-      ))
-    : groupedWishlist.map((group, groupIndex) => (
-        <SmallDiv key={groupIndex} className="likes-container">
-          {group.map((wish: any, index: number) => (
-            <SmallDiv key={index} className="likes-card">
-              <Button
-                type="button"
-                className="delete-small"
-                onClick={() => removeWish(wish.id)}
-              >
-                <RemoveIcon />
-              </Button>
-              <Span className="small-img-box">
-                <Img
-                  src={wish.randomImage}
-                  alt={wish.nickname}
-                  onClick={() => handleCardRedirect(wish.nickname)}
-                />
-              </Span>
-              <H4 className="profile-like-name">{wish.nickname}</H4>
-            </SmallDiv>
-          ))}
-        </SmallDiv>
-      ))
-)}
-
+                ))
+              : groupedWishlist.map((group, groupIndex) => (
+                  <SmallDiv key={groupIndex} className="likes-container">
+                    {group.map((wish: any, index: number) => (
+                      <SmallDiv key={index} className="likes-card">
+                        <Button
+                          type="button"
+                          className="delete-small"
+                          onClick={() => removeWish(wish.id)}
+                        >
+                          <RemoveIcon />
+                        </Button>
+                        <Span className="small-img-box">
+                          <Img
+                            src={wish.randomImage}
+                            alt={wish.nickname}
+                            onClick={() => handleCardRedirect(wish.nickname)}
+                          />
+                        </Span>
+                        <H4 className="profile-like-name">{wish.nickname}</H4>
+                      </SmallDiv>
+                    ))}
+                  </SmallDiv>
+                )))}
 
           {visibleCount < userData?.wishList?.length && (
             <BaseButton onClick={loadMore} text="더보기" />

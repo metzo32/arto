@@ -1,4 +1,5 @@
 import styled, { keyframes } from "styled-components";
+import { darkTheme } from "../../stores/colors";
 
 const slideIn = keyframes`
   from {
@@ -54,7 +55,7 @@ export const Button = styled.button`
   transition: box-shadow 0.2s ease, background-color 0.2s ease;
 
   &:hover {
-    box-shadow: 2px 2px 3px ${(props) => props.theme.shadow};
+    box-shadow: 2px 2px 3px ${darkTheme.shadow};
     background-color: ${(props) => props.theme.extraLight};
   }
 

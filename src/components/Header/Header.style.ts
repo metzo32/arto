@@ -88,11 +88,6 @@ export const Div = styled.div`
     align-items: center;
     gap: 10px;
   }
-
-  &.line-box.bottom {
-    border-bottom: none;
-    border-top: 2px solid ${(props) => props.theme.outline};
-  }
 `;
 
 export const Button = styled.button`

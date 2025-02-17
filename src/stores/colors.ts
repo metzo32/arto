@@ -16,9 +16,10 @@ export const lightTheme = {
   extraLight: "#FAFEFF",
   white: "#FFFFFF",
   btnSecText: " #EAEAEA",
-  btnSecBg: "#c4c8cc",
+  btnSecBg: "#c8cacb",
   btnSecBgHover: "#d1d2d5",
   btnSecBorder: "#BEBEBE",
+  skillButton: "#e1e3e6",
   bg_grad:
     "linear-gradient(180deg, rgba(233,238,239,1) 0%, rgba(214,224,225,1) 50%)",
 };
@@ -44,5 +45,6 @@ export const darkTheme = {
   btnSecBg: "#34373d",
   btnSecBgHover: "#25272d",
   btnSecBorder: " #56585b",
+  skillButton: "#37383c",
   bg_grad: "linear-gradient(180deg, rgba(22,24,28,1) 0%, rgba(10,12,16,1) 50%)",
 };

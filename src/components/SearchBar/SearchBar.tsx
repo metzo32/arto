@@ -1,11 +1,11 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
-import { Div, Input, Span } from "./SearchBar.style"
+import { Div, Input, Span } from "./SearchBar.style";
 import { BaseButton } from "../../../public/assets/design-assets/BaseButton/BaseButton";
+import { useRouter } from "next/navigation";
 import { useModal } from "../../hooks/useModal";
 import Modal from "../../components/Modal/Modal";
-import { useRouter } from "next/navigation";
 
 export default function SearchBarComp() {
   const inputRef = useRef<HTMLInputElement>(null);
@@ -33,13 +33,12 @@ export default function SearchBarComp() {
       openModal("앗!", "검색어를 입력해주세요.");
     }
   };
-  
+
   const handleSearch = navigateToSearch;
-  
+
   const handleKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === "Enter") navigateToSearch();
   };
-  
 
   const handleFocus = () => setIsFocused(true);
   const handleBlur = () => setIsFocused(false);

@@ -4,7 +4,7 @@ import Link from "next/link";
 
 export const Div = styled.div`
   &.wrapper {
-    min-width: 320px;
+    min-width: 250px;
     width: 100%;
     height: 100vh;
     display: flex;
@@ -24,8 +24,7 @@ export const Div = styled.div`
 
   &.article-cards {
     width: 100%;
-    height: 100vh;
-    min-width: 320px;
+    aspect-ratio: 1/1;
     min-height: 320px;
 
     position: relative;
@@ -33,9 +32,9 @@ export const Div = styled.div`
 
     scroll-snap-align: center;
 
-    @media (max-width: 767px) {
-      width: 100vw;
-      height: 100vw;
+    @media (min-width: 768px) {
+      width: calc(100vw - 70px);
+      height: 100vh;
     }
 
     &:hover .article-name {

@@ -56,8 +56,14 @@ artistdata 배열을 default state로 받아온 뒤 switch 문을 통해 sort �
 ### `Query 기준으로 페이지 동적 생성하기`
 
 2025.02.08
-목업 데이터를 로컬에 저장해두었다가, 실제 데이터를 fetching하는 듯한 효과를 주기 위해 Route API를 생성하여 불러오도록 수정하였습니다.
+목업 데이터를 로컬에 저장해두었다가, 실제 데이터를 fetching하는 듯한 효과를 주기 위해 API route를 생성하여 불러오도록 수정하였습니다.
 또한 빌드 과정에서 의존성 배열의 누락, 과도한 state의 변경 및 호출 문제 등을 발견하고 개선하였습니다.
+
+
+### `정렬 로직 수정하기`
+
+2025.02.10
+API route를 통해 각 아티스트 별 페이지를 동적 생성하도록 하였습니다.
 
 
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.

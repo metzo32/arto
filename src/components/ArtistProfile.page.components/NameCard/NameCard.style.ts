@@ -5,8 +5,8 @@ import LogoShadowLight from "../../../../public/assets/icons/logo/logo_shadow_li
 
 export const Div = styled.div`
   &.wrapper {
-    width: 900px;
-    height: 500px;
+    // width: 900px;
+    // height: 500px;
     background-color: ${(props) => props.theme.bg_primary};
     margin: 0 auto;
     box-shadow: 3px 5px 8px rgba(0, 0, 0, 0.2);
@@ -15,8 +15,8 @@ export const Div = styled.div`
     justify-content: space-between;
 
     @media (max-width: 767px) {
-      width: 280px;
-      height: 504px;
+      width: 190px;
+      height: 380px;
       padding: 35px;
       display: flex;
       flex-direction: column-reverse;
@@ -63,21 +63,23 @@ export const Div = styled.div`
 
 export const H3 = styled.h3`
   font-family: "Libre Baskerville", serif;
-  font-size: 24px;
-  line-height: 36px;
+  font-size: 18px;
+  line-height: 24px;
   font-weight: bold;
   color: ${(props) => props.theme.text};
+
+  @media (min-width: 768px) {
+    font-size: 24px;
+    line-height: 36px;
+  }
 `;
 
 export const P = styled.p`
   font-family: "Libre Baskerville", serif;
   font-weight: 400;
+  font-size: 12px;
+  line-height: 18px;
   color: ${(props) => props.theme.text_secondary};
-
-  @media (max-width: 767px) {
-    font-size: 14px;
-    line-height: 20px;
-  }
 
   @media (min-width: 768px) {
     font-size: 20px;
@@ -99,29 +101,20 @@ export const P = styled.p`
 
 export const Logo = styled.img`
   width: 100px;
-
-  @media (max-width: 767px) {
-    transform: rotate(90deg) translateX(20px) translateY(-155px);
-  }
-
-  @media (min-width: 768px) {
-  }
-
-  @media (min-width: 1024px) {
-  }
+  transform: rotate(90deg) translateX(20px) translateY(-155px);
 `;
 
 export const A = styled.a`
-  min-width: 210px;
+  min-width: 120px;
   font-family: "Libre Baskerville", serif;
-  font-size: 20px;
+  font-size: 12px;
   font-weight: 400;
+  line-height: 18px;
   color: ${(props) => props.theme.text_secondary};
   text-decoration: none;
 
-  @media (max-width: 767px) {
-    font-size: 14px;
-  }
+  word-break: break-word;
+  overflow-wrap: break-word;
 
   @media (min-width: 768px) {
     font-size: 20px;
@@ -136,10 +129,14 @@ export const A = styled.a`
   }
 `;
 
-export const BrandDark = styled(LogoShadowDark).attrs<HTMLAttributes<SVGElement>>({})`
+export const BrandDark = styled(LogoShadowDark).attrs<
+  HTMLAttributes<SVGElement>
+>({})`
   width: 100px;
 `;
 
-export const BrandLight = styled(LogoShadowLight).attrs<HTMLAttributes<SVGElement>>({})`
+export const BrandLight = styled(LogoShadowLight).attrs<
+  HTMLAttributes<SVGElement>
+>({})`
   width: 100px;
 `;

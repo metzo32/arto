@@ -1,11 +1,13 @@
+"use client"
 
-export default function SearchPage({ searchParams }: any) {
-  const query = searchParams?.nickname || "검색어가 없습니다.";
+import SearchComp from "./searchComp"
+import { Suspense } from "react"
+import LoadingSpinner from "../../../components/LoadingSpinner/LoadingSpinner"
 
+export default function page() {
   return (
-    <div className="search-results-container">
-      <h1>검색 결과</h1>
-      <p>입력한 검색어: {query}</p>
-    </div>
-  );
+    <Suspense fallback={<LoadingSpinner/>}>
+      <SearchComp/>
+    </Suspense>
+  )
 }
