@@ -97,7 +97,7 @@ export const H3 = styled.h3`
   width: 100%;
   color: ${(props) => props.theme.white};
   opacity: 0.5;
-  font-family: "Kay Pho Du", sans-serif !important;
+  font-family: "Kay Pho Du", sans-serif;
   font-size: 120px;
   font-weight: bold;
 

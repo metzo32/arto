@@ -13,13 +13,8 @@ const firebaseConfig = {
   appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID,
   measurementId: process.env.NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID,
 };
-console.log("✅ Firebase API Key:", process.env.NEXT_PUBLIC_FIREBASE_API_KEY);
-console.log("✅ Firebase Auth Domain:", process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN);
-console.log("✅ Firebase Project ID:", process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID);
-
 
 const app = initializeApp(firebaseConfig);
-console.log("✅ Firebase App Initialized:", app.name); // 앱 초기화 확인
 
 const auth = getAuth(app);
 const db = getFirestore(app);

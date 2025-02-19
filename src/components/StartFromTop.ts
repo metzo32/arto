@@ -1,9 +1,15 @@
-import { useEffect } from 'react'
+// import { useEffect } from 'react'
 
-export default function StartFromTop () {
-    useEffect(() => {
-        window.scrollTo(0, 0);
-    }, [])
+// export default function StartFromTop () {
+//     useEffect(() => {
+//         window.scrollTo(0, 0);
+//     }, [])
 
-    return null;
-};
+//     return null;
+// };
+
+import React from 'react'
+
+export default function StartFromTop() {
+console.log("엥")
+}

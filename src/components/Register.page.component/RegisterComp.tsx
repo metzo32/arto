@@ -51,7 +51,12 @@ export default function RegisterComp() {
   const [gender, setGender] = useState<string>("");
   const [countryCode, setCountryCode] = useState<string>("");
   const [registerPhonenumber, setRegisterPhonenumber] = useState<string>("");
-  const [focusedInputs, setFocusedInputs] = useState<{ [key: string]: boolean }>({});
+
+  const [emailError, setEmailError] = useState(false);
+  const [passwordError, setPasswordError] = useState(false);
+  const [passwordConfirmError, setPasswordConfirmError] = useState(false);
+  const [nicknameError, setNicknameError] = useState(false);
+  const [fullnameError, setFullnameError] = useState(false);
 
   const [step, setStep] = useState<number>(1);
 
@@ -122,10 +127,6 @@ export default function RegisterComp() {
       return;
     }
 
-    if (document.querySelector(".invalid")) {
-      openModal("잠깐!", "입력값을 다시 확인해주세요.");
-      return;
-    }
 
     try {
       // 사용자 등록
@@ -219,22 +220,56 @@ export default function RegisterComp() {
     });
   };
 
-  const handleBlur = (event: React.FocusEvent<HTMLInputElement>) => {
-    const target = event.target;
-    const name = target.name;
-    
-    if (!focusedInputs[name]) return;
-    
-    target.classList.remove("active");
 
-    validateAllFields(); 
-  };
+const handleBlur = (event: React.FocusEvent<HTMLInputElement>) => {
+  const { name, value } = event.target;
 
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const name = event.target.name;
-    setFocusedInputs((prev) => ({ ...prev, [name]: true })); // 필드 입력 감지
-  };
-  
+  switch (name) {
+    case "email":
+      setEmailError(!isValidEmail(value));
+      break;
+    case "password":
+      setPasswordError(value.length < 6);
+      break;
+    case "passwordConfirm":
+      setPasswordConfirmError(value !== registerPw);
+      break;
+    case "nickname":
+      setNicknameError(!nicknameRule.test(value));
+      break;
+    case "fullname":
+      setFullnameError(!fullnameRule.test(value));
+      break;
+  }
+};
+
+const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const { name, value } = event.target;
+
+  switch (name) {
+    case "email":
+      setRegisterEmail(value);
+      setEmailError(false); // 입력이 변경되면 오류 상태 해제
+      break;
+    case "password":
+      setRegisterPw(value);
+      setPasswordError(false);
+      break;
+    case "passwordConfirm":
+      setRegisterPwConfirm(value);
+      setPasswordConfirmError(false);
+      break;
+    case "nickname":
+      setRegisterNickname(value);
+      setNicknameError(false);
+      break;
+    case "fullname":
+      setRegisterFullname(value);
+      setFullnameError(false);
+      break;
+  }
+};
+
   const handleNicknameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const value = event.target.value;
     const capitalizedNickName = value.charAt(0).toUpperCase() + value.slice(1);
@@ -312,7 +347,7 @@ export default function RegisterComp() {
             <Div className="form-wrapper">
               <H3>회원가입</H3>
               <>
-                <Label htmlFor="email">
+                <Label htmlFor="email" className={`login-info ${emailError ? "invalid" : ""}`}>
                   이메일
                   <Input
                     name="email"
@@ -327,7 +362,7 @@ export default function RegisterComp() {
                   />
                 </Label>
 
-                <Label htmlFor="password">
+                <Label htmlFor="password" className={`login-info ${passwordError ? "invalid" : ""}`}>
                   비밀번호
                   <Input
                     name="password"
@@ -343,7 +378,7 @@ export default function RegisterComp() {
                   />
                 </Label>
 
-                <Label htmlFor="passwordConfirm">
+                <Label htmlFor="passwordConfirm" className={`login-info ${passwordConfirmError ? "invalid" : ""}`}>
                   비밀번호 확인
                   <Input
                     name="passwordConfirm"
@@ -383,20 +418,21 @@ export default function RegisterComp() {
                     이전 단계로
                   </Button>
                 </Div>
-                <Label htmlFor="fullname">
+                <Label htmlFor="fullname" className={`login-info ${fullnameError ? "invalid" : ""}`}>
                   이름
                   <Input
                     name="fullname"
                     type="text"
                     id="fullname"
+                    minLength={3}
                     value={registerFullname}
                     onChange={handleFullnameChange}
                     onBlur={handleBlur}
                     required
-                    placeholder="자신의 이름"
+                    placeholder="3글자 이상 작성"
                   />
                 </Label>
-                <Label htmlFor="nickname">
+                <Label htmlFor="nickname" className={`login-info ${nicknameError ? "invalid" : ""}`}>
                   닉네임
                   <Input
                     name="nickname"

@@ -1,4 +1,4 @@
-'use client'
+"use client";
 
 import {
   Div,
@@ -42,9 +42,8 @@ export default function LoginComp() {
 
   useEffect(() => {
     const handleResize = () => {
-      setWindowActive(true)
+      setWindowActive(true);
     };
-
     handleResize(); // 초기 로드 시 크기 설정
     window.addEventListener("resize", handleResize);
 
@@ -106,21 +105,12 @@ export default function LoginComp() {
       const errorCode = typedError.code;
 
       switch (errorCode) {
-        case "auth/user-not-found":
+        case "auth/invalid-credential":
           openModal(
             undefined,
             <Div className="modal-box">
-              <P className="modal-text">등록되지 않은 계정입니다.</P>
-              <P className="modal-text">회원가입을 진행해 주세요.</P>
-            </Div>
-          );
-          break;
-        case "auth/wrong-password":
-          openModal(
-            undefined,
-            <Div className="modal-box">
-              <P className="modal-text">비밀번호가 올바르지 않습니다.</P>
-              <P className="modal-text">다시 시도해주세요.</P>
+              <P className="modal-text">회원 정보 확인에 실패했습니다.</P>
+              <P className="modal-text">확인 후 다시 시도해주세요.</P>
             </Div>
           );
           break;
@@ -155,10 +145,6 @@ export default function LoginComp() {
         passwordLabel.classList.add("invalid");
       }
     }
-  };
-
-  const handleNavigation = () => {
-    router.push("/register");
   };
 
   // 아이디 불러오기
@@ -247,9 +233,7 @@ export default function LoginComp() {
 
             <Div className="register-box">
               <H4>아직 회원이 아니신가요?</H4>
-              <Links href={"/register"}>
-                가입하기
-              </Links>
+              <Links href={"/register"}>가입하기</Links>
             </Div>
           </Div>
         </Form>

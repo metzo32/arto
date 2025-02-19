@@ -1,3 +1,5 @@
+"use client"
+
 import { useState, useEffect, useContext } from "react";
 import { Div } from "./ArticleComp.style"
 import type { ArtistDataProps } from "../../../public/assets/datas/artistData";

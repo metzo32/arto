@@ -41,4 +41,13 @@ export const GlobalStyle = createGlobalStyle`
     text-align: center;
     cursor: pointer;
   }
+
+  fieldset {
+    all: unset;
+    border: none;
+    padding: 0;
+    margin: 0;
+    min-width: 0;
+  }
+
 `;

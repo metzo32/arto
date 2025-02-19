@@ -15,6 +15,8 @@ interface PhoneNumberProps {
 export default function PhoneNumber({ onPhoneNumberChange }: PhoneNumberProps) {
   const [registerPhonenumber, setRegisterPhonenumber] = useState<string>("");
   const [countryCode, setCountryCode] = useState<string>("");
+  const [numberError, setNumberError] = useState(false);
+  
 
   const handlePhonenumberChange = (
     event: React.ChangeEvent<HTMLInputElement>
@@ -22,6 +24,18 @@ export default function PhoneNumber({ onPhoneNumberChange }: PhoneNumberProps) {
     const value = event.target.value;
     setRegisterPhonenumber(value);
     onPhoneNumberChange(countryCode, value); // 변경된 전화번호와 국가 코드 전달
+
+    if (value.length < 8) {
+      setNumberError(true)
+    } else {
+      setNumberError(false)
+    }
+  };
+
+  const handleBlur = () => {
+    if (registerPhonenumber.length < 8) {
+      setNumberError(true);
+    }
   };
 
   const handleCountryCodeChange = (
@@ -35,7 +49,7 @@ export default function PhoneNumber({ onPhoneNumberChange }: PhoneNumberProps) {
   return (
     <Fieldset>
       <Div className={`item-box ${countryCode ? "valid" : ""}`}>
-        <Label htmlFor="phonenumber">
+        <Label htmlFor="phonenumber" className={`${numberError ? "invalid" : ""}`}>
           연락처
           <Div className="number-box">
             <Select
@@ -58,6 +72,7 @@ export default function PhoneNumber({ onPhoneNumberChange }: PhoneNumberProps) {
               value={registerPhonenumber}
               minLength={8}
               onChange={handlePhonenumberChange}
+              onBlur={handleBlur}
               required
               placeholder="'-' 없이 입력"
               className="number"

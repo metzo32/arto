@@ -24,7 +24,7 @@ import { useModal } from "../../hooks/useModal";
 import Modal from "../Modal/Modal";
 import LogoutButton from "../Logout";
 import LoadingSpinner from "../LoadingSpinner/LoadingSpinner";
-import StartFromTop from "../StartFromTop";
+// import StartFromTop from "../StartFromTop";
 import RoundButton from "../../../public/assets/design-assets/RoundButton/RoundButton";
 import {
   BaseButton,
@@ -37,7 +37,6 @@ import { PiCirclesThreeBold } from "react-icons/pi";
 import { FaExpand } from "react-icons/fa";
 
 const ProfileComp = () => {
-  /** ✅ 모든 Hook을 최상단에서 호출 */
   const { isModalOpen, modalTitle, modalContent, openModal, closeModal } =
     useModal();
   const { isLoading, setIsLoading, loadingProgress } = useLoading();
@@ -127,7 +126,7 @@ const ProfileComp = () => {
 
   return (
     <>
-      <StartFromTop />
+      {/* <StartFromTop /> */}
       {isLoading && <LoadingSpinner />}
       <Modal
         isOpen={isModalOpen}

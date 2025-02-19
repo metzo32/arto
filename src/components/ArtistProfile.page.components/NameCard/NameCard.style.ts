@@ -5,8 +5,6 @@ import LogoShadowLight from "../../../../public/assets/icons/logo/logo_shadow_li
 
 export const Div = styled.div`
   &.wrapper {
-    // width: 900px;
-    // height: 500px;
     background-color: ${(props) => props.theme.bg_primary};
     margin: 0 auto;
     box-shadow: 3px 5px 8px rgba(0, 0, 0, 0.2);
@@ -62,7 +60,7 @@ export const Div = styled.div`
 `;
 
 export const H3 = styled.h3`
-  font-family: "Libre Baskerville", serif;
+  font-family: "Kay Pho Du", sans-serif;
   font-size: 18px;
   line-height: 24px;
   font-weight: bold;
@@ -75,7 +73,7 @@ export const H3 = styled.h3`
 `;
 
 export const P = styled.p`
-  font-family: "Libre Baskerville", serif;
+  font-family: "Kay Pho Du", sans-serif;
   font-weight: 400;
   font-size: 12px;
   line-height: 18px;
@@ -106,7 +104,7 @@ export const Logo = styled.img`
 
 export const A = styled.a`
   min-width: 120px;
-  font-family: "Libre Baskerville", serif;
+  font-family: "Kay Pho Du", sans-serif;
   font-size: 12px;
   font-weight: 400;
   line-height: 18px;
