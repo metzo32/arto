@@ -1,29 +1,31 @@
-import { IconType } from "react-icons";
+import type { FC } from "react";
+import type { IconBaseProps } from "react-icons";
 import { HiOutlineHome } from "react-icons/hi";
 import { BiNews } from "react-icons/bi";
-import { MdOutlineWorkspaces } from "react-icons/md";
-import { MdOutlineWebhook } from "react-icons/md";
-import { MdGraphicEq } from "react-icons/md";
+import { MdOutlineWorkspaces, MdOutlineWebhook, MdGraphicEq } from "react-icons/md";
 import { PiUserCircleDuotone } from "react-icons/pi";
 
+// 아이콘 타입 명확히 지정
 interface HeaderDataProps {
   id: string;
-  icon?: IconType;
+  icon?: FC<IconBaseProps>;
   name: string;
   path: string;
 }
+
+// 모든 아이콘을 FC<IconBaseProps>로 단언
 export const headerData: HeaderDataProps[][] = [
   [
-    { id: "Home", icon: HiOutlineHome, name: "Home", path: "/" },
+    { id: "Home", icon: HiOutlineHome as FC<IconBaseProps>, name: "Home", path: "/" },
     {
       id: "New",
-      icon: MdOutlineWorkspaces,
+      icon: MdOutlineWorkspaces as FC<IconBaseProps>,
       name: "New",
       path: "/profile_artist/Ole",
     },
     {
       id: "Upcoming",
-      icon: MdOutlineWebhook,
+      icon: MdOutlineWebhook as FC<IconBaseProps>,
       name: "Upcoming",
       path: "/profile_artist/Caz",
     },
@@ -32,7 +34,7 @@ export const headerData: HeaderDataProps[][] = [
 
 export const extraItem: HeaderDataProps = {
   id: "Login",
-  icon: PiUserCircleDuotone,
+  icon: PiUserCircleDuotone as FC<IconBaseProps>,
   name: "로그인",
   path: "/login",
 };

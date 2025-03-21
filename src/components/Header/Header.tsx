@@ -9,8 +9,11 @@ import useWindowSize from "../../hooks/useWindowSize";
 import { useIsHeaderFolded } from "../../stores/states/isHeaderFolded";
 import DarkModeButton from "../DarkModeButton/DarkModeButton";
 import RoundButton from "../../../public/assets/design-assets/RoundButton/RoundButton";
-import { FaArrowLeft } from "react-icons/fa6";
-import { FaArrowRight } from "react-icons/fa6";
+import {
+  FaArrowLeft as ArrowLeftIcon,
+  FaArrowRight as ArrowRightIcon,
+} from "react-icons/fa6";
+import type { IconBaseProps } from "react-icons";
 
 const Header = () => {
   const router = useRouter();
@@ -23,6 +26,9 @@ const Header = () => {
   const clickLogoHandler = () => {
     router.push("/");
   };
+
+  const FaArrowLeft = ArrowLeftIcon as React.FC<IconBaseProps>;
+  const FaArrowRight = ArrowRightIcon as React.FC<IconBaseProps>;
 
   return (
     <>

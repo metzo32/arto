@@ -1,8 +1,10 @@
 import { imagesArr } from "./getRandomImages";
+import type { IconName } from "./getSkillsIcons";
+
 
 interface ArtistSkillProps {
   id: number;
-  iconName: string;
+  iconName: IconName;
   skill: string;
 }
 
@@ -20,7 +22,7 @@ export interface ArtistDataProps {
   randomImage03: string;
   randomImage04: string;
   url?: string;
-  skills: { id: number; iconName: string; skill: string }[];
+  skills: { id: number; iconName: IconName; skill: string }[];
   isWishlisted?: boolean;
 }
 

@@ -13,7 +13,6 @@ export const Div = styled.div`
 
 export const Main = styled.main`
   height: auto;
-  border: 1px solid red;
   
   @media (max-width: 767px) {
     width: calc(100vw - 70px);

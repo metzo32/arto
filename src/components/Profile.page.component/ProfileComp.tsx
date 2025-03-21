@@ -30,10 +30,18 @@ import {
   SecondaryButton,
 } from "../../../public/assets/design-assets/BaseButton/BaseButton";
 import ScrollToTopbutton from "../ScrollToTopButton/ScrollToTopButton";
-import { IoMdPhonePortrait } from "react-icons/io";
-import { FaBirthdayCake } from "react-icons/fa";
-import { PiCirclesThreeBold } from "react-icons/pi";
-import { FaExpand } from "react-icons/fa";
+import type { IconBaseProps } from "react-icons";
+import { IoMdPhonePortrait as PhoneIconRaw } from "react-icons/io";
+import {
+  FaBirthdayCake as CakeIconRaw,
+  FaExpand as ExpandIconRaw,
+} from "react-icons/fa";
+import { PiCirclesThreeBold as CirclesIconRaw } from "react-icons/pi";
+
+const IoMdPhonePortrait = PhoneIconRaw as React.FC<IconBaseProps>;
+const FaBirthdayCake = CakeIconRaw as React.FC<IconBaseProps>;
+const FaExpand = ExpandIconRaw as React.FC<IconBaseProps>;
+const PiCirclesThreeBold = CirclesIconRaw as React.FC<IconBaseProps>;
 
 const ProfileComp = () => {
   const { isModalOpen, modalTitle, modalContent, openModal, closeModal } =

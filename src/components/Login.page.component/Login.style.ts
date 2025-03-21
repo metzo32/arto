@@ -1,7 +1,13 @@
 import styled, { keyframes } from "styled-components";
 import Link from "next/link";
-import { RiCheckboxBlankLine } from "react-icons/ri";
-import { RiCheckboxFill } from "react-icons/ri";
+import {
+  RiCheckboxBlankLine as BlankIcon,
+  RiCheckboxFill as FillIcon,
+} from "react-icons/ri";
+import type { IconBaseProps } from "react-icons";
+
+export const RiCheckboxBlankLine = BlankIcon as React.FC<IconBaseProps>;
+export const RiCheckboxFill = FillIcon as React.FC<IconBaseProps>;
 
 export const shaking = keyframes`
  0% { transform: translateX(0) }

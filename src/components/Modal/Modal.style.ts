@@ -1,5 +1,9 @@
 import styled, { keyframes } from "styled-components";
-import { TbExclamationMark } from "react-icons/tb";
+import { TbExclamationMark as ModalIcons } from "react-icons/tb";
+import type { IconBaseProps } from "react-icons";
+
+const TbExclamationMark = ModalIcons as React.FC<IconBaseProps>;
+
 
 export const pulse00 = keyframes` 
   0% {

@@ -1,39 +1,31 @@
+"use client";
+
 import { Div, A } from "../ArtistProfile.style";
-import { BiLogoFacebook } from "react-icons/bi"; //페이스북
-import { AiOutlineTikTok } from "react-icons/ai"; //틱톡
-import { RiInstagramLine } from "react-icons/ri"; //인스타그램
-import { FaYoutube } from "react-icons/fa6"; //유튜브
+import { BiLogoFacebook as BiFB } from "react-icons/bi";
+import { AiOutlineTikTok as TikTok } from "react-icons/ai";
+import { RiInstagramLine as Insta } from "react-icons/ri";
+import { FaYoutube as YouTube } from "react-icons/fa6";
+import type { IconBaseProps } from "react-icons";
+
+const FacebookIcon = BiFB as React.FC<IconBaseProps>;
+const TikTokIcon = TikTok as React.FC<IconBaseProps>;
+const InstagramIcon = Insta as React.FC<IconBaseProps>;
+const YouTubeIcon = YouTube as React.FC<IconBaseProps>;
 
 export default function Sidebar({ isVisible }: { isVisible: boolean }) {
   return (
     <Div className={`contact-side ${isVisible ? "visible" : "invisible"}`}>
-      <A
-        href="https://www.facebook.com"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        <BiLogoFacebook />
+      <A href="https://www.facebook.com" target="_blank" rel="noopener noreferrer">
+        <FacebookIcon size={20} />
       </A>
-      <A
-        href="https://www.tiktok.com/"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        <AiOutlineTikTok />
+      <A href="https://www.tiktok.com/" target="_blank" rel="noopener noreferrer">
+        <TikTokIcon size={20} />
       </A>
-      <A
-        href="https://www.instagram.com"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        <RiInstagramLine />
+      <A href="https://www.instagram.com" target="_blank" rel="noopener noreferrer">
+        <InstagramIcon size={20} />
       </A>
-      <A
-        href="https://www.youtube.com"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        <FaYoutube />
+      <A href="https://www.youtube.com" target="_blank" rel="noopener noreferrer">
+        <YouTubeIcon size={20} />
       </A>
     </Div>
   );

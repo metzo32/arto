@@ -1,5 +1,5 @@
 "use client";
-
+import React from "react"; 
 import {
   Section,
   Div,
@@ -16,6 +16,7 @@ import { useParams } from "next/navigation";
 import useWindowSize from "../../hooks/useWindowSize";
 import useLoading from "../../hooks/useLoading";
 import type { ArtistDataProps } from "../../../public/assets/datas/artistData";
+import type { IconName } from "../../../public/assets/datas/getSkillsIcons";
 import { BaseButton } from "../../../public/assets/design-assets/BaseButton/BaseButton";
 import NameCard from "./NameCard/NameCard";
 import ScrollToTopbutton from "../ScrollToTopButton/ScrollToTopButton";
@@ -33,7 +34,7 @@ export default function ArtistProfileComp() {
   const params = useParams();
 
   const nickname = params.nickname as string;
-  
+
   useEffect(() => {
     const fetchArtist = async () => {
       try {
@@ -127,12 +128,12 @@ export default function ArtistProfileComp() {
         <H3>{artist.introduction}</H3>
         <Div className="skills-container">
           {artist.skills.map((skill) => {
-            const IconComponent = getSkillsIcons(skill.iconName);
+            const IconComponent = getSkillsIcons(skill.iconName as IconName); // 타입 단언해도 됨
             return (
               <Div key={skill.id} className="skills-box">
                 <Div className="skills-title">
                   <Div className="icon-container">
-                    {IconComponent ? <IconComponent /> : null}
+                    {IconComponent ? React.createElement(IconComponent) : null}
                   </Div>
                   <H4>{skill.skill}</H4>
                 </Div>

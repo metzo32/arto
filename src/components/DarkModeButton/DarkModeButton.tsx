@@ -1,8 +1,12 @@
 import { useContext, useEffect } from "react";
 import { Button, Span } from "../Header/Header.style";
 import { ThemeContext } from "../../context/ThemeContext";
-import { FiSun } from "react-icons/fi";
-import { FiMoon } from "react-icons/fi";
+import { FiSun as SunIcon, FiMoon as MoonIcon } from "react-icons/fi";
+import type { IconBaseProps } from "react-icons";
+
+
+const FiSun = SunIcon as React.FC<IconBaseProps>;
+const FiMoon = MoonIcon as React.FC<IconBaseProps>;
 
 interface DarkModeButtonProps {
   isNarrow: boolean;

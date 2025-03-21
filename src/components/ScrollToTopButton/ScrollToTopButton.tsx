@@ -2,7 +2,10 @@
 
 import { useState, useEffect } from "react";
 import { Button } from "./ScrollToTopButton.style";
-import { RiArrowUpDoubleFill } from "react-icons/ri";
+import { RiArrowUpDoubleFill as UpArrowIconRaw } from "react-icons/ri";
+import type { IconBaseProps } from "react-icons";
+
+const RiArrowUpDoubleFill = UpArrowIconRaw as React.FC<IconBaseProps>;
 
 const ScrollToTopbutton = () => {
   const [isVisible, setIsVisible] = useState(false);
