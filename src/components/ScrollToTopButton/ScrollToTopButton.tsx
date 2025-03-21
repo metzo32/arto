@@ -1,3 +1,5 @@
+"use client"
+
 import { useState, useEffect } from "react";
 import { Button } from "./ScrollToTopButton.style";
 import { RiArrowUpDoubleFill } from "react-icons/ri";

@@ -1,6 +1,12 @@
-'use client'
+"use client";
 
-import { useState, createContext, ReactNode, Dispatch, SetStateAction } from "react";
+import {
+  useState,
+  createContext,
+  ReactNode,
+  Dispatch,
+  SetStateAction,
+} from "react";
 import { ThemeProvider as StyledThemeProvider } from "styled-components";
 import { lightTheme, darkTheme } from "../stores/colors";
 
@@ -10,7 +16,7 @@ export interface ThemeContextType {
 }
 export const ThemeContext = createContext<ThemeContextType | null>(null);
 
-const CustomThemeProvider = ({ children }: {children: ReactNode;}) => {
+const CustomThemeProvider = ({ children }: { children: ReactNode }) => {
   const [isDark, setIsDark] = useState<boolean>(false);
 
   return (

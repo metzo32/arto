@@ -5,13 +5,13 @@ import Link from "next/link";
 export const Div = styled.div`
   &.wrapper {
     min-width: 250px;
-    width: 100%;
+    width: clac(100vw - 70px);
     height: 100vh;
     display: flex;
     flex-direction: column;
     position: relative;
 
-    scroll-snap-type: y mandatory;
+    // scroll-snap-type: y mandatory;
     overflow-x: hidden;
   }
 
@@ -61,7 +61,7 @@ export const Div = styled.div`
   }
 
   &.no-result {
-    width: calc(100% - 70px);
+    width: calc(100vw - 70px);
     height: 100%;
     display: flex;
     flex-direction: column;
@@ -71,17 +71,11 @@ export const Div = styled.div`
     margin-left: 70px;
 
     @media (max-width: 767px) {
-      margin-top: 80px;
       gap: 20px;
     }
 
     @media (min-width: 768px) {
-      margin-top: 120px;
       gap: 30px;
-    }
-
-    @media (min-width: 1024px) {
-      margin-top: 150px;
     }
   }
 `;

@@ -86,7 +86,6 @@ export const Div = styled.div`
     min-width: 250px;
     width: 100%;
     overflow: hidden;
-    // overflow-y: auto;
     background: ${(props) => props.theme.bg_secondary};
     position: relative;
   }
@@ -102,9 +101,9 @@ export const Div = styled.div`
   }
 
   &.main-img-container {
-    width: 100%;
+    width: 100vw;
     height: 180px;
-    padding: 25px 30px;
+    padding: 25px 40px;
     background-color: ${(props) => props.theme.deact};
     position: relative;
 

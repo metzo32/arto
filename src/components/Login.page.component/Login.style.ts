@@ -19,12 +19,16 @@ export const Div = styled.div`
   &.page {
     background-color: ${(props) => props.theme.bg_secondary};
     min-width: 250px;
-    width: 100%;
+    width: 100vw;
     height: 100%;
     margin: 0 auto;
     display: flex;
     justify-content: center;
     align-items: center;
+
+    @media (max-width: 767px) {
+      width: auto;
+    }
   }
 
   &.container {

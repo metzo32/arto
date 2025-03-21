@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import { ReactNode, useState } from "react";
 import SearchBarComp from "../../components/SearchBar/SearchBar";
@@ -14,7 +14,7 @@ export default function Layout({ children }: { children: ReactNode }) {
   return (
     <>
       <SearchBarComp />
-      <SortButton/>
+      <SortButton />
       {children}
     </>
   );

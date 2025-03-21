@@ -2,9 +2,10 @@ import styled from "styled-components";
 
 export const Div = styled.div`
   &.app-container {
+    // width: 100vw;
+    // min-width: 320px;
     display: flex;
     flex-direction: row;
-    min-width: 320px;
     background-color: ${(props) => props.theme.bg_secondary};
     overflow: hidden;
   }
@@ -12,6 +13,8 @@ export const Div = styled.div`
 
 export const Main = styled.main`
   height: auto;
+  border: 1px solid red;
+  
   @media (max-width: 767px) {
     width: calc(100vw - 70px);
     margin-left: 70px;
@@ -24,9 +27,5 @@ export const Main = styled.main`
 
   @media (min-width: 1024px) {
     width: calc(100vw - 70px);
-  }
-
-  &.default {
-    height: 940px;
   }
 `;

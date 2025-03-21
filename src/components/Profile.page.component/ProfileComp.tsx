@@ -24,7 +24,6 @@ import { useModal } from "../../hooks/useModal";
 import Modal from "../Modal/Modal";
 import LogoutButton from "../Logout";
 import LoadingSpinner from "../LoadingSpinner/LoadingSpinner";
-// import StartFromTop from "../StartFromTop";
 import RoundButton from "../../../public/assets/design-assets/RoundButton/RoundButton";
 import {
   BaseButton,
@@ -126,7 +125,6 @@ const ProfileComp = () => {
 
   return (
     <>
-      {/* <StartFromTop /> */}
       {isLoading && <LoadingSpinner />}
       <Modal
         isOpen={isModalOpen}

@@ -1,7 +1,7 @@
-"use client"
+"use client";
 
 import { useState, useEffect, useContext } from "react";
-import { Div } from "./ArticleComp.style"
+import { Div } from "./ArticleComp.style";
 import type { ArtistDataProps } from "../../../public/assets/datas/artistData";
 import { AuthContext } from "../../context/AuthContext";
 import { auth, db } from "../../firebase/firebaseConfig";
@@ -19,22 +19,14 @@ interface ArticleCompProps {
 
 export default function ArticleComp({ artists }: ArticleCompProps) {
   const [allArtists, setAllArtists] = useState<ArtistDataProps[]>([]);
-  const [isMounted, setIsMounted] = useState(false);
-  const { isLoading, setIsLoading } = useLoading();
   const { currentlyLoggedIn } = useContext(AuthContext);
   const { sortedArtists } = useSort();
 
   useEffect(() => {
-    setIsMounted(true);
-  }, []);
-
-  useEffect(() => {
     const fetchArtists = async () => {
       if (artists) return;
-      setIsLoading(true);
       try {
-        const response = await fetch(`/api/allArtists`, {
-        });
+        const response = await fetch(`/api/allArtists`, {});
         if (!response.ok) {
           throw new Error(`HTTP error! Status: ${response.status}`);
         }
@@ -43,7 +35,6 @@ export default function ArticleComp({ artists }: ArticleCompProps) {
       } catch (error) {
         console.error("Error fetching artist data:", error);
       } finally {
-        setIsLoading(false);
       }
     };
     fetchArtists();
@@ -98,26 +89,18 @@ export default function ArticleComp({ artists }: ArticleCompProps) {
   };
 
   return (
-    <>
-      {isLoading ? (
-        <LoadingSpinner />
+    <Div className="wrapper">
+      {sortedData.length > 0 ? (
+        sortedData.map((artist) => (
+          <ArtistCard
+            key={artist.id}
+            artist={artist}
+            toggleWishlist={toggleWishlist}
+          />
+        ))
       ) : (
-        <Div className={`${isMounted ? "wrapper" : "default"}`}>
-          {/* <Div> */}
-            {sortedData.length > 0 ? (
-              sortedData.map((artist) => (
-                <ArtistCard
-                  key={artist.id}
-                  artist={artist}
-                  toggleWishlist={toggleWishlist}
-                />
-              ))
-            ) : (
-              <NoResult />
-            )}
-          {/* </Div> */}
-        </Div>
+        <NoResult />
       )}
-    </>
+    </Div>
   );
 }

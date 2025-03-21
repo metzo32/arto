@@ -21,7 +21,9 @@ export const ArtistCard = ({ artist, toggleWishlist }: ArtistCardProps) => {
           src={artist.mainImage}
           alt={`${artist.nickname}`}
           className="article-random-image"
-          priority
+          width={500}
+          height={200}
+   
         />
         <Div className="title-container">
           <WishList

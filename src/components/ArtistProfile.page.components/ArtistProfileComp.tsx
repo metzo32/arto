@@ -33,6 +33,7 @@ export default function ArtistProfileComp() {
   const params = useParams();
 
   const nickname = params.nickname as string;
+  
   useEffect(() => {
     const fetchArtist = async () => {
       try {

@@ -27,7 +27,7 @@ export default function SearchBarComp() {
 
   const navigateToSearch = () => {
     if (query.trim()) {
-      router.push(`/search?nickname=${encodeURIComponent(query.trim())}`);
+      router.push(`/search?nickname=${query.trim()}`);
       inputRef.current?.blur();
     } else {
       openModal("앗!", "검색어를 입력해주세요.");
@@ -62,7 +62,7 @@ export default function SearchBarComp() {
           type="text"
           value={query}
           onChange={handleInputChange}
-          onKeyDown={handleKeyPress}
+          onKeyUp={handleKeyPress} 
           onFocus={handleFocus}
           onBlur={handleBlur}
           placeholder="검색어를 입력하세요"
