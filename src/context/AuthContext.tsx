@@ -1,12 +1,12 @@
-"use client"
+"use client";
 
 import { createContext, useState, useEffect, ReactNode } from "react";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "../firebase/firebaseConfig";
 
 interface AuthContextProps {
-  currentlyLoggedIn: boolean;
-  setCurrentlyLoggedIn: (value: boolean) => void;
+  currentlyLoggedIn: boolean | null;
+  setCurrentlyLoggedIn: (value: boolean | null) => void;
 }
 
 export const AuthContext = createContext<AuthContextProps>({
@@ -15,7 +15,9 @@ export const AuthContext = createContext<AuthContextProps>({
 });
 
 const AuthProvider = ({ children }: { children: ReactNode }) => {
-  const [currentlyLoggedIn, setCurrentlyLoggedIn] = useState(false);
+  const [currentlyLoggedIn, setCurrentlyLoggedIn] = useState<boolean | null>(
+    null
+  );
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {

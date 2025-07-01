@@ -55,12 +55,12 @@ export default function LoginComp() {
   }, [loadingProgress]);
 
   useEffect(() => {
-    if (currentlyLoggedIn) {
-      router.push("/mypage"); // 이미 로그인된 상태라면 프로필 페이지로
+    if (currentlyLoggedIn === true) {
+      router.push("/mypage");
     }
   }, [currentlyLoggedIn, router]);
 
-  //유효한 입력인지 확인
+  // 유효한 입력인지 확인
   const handleBlur = (event: React.FocusEvent<HTMLInputElement>) => {
     const target = event.target;
 
