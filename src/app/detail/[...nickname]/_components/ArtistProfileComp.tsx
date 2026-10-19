@@ -40,7 +40,7 @@ export default function ArtistProfileComp() {
     const fetchArtist = async () => {
       try {
         setIsLoading(true);
-        const res = await fetch(`/api/indiv?nickname=${nickname}`);
+        const res = await fetch(`/api/detail?nickname=${nickname}`);
         if (!res.ok) throw new Error("Failed to fetch artist data");
 
         const data = await res.json();

@@ -26,7 +26,7 @@ export default function ArticleComp({ artists }: ArticleCompProps) {
     const fetchArtists = async () => {
       if (artists) return;
       try {
-        const response = await fetch(`/api/allArtists`, {});
+        const response = await fetch(`/api/aristsList`, {});
         if (!response.ok) {
           throw new Error(`HTTP error! Status: ${response.status}`);
         }
