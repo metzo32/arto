@@ -1,7 +1,7 @@
 "use client"
 
 import { Suspense } from "react"
-import SeachComp from "./searchComp"
+import SeachComp from "./_components/searchComp"
 
 export default function SeachPage() {
   return (

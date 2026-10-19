@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { HTMLAttributes } from "react";
-import LogoShadowDark from "../../../../public/assets/icons/logo/logo_shadow_dark.svg"
-import LogoShadowLight from "../../../../public/assets/icons/logo/logo_shadow_light.svg";
+import LogoShadowDark from "../../../../../../public/assets/icons/logo/logo_shadow_dark.svg"
+import LogoShadowLight from "../../../../../../public/assets/icons/logo/logo_shadow_light.svg";
 
 export const Div = styled.div`
   &.wrapper {

@@ -12,21 +12,21 @@ import {
   Links,
   IconBox,
   IconCheck,
-} from "./Login.style";
-import { BaseButton } from "../../../public/assets/design-assets/BaseButton/BaseButton";
+} from "../_styles/Login.style";
+import { BaseButton } from "../../../../public/assets/design-assets/BaseButton/BaseButton";
 import { useState, useEffect, useContext } from "react";
 import { useRouter } from "next/navigation";
-import { AuthContext } from "../../context/AuthContext";
+import { AuthContext } from "../../../context/AuthContext";
 import {
   setPersistence,
   browserSessionPersistence,
   signInWithEmailAndPassword,
 } from "firebase/auth";
-import { auth } from "../../firebase/firebaseConfig";
-import Modal from "../Modal/Modal";
-import { useModal } from "../../hooks/useModal";
-import useLoading from "../../hooks/useLoading";
-import LoadingSpinner from "../LoadingSpinner/LoadingSpinner";
+import { auth } from "../../../firebase/firebaseConfig";
+import Modal from "../../../components/Modal/Modal";
+import { useModal } from "../../../hooks/useModal";
+import useLoading from "../../../hooks/useLoading";
+import LoadingSpinner from "../../../components/LoadingSpinner/LoadingSpinner";
 
 export default function LoginComp() {
   const router = useRouter();

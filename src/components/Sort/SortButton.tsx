@@ -3,15 +3,15 @@
 import { useEffect, useState } from "react";
 import { Area, Button } from "./SortButtons.style";
 import { usefilteredLength } from "../../stores/states/filteredDataLength";
-import { useIsHeaderFolded } from "../../stores/states/isHeaderFolded";
 import useSort from "../../stores/states/sortOption";
+import { useIsSidebarFolded } from "../../stores/states/isHeaderFolded";
 
 const sortName = ["최신순", "오래된순", "오름차순", "내림차순"];
 
 export default function SortButton() {
   const { sort, setSort } = useSort();
   const { length } = usefilteredLength();
-  const { folded } = useIsHeaderFolded();
+  const { folded } = useIsSidebarFolded();
   const [isMount, setIsMount] = useState(false);
 
   useEffect(() => {

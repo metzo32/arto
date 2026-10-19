@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import Link from "next/link";
 import Image from "next/image";
-import DeleteIcon from "../../../public/assets/icons/icon_delete.svg";
+import DeleteIcon from "../../../../public/assets/icons/icon_delete.svg";
 
 export const Section = styled.section`
   width: 100%;

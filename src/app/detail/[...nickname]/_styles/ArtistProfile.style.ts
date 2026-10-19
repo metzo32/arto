@@ -1,6 +1,6 @@
 import styled, { keyframes } from "styled-components";
 import Image from "next/image";
-import { lightTheme } from "../../stores/colors";
+import { lightTheme } from "../../../../stores/colors";
 
 const slideIn = keyframes`
   from {

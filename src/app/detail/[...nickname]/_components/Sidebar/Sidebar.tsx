@@ -1,6 +1,6 @@
 "use client";
 
-import { Div, A } from "../ArtistProfile.style";
+import { Div, A } from "../../_styles/ArtistProfile.style";
 import { BiLogoFacebook as BiFB } from "react-icons/bi";
 import { AiOutlineTikTok as TikTok } from "react-icons/ai";
 import { RiInstagramLine as Insta } from "react-icons/ri";

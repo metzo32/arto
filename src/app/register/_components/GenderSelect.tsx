@@ -7,7 +7,7 @@ import {
   Legend,
   IconBox,
   IconCheck,
-} from "../Login.page.component/Login.style";
+} from "../../login/_styles/Login.style";
 
 interface GenderSelectProps {
   onGenderChange: (gender: string) => void;

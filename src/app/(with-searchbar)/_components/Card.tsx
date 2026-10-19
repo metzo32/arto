@@ -4,9 +4,9 @@ import {
   H3,
   H4,
   Links,
-} from "./ArticleComp.style";
-import WishList from "../Wishlist/WishList";
-import type { ArtistDataProps } from "../../../public/assets/datas/artistData";
+} from "../_styles/ArticleComp.style";
+import WishList from "../../../components/Wishlist/WishList";
+import type { ArtistDataProps } from "../../../../public/assets/datas/artistData";
 
 interface ArtistCardProps {
   artist: ArtistDataProps;
@@ -15,7 +15,7 @@ interface ArtistCardProps {
 
 export const ArtistCard = ({ artist, toggleWishlist }: ArtistCardProps) => {
   return (
-    <Links href={`/profile_artist/${artist.nickname}`} key={artist.id}>
+    <Links href={`/detail/${artist.nickname}`} key={artist.id}>
       <Div className="article-cards">
         <Img
           src={artist.mainImage}

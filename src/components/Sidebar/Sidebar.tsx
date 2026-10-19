@@ -1,12 +1,11 @@
 "use client";
 
-import { HeaderTag, Nav, Div, Links, Span, Brand } from "./Header.style";
+import { SidebarTag, Nav, Div, Links, Span, Brand } from "./Sidebar.style";
 import { useContext, useState, useEffect, use } from "react";
 import { useRouter, usePathname } from "next/navigation";
-import { headerData, extraItem } from "./Header.data";
+import { SidebarData, extraItem } from "./Sidebar.data";
 import { AuthContext } from "../../context/AuthContext";
 import useWindowSize from "../../hooks/useWindowSize";
-import { useIsHeaderFolded } from "../../stores/states/isHeaderFolded";
 import DarkModeButton from "../DarkModeButton/DarkModeButton";
 import RoundButton from "../../../public/assets/design-assets/RoundButton/RoundButton";
 import {
@@ -14,12 +13,13 @@ import {
   FaArrowRight as ArrowRightIcon,
 } from "react-icons/fa6";
 import type { IconBaseProps } from "react-icons";
+import { useIsSidebarFolded } from "../../stores/states/isHeaderFolded";
 
-const Header = () => {
+const Sidebar = () => {
   const router = useRouter();
   const currentPath = usePathname();
   const { isMobile } = useWindowSize();
-  const { folded, foldAction } = useIsHeaderFolded();
+  const { folded, foldAction } = useIsSidebarFolded();
   const { currentlyLoggedIn } = useContext(AuthContext);
   const [clickedItem, setClickedItem] = useState<string | null>(null); //현재 클릭된 인덱스 저장
 
@@ -32,8 +32,8 @@ const Header = () => {
 
   return (
     <>
-      <Div className="header-area" />
-      <HeaderTag className={`${folded ? "fold" : ""}`}>
+      <Div className="Sidebar-area" />
+      <SidebarTag className={`${folded ? "fold" : ""}`}>
         <Nav>
           <Div>
             {isMobile ? null : (
@@ -47,7 +47,7 @@ const Header = () => {
               </Div>
             )}
 
-            {headerData.map((group, groupIndex) => (
+            {SidebarData.map((group, groupIndex) => (
               <Div key={groupIndex} className="line-box">
                 {group.map((item, index) => (
                   <Links
@@ -90,9 +90,9 @@ const Header = () => {
             </Div>
           </Div>
         </Nav>
-      </HeaderTag>
+      </SidebarTag>
     </>
   );
 };
 
-export default Header;
+export default Sidebar;

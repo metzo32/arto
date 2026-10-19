@@ -6,8 +6,8 @@ import {
   Input,
   Fieldset,
   Legend,
-} from "../Login.page.component/Login.style";
-import countryCodeArray from "../../../public/assets/datas/countryCode"
+} from "../../login/_styles/Login.style";
+import countryCodeArray from "../../../../public/assets/datas/countryCode"
 interface PhoneNumberProps {
   onPhoneNumberChange: (countryCode: string, phoneNumber: string) => void;
 }

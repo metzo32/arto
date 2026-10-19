@@ -1,15 +1,15 @@
 "use client";
 
 import { useState, useEffect, useContext } from "react";
-import { Div } from "./ArticleComp.style";
-import type { ArtistDataProps } from "../../../public/assets/datas/artistData";
-import { AuthContext } from "../../context/AuthContext";
-import { auth, db } from "../../firebase/firebaseConfig";
+import { Div } from "../_styles/ArticleComp.style";
+import type { ArtistDataProps } from "../../../../public/assets/datas/artistData";
+import { AuthContext } from "../../../context/AuthContext";
+import { auth, db } from "../../../firebase/firebaseConfig";
 import { doc, getDoc } from "firebase/firestore";
-import { usefilteredLength } from "../../stores/states/filteredDataLength";
-import useSort from "../../stores/states/sortOption";
-import useLoading from "../../hooks/useLoading";
-import LoadingSpinner from "../LoadingSpinner/LoadingSpinner";
+import { usefilteredLength } from "../../../stores/states/filteredDataLength";
+import useSort from "../../../stores/states/sortOption";
+import useLoading from "../../../hooks/useLoading";
+import LoadingSpinner from "../../../components/LoadingSpinner/LoadingSpinner";
 import { ArtistCard } from "./Card";
 import NoResult from "./no-result";
 

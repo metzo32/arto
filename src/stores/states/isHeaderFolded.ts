@@ -1,12 +1,12 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
 
-interface UseIsHeaderFoldedProps {
+interface UseIsSidebarFoldedProps {
   folded: boolean;
   foldAction: () => void;
 }
 
-export const useIsHeaderFolded = create<UseIsHeaderFoldedProps>()(
+export const useIsSidebarFolded = create<UseIsSidebarFoldedProps>()(
   persist(
     (set) => ({
       folded: true,
@@ -17,7 +17,7 @@ export const useIsHeaderFolded = create<UseIsHeaderFoldedProps>()(
         }),
     }),
     {
-      name: "header-folded",  //로컬스토리지에 저장될 키 이름
+      name: "Sidebar-folded",  //로컬스토리지에 저장될 키 이름
     }
   )
 );

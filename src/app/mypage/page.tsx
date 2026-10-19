@@ -2,7 +2,7 @@
 
 import { useEffect, useContext } from "react";
 import { AuthContext } from "../../context/AuthContext";
-import ProfileComp from "../../components/Profile.page.component/ProfileComp";
+import ProfileComp from "./_components/ProfileComp";
 import { useRouter } from "next/navigation";
 import useLoading from "../../hooks/useLoading";
 

@@ -15,21 +15,21 @@ import {
   LargeDiv,
   Span,
   RemoveIcon,
-} from "./Profile.style";
-import { auth, db } from "../../firebase/firebaseConfig";
+} from "../_styles/Profile.style";
+import { auth, db } from "../../../firebase/firebaseConfig";
 import { onAuthStateChanged } from "firebase/auth";
 import { doc, getDoc, updateDoc } from "firebase/firestore";
-import useLoading from "../../hooks/useLoading";
-import { useModal } from "../../hooks/useModal";
-import Modal from "../Modal/Modal";
-import LogoutButton from "../Logout";
-import LoadingSpinner from "../LoadingSpinner/LoadingSpinner";
-import RoundButton from "../../../public/assets/design-assets/RoundButton/RoundButton";
+import useLoading from "../../../hooks/useLoading";
+import { useModal } from "../../../hooks/useModal";
+import Modal from "../../../components/Modal/Modal";
+import LogoutButton from "../../../components/Logout";
+import LoadingSpinner from "../../../components/LoadingSpinner/LoadingSpinner";
+import RoundButton from "../../../../public/assets/design-assets/RoundButton/RoundButton";
 import {
   BaseButton,
   SecondaryButton,
-} from "../../../public/assets/design-assets/BaseButton/BaseButton";
-import ScrollToTopButton from "../ScrollToTopButton/ScrollToTopButton";
+} from "../../../../public/assets/design-assets/BaseButton/BaseButton";
+import ScrollToTopButton from "../../../components/ScrollToTopButton/ScrollToTopButton";
 import type { IconBaseProps } from "react-icons";
 import { IoMdPhonePortrait as PhoneIconRaw } from "react-icons/io";
 import {
@@ -88,7 +88,7 @@ const ProfileComp = () => {
   }, []);
 
   const handleCardRedirect = (nickname: string) => {
-    window.location.href = `/profile_artist/${nickname}`;
+    window.location.href = `/detail/${nickname}`;
   };
 
   const loadMore = () => {

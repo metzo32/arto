@@ -11,19 +11,19 @@ import {
   H4,
   P,
   Img,
-} from "./ArtistProfile.style";
+} from "../_styles/ArtistProfile.style";
 import { useState, useEffect, useRef } from "react";
 import { useParams } from "next/navigation";
-import useWindowSize from "../../hooks/useWindowSize";
-import useLoading from "../../hooks/useLoading";
-import type { ArtistDataProps } from "../../../public/assets/datas/artistData";
-import type { IconName } from "../../../public/assets/datas/getSkillsIcons";
-import { BaseButton } from "../../../public/assets/design-assets/BaseButton/BaseButton";
+import useWindowSize from "../../../../hooks/useWindowSize";
+import useLoading from "../../../../hooks/useLoading";
+import type { ArtistDataProps } from "../../../../../public/assets/datas/artistData";
+import type { IconName } from "../../../../../public/assets/datas/getSkillsIcons";
+import { BaseButton } from "../../../../../public/assets/design-assets/BaseButton/BaseButton";
 import NameCard from "./NameCard/NameCard";
-import ScrollToTopButton from "../ScrollToTopButton/ScrollToTopButton";
+import ScrollToTopButton from "../../../../components/ScrollToTopButton/ScrollToTopButton";
 import Sidebar from "./Sidebar/Sidebar";
-import LoadingSpinner from "../LoadingSpinner/LoadingSpinner";
-import { getSkillsIcons } from "../../../public/assets/datas/getSkillsIcons";
+import LoadingSpinner from "../../../../components/LoadingSpinner/LoadingSpinner";
+import { getSkillsIcons } from "../../../../../public/assets/datas/getSkillsIcons";
 
 export default function ArtistProfileComp() {
   const { isMobile } = useWindowSize();

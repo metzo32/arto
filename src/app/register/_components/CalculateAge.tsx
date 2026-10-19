@@ -5,9 +5,9 @@ import {
   Legend,
   Select,
   P,
-} from "../Login.page.component/Login.style";
-import Modal from "../Modal/Modal";
-import { useModal } from "../../hooks/useModal";
+} from "../../login/_styles/Login.style";
+import Modal from "../../../components/Modal/Modal";
+import { useModal } from "../../../hooks/useModal";
 
 interface CalculateAgeProps {
   isAdult: (isValid: boolean | null) => void;

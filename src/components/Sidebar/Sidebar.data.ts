@@ -6,7 +6,7 @@ import { MdOutlineWorkspaces, MdOutlineWebhook, MdGraphicEq } from "react-icons/
 import { PiUserCircleDuotone } from "react-icons/pi";
 
 // 아이콘 타입 명확히 지정
-interface HeaderDataProps {
+interface SidebarDataProps {
   id: string;
   icon?: FC<IconBaseProps>;
   name: string;
@@ -14,25 +14,25 @@ interface HeaderDataProps {
 }
 
 // 모든 아이콘을 FC<IconBaseProps>로 단언
-export const headerData: HeaderDataProps[][] = [
+export const SidebarData: SidebarDataProps[][] = [
   [
     { id: "Home", icon: HiOutlineHome as FC<IconBaseProps>, name: "Home", path: "/" },
     {
       id: "New",
       icon: MdOutlineWorkspaces as FC<IconBaseProps>,
       name: "New",
-      path: "/profile_artist/Ole",
+      path: "/detail/Ole",
     },
     {
       id: "Upcoming",
       icon: MdOutlineWebhook as FC<IconBaseProps>,
       name: "Upcoming",
-      path: "/profile_artist/Caz",
+      path: "/detail/Caz",
     },
   ],
 ];
 
-export const extraItem: HeaderDataProps = {
+export const extraItem: SidebarDataProps = {
   id: "Login",
   icon: PiUserCircleDuotone as FC<IconBaseProps>,
   name: "로그인",

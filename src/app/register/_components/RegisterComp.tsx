@@ -10,23 +10,23 @@ import {
   H4,
   Button,
   Links,
-} from "../Login.page.component/Login.style";
-import { BaseButton } from "../../../public/assets/design-assets/BaseButton/BaseButton";
+} from "../../login/_styles/Login.style";
+import { BaseButton } from "../../../../public/assets/design-assets/BaseButton/BaseButton";
 
-import { auth, db } from "../../firebase/firebaseConfig";
+import { auth, db } from "../../../firebase/firebaseConfig";
 import { setDoc, doc } from "firebase/firestore";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 
 import { useRouter, usePathname } from "next/navigation";
-import { useModal } from "../../hooks/useModal";
-import Modal from "../Modal/Modal";
-import useLoading from "../../hooks/useLoading";
-import { nicknameRule, fullnameRule } from "../../stores/NameRule";
+import { useModal } from "../../../hooks/useModal";
+import Modal from "../../../components/Modal/Modal";
+import useLoading from "../../../hooks/useLoading";
+import { nicknameRule, fullnameRule } from "../../../stores/NameRule";
 import CalculateAge from "./CalculateAge";
 import GenderSelect from "./GenderSelect";
 import PhoneNumber from "./PhoneNumber";
-import { AuthContext } from "../../context/AuthContext";
-import LoadingSpinner from "../LoadingSpinner/LoadingSpinner";
+import { AuthContext } from "../../../context/AuthContext";
+import LoadingSpinner from "../../../components/LoadingSpinner/LoadingSpinner";
 
 export default function RegisterComp() {
   const router = useRouter();

@@ -3,12 +3,12 @@
 import { useEffect, useState } from "react";
 import { Suspense } from "react";
 import { useSearchParams } from "next/navigation";
-import { Div } from "../../../components/Article.page.component/ArticleComp.style";
-import type { ArtistDataProps } from "../../../../public/assets/datas/artistData";
-import { usefilteredLength } from "../../../stores/states/filteredDataLength";
-import useLoading from "../../../hooks/useLoading";
-import { ArtistCard } from "../../../components/Article.page.component/Card";
-import NoResult from "../../../components/Article.page.component/no-result";
+import { Div } from "../../_styles/ArticleComp.style";
+import type { ArtistDataProps } from "../../../../../public/assets/datas/artistData";
+import { usefilteredLength } from "../../../../stores/states/filteredDataLength";
+import useLoading from "../../../../hooks/useLoading";
+import { ArtistCard } from "../../_components/Card";
+import NoResult from "../../_components/no-result";
 
 export default function SeachComp() {
   const searchParams = useSearchParams();

@@ -1,6 +1,6 @@
 'use client'
 
-import RegisterComp from "../../components/Register.page.component/RegisterComp";
+import RegisterComp from "./_components/RegisterComp";
 
 export default function page() {
   return <RegisterComp />;

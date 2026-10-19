@@ -4,7 +4,7 @@ import { Div, Main } from "../stores/App_style";
 import { ReactNode } from "react";
 import Providers from "../context/providers/Providers";
 import ScrollToTopButton from "../components/ScrollToTopButton/ScrollToTopButton";
-import Header from "../components/Header/Header";
+import Sidebar from "../components/Sidebar/Sidebar";
 
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
@@ -12,7 +12,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
       <body>
         <Providers>
           <Div className="app-container">
-            <Header />
+            <Sidebar />
             <Main>{children}</Main>
             <ScrollToTopButton />
           </Div>

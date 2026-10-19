@@ -1,6 +1,6 @@
-import { Div, H3, P, BrandDark, BrandLight, A } from "./NameCard.style";
-import type { ArtistDataProps } from "../../../../public/assets/datas/artistData";
-import { useDark } from "../../../hooks/useDark";
+import { Div, H3, P, BrandDark, BrandLight, A } from "../../_styles/NameCard/NameCard.style";
+import type { ArtistDataProps } from "../../../../../../public/assets/datas/artistData";
+import { useDark } from "../../../../../hooks/useDark";
 
 export default function NameCard({ artist }: { artist: ArtistDataProps }) {
   const copyHandler = (e: React.MouseEvent<HTMLParagraphElement>) => {

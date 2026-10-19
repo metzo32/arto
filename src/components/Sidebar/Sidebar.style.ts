@@ -3,7 +3,7 @@ import Link from "next/link";
 import Logo from "../../../public/assets/icons/logo/logo.svg";
 import { HTMLAttributes } from "react";
 
-export const HeaderTag = styled.header`
+export const SidebarTag = styled.aside`
   height: calc(100%);
   background-color: ${(props) => props.theme.base};
   border-radius: 0 5px 5px 0;
@@ -43,7 +43,7 @@ export const Nav = styled.nav`
 `;
 
 export const Div = styled.div`
-  &.header-area {
+  &.Sidebar-area {
     background-color: ${(props) => props.theme.base};
     height: 100vh;
     overflow: hidden;

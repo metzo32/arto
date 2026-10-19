@@ -1,5 +1,5 @@
 import { useContext, useEffect } from "react";
-import { Button, Span } from "../Header/Header.style";
+import { Button, Span } from "../Sidebar/Sidebar.style";
 import { ThemeContext } from "../../context/ThemeContext";
 import { FiSun as SunIcon, FiMoon as MoonIcon } from "react-icons/fi";
 import type { IconBaseProps } from "react-icons";

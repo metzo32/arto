@@ -1,4 +1,4 @@
-import ArticleComp from "../../components/Article.page.component/ArticleComp";
+import ArticleComp from "./_components/ArticleComp";
 
 export default function Home() {
 
