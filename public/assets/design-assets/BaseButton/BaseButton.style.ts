@@ -3,18 +3,12 @@ import styled from "styled-components";
 export const Button = styled.button`
   color: ${(props) => props.theme.white};
   border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   transition: all 0.1s ease;
-
-  @media (max-width: 767px) {
-    padding: 5px 10px;
-    font-size: 14px;
-  }
-
-  @media (min-width: 768px) {
-    padding: 10px 20px;
-    font-size: 18px;
-  }
-
+  padding: 6px 12px 8px;
+  font-size: 14px;
 
   &.primary {
     background-color: ${(props) => props.theme.main};

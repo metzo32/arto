@@ -23,7 +23,7 @@ export default function SortButton() {
       window.scrollTo({
         top: 0,
         behavior: "smooth",
-      });
+      }); 
     }
   };
 

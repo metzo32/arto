@@ -10,7 +10,7 @@ import { usefilteredLength } from "../../../stores/states/filteredDataLength";
 import useSort from "../../../stores/states/sortOption";
 import useLoading from "../../../hooks/useLoading";
 import LoadingSpinner from "../../../components/LoadingSpinner/LoadingSpinner";
-import { ArtistCard } from "./Card";
+import { ArtistCards } from "./ArtistCards";
 import NoResult from "./no-result";
 
 interface ArticleCompProps {
@@ -91,15 +91,13 @@ export default function ArticleComp({ artists }: ArticleCompProps) {
   return (
     <Div className="wrapper">
       {sortedData.length > 0 ? (
-        sortedData.map((artist) => (
-          <ArtistCard
-            key={artist.id}
-            artist={artist}
-            toggleWishlist={toggleWishlist}
-          />
-        ))
+        <ArtistCards
+          list={sortedData}
+          toggleWishlist={toggleWishlist}
+        />
       ) : (
         <NoResult />
+        // TODO loading 상태 추가
       )}
     </Div>
   );

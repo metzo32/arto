@@ -4,15 +4,14 @@ import Link from "next/link";
 
 export const Div = styled.div`
   &.wrapper {
-    min-width: 250px;
-    width: clac(100vw - 70px);
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    position: relative;
+    // min-width: 250px;
+    // width: clac(100vw - 70px);
+    // height: 100vh;
+    // display: flex;
+    // flex-direction: column;
+    // position: relative;
 
-    // scroll-snap-type: y mandatory;
-    overflow-x: hidden;
+    // overflow-x: hidden;
   }
 
   &.default {
@@ -125,4 +124,18 @@ export const H4 = styled.h4`
 
 export const Links = styled(Link)`
   display: flex;
+
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+
+  transition-property: transform;
+  transition-duration: 500ms;
+  transition-timing-function: cubic-bezier(0, 0, 0.2, 1);
+
+  &:hover {
+    cursor: pointer;
+  }
 `;

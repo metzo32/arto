@@ -1,16 +1,15 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { Suspense } from "react";
-import { useSearchParams } from "next/navigation";
-import { Div } from "../../_styles/ArticleComp.style";
-import type { ArtistDataProps } from "../../../../../public/assets/datas/artistData";
-import { usefilteredLength } from "../../../../stores/states/filteredDataLength";
 import useLoading from "../../../../hooks/useLoading";
-import { ArtistCard } from "../../_components/Card";
+import { useSearchParams } from "next/navigation";
+import { usefilteredLength } from "../../../../stores/states/filteredDataLength";
+import { Div } from "../../_styles/ArticleComp.style";
+import { ArtistCards } from "../../_components/ArtistCards";
 import NoResult from "../../_components/no-result";
+import type { ArtistDataProps } from "../../../../../public/assets/datas/artistData";
 
-export default function SeachComp() {
+export default function SearchComp() {
   const searchParams = useSearchParams();
   const query = searchParams.get("nickname") || "";
 
@@ -60,18 +59,15 @@ export default function SeachComp() {
   };
 
   return (
-      <Div className="wrapper">
-        {filteredArtists.length > 0 ? (
-          filteredArtists.map((artist, index) => (
-            <ArtistCard
-              key={index}
-              artist={artist}
-              toggleWishlist={toggleWishlist}
-            />
-          ))
-        ) : (
-          <NoResult />
-        )}
-      </Div>
+    <Div className="wrapper">
+      {filteredArtists.length > 0 ? (
+        <ArtistCards
+          list={filteredArtists}
+          toggleWishlist={toggleWishlist}
+        />
+      ) : (
+        <NoResult />
+      )}
+    </Div>
   );
 }
