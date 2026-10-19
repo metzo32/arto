@@ -29,7 +29,7 @@ import {
   BaseButton,
   SecondaryButton,
 } from "../../../public/assets/design-assets/BaseButton/BaseButton";
-import ScrollToTopbutton from "../ScrollToTopButton/ScrollToTopButton";
+import ScrollToTopButton from "../ScrollToTopButton/ScrollToTopButton";
 import type { IconBaseProps } from "react-icons";
 import { IoMdPhonePortrait as PhoneIconRaw } from "react-icons/io";
 import {
@@ -286,7 +286,7 @@ const ProfileComp = () => {
           <LogoutButton />
         </Section>
       </Div>
-      <ScrollToTopbutton />
+      <ScrollToTopButton />
     </>
   );
 };

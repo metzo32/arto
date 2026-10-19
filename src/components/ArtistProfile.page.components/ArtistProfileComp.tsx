@@ -20,7 +20,7 @@ import type { ArtistDataProps } from "../../../public/assets/datas/artistData";
 import type { IconName } from "../../../public/assets/datas/getSkillsIcons";
 import { BaseButton } from "../../../public/assets/design-assets/BaseButton/BaseButton";
 import NameCard from "./NameCard/NameCard";
-import ScrollToTopbutton from "../ScrollToTopButton/ScrollToTopButton";
+import ScrollToTopButton from "../ScrollToTopButton/ScrollToTopButton";
 import Sidebar from "./Sidebar/Sidebar";
 import LoadingSpinner from "../LoadingSpinner/LoadingSpinner";
 import { getSkillsIcons } from "../../../public/assets/datas/getSkillsIcons";
@@ -171,7 +171,7 @@ export default function ArtistProfileComp() {
         <NameCard artist={artist} />
         <Sidebar isVisible={isVisible} />
       </Section>
-      <ScrollToTopbutton />
+      <ScrollToTopButton />
     </Div>
   );
 }

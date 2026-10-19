@@ -7,7 +7,7 @@ import type { IconBaseProps } from "react-icons";
 
 const RiArrowUpDoubleFill = UpArrowIconRaw as React.FC<IconBaseProps>;
 
-const ScrollToTopbutton = () => {
+const ScrollToTopButton = () => {
   const [isVisible, setIsVisible] = useState(false);
 
   const toggleVisibility = () => {
@@ -42,4 +42,4 @@ const ScrollToTopbutton = () => {
   );
 };
 
-export default ScrollToTopbutton;
+export default ScrollToTopButton;
