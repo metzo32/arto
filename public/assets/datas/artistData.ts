@@ -1164,4 +1164,4 @@ export const artistDataOr: ArtistDataProps[] = [
   },
 ];
 
-export const artistData = artistDataOr.slice(0, 10) //TODO
+export const artistData = artistDataOr.slice(50, 60) //TODO

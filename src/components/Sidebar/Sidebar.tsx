@@ -32,7 +32,6 @@ const Sidebar = () => {
 
   return (
     <>
-      <Div className="Sidebar-area" />
       <SidebarTag className={`${folded ? "fold" : ""}`}>
         <Nav>
           <Div>

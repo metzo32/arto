@@ -43,23 +43,6 @@ export const Nav = styled.nav`
 `;
 
 export const Div = styled.div`
-  &.Sidebar-area {
-    background-color: ${(props) => props.theme.base};
-    height: 100vh;
-    overflow: hidden;
-    transition: all 0.2s ease;
-
-    @media (min-width: 768px) {
-      width: 70px;
-      border-radius: 0 12px 12px 0;
-    }
-
-    @media (min-width: 1024px) {
-      width: 70px;
-      border-radius: 0 10px 10px 0;
-    }
-  }
-
   &.brand-box {
     padding: 10px 20px;
     border-bottom: 2px solid ${(props) => props.theme.outline};

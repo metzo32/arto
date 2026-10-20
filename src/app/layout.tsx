@@ -1,5 +1,3 @@
-
-import { Div, Main } from "../stores/App_style";
 import { ReactNode } from "react";
 import Providers from "../context/providers/Providers";
 import ScrollToTopButton from "../components/ScrollToTopButton/ScrollToTopButton";
@@ -12,12 +10,11 @@ export default function RootLayout({ children }: { children: ReactNode }) {
       <body>
         <StyledComponentsRegistry>
           <Providers>
-            {/* <Div className="app-container"> */}
-              <Sidebar />
-              {children}
-              {/* <Main>{children}</Main> */}
+       <main>
+       <Sidebar />
+       {children}
+       </main>
               {/* <ScrollToTopButton /> */}
-            {/* </Div> */}
           </Providers>
         </StyledComponentsRegistry>
       </body>

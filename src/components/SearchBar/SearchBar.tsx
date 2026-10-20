@@ -1,10 +1,10 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
-import { Div, Input, Span } from "./SearchBar.style";
-import { BaseButton } from "../../../public/assets/design-assets/BaseButton/BaseButton";
 import { useRouter } from "next/navigation";
 import { useModal } from "../../hooks/useModal";
+import { Div, Input, Span } from "./SearchBar.style";
+import { BaseButton } from "../../../public/assets/design-assets/BaseButton/BaseButton";
 import Modal from "../../components/Modal/Modal";
 
 export default function SearchBarComp() {
@@ -50,7 +50,7 @@ export default function SearchBarComp() {
 
   return (
     <>
-      {/* <Div className={`${isMounted ? "search-bar-container" : "hidden"}`}>
+      <Div className={`${isMounted ? "search-bar-container" : "hidden"}`}>
         <Modal
           isOpen={isModalOpen}
           onClose={handleCloseWithReset}
@@ -70,7 +70,7 @@ export default function SearchBarComp() {
         />
         <BaseButton onClick={handleSearch} text="찾기" type="button" />
       </Div>
-      {isFocused && <Span className="overlay" />} */}
+      {isFocused && <Span className="overlay" />}
     </>
   );
 }

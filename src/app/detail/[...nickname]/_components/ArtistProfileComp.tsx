@@ -74,7 +74,7 @@ export default function ArtistProfileComp() {
 
   if (isLoading) {
     return (
-      <Div className="wrapper">
+      <Div className="wrapper-flex">
         <LoadingSpinner />
       </Div>
     );
@@ -82,8 +82,8 @@ export default function ArtistProfileComp() {
 
   if (!artist) {
     return (
-      <Div className="wrapper">
-        <H1>아티스트를 찾을 수 없습니다.</H1>
+      <Div className="wrapper-flex">
+        <P>아티스트를 찾을 수 없습니다.</P>
       </Div>
     );
   }

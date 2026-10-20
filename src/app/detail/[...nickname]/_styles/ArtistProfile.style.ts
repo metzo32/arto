@@ -90,6 +90,18 @@ export const Div = styled.div`
     position: relative;
   }
 
+    &.wrapper-flex {
+    min-width: 250px;
+    width: 100%;
+    overflow: hidden;
+    background: ${(props) => props.theme.bg_secondary};
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 120px;
+  }
+
   &.image-container {
     height: 100vh;
     display: block;
