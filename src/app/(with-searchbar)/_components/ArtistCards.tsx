@@ -1,3 +1,5 @@
+import { useEffect, useRef, useState } from "react";
+import { useSearchParams } from "next/navigation";
 import {
   Div,
   Img,
@@ -6,8 +8,6 @@ import {
 } from "../_styles/ArticleComp.style";
 import WishList from "../../../components/Wishlist/WishList";
 import type { ArtistDataProps } from "../../../../public/assets/datas/artistData";
-import { useEffect, useRef, useState } from "react";
-import { useSearchParams } from "next/navigation";
 
 interface ArtistCardProps {
   list: ArtistDataProps[];

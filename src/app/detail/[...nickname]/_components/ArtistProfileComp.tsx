@@ -14,8 +14,8 @@ import {
 } from "../_styles/ArtistProfile.style";
 import { useState, useEffect, useRef } from "react";
 import { useParams } from "next/navigation";
-import useWindowSize from "../../../../hooks/useWindowSize";
-import useLoading from "../../../../hooks/useLoading";
+import { useWindowSize } from "../../../../hooks/useWindowSize";
+import { useLoading } from "../../../../hooks/useLoading";
 import type { ArtistDataProps } from "../../../../../public/assets/datas/artistData";
 import type { IconName } from "../../../../../public/assets/datas/getSkillsIcons";
 import { BaseButton } from "../../../../../public/assets/design-assets/BaseButton/BaseButton";

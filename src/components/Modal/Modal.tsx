@@ -3,7 +3,7 @@ import {
   BaseButton,
   SecondaryButton,
 } from "../../../public/assets/design-assets/BaseButton/BaseButton";
-import useWindowSize from "../../hooks/useWindowSize";
+import { useWindowSize } from "../../hooks/useWindowSize";
 
 interface ModalProps {
   isOpen: boolean;

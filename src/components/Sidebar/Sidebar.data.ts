@@ -16,16 +16,16 @@ interface SidebarDataProps {
 // 모든 아이콘을 FC<IconBaseProps>로 단언
 export const SidebarData: SidebarDataProps[][] = [
   [
-    { id: "Home", icon: HiOutlineHome as FC<IconBaseProps>, name: "Home", path: "/" },
+    { id: "Home", icon: HiOutlineHome, name: "Home", path: "/" },
     {
       id: "New",
-      icon: MdOutlineWorkspaces as FC<IconBaseProps>,
+      icon: MdOutlineWorkspaces,
       name: "New",
       path: "/detail/Ole",
     },
     {
       id: "Upcoming",
-      icon: MdOutlineWebhook as FC<IconBaseProps>,
+      icon: MdOutlineWebhook,
       name: "Upcoming",
       path: "/detail/Caz",
     },
@@ -34,7 +34,7 @@ export const SidebarData: SidebarDataProps[][] = [
 
 export const extraItem: SidebarDataProps = {
   id: "Login",
-  icon: PiUserCircleDuotone as FC<IconBaseProps>,
+  icon: PiUserCircleDuotone,
   name: "로그인",
   path: "/login",
 };

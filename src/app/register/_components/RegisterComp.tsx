@@ -20,7 +20,7 @@ import { createUserWithEmailAndPassword } from "firebase/auth";
 import { useRouter, usePathname } from "next/navigation";
 import { useModal } from "../../../hooks/useModal";
 import Modal from "../../../components/Modal/Modal";
-import useLoading from "../../../hooks/useLoading";
+import { useLoading } from "../../../hooks/useLoading";
 import { nicknameRule, fullnameRule } from "../../../stores/NameRule";
 import CalculateAge from "./CalculateAge";
 import GenderSelect from "./GenderSelect";

@@ -4,7 +4,7 @@ import { SidebarTag, Nav, Div, Links, Span, Brand } from "./Sidebar.style";
 import { useContext, useState, useEffect, use } from "react";
 import { useRouter, usePathname } from "next/navigation";
 import { useIsSidebarFolded } from "../../stores/states/isHeaderFolded";
-import useWindowSize from "../../hooks/useWindowSize";
+import { useWindowSize } from "../../hooks/useWindowSize";
 import { AuthContext } from "../../context/AuthContext";
 import { SidebarData, extraItem } from "./Sidebar.data";
 import DarkModeButton from "../DarkModeButton/DarkModeButton";

@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-export default function useLoading() {
+export function useLoading() {
   const [isLoading, setIsLoading] = useState(true);
 
   const loadingProgress = () => {

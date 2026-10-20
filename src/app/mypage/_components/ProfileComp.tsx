@@ -19,7 +19,7 @@ import {
 import { auth, db } from "../../../firebase/firebaseConfig";
 import { onAuthStateChanged } from "firebase/auth";
 import { doc, getDoc, updateDoc } from "firebase/firestore";
-import useLoading from "../../../hooks/useLoading";
+import { useLoading } from "../../../hooks/useLoading";
 import { useModal } from "../../../hooks/useModal";
 import Modal from "../../../components/Modal/Modal";
 import LogoutButton from "../../../components/Logout";

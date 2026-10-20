@@ -8,7 +8,7 @@ interface UseSortProps {
   sortedArtists: (artists: ArtistDataProps[]) => ArtistDataProps[];
 }
 
-const useSort = create<UseSortProps>()(
+export const useSort = create<UseSortProps>()(
   persist(
     (set, get) => ({
       sort: "최신순",
@@ -39,4 +39,3 @@ const useSort = create<UseSortProps>()(
   )
 );
 
-export default useSort;

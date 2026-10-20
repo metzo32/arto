@@ -25,7 +25,7 @@ import {
 import { auth } from "../../../firebase/firebaseConfig";
 import Modal from "../../../components/Modal/Modal";
 import { useModal } from "../../../hooks/useModal";
-import useLoading from "../../../hooks/useLoading";
+import { useLoading } from "../../../hooks/useLoading";
 import LoadingSpinner from "../../../components/LoadingSpinner/LoadingSpinner";
 
 export default function LoginComp() {

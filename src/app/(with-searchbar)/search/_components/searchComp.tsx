@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import useLoading from "../../../../hooks/useLoading";
+import { useLoading } from "../../../../hooks/useLoading";
 import { useSearchParams } from "next/navigation";
 import { usefilteredLength } from "../../../../stores/states/filteredDataLength";
 import { Div } from "../../_styles/ArticleComp.style";

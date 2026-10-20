@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { Area, Button } from "./SortButtons.style";
 import { usefilteredLength } from "../../stores/states/filteredDataLength";
-import useSort from "../../stores/states/sortOption";
+import { useSort } from "../../stores/states/sortOption";
 import { useIsSidebarFolded } from "../../stores/states/isHeaderFolded";
 
 const sortName = ["최신순", "오래된순", "오름차순", "내림차순"];

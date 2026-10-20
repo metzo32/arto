@@ -4,7 +4,7 @@ import { useEffect, useContext } from "react";
 import { AuthContext } from "../../context/AuthContext";
 import ProfileComp from "./_components/ProfileComp";
 import { useRouter } from "next/navigation";
-import useLoading from "../../hooks/useLoading";
+import { useLoading } from "../../hooks/useLoading";
 
 export default function MyPage() {
   const { currentlyLoggedIn } = useContext(AuthContext);
