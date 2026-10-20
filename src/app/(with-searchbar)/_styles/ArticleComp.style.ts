@@ -4,6 +4,7 @@ import Link from "next/link";
 
 export const Div = styled.div`
   &.wrapper {
+  padding-left: 250px;
     // min-width: 250px;
     // width: clac(100vw - 70px);
     // height: 100vh;
@@ -19,29 +20,6 @@ export const Div = styled.div`
     height: 900px;
     display: flex;
     flex-direction: column;
-  }
-
-  &.article-cards {
-    width: 100%;
-    aspect-ratio: 1/1;
-    min-height: 320px;
-
-    position: relative;
-    cursor: pointer;
-
-    scroll-snap-align: center;
-
-    @media (min-width: 768px) {
-      width: calc(100vw - 70px);
-      height: 100vh;
-    }
-
-    &:hover .article-name {
-      font-size: 100px;
-      letter-spacing: -4px;
-      opacity: 1;
-      transition: 0.3s ease 0.3s;
-    }
   }
 
   &.title-container {
@@ -137,5 +115,16 @@ export const Links = styled(Link)`
 
   &:hover {
     cursor: pointer;
+  }
+
+  &.article-cards {
+    cursor: pointer;
+
+    &:hover .article-name {
+      font-size: 100px;
+      letter-spacing: -4px;
+      opacity: 1;
+      transition: 0.3s ease 0.3s;
+    }
   }
 `;

@@ -31,7 +31,7 @@ export default function ArticleComp({ artists }: ArticleCompProps) {
           throw new Error(`HTTP error! Status: ${response.status}`);
         }
         const data = await response.json();
-        setAllArtists(data);
+        setAllArtists(data); 
       } catch (error) {
         console.error("Error fetching artist data:", error);
       } finally {
@@ -89,7 +89,7 @@ export default function ArticleComp({ artists }: ArticleCompProps) {
   };
 
   return (
-    <Div className="wrapper">
+    <>
       {sortedData.length > 0 ? (
         <ArtistCards
           list={sortedData}
@@ -99,6 +99,6 @@ export default function ArticleComp({ artists }: ArticleCompProps) {
         <NoResult />
         // TODO loading 상태 추가
       )}
-    </Div>
+    </>
   );
 }

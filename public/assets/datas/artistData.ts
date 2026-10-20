@@ -47,7 +47,7 @@ export const getSkillsByIds = (skillIds: number[] = []): ArtistSkillProps[] => {
   return artistSkills.filter((skill) => skillIds.includes(skill.id));
 };
 
-export const artistData: ArtistDataProps[] = [
+export const artistDataOr: ArtistDataProps[] = [
   {
     id: 1,
     nickname: "Lydon",
@@ -1163,3 +1163,5 @@ export const artistData: ArtistDataProps[] = [
     skills: getSkillsByIds([6, 7, 9, 10]),
   },
 ];
+
+export const artistData = artistDataOr.slice(0, 10) //TODO

@@ -50,7 +50,7 @@ export default function SearchBarComp() {
 
   return (
     <>
-      <Div className={`${isMounted ? "search-bar-container" : "hidden"}`}>
+      {/* <Div className={`${isMounted ? "search-bar-container" : "hidden"}`}>
         <Modal
           isOpen={isModalOpen}
           onClose={handleCloseWithReset}
@@ -70,7 +70,7 @@ export default function SearchBarComp() {
         />
         <BaseButton onClick={handleSearch} text="찾기" type="button" />
       </Div>
-      {isFocused && <Span className="overlay" />}
+      {isFocused && <Span className="overlay" />} */}
     </>
   );
 }

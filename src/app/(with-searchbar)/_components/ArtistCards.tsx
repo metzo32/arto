@@ -80,9 +80,9 @@ export const ArtistCards = ({ list, toggleWishlist }: ArtistCardProps) => {
           <Links
             key={item.id}
             href={`/detail/${item.nickname}`}
+            className="article-cards"
             style={{ zIndex: i, transform }}
           >
-            <Div className="article-cards">
               <Img
                 src={item.mainImage}
                 alt={`${item.nickname}`}
@@ -106,8 +106,7 @@ export const ArtistCards = ({ list, toggleWishlist }: ArtistCardProps) => {
                 artistSkills={item.skills.map((skill) => skill.id)}
                 />
                 <H3 className="article-name">{item.nickname}</H3>
-                </Div> */}
-            </Div>
+                // </Div> */}
           </Links>
         )
       })}
