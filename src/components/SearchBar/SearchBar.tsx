@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { useModal } from "../../hooks/useModal";
 import { Div, Input, Span } from "./SearchBar.style";
 import { BaseButton } from "../../../public/assets/design-assets/BaseButton/BaseButton";
@@ -9,9 +9,11 @@ import Modal from "../../components/Modal/Modal";
 
 export default function SearchBarComp() {
   const inputRef = useRef<HTMLInputElement>(null);
+  const searchParams = useSearchParams();
+  const queryVal = searchParams.get("nickname") || "";
   const router = useRouter();
 
-  const [query, setQuery] = useState<string>("");
+  const [query, setQuery] = useState<string>(queryVal ?? "");
   const [isFocused, setIsFocused] = useState<boolean>(false);
   const [isMounted, setIsMounted] = useState(false);
   const { isModalOpen, modalTitle, modalContent, openModal, closeModal } =
