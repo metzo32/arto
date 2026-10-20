@@ -31,9 +31,10 @@ export default function SearchComp() {
     setIsLoading(true);
     try {
       const response = await fetch(
-        `/api/searchArtists?nickname=${encodeURIComponent(nickname)}`
+        `/api/search?nickname=${encodeURIComponent(nickname)}`
       );
       const data = await response.json();
+      console.log("응답", data)
 
       if (response.ok) {
         setFilteredArtists(data);

@@ -7,6 +7,7 @@ import {
 import WishList from "../../../components/Wishlist/WishList";
 import type { ArtistDataProps } from "../../../../public/assets/datas/artistData";
 import { useEffect, useRef, useState } from "react";
+import { useSearchParams } from "next/navigation";
 
 interface ArtistCardProps {
   list: ArtistDataProps[];
@@ -23,7 +24,10 @@ function getInitialIndex() {
 }
 
 export const ArtistCards = ({ list, toggleWishlist }: ArtistCardProps) => {
-  const [currIndex, setCurrIndex] = useState(getInitialIndex());
+  const searchParams = useSearchParams();
+  const query = searchParams.get("nickname") || ""; // 쿼리 유무로 루트페이지 & 검색페이지 구분
+
+  const [currIndex, setCurrIndex] = useState(query ? 0 : getInitialIndex());
   const containerRef = useRef<HTMLDivElement>(null);
   const currIndexRef = useRef(currIndex);
   const isAnimatingRef = useRef(false);
@@ -60,7 +64,9 @@ export const ArtistCards = ({ list, toggleWishlist }: ArtistCardProps) => {
       img.src = list[target].mainImage;
     }
 
-    localStorage.setItem("lastestId", (currIndex + 1).toString());
+    if (!query) {
+      localStorage.setItem("lastestId", (currIndex + 1).toString());
+    }
   }, [currIndex, list]);
 
   const start = Math.max(0, currIndex - 2);

@@ -14,7 +14,7 @@ export interface ArtistDataProps {
   last_name: string;
   email: string;
   city: string;
-  street_address: string;
+  street_address: string; 
   introduction: string;
   mainImage: string;
   randomImage01: string;

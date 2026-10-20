@@ -16,8 +16,8 @@ export default function SearchResults() {
 
     const fetchSearchResults = async () => {
       try {
-        console.log(`Fetching: /api/searchArtists?nickname=${query}`);
-        const response = await fetch(`/api/searchArtists?nickname=${encodeURIComponent(query)}`);
+        console.log(`Fetching: /api/search?nickname=${query}`);
+        const response = await fetch(`/api/search?nickname=${encodeURIComponent(query)}`);
 
         if (!response.ok) {
           throw new Error("검색 결과가 없습니다.");
