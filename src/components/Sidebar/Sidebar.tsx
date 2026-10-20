@@ -3,9 +3,10 @@
 import { SidebarTag, Nav, Div, Links, Span, Brand } from "./Sidebar.style";
 import { useContext, useState, useEffect, use } from "react";
 import { useRouter, usePathname } from "next/navigation";
-import { SidebarData, extraItem } from "./Sidebar.data";
-import { AuthContext } from "../../context/AuthContext";
+import { useIsSidebarFolded } from "../../stores/states/isHeaderFolded";
 import useWindowSize from "../../hooks/useWindowSize";
+import { AuthContext } from "../../context/AuthContext";
+import { SidebarData, extraItem } from "./Sidebar.data";
 import DarkModeButton from "../DarkModeButton/DarkModeButton";
 import RoundButton from "../../../public/assets/design-assets/RoundButton/RoundButton";
 import {
@@ -13,7 +14,6 @@ import {
   FaArrowRight as ArrowRightIcon,
 } from "react-icons/fa6";
 import type { IconBaseProps } from "react-icons";
-import { useIsSidebarFolded } from "../../stores/states/isHeaderFolded";
 
 const Sidebar = () => {
   const router = useRouter();

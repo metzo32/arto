@@ -1,4 +1,3 @@
-"use client"
 
 import { Div, Main } from "../stores/App_style";
 import { ReactNode } from "react";
@@ -11,11 +10,12 @@ export default function RootLayout({ children }: { children: ReactNode }) {
     <html lang="kr">
       <body>
         <Providers>
-          <Div className="app-container">
+          {/* <Div className="app-container"> */}
             <Sidebar />
-            <Main>{children}</Main>
-            <ScrollToTopButton />
-          </Div>
+            {children}
+            {/* <Main>{children}</Main> */}
+            {/* <ScrollToTopButton /> */}
+          {/* </Div> */}
         </Providers>
       </body>
     </html>

@@ -1,12 +1,12 @@
 "use client"
 
 import { Suspense } from "react"
-import SeachComp from "./_components/searchComp"
+import SearchComp from "./_components/searchComp"
 
 export default function SeachPage() {
   return (
     <Suspense fallback={"로딩 중"}>
-      <SeachComp/>
+      <SearchComp/>
     </Suspense>
   )
 }
